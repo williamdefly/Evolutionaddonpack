@@ -8,6 +8,12 @@ Active Contributors :
 Old Contributors :
 - Matspyder : Lua Scripter
 
+Before EAP , mods/addons we have to never forgot :
+- SGMod
+- Stargate Total Conversion II
+- Mckay Addon Pack
+- Carter Addon Pack ( http://www.sg-carterpack.com/wiki/#credits )
+
 Credits [FR]
 
 Contributeurs Actuels :
@@ -17,3 +23,9 @@ Contributeurs Actuels :
 
 Anciens Contributeurs :
 - Matspyder : codeur LUA
+
+Avant l'EAP , les mods/addons que nous devons jamais oublier :
+- SGMod
+- Stargate Total Conversion II
+- Mckay Addon Pack
+- Carter Addon Pack ( http://www.sg-carterpack.com/wiki/#credits )
