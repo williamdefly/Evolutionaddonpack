@@ -1,0 +1,6 @@
+"VertexLitGeneric"
+{
+	"$baseTexture" "models\players\jackson\bandana"
+	"%keywords" "sgtc2"
+	"$nocull" "1"
+}

@@ -1,0 +1,13 @@
+"VertexLitGeneric"
+{
+	"$baseTexture" "models/weapons/v_hand/protection_hand_goa"
+	"$bumpMap" "models/weapons/v_hand/protection_hand_goa_normal"
+	"$envmap" "env_cubemap"
+	"$normalmapalphaenvmapmask" 1
+	"$model" 1
+	"$phong" "1"
+	"$phongexponent" "82"
+	"$phongboost" "21"	
+	"$phongfresnelranges"	"[.4 0.9 2.7]"
+}
+

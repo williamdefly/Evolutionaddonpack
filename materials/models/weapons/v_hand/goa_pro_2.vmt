@@ -1,0 +1,8 @@
+"VertexLitGeneric"
+{
+	"$baseTexture" "Models/weapons/v_hand/goa_pro_2"
+	"$surfaceprop" "metal"
+	"%keywords" "sgtc2"
+}
+
+

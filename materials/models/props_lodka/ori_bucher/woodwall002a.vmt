@@ -1,0 +1,7 @@
+"vertexlitgeneric"
+{
+	// original shader: basetimeslightmap
+	"$basetexture" "wood/woodwall002a"
+	"$surfaceprop" "wood"
+	"%keywords" "wasteland"
+}

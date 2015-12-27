@@ -1,0 +1,14 @@
+"vertexlitgeneric" 
+{
+    	"$basetexture" "Iziraider\jumper\engineblue"
+	"$bumpmap"    "Iziraider/jumper/normal"
+	"$normalmapalphaenvmapmask" 1
+	"$surfaceprop" "Metal"
+ 	"$phong" "1"
+	"$phongexponent" "33"
+	"$phongboost"	"1"
+	"$phongfresnelranges"	"[1 4 5]"
+	"$halflambert" "1"
+	"$phongalbedotint" "1"
+	"$selfillum" 1 
+}

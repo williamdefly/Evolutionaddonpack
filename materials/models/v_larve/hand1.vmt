@@ -1,0 +1,11 @@
+// Automaticly made by ModelConvert by John6000
+//
+// PLEASE LEAVE THIS AS IS IF YOU ARE NOT SURE
+
+"VertexLitGeneric"
+{
+	"$basetexture" "models/v_invis/hand1"
+	"$bumpmap" "models/v_invis/hand1_normal"
+	"$model" "1"
+
+}

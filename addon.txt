@@ -1,0 +1,13 @@
+"AddonInfo"
+{
+	"name"				"Evolution Addon Pack ( EAP )" 
+	"version"			"3.0 officiel"
+	"author_name"		"Team SG-E"
+	"author_email"		"stargate-evolution@hotmail.com"
+	"author_url"		"www.sg-e.fr"
+	"info"				"Un add-on Stargate FRANCAIS."
+	"Forum"             "www.sg-e.org/forum-telechargement/"
+
+}
+
+//"addon avec certain contenue exterieur a sge "

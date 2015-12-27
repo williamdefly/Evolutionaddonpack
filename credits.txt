@@ -1,0 +1,19 @@
+Credits [EN]
+
+Active Contributors :
+- Williamdefly : Owner & Mapper of the pack , basic knownledges in LUA
+- Lilou : 3D Modeler & Texturer
+- Elanis : 3D Modeler & Lua scripter
+
+Old Contributors :
+- Matspyder : Lua Scripter
+
+Credits [FR]
+
+Contributeurs Actuels :
+- Williamdefly : Gerant & Mappeur du pack , connaissances basiques en LUA
+- Lilou : Modeliseur 3D et textureur
+- Elanis : Modeliseur 3D et codeur LUA
+
+Anciens Contributeurs :
+- Matspyder : codeur LUA

@@ -1,0 +1,11 @@
+// Automaticly made by ModelConvert by John6000
+//
+// PLEASE LEAVE THIS AS IS IF YOU ARE NOT SURE
+
+"VertexLitGeneric"
+{
+	"$basetexture" "models/v_goaregen/arrm"
+	"$bumpmap" "models/v_goaregen/arrm_normal"
+	"$model" "1"
+
+}

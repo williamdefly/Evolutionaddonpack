@@ -1,0 +1,6 @@
+"VertexLitGeneric"
+{
+	"$baseTexture" "Models/ship/light_Ori"
+$selfillum 1
+$selfillumtint "[ 2 2 2 ]"
+}

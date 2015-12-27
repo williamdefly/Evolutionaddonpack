@@ -1,0 +1,6 @@
+"VertexLitGeneric"
+{
+	"$baseTexture" "Models/ship/rship1"
+$selfillum 1
+$selfillumtint "[ 1 0 1 ]"
+}

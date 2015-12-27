@@ -1,0 +1,11 @@
+"VertexLitGeneric"
+{
+	"$baseTexture" "Models/weapons/v_hand/hand_white"
+	//"$envmap" "env_cubemap"
+	"$bumpmap" "Models/weapons/v_hand/hand_black_normal"
+	//"$normalmapalphaenvmapmask" 1
+	//"$envmapcontrast" 1
+	//"$envmapsaturation" 1
+}
+
+
