@@ -1,7 +1,7 @@
 ENT.Base = "eap_base"
 ENT.Type = "vehicle"
 
-ENT.PrintName = "Poseur de Portes"
+ENT.PrintName = SGLanguage.GetMessage("ent_ship_gateseeder");
 ENT.Author = ""
 ENT.Spawnable = true
 list.Set("EAP", ENT.PrintName, ENT);
@@ -11,7 +11,6 @@ list.Set("EAP", ENT.PrintName, ENT);
 if SERVER then
 
 --########Header########--
-if (StarGate==nil or StarGate.CheckModule==nil or not StarGate.CheckModule("ship")) then return end
 AddCSLuaFile()
 
 ENT.Model = Model("models/ship/doors_setter.mdl")
@@ -23,8 +22,8 @@ ENT.Sounds = {
 function ENT:SpawnFunction(ply, tr) --######## Pretty useless unless we can spawn it @RononDex
 	if (!tr.HitWorld) then return end
 
-	local PropLimit = GetConVar("CAP_ships_max"):GetInt()
-	if(ply:GetCount("CAP_ships")+1 > PropLimit) then
+	local PropLimit = GetConVar("Count_ships_max"):GetInt()
+	if(ply:GetCount("Count_ships")+1 > PropLimit) then
 		ply:SendLua("GAMEMODE:AddNotify(SGLanguage.GetMessage(\"entity_limit_ships\"), NOTIFY_ERROR, 5); surface.PlaySound( \"buttons/button2.wav\" )");
 		return
 	end
@@ -35,7 +34,7 @@ function ENT:SpawnFunction(ply, tr) --######## Pretty useless unless we can spaw
 	e:Spawn()
 	e:Activate()
 	e:SetWire("Health",e:GetNetworkedInt("health"));
-	ply:AddCount("CAP_ships", e)
+	ply:AddCount("Count_ships", e)
 	return e
 end
 
@@ -222,17 +221,13 @@ end
 	--self:EmitSound(self.Sounds.Staff,90,math.random(90,110))
 --end
 
-if (StarGate and StarGate.CAP_GmodDuplicator) then
-	duplicator.RegisterEntityClass( "eap_gateseeder", StarGate.CAP_GmodDuplicator, "Data" )
-end
-
 end
 
 if CLIENT then
 
 if (SGLanguage!=nil and SGLanguage.GetMessage!=nil) then
-ENT.Category = SGLanguage.GetMessage("Vaisseaux");
-ENT.PrintName = "Poseur de portes";
+ENT.Category = SGLanguage.GetMessage("cat_ship");
+ENT.PrintName = SGLanguage.GetMessage("ent_ship_gateseeder");
 end
 ENT.RenderGroup = RENDERGROUP_BOTH
 

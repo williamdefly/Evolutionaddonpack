@@ -1,9 +1,7 @@
--- Prop Credit goes to MadMan07 ( Carter Addon Packs )
-
 ENT.Base = "eap_base"
 ENT.Type = "vehicle"
 
-ENT.PrintName = "Prometheus"
+ENT.PrintName = SGLanguage.GetMessage('ent_ship_prometheus');
 ENT.Author = ""
 ENT.Spawnable = true
 list.Set("EAP", ENT.PrintName, ENT);
@@ -13,7 +11,6 @@ list.Set("EAP", ENT.PrintName, ENT);
 if SERVER then
 
 --########Header########--
-if (StarGate==nil or StarGate.CheckModule==nil or not StarGate.CheckModule("ship")) then return end
 AddCSLuaFile()
 
 ENT.Model = Model("models/ship/petheship.mdl")
@@ -22,8 +19,8 @@ ENT.Model = Model("models/ship/petheship.mdl")
 function ENT:SpawnFunction(ply, tr) --######## Pretty useless unless we can spawn it @RononDex
 	if (!tr.HitWorld) then return end
 
-	local PropLimit = GetConVar("CAP_ships_max"):GetInt()
-	if(ply:GetCount("CAP_ships")+1 > PropLimit) then
+	local PropLimit = GetConVar("Count_ships_max"):GetInt()
+	if(ply:GetCount("Count_ships")+1 > PropLimit) then
 		ply:SendLua("GAMEMODE:AddNotify(SGLanguage.GetMessage(\"entity_limit_ships\"), NOTIFY_ERROR, 5); surface.PlaySound( \"buttons/button2.wav\" )");
 		return
 	end
@@ -34,13 +31,13 @@ function ENT:SpawnFunction(ply, tr) --######## Pretty useless unless we can spaw
 	e:Spawn()
 	e:Activate()
 	e:SetWire("Health",e:GetNetworkedInt("health"));
-	ply:AddCount("CAP_ships", e)
+	ply:AddCount("Count_ships", e)
 	return e
 end
 
 function ENT:Initialize() --######## What happens when it first spawns(Set Model, Physics etc.) @RononDex
 	self.BaseClass.Initialize(self);
-	self.Vehicle = "prometheus"
+	self.Vehicle = "Promethee"
 	self:SetModel(self.Model)
 	self:PhysicsInit(SOLID_VPHYSICS)
 	self:SetMoveType(MOVETYPE_VPHYSICS)
@@ -111,7 +108,7 @@ function ENT:Think()
 				self:FireBlast(self:GetRight()*80);
 				self:FireBlast(self:GetRight()*-80);
 			self.CanShoot = false
-				timer.Create("OneillCanShoot"..self.Pilot:EntIndex(),self.TimeBetweenEachShoot,1,function()
+				timer.Create("PtCanShoot"..self.Pilot:EntIndex(),self.TimeBetweenEachShoot,1,function()
 					self.CanShoot = true
 				end)
 			end
@@ -131,7 +128,7 @@ end
 
 function ENT:OnRemove()
 	if timer.Exists("CanFire"..self:EntIndex().."Rails") then timer.Destroy("CanFire"..self:EntIndex().."Rails"); end
-	if timer.Exists("OneillCanShoot"..self:EntIndex()) then timer.Destroy("OneillCanShoot"..self:EntIndex()); end
+	if timer.Exists("PtCanShoot"..self:EntIndex()) then timer.Destroy("PtCanShoot"..self:EntIndex()); end
 	self.BaseClass.OnRemove(self)
 end
 
@@ -192,7 +189,7 @@ function ENT:FireBlast(diff)
 		ent:SetAngles(self:GetAngles());
 		ent:Spawn();
 		ent:Activate();
-		ent:StopSound("weapons/drone_flyby.mp3");
+		ent:StopSound("weapons/drone_flyby.mp3"); //Stop Drone Sound @Elanis
 		ent:SetVelocity(Vector(0,0,1)*self.MissileMaxVel);
 		ent:SetCollisionGroup(COLLISION_GROUP_PROJECTILE);
 		ent:SetOwner(self.Entity);
@@ -200,23 +197,19 @@ function ENT:FireBlast(diff)
 		timer.Simple( 0.2, function() if (IsValid(ent)) then ent:SetVelocity(ent:GetForward()*self.MissileMaxVel); end end)
 end
 
-if (StarGate and StarGate.CAP_GmodDuplicator) then
-	duplicator.RegisterEntityClass( "eap_prometheus", StarGate.CAP_GmodDuplicator, "Data" )
-end
-
 end
 
 if CLIENT then
 
-ENT.PrintName = "Prometheus";
-ENT.Category = "Vaisseaux";
+ENT.PrintName = SGLanguage.GetMessage('ent_ship_prometheus');
+ENT.Category = SGLanguage.GetMessage('cat_ship');
 end
 ENT.RenderGroup = RENDERGROUP_BOTH
 
 if (StarGate==nil or StarGate.KeyBoard==nil or StarGate.KeyBoard.New==nil) then return end
 
 --########## Keybinder stuff
-local KBD = StarGate.KeyBoard:New("prometheus")
+local KBD = StarGate.KeyBoard:New("Promethee")
 --Navigation
 KBD:SetDefaultKey("FWD",StarGate.KeyBoard.BINDS["+forward"] or "W") -- Forward
 KBD:SetDefaultKey("LEFT",StarGate.KeyBoard.BINDS["+moveleft"] or "A")
@@ -253,7 +246,7 @@ function ENT:Initialize( )
 	self.UDist=120
 	self.KBD = self.KBD or KBD:CreateInstance(self)
 	self.FirstPerson=false
-	self.Vehicle = "prometheus"
+	self.Vehicle = "Promethee"
 end
 
 --[[

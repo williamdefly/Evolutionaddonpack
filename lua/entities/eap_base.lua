@@ -1,4 +1,29 @@
+--[[
+	Stargate Vehicle base for GarrysMod10
+	Copyright (C) 2010-2011  RononDex
 
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+	Dear to whoever is reading this,
+		I(RononDex) have had a lot of experience coding vehicles, and finally
+		decided that I should make a base. All you need to do is to derive from
+		this base and set the vars needed in the Initialize of your entity. Please
+		check my other vehicles for the vars that are needed. Please give credit to me,
+		if this base is used and finally do NOT reupload this anywhere.
+		Regards,
+	Ronon Dex
+]]--
 
 if (StarGate!=nil and StarGate.LifeSupportAndWire!=nil) then StarGate.LifeSupportAndWire(ENT); end
 
@@ -6,7 +31,7 @@ ENT.PrintName = "Stargate Vehicle Base"
 ENT.Author = "RononDex"
 ENT.Base = "base_anim"
 ENT.Type = "vehicle"
-ENT.Category = "Stargate Carter Addon Pack: Ships"
+ENT.Category = SGLanguage.GetMessage("cat_ship");
 
 ENT.Spawnable = false
 ENT.AdminSpawnable = false
@@ -14,7 +39,6 @@ ENT.IsSGVehicle = true;
 
 if SERVER then
 
-if (StarGate==nil or StarGate.CheckModule==nil or not StarGate.CheckModule("ship")) then return end
 AddCSLuaFile();
 
 ENT.NextExit = CurTime();
@@ -28,14 +52,6 @@ ENT.Accel = {
 	UP = 0;
 };
 ENT.CanUse = true;
-// ENT.Passengers = {
-// 	Seat1 = nil,
-// 	Seat2 = nil,
-// 	Seat3 = nil,
-// 	Seat4 = nil,
-// }
-// ENT.CanHavePassengers = false
-// ENT.MaxPassengers = 1
 
 ENT.WeaponsTable={}; --Make the table for weapons out here, this when a player enters stores there weapons which we give back when they exit
 
@@ -49,19 +65,6 @@ function ENT:Initialize()
 	self:StartMotionController();
 	self.HoverPos = self:GetPos();
 
-	self.EntitiesNotAllowed = {
-		"launcher_drones",
-		"sg_turret_destmain",
-		"sg_turret_destmed",
-		"sg_turret_destsmall",
-		"sg_turret_shiprail",
-		"sg_turret_tollan",
-		"sg_turret_deadalus",
-		"sg_turret_base",
-		"aschen_defence",
-		"asgard_beam",
-		"ori_beam_cannon"
-	}
 end
 
 function ENT:Bang(p) --######## The effect, and killing the player if they're flying @RononDex
@@ -115,22 +118,6 @@ function ENT:Think()
 		return true;
 	end
 
-	if !timer.Exists(self.Entity:GetClass()..self.Entity:EntIndex().."HaveOtherWeapons") then
-		timer.Create(self.Entity:GetClass()..self.Entity:EntIndex().."HaveOtherWeapons",2.5,0,function()
-			local count = false;
-			for _, Entity in pairs( constraint.GetAllConstrainedEntities(self.Entity) ) do
-				for i,v in pairs(self.EntitiesNotAllowed) do
-					if Entity:GetClass() == v then
-						Entity:Remove()
-						count = true
-					end
-				end
-			end
-			if count then
-				self.Owner:ChatPrint(Entity:GetClass().." Ce vaisseau est déjà armé")
-			end
-		end)
-	end
 end
 
 function ENT:Enter(p) --####### Get in @RononDex
@@ -208,12 +195,6 @@ function ENT:Use(p) --####### When you press E on it @RononDex
 
 	if(not(self.Inflight)) then
 		self:Enter(p); --Get in
-	/*else
-		if (self.CanHavePassengers) then
-			if (self.Passengers:Length() < self.MaxPassengers) then
-				
-			end
-		end*/
 	end
 end
 
@@ -357,9 +338,9 @@ function ENT.FixAngles(self,pos,ang,vel,old_pos,old_ang,old_vel,ang_delta)
 end
 
 -- damn, this not work with mask...
-for k,v in pairs({sg_vehicle_dart,"sg_vehicle_gate_glider","sg_vehicle_glider","sg_vehicle_shuttle","sg_vehicle_f302","sg_vehicle_teltac","eap_destiny","eap_cruiser","eap_alkesh"}) do
-	StarGate.Teleport:Add(v,ENT.FixAngles);
-end
+--for k,v in pairs({sg_vehicle_dart,"sg_vehicle_gate_glider","sg_vehicle_glider","sg_vehicle_shuttle","sg_vehicle_f302","sg_vehicle_teltac","eap_destiny","eap_cruiser","eap_alkesh"}) do
+	--StarGate.Teleport:Add(v,ENT.FixAngles);
+--end
 
 --########## Run the anim that's set in the arguements @RononDex
 function ENT:Anims(e,anim,playback_rate,delay,nosound,sound)
@@ -401,13 +382,13 @@ end
 function ENT:PostEntityPaste(ply, Ent, CreatedEntities)
 	if (StarGate.NotSpawnable(Ent:GetClass(),ply)) then self.Entity:Remove(); return end
 	if (IsValid(ply)) then
-		local PropLimit = GetConVar("CAP_ships_max"):GetInt()
-		if(ply:GetCount("CAP_ships")+1 > PropLimit) then
+		local PropLimit = GetConVar("Count_ships_max"):GetInt()
+		if(ply:GetCount("Count_ships")+1 > PropLimit) then
 			ply:SendLua("GAMEMODE:AddNotify(SGLanguage.GetMessage(\"entity_limit_ships\"), NOTIFY_ERROR, 5); surface.PlaySound( \"buttons/button2.wav\" )");
 			Ent:Remove();
 			return
 		end
-		ply:AddCount("CAP_ships", Ent);
+		ply:AddCount("Count_ships", Ent);
 		Ent.Owner = ply;
 	end
 	StarGate.WireRD.PostEntityPaste(self,ply,Ent,CreatedEntities)
@@ -456,54 +437,54 @@ function ENT:Draw()
 	self:DrawModel()
 end
 
-function ENT:CreateHyperspaceWindow(pos,angle,scale)
-	local e = ents.Create("hyperspace_window")
-	e:SetPos(pos)
-	e:SetAngles(angle)
-	e:Spawn()
-	e:Activate()
-	timer.Create("WindowOpenAnimation"..self:EntIndex(),0.0001,30,function()
-		e:SetModelScale(e:GetModelScale()+scale)
-	end)
-	return e
-end
+-- function ENT:CreateHyperspaceWindow(pos,angle,scale)
+-- 	local e = ents.Create("hyperspace_window")
+-- 	e:SetPos(pos)
+-- 	e:SetAngles(angle)
+-- 	e:Spawn()
+-- 	e:Activate()
+-- 	timer.Create("WindowOpenAnimation"..self:EntIndex(),0.0001,30,function()
+-- 		e:SetModelScale(e:GetModelScale()+scale)
+-- 	end)
+-- 	return e
+-- end
 
-function ENT:CloseHyperspaceWindow(entity)
-	entity:EmitSound(Sound("/eap/hyperespace/hyper_window_close.wav"))
-	timer.Create("WindowCloseAnimation"..self:EntIndex(),0.0001,32,function()
-		entity:SetModelScale(self:GetModelScale()-0.5)
-	end)
-	timer.Create("WindowRemove"..self:EntIndex(),1,1,function()
-		entity:Remove()
-	end)
-end
+-- function ENT:CloseHyperspaceWindow(entity)
+-- 	entity:EmitSound(Sound("/eap/hyperespace/hyper_window_close.wav"))
+-- 	timer.Create("WindowCloseAnimation"..self:EntIndex(),0.0001,32,function()
+-- 		entity:SetModelScale(self:GetModelScale()-0.5)
+-- 	end)
+-- 	timer.Create("WindowRemove"..self:EntIndex(),1,1,function()
+-- 		entity:Remove()
+-- 	end)
+-- end
 
-function ENT:HyperspaceAccelerate()
-	local forward = self.Entity:GetForward()
-	local speed = 150
-	local angles = self.Entity:GetAngles()
-	local increment = 2
-	timer.Create("HyperspaceAccelerate"..self:EntIndex(),0.000001,50,function()
-		self.Entity:SetAngles(angles)
-		self.Entity:SetPos(self:GetPos()+(forward*speed))
-	end)
-end
+-- function ENT:HyperspaceAccelerate()
+-- 	local forward = self.Entity:GetForward()
+-- 	local speed = 150
+-- 	local angles = self.Entity:GetAngles()
+-- 	local increment = 2
+-- 	timer.Create("HyperspaceAccelerate"..self:EntIndex(),0.000001,50,function()
+-- 		self.Entity:SetAngles(angles)
+-- 		self.Entity:SetPos(self:GetPos()+(forward*speed))
+-- 	end)
+-- end
 
-function ENT:HyperspaceDeaccelerate()
-	local forward = self:GetForward()
-	local speed = 150
-	local angles = self:GetAngles()
-	local increment = 102
-	timer.Create("HyperspaceDeaccelerate"..self:EntIndex(),0.000001,50,function()
-		self.Entity:SetAngles(angles)
-		self.Entity:SetPos(self:GetPos()+(forward*speed))
-	end)
-end
+-- function ENT:HyperspaceDeaccelerate()
+-- 	local forward = self:GetForward()
+-- 	local speed = 150
+-- 	local angles = self:GetAngles()
+-- 	local increment = 102
+-- 	timer.Create("HyperspaceDeaccelerate"..self:EntIndex(),0.000001,50,function()
+-- 		self.Entity:SetAngles(angles)
+-- 		self.Entity:SetPos(self:GetPos()+(forward*speed))
+-- 	end)
+-- end
 
-function ENT:HyperspaceTeleport(position,angle)
-	self:SetPos(position)
-	self:SetAngles(angle)
-end
+-- function ENT:HyperspaceTeleport(position,angle)
+-- 	self:SetPos(position)
+-- 	self:SetAngles(angle)
+-- end
 
 function ENT:Think()
 
@@ -554,75 +535,5 @@ function ENT:StopClientsideSound(mode)
 		self.SoundsOn[mode] = nil;
 	end
 end
-function PrintHUD()
-	local p = LocalPlayer()
-	local self = p:GetNetworkedEntity("ScriptedVehicle", NULL)
-	local vehicle = p:GetNWEntity("GateGlider")
-	if(IsValid(self)) then
-		if((IsValid(vehicle))and(vehicle==self)) then
-			if(vehicle:GetModel()!="models/Iziraider/gateglider/gateglider.mdl")then
-
-				local texture = "vgui/hud/hud_nav/j_hud"
-				local vehicleType = "default"
-
-				local EntHealth = vehicle:GetNWInt("maxEntHealth",-1)
-				local EntShields = vehicle:GetNWInt("maxEntShields",-1)
-				local health = math.Round(vehicle:GetNWInt("health",-1)/EntHealth*100) -- test fix
-				local shields = math.Round(vehicle:GetNWInt("shields",-1)/EntShields*100)
-				local texture = surface.GetTextureID(texture)
-				local CanFire = vehicle:GetNWInt("CanFire",-1)
-				local x = ScrW()/4*0;
-				local y = ScrH()/4*3;
-				local w = ScrW()*0.99;
-				local h = (w/4096)*512*(3/4);
-
-				local font = {
-					font = "Default",
-					size = (w/1024)*30,
-					weight = 400,
-					antialias = true,
-					additive = false,
-				}
-				surface.CreateFont("JumperFont", font);
-
-
-				local hudpos = {
-					healthw = (ScrW()/10*0.75),
-					healthh = (ScrH()/10*8),
-					weaponsdw = (ScrW()/10*7.5),
-					weaponsdh = (ScrH()/10*8),
-					shieldsdw = (ScrW()/10*2.5),
-					shieldsdh = (ScrH()/10*2),
-				}
-
-
-				surface.SetTexture(texture)
-				surface.SetDrawColor(255,255,255,255) -- Colour of the HUD
-				surface.DrawTexturedRect(x,y,w,h) -- Position, Size
-
-				if(CanFire==1)then
-					draw.WordBox(8,hudpos.weaponsdw, hudpos.weaponsdh, "Armes: Activées", "JumperFont", Color(50,50,75,0), Color(0,255,0,255))
-				elseif CanFire == 0 then
-					draw.WordBox(8,hudpos.weaponsdw-20, hudpos.weaponsdh, "Armes: "..math.Round(vehicle:GetNWInt("WeaponsTimer",0)).." Secondes", "JumperFont", Color(50,50,75,0), Color(255,0,0,255))
-				elseif CanFire == 3 then
-					draw.WordBox(8,hudpos.weaponsdw-20, hudpos.weaponsdh, "Armes: Détruites", "JumperFont", Color(50,50,75,0), Color(255,0,0,255))
-				elseif CanFire == -1 then
-					draw.WordBox(8,hudpos.weaponsdw, hudpos.weaponsdh, "Aucune Arme détécté", "JumperFont", Color(50,50,75,0), Color(255,255,255,255))
-				end
-				if health != -1 then
-					if health > 50 then
-						draw.WordBox(8,hudpos.healthw,hudpos.healthh, "Vie: "..health.."%","JumperFont",Color(50,50,75,0), Color(0,255,0,255))
-					elseif health <=50 then
-						draw.WordBox(8,hudpos.healthw,hudpos.healthh, "Vie: "..health.."%","JumperFont",Color(50,50,75,0), Color(255,135,0,255))
-					elseif health <= 25 then
-						draw.WordBox(8,hudpos.healthw,hudpos.healthh, "Vie: "..health.."%","JumperFont",Color(50,50,75,0), Color(255,0,0,255))
-					end
-				end
-			end
-		end
-	end
-end
-//hook.Add("HUDPaint","ShipsHUD",PrintHUD)
-
 
 end

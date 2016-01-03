@@ -4,28 +4,28 @@ function StarGate.daedalusSettings(Panel)
 		{
 			Name = SGLanguage.GetMessage("key_move_title"),
 			Keys = {
-				{"Avancer","FWD"},
-				{"Aller à gauche","LEFT"},
-				{"Aller à droite","RIGHT"},
-				{"Reculer","BACK"},
-				{"Monter","UP"},
-				{"Descendre","DOWN"},
-				{"Boost","SPD"},
+				{SGLanguage.GetMessage("key_move_forward"),"FWD"},
+				{SGLanguage.GetMessage("key_move_left"),"LEFT"},
+				{SGLanguage.GetMessage("key_move_right"),"RIGHT"},
+				{SGLanguage.GetMessage("key_move_back"),"BACK"},
+				{SGLanguage.GetMessage("key_move_up"),"UP"},
+				{SGLanguage.GetMessage("key_move_down"),"DOWN"},
+				{SGLanguage.GetMessage("key_move_boost"),"SPD"},
 			},
 		},
 		{
 			Name = SGLanguage.GetMessage("key_combat_title"),
 			Keys = {
-				{"Canon Principal","FIRE"},
-				{"Canons Secondaire","TRACK"},
+				{SGLanguage.GetMessage("key_combat_primary"),"FIRE"},
+				{SGLanguage.GetMessage("key_combat_secondary"),"TRACK"},
 			},
 		},
 		{
 			Name = SGLanguage.GetMessage("key_act_title"),
 			Keys = {
-				{"Autodestruction","BOOM"},
-				{"Bouclier","SHIELD"},
-				{"Sortir","EXIT"},
+				{SGLanguage.GetMessage("key_act_selfdestruct"),"BOOM"},
+				{SGLanguage.GetMessage("key_act_shield"),"SHIELD"},
+				{SGLanguage.GetMessage("key_act_out"),"EXIT"},
 			},
 		},
 		{
@@ -56,28 +56,28 @@ function StarGate.GateseederSettings(Panel)
 		{
 			Name = SGLanguage.GetMessage("key_move_title"),
 			Keys = {
-				{"Avancer","FWD"},
-				{"Aller à gauche","LEFT"},
-				{"Aller à droite","RIGHT"},
-				{"Reculer","BACK"},
-				{"Monter","UP"},
-				{"Descendre","DOWN"},
-				{"Boost","SPD"},
+				{SGLanguage.GetMessage("key_move_forward"),"FWD"},
+				{SGLanguage.GetMessage("key_move_left"),"LEFT"},
+				{SGLanguage.GetMessage("key_move_right"),"RIGHT"},
+				{SGLanguage.GetMessage("key_move_back"),"BACK"},
+				{SGLanguage.GetMessage("key_move_up"),"UP"},
+				{SGLanguage.GetMessage("key_move_down"),"DOWN"},
+				{SGLanguage.GetMessage("key_move_boost"),"SPD"},
 			},
 		},
 		{
 			Name = SGLanguage.GetMessage("key_combat_title"),
 			Keys = {
-				{"Canon Principal","FIRE"},
-				{"Canons Secondaire","TRACK"},
+				{SGLanguage.GetMessage("key_combat_primary"),"FIRE"},
+				{SGLanguage.GetMessage("key_combat_secondary"),"TRACK"},
 			},
 		},
 		{
 			Name = SGLanguage.GetMessage("key_act_title"),
 			Keys = {
-				{"Autodestruction","BOOM"},
-				{"Bouclier","SHIELD"},
-				{"Sortir","EXIT"},
+				{SGLanguage.GetMessage("key_act_selfdestruct"),"BOOM"},
+				{SGLanguage.GetMessage("key_act_shield"),"SHIELD"},
+				{SGLanguage.GetMessage("key_act_out"),"EXIT"},
 			},
 		},
 		{
@@ -108,78 +108,28 @@ function StarGate.DestinySettings(Panel)
 		{
 			Name = SGLanguage.GetMessage("key_move_title"),
 			Keys = {
-				{"Avancer","FWD"},
-				{"Aller à gauche","LEFT"},
-				{"Aller à droite","RIGHT"},
-				{"Reculer","BACK"},
-				{"Monter","UP"},
-				{"Descendre","DOWN"},
-				{"Boost","SPD"},
+				{SGLanguage.GetMessage("key_move_forward"),"FWD"},
+				{SGLanguage.GetMessage("key_move_left"),"LEFT"},
+				{SGLanguage.GetMessage("key_move_right"),"RIGHT"},
+				{SGLanguage.GetMessage("key_move_back"),"BACK"},
+				{SGLanguage.GetMessage("key_move_up"),"UP"},
+				{SGLanguage.GetMessage("key_move_down"),"DOWN"},
+				{SGLanguage.GetMessage("key_move_boost"),"SPD"},
 			},
 		},
 		{
 			Name = SGLanguage.GetMessage("key_combat_title"),
 			Keys = {
-				{"Canon Principal","FIRE"},
-				{"Canons Secondaire","TRACK"},
+				{SGLanguage.GetMessage("key_combat_primary"),"FIRE"},
+				{SGLanguage.GetMessage("key_combat_secondary"),"TRACK"},
 			},
 		},
 		{
 			Name = SGLanguage.GetMessage("key_act_title"),
 			Keys = {
-				{"Autodestruction","BOOM"},
-				{"Bouclier","SHIELD"},
-				{"Sortir","EXIT"},
-			},
-		},
-		{
-			Name = SGLanguage.GetMessage("key_view_title"),
-			Keys = {
-				{SGLanguage.GetMessage("key_view_zoomin"),"Z+"},
-				{SGLanguage.GetMessage("key_view_zoomout"),"Z-"},
-				{SGLanguage.GetMessage("key_view_up"),"A+"},
-				{SGLanguage.GetMessage("key_view_down"),"A-"},
-			},
-		},
-	}
-	for _,v in pairs(KEYS) do
-		Panel:Help("");
-		Panel:Help(v.Name);
-		for _,v in pairs(v.Keys) do
-			local KEY = vgui.Create("SKeyboardKey",Panel);
-			KEY:SetData(LAYOUT,v[1],v[2]);
-			Panel:AddPanel(KEY);
-		end
-	end
-end
-
-function StarGate.NavigatorSettings(Panel)
-	local LAYOUT = "Navigator";
-	local KEYS = {
-		{
-			Name = SGLanguage.GetMessage("key_move_title"),
-			Keys = {
-				{"Avancer","FWD"},
-				{"Aller à gauche","LEFT"},
-				{"Aller à droite","RIGHT"},
-				{"Reculer","BACK"},
-				{"Monter","UP"},
-				{"Descendre","DOWN"},
-				//{"Boost","SPD"},
-			},
-		},
-		{
-			Name = SGLanguage.GetMessage("key_combat_title"),
-			Keys = {
-				{"Clique Gauche","FIRE"},
-				{"Clique Droit","TRACK"},
-			},
-		},
-		{
-			Name = SGLanguage.GetMessage("key_act_title"),
-			Keys = {
-				{"Autodestruction","BOOM"},
-				{"Sortir","EXIT"},
+				{SGLanguage.GetMessage("key_act_selfdestruct"),"BOOM"},
+				{SGLanguage.GetMessage("key_act_shield"),"SHIELD"},
+				{SGLanguage.GetMessage("key_act_out"),"EXIT"},
 			},
 		},
 		{
@@ -209,27 +159,27 @@ function StarGate.AlkeshSettings(Panel)
 		{
 			Name = SGLanguage.GetMessage("key_move_title"),
 			Keys = {
-				{"Avancer","FWD"},
-				{"Aller à gauche","LEFT"},
-				{"Aller à droite","RIGHT"},
-				{"Reculer","BACK"},
-				{"Monter","UP"},
-				{"Descendre","DOWN"},
-				{"Boost","SPD"},
+				{SGLanguage.GetMessage("key_move_forward"),"FWD"},
+				{SGLanguage.GetMessage("key_move_left"),"LEFT"},
+				{SGLanguage.GetMessage("key_move_right"),"RIGHT"},
+				{SGLanguage.GetMessage("key_move_back"),"BACK"},
+				{SGLanguage.GetMessage("key_move_up"),"UP"},
+				{SGLanguage.GetMessage("key_move_down"),"DOWN"},
+				{SGLanguage.GetMessage("key_move_boost"),"SPD"},
 			},
 		},
 		{
 			Name = SGLanguage.GetMessage("key_combat_title"),
 			Keys = {
 				{"Tirer","FIRE"},
-				//{"Canons Secondaire","TRACK"},
+				//{SGLanguage.GetMessage("key_combat_secondary"),"TRACK"},
 			},
 		},
 		{
 			Name = SGLanguage.GetMessage("key_act_title"),
 			Keys = {
-				{"Autodestruction","BOOM"},
-				{"Sortir","EXIT"},
+				{SGLanguage.GetMessage("key_act_selfdestruct"),"BOOM"},
+				{SGLanguage.GetMessage("key_act_out"),"EXIT"},
 			},
 		},
 		{
@@ -259,27 +209,27 @@ function StarGate.WraithCruiserSettings(Panel)
 		{
 			Name = SGLanguage.GetMessage("key_move_title"),
 			Keys = {
-				{"Avancer","FWD"},
-				{"Aller à gauche","LEFT"},
-				{"Aller à droite","RIGHT"},
-				{"Reculer","BACK"},
-				{"Monter","UP"},
-				{"Descendre","DOWN"},
-				{"Boost","SPD"},
+				{SGLanguage.GetMessage("key_move_forward"),"FWD"},
+				{SGLanguage.GetMessage("key_move_left"),"LEFT"},
+				{SGLanguage.GetMessage("key_move_right"),"RIGHT"},
+				{SGLanguage.GetMessage("key_move_back"),"BACK"},
+				{SGLanguage.GetMessage("key_move_up"),"UP"},
+				{SGLanguage.GetMessage("key_move_down"),"DOWN"},
+				{SGLanguage.GetMessage("key_move_boost"),"SPD"},
 			},
 		},
 		{
 			Name = SGLanguage.GetMessage("key_combat_title"),
 			Keys = {
 				{"Tirer","FIRE"},
-				//{"Canons Secondaire","TRACK"},
+				//{SGLanguage.GetMessage("key_combat_secondary"),"TRACK"},
 			},
 		},
 		{
 			Name = SGLanguage.GetMessage("key_act_title"),
 			Keys = {
-				{"Autodestruction","BOOM"},
-				{"Sortir","EXIT"},
+				{SGLanguage.GetMessage("key_act_selfdestruct"),"BOOM"},
+				{SGLanguage.GetMessage("key_act_out"),"EXIT"},
 			},
 		},
 		{
@@ -309,27 +259,27 @@ function StarGate.AnubisMotherShipSettings(Panel)
 		{
 			Name = SGLanguage.GetMessage("key_move_title"),
 			Keys = {
-				{"Avancer","FWD"},
-				{"Aller à gauche","LEFT"},
-				{"Aller à droite","RIGHT"},
-				{"Reculer","BACK"},
-				{"Monter","UP"},
-				{"Descendre","DOWN"},
-				{"Boost","SPD"},
+				{SGLanguage.GetMessage("key_move_forward"),"FWD"},
+				{SGLanguage.GetMessage("key_move_left"),"LEFT"},
+				{SGLanguage.GetMessage("key_move_right"),"RIGHT"},
+				{SGLanguage.GetMessage("key_move_back"),"BACK"},
+				{SGLanguage.GetMessage("key_move_up"),"UP"},
+				{SGLanguage.GetMessage("key_move_down"),"DOWN"},
+				{SGLanguage.GetMessage("key_move_boost"),"SPD"},
 			},
 		},
 		{
 			Name = SGLanguage.GetMessage("key_combat_title"),
 			Keys = {
 				{"Tirer","FIRE"},
-				//{"Canons Secondaire","TRACK"},
+				//{SGLanguage.GetMessage("key_combat_secondary"),"TRACK"},
 			},
 		},
 		{
 			Name = SGLanguage.GetMessage("key_act_title"),
 			Keys = {
-				{"Autodestruction","BOOM"},
-				{"Sortir","EXIT"},
+				{SGLanguage.GetMessage("key_act_selfdestruct"),"BOOM"},
+				{SGLanguage.GetMessage("key_act_out"),"EXIT"},
 			},
 		},
 		{
@@ -359,27 +309,27 @@ function StarGate.HatakSettings(Panel)
 		{
 			Name = SGLanguage.GetMessage("key_move_title"),
 			Keys = {
-				{"Avancer","FWD"},
-				{"Aller à gauche","LEFT"},
-				{"Aller à droite","RIGHT"},
-				{"Reculer","BACK"},
-				{"Monter","UP"},
-				{"Descendre","DOWN"},
-				{"Boost","SPD"},
+				{SGLanguage.GetMessage("key_move_forward"),"FWD"},
+				{SGLanguage.GetMessage("key_move_left"),"LEFT"},
+				{SGLanguage.GetMessage("key_move_right"),"RIGHT"},
+				{SGLanguage.GetMessage("key_move_back"),"BACK"},
+				{SGLanguage.GetMessage("key_move_up"),"UP"},
+				{SGLanguage.GetMessage("key_move_down"),"DOWN"},
+				{SGLanguage.GetMessage("key_move_boost"),"SPD"},
 			},
 		},
 		{
 			Name = SGLanguage.GetMessage("key_combat_title"),
 			Keys = {
 				{"Tirer","FIRE"},
-				//{"Canons Secondaire","TRACK"},
+				//{SGLanguage.GetMessage("key_combat_secondary"),"TRACK"},
 			},
 		},
 		{
 			Name = SGLanguage.GetMessage("key_act_title"),
 			Keys = {
-				{"Autodestruction","BOOM"},
-				{"Sortir","EXIT"},
+				{SGLanguage.GetMessage("key_act_selfdestruct"),"BOOM"},
+				{SGLanguage.GetMessage("key_act_out"),"EXIT"},
 			},
 		},
 		{
@@ -403,33 +353,33 @@ function StarGate.HatakSettings(Panel)
 	end
 end
 
-function StarGate.OriSettings(Panel)
-	local LAYOUT = "Ori";
+function StarGate.OriMsSettings(Panel)
+	local LAYOUT = "OriMs";
 	local KEYS = {
 		{
 			Name = SGLanguage.GetMessage("key_move_title"),
 			Keys = {
-				{"Avancer","FWD"},
-				{"Aller à gauche","LEFT"},
-				{"Aller à droite","RIGHT"},
-				{"Reculer","BACK"},
-				{"Monter","UP"},
-				{"Descendre","DOWN"},
-				{"Boost","SPD"},
+				{SGLanguage.GetMessage("key_move_forward"),"FWD"},
+				{SGLanguage.GetMessage("key_move_left"),"LEFT"},
+				{SGLanguage.GetMessage("key_move_right"),"RIGHT"},
+				{SGLanguage.GetMessage("key_move_back"),"BACK"},
+				{SGLanguage.GetMessage("key_move_up"),"UP"},
+				{SGLanguage.GetMessage("key_move_down"),"DOWN"},
+				{SGLanguage.GetMessage("key_move_boost"),"SPD"},
 			},
 		},
 		{
 			Name = SGLanguage.GetMessage("key_combat_title"),
 			Keys = {
 				{"Tirer","FIRE"},
-				//{"Canons Secondaire","TRACK"},
+				//{SGLanguage.GetMessage("key_combat_secondary"),"TRACK"},
 			},
 		},
 		{
 			Name = SGLanguage.GetMessage("key_act_title"),
 			Keys = {
-				{"Autodestruction","BOOM"},
-				{"Sortir","EXIT"},
+				{SGLanguage.GetMessage("key_act_selfdestruct"),"BOOM"},
+				{SGLanguage.GetMessage("key_act_out"),"EXIT"},
 			},
 		},
 		{
@@ -459,12 +409,12 @@ function StarGate.OneillSettings(Panel)
 		{
 			Name = SGLanguage.GetMessage("key_move_title"),
 			Keys = {
-				{"Avancer","FWD"},
-				{"Aller à gauche","LEFT"},
-				{"Aller à droite","RIGHT"},
-				{"Reculer","BACK"},
-				{"Monter","UP"},
-				{"Descendre","DOWN"},
+				{SGLanguage.GetMessage("key_move_forward"),"FWD"},
+				{SGLanguage.GetMessage("key_move_left"),"LEFT"},
+				{SGLanguage.GetMessage("key_move_right"),"RIGHT"},
+				{SGLanguage.GetMessage("key_move_back"),"BACK"},
+				{SGLanguage.GetMessage("key_move_up"),"UP"},
+				{SGLanguage.GetMessage("key_move_down"),"DOWN"},
 			},
 		},
 		{
@@ -477,8 +427,106 @@ function StarGate.OneillSettings(Panel)
 		{
 			Name = SGLanguage.GetMessage("key_act_title"),
 			Keys = {
-				{"Autodestruction","BOOM"},
-				{"Sortir","EXIT"},
+				{SGLanguage.GetMessage("key_act_selfdestruct"),"BOOM"},
+				{SGLanguage.GetMessage("key_act_out"),"EXIT"},
+			},
+		},
+		{
+			Name = SGLanguage.GetMessage("key_view_title"),
+			Keys = {
+				{SGLanguage.GetMessage("key_view_zoomin"),"Z+"},
+				{SGLanguage.GetMessage("key_view_zoomout"),"Z-"},
+				{SGLanguage.GetMessage("key_view_up"),"A+"},
+				{SGLanguage.GetMessage("key_view_down"),"A-"},
+			},
+		},
+	}
+	for _,v in pairs(KEYS) do
+		Panel:Help("");
+		Panel:Help(v.Name);
+		for _,v in pairs(v.Keys) do
+			local KEY = vgui.Create("SKeyboardKey",Panel);
+			KEY:SetData(LAYOUT,v[1],v[2]);
+			Panel:AddPanel(KEY);
+		end
+	end
+end
+
+function StarGate.PrometheeSettings(Panel)
+	local LAYOUT = "Promethee";
+	local KEYS = {
+		{
+			Name = SGLanguage.GetMessage("key_move_title"),
+			Keys = {
+				{SGLanguage.GetMessage("key_move_forward"),"FWD"},
+				{SGLanguage.GetMessage("key_move_left"),"LEFT"},
+				{SGLanguage.GetMessage("key_move_right"),"RIGHT"},
+				{SGLanguage.GetMessage("key_move_back"),"BACK"},
+				{SGLanguage.GetMessage("key_move_up"),"UP"},
+				{SGLanguage.GetMessage("key_move_down"),"DOWN"},
+			},
+		},
+		{
+			Name = SGLanguage.GetMessage("key_combat_title"),
+			Keys = {
+				{"Tirs energétiques","FIRE"},
+				{"Rayon Asgard","TRACK"},
+			},
+		},
+		{
+			Name = SGLanguage.GetMessage("key_act_title"),
+			Keys = {
+				{SGLanguage.GetMessage("key_act_selfdestruct"),"BOOM"},
+				{SGLanguage.GetMessage("key_act_out"),"EXIT"},
+			},
+		},
+		{
+			Name = SGLanguage.GetMessage("key_view_title"),
+			Keys = {
+				{SGLanguage.GetMessage("key_view_zoomin"),"Z+"},
+				{SGLanguage.GetMessage("key_view_zoomout"),"Z-"},
+				{SGLanguage.GetMessage("key_view_up"),"A+"},
+				{SGLanguage.GetMessage("key_view_down"),"A-"},
+			},
+		},
+	}
+	for _,v in pairs(KEYS) do
+		Panel:Help("");
+		Panel:Help(v.Name);
+		for _,v in pairs(v.Keys) do
+			local KEY = vgui.Create("SKeyboardKey",Panel);
+			KEY:SetData(LAYOUT,v[1],v[2]);
+			Panel:AddPanel(KEY);
+		end
+	end
+end
+
+function StarGate.ReplicatorSettings(Panel)
+	local LAYOUT = "ReplicateurMS";
+	local KEYS = {
+		{
+			Name = SGLanguage.GetMessage("key_move_title"),
+			Keys = {
+				{SGLanguage.GetMessage("key_move_forward"),"FWD"},
+				{SGLanguage.GetMessage("key_move_left"),"LEFT"},
+				{SGLanguage.GetMessage("key_move_right"),"RIGHT"},
+				{SGLanguage.GetMessage("key_move_back"),"BACK"},
+				{SGLanguage.GetMessage("key_move_up"),"UP"},
+				{SGLanguage.GetMessage("key_move_down"),"DOWN"},
+			},
+		},
+		{
+			Name = SGLanguage.GetMessage("key_combat_title"),
+			Keys = {
+				{"Tirs energétiques","FIRE"},
+				{"Rayon Asgard","TRACK"},
+			},
+		},
+		{
+			Name = SGLanguage.GetMessage("key_act_title"),
+			Keys = {
+				{SGLanguage.GetMessage("key_act_selfdestruct"),"BOOM"},
+				{SGLanguage.GetMessage("key_act_out"),"EXIT"},
 			},
 		},
 		{

@@ -1,5 +1,5 @@
 ENT.Type = "anim"
-ENT.PrintName		= "EXPLOSIVE GRENADE"
+ENT.PrintName		= SGLanguage.GetMessage("ent_frag_grenade");
 ENT.Author			= "WORSHIPPER"
 ENT.Contact			= ""
 ENT.Purpose			= ""

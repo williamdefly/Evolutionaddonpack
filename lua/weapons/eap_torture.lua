@@ -1,4 +1,4 @@
-SWEP.PrintName = "Baton de torture Goa'uld"
+SWEP.PrintName = SGLanguage.GetMessage("wp_goauld_stick");
 SWEP.Category = "EAP"
 SWEP.ClassName  ="eap_torture"
 

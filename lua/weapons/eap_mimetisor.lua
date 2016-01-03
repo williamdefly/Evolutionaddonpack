@@ -1,4 +1,4 @@
-SWEP.PrintName  ="Mimétiseur";
+SWEP.PrintName  = SGLanguage.GetMessage("wp_mimetisor");
 SWEP.ClassName  ="eap_mimetisor";
 
 SWEP.Author = "Matspyder"

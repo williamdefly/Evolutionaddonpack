@@ -1,4 +1,4 @@
-SWEP.PrintName  ="Beretta M9";
+SWEP.PrintName  = SGLanguage.GetMessage("wp_m9_berreta");
 SWEP.ClassName  ="weapon_beretta";
 
 SWEP.Author = "Matspyder"

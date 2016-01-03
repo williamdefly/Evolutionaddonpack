@@ -12,7 +12,7 @@ As of December 2015, the development of the popular addon Carters Addon Pack (CA
 
 
 The Team : 
-WilliamDeFly , the owner and main maker of the EAP 
+WilliamDeFly , the Owner & Mapper of the pack
 Lilou , the 3D Modeler 
 Elanis , the LUA scripter 
 
@@ -36,7 +36,7 @@ Nous sommes une equipe francaise produisant cet addon depuis 2014.
 En Decembre 2015 , le develloppement du Carter Addon Pack ( CAP ) s'est arreté. Nous esperons construire un addon encore meilleur a partir du contenu du CAP. 
 
 L'equipe : 
-WilliamDeFly , le proprietaire et createur principal de l'EAP 
+WilliamDeFly , le propriétaire et le mappeur du pack
 Lilou , le modeliseur 3D 
 Elanis , le codeur LUA 
 

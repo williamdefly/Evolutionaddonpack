@@ -1,4 +1,4 @@
-SWEP.PrintName = "Symbiote Goa'uld"
+SWEP.PrintName = SGLanguage.GetMessage("wp_goa_symb");
 SWEP.Category = "EAP"
 SWEP.ClassName  ="eap_larve"
 

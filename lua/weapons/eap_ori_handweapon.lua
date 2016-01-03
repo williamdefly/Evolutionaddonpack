@@ -1,4 +1,4 @@
-SWEP.PrintName = "Arme a main Ori"
+SWEP.PrintName = SGLanguage.GetMessage("wp_ori_hand");
 SWEP.ClassName  ="eap_ori_handweapon";
 
 SWEP.Category			= "EAP"

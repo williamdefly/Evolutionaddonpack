@@ -17,7 +17,7 @@ if (SERVER) then
 end
 
 if (CLIENT) then
-	SWEP.PrintName 			= "Zatarc goauld"
+	SWEP.PrintName 			= SGLanguage.GetMessage("wp_goauld_zatarc");
 	SWEP.Slot 				= 2
 end
 

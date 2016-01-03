@@ -1,4 +1,4 @@
-SWEP.PrintName = "Goauld medical"
+SWEP.PrintName = SGLanguage.GetMessage("wp_goauld_medical");
 SWEP.ClassName  ="goauld_medic"
 
 SWEP.Category			= "EAP"

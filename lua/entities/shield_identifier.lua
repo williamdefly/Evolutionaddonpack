@@ -1,20 +1,20 @@
 if (StarGate!=nil and StarGate.LifeSupportAndWire!=nil) then StarGate.LifeSupportAndWire(ENT); end
+
 ENT.Type = "anim"
 ENT.Base = "base_anim"
-ENT.PrintName = "Shield Identifier"
+ENT.PrintName = SGLanguage.GetMessage('ent_shield_identifier');
 ENT.Purpose	= "Pass throught a shield or not"
 ENT.Author = "Matspyder"
 ENT.Contact	= "mat.spyder@gmail.com"
 ENT.Instructions= "Press E to use and set a frequency with the Wire Advanced"
-ENT.Category = "Technologie"
-ENT.WireDebugName = "Shield Identifier"
-ENT.Spawnable = true
+ENT.Category = SGLanguage.GetMessage('cat_technology');
+ENT.WireDebugName = SGLanguage.GetMessage('ent_shield_identifier');
+ENT.Spawnable = false
 
-list.Set("EAP", ENT.PrintName, ENT);
+--list.Set("EAP", ENT.PrintName, ENT);
 
 if SERVER then
 
-if (StarGate==nil or StarGate.CheckModule==nil or not StarGate.CheckModule("extra")) then return end
 AddCSLuaFile()
 
 -----------------------------------INIT----------------------------------
@@ -40,12 +40,6 @@ end
 function ENT:SpawnFunction( ply, tr )
 	if ( !tr.Hit ) then return end
 
-	/*local PropLimit = GetConVar("CAP_shield_identifier_max"):GetInt()
-	if(ply:GetCount("CAP_shield_identifier")+1 > PropLimit) then
-		ply:SendLua("GAMEMODE:AddNotify(You have hit the limit of Shield Identifier, NOTIFY_ERROR, 5); surface.PlaySound( \"buttons/button2.wav\" )");
-		return
-	end*/
-
 	local ang = ply:GetAimVector():Angle(); ang.p = 0; ang.r = 0; ang.y = (ang.y+180) % 360;
 
 	local ent = ents.Create("shield_identifier");
@@ -54,7 +48,6 @@ function ENT:SpawnFunction( ply, tr )
 	ent:Spawn();
 	ent:Activate();
 	ent.Owner = ply;
-	ply:AddCount("CAP_shield_identifier", ent)
 
 	local phys = ent:GetPhysicsObject()
 	if IsValid(phys) then phys:EnableMotion(false) end

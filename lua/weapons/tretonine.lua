@@ -1,5 +1,5 @@
-SWEP.PrintName = "Trétonine"
-SWEP.ClassName  ="tretonine";
+SWEP.PrintName = SGLanguage.GetMessage("wp_tretonine");
+SWEP.ClassName  = "tretonine";
 
 SWEP.Category			= "EAP"
 SWEP.Spawnable			= true

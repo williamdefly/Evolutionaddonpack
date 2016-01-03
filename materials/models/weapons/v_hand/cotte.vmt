@@ -1,6 +1,6 @@
 "VertexLitGeneric"
 {
-	"$baseTexture" "Models/jaffa/serpent/cotte"
+	"$baseTexture" "models/weapons/v_hand/cotte"
 	"%keywords" "sgtc2"
 	"$surfaceprop" "metal"
 }

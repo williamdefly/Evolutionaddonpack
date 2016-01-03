@@ -1,4 +1,4 @@
-SWEP.PrintName  ="Kull Blast";
+SWEP.PrintName  = SGLanguage.GetMessage("wp_kull_blaster");
 SWEP.ClassName  ="weapon_kull";
 
 SWEP.Author = "Williamdefly"
@@ -15,7 +15,7 @@ SWEP.WorldModel = "models/weapons/kullblast.mdl";
 SWEP.HoldType = "SMG"
 
 SWEP.Category			= "EAP"
-SWEP.Spawnable			= true
+SWEP.Spawnable			= false //Don't have model yet
 SWEP.AdminSpawnable		= false
 
 

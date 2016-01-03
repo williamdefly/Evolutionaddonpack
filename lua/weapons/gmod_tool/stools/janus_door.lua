@@ -1,8 +1,8 @@
-TOOL.Name = "#Janus Door"
+TOOL.Name = SGLanguage.GetMessage("wp_janus_door");
 TOOL.Category="Technologie";
 TOOL.Tab = "EAP";
 
-TOOL.AddToMenu = true; -- Tell gmod not to add it. We will do it manually later!
+TOOL.AddToMenu = true;
 TOOL.Command=nil;
 TOOL.ConfigName="";
 

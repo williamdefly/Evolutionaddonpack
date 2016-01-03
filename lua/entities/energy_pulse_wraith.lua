@@ -1,3 +1,21 @@
+/*
+	Staff Weapon for GarrysMod10
+	Copyright (C) 2007  aVoN
+	Rewrited by Madman07, 2011
+
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
 
 ENT.Type = "anim"
 ENT.Base = "base_anim"
@@ -5,7 +23,6 @@ ENT.Base = "base_anim"
 if SERVER then
 
 --################# HEADER #################
-if (StarGate==nil or StarGate.CheckModule==nil or not StarGate.CheckModule("weapon")) then return end
 AddCSLuaFile();
 
 ENT.CAP_NotSave = true;
@@ -55,6 +72,8 @@ function ENT:Initialize()
 
 	self.CoreNotCollide = self.Owner.CoreNotCollide;
 	self.CoreEntity = self.Owner.CoreEntity;
+
+	self.FireFrequency = 325;
 end
 
 --################# Prevent PVS bug/drop of all networkes vars (Let's hope, it works) @aVoN
@@ -176,7 +195,7 @@ function ENT.FixAngles(self,pos,ang,vel,old_pos,old_ang,old_vel,ang_delta)
 	end
 	self.Entity:SetLocalVelocity(vel2)
 end
-StarGate.Teleport:Add("energy_pulse_wraith",ENT.FixAngles);
+StarGate.Teleport:Add("energy_pulse",ENT.FixAngles);
 
 -- ######################## Damage system
 function ENT:Blast(effect,pos,ent,norm,smoke,dmg,rad,old_vel)
@@ -203,7 +222,7 @@ function ENT:Blast(effect,pos,ent,norm,smoke,dmg,rad,old_vel)
 	util.ScreenShake(pos,2,2.5,1,700);
 
 	if (ent:GetClass() == "shield") then -- aVoN shield!
-		ent:HitShield(ent,pos,self:GetPhysicsObject(),self:GetClass(),norm);
+		ent:HitShield(ent,pos,self:GetPhysicsObject(),self:GetClass(),norm,self.FireFrequency);
 	end
 
 	--local dmg;
@@ -298,7 +317,7 @@ ENT.Glow = StarGate.MaterialFromVMT(
 ENT.Shaft = Material("effects/ar2ground2");
 ENT.LightSettings = "cl_staff_dynlights_flight";
 if (SGLanguage!=nil and SGLanguage.GetMessage!=nil) then
-language.Add("energy_pulse_wraith",SGLanguage.GetMessage("energy_pulse_kill"));
+language.Add("energy_pulse",SGLanguage.GetMessage("energy_pulse_kill"));
 end
 ENT.RenderGroup = RENDERGROUP_BOTH;
 
@@ -306,7 +325,7 @@ ENT.RenderGroup = RENDERGROUP_BOTH;
 function ENT:Initialize()
 	self.Created = CurTime();
 	self.DrawShaft = true;
-	self.InstantEffect = not (self.Entity:GetClass() == "energy_pulse_wraith");
+	self.InstantEffect = not (self.Entity:GetClass() == "energy_pulse");
 	self.Sounds = self.Sounds or {Sound("pulse_weapon/staff_flyby1.mp3"),Sound("pulse_weapon/staff_flyby2.mp3")};
 	local snd = {}; -- Must be overwritten because garry's inheritance scripts interferes...
 	for _,v in pairs(self.Sounds) do

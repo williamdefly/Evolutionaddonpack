@@ -8,7 +8,7 @@ end
 
 if (CLIENT) then
 
-	SWEP.PrintName 			= "Grenade Frag"
+	SWEP.PrintName 			= SGLanguage.GetMessage("wp_frag_grenade");
 	SWEP.Slot 				= 4
 	SWEP.SlotPos 			= 1
 	SWEP.DrawAmmo 			= true
@@ -21,7 +21,7 @@ end
 
 SWEP.Instructions 			= ""
 
-SWEP.Category			= "EAP"		-- Swep Categorie (You can type what your want)
+SWEP.Category			= "EAP"		-- Swep Categories (You can type what your want)
 
 SWEP.HoldType				= "grenade"
 

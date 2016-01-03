@@ -1,0 +1,11 @@
+wp_frag_grenade = Frag grenade
+wp_goauld_zatarc = Goa'uld Zatarc 
+wp_kull_blaster = Kull weapon
+wp_m9_berreta = Berreta M9
+wp_tretonine = Tretonine
+wp_goauld_medical = Medic Goa'uld
+wp_goauld_stick = Goa'uld supplice stick
+wp_ori_hand = Ori Hand weapons
+wp_mimetisor =  Mimetisor
+wp_goa_symb = Goa'uld Symbiot
+wp_wraith_enzyme = Wraith Enzyme

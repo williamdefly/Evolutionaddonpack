@@ -1,4 +1,4 @@
-SWEP.PrintName = "Enzyme Wraith"
+SWEP.PrintName = SGLanguage.GetMessage("wp_wraith_enzyme");
 SWEP.ClassName  ="eap_enzyme";
 
 SWEP.Category			= "EAP"

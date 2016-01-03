@@ -1,20 +1,16 @@
 EAP = {};
-EAP.KeyBoard = EAP.KeyBoard or {}
 EAP.SpawnList = {};
 
+CreateConVar( "Count_ships_max", "10", FCVAR_ARCHIVE, "Max Ships" )
+
+IncludeCS("autorun/shared/tracelines.lua");
+
 EAP.SpawnList.Props = {
-"models/abydos/claypot/claypot_01.mdl",
-"models/abydos/claypot/claypot_02.mdl",
-"models/abydos/claypot/claypot_03.mdl",
-"models/abydos/hatakcontainer/hatakcontainer.mdl",
-"models/abydos/raeye/raeye.mdl",
-"models/abydos/sarcophagus/sarcophagus.mdl",
 "models/props_lodka/ori_bucher.mdl",
 "models/ship/destiny.mdl",
 "models/ship/oneil.mdl",
 "models/ship/wraith.mdl",
 "models/atero.mdl",
-"models/skybox/mship2.mdl",
 "models/ship/ori.mdl",
 "models/ship/alkesh.mdl",
 }
@@ -220,18 +216,41 @@ spawnmenu.AddCreationTab("EAP",function()
 	
 function EAPTool()
 	spawnmenu.AddToolTab( "EAP", "EAP", "img/eap_logo" )
-	spawnmenu.AddToolCategory("EAP","ships","Vaisseaux");
-	spawnmenu.AddToolMenuOption("EAP","ships","Alkesh","Alkesh Settings","","",StarGate.AlkeshSettings)
-	spawnmenu.AddToolMenuOption("EAP","ships","Anubis","Anubis Mothership Settings","","",StarGate.AnubisMotherShipSettings)
-	spawnmenu.AddToolMenuOption("EAP","ships","Destiny","Destiny Settings","","",StarGate.DestinySettings)
-	spawnmenu.AddToolMenuOption("EAP","ships","Hatak","Hatak Settings","","",StarGate.HatakSettings)
-	spawnmenu.AddToolMenuOption("EAP","ships","Oneill","Oneill Settings","","",StarGate.OneillSettings)
-	spawnmenu.AddToolMenuOption("EAP","ships","Ori","Ori Mothership Settings","","",StarGate.OriSettings)
-	spawnmenu.AddToolMenuOption("EAP","ships","WraithCruiser","Wraith Cruiser Settings","","",StarGate.WraithCruiserSettings)
-	spawnmenu.AddToolMenuOption("EAP","ships","Gateseeder","Poseur de portes Settings","","",StarGate.GateseederSettings)
-	spawnmenu.AddToolMenuOption("EAP","ships","Navigator","Navigateur Settings","","",StarGate.NavigatorSettings)
-	spawnmenu.AddToolMenuOption("EAP","ships","daedalus","Deadalus Settings","","",StarGate.daedalusSettings)
+	spawnmenu.AddToolCategory("EAP","ships",SGLanguage.GetMessage("cat_ship"));
+	spawnmenu.AddToolMenuOption("EAP","ships",SGLanguage.GetMessage("ent_ship_alkesh"),"Alkesh Settings","","",StarGate.AlkeshSettings)
+	spawnmenu.AddToolMenuOption("EAP","ships",SGLanguage.GetMessage("ent_ship_anubisms"),"Anubis Mothership Settings","","",StarGate.AnubisMotherShipSettings)
+	spawnmenu.AddToolMenuOption("EAP","ships",SGLanguage.GetMessage("ent_ship_destiny"),"Destiny Settings","","",StarGate.DestinySettings)
+	spawnmenu.AddToolMenuOption("EAP","ships",SGLanguage.GetMessage("ent_ship_hatak"),"Hatak Settings","","",StarGate.HatakSettings)
+	spawnmenu.AddToolMenuOption("EAP","ships",SGLanguage.GetMessage("ent_ship_oneill"),"Oneill Settings","","",StarGate.OneillSettings)
+	spawnmenu.AddToolMenuOption("EAP","ships",SGLanguage.GetMessage("ent_ship_orims"),"Ori Mothership Settings","","",StarGate.OriMsSettings)
+	spawnmenu.AddToolMenuOption("EAP","ships",SGLanguage.GetMessage("ent_ship_wraithcruiser"),"Wraith Cruiser Settings","","",StarGate.WraithCruiserSettings)
+	spawnmenu.AddToolMenuOption("EAP","ships",SGLanguage.GetMessage("ent_ship_gateseeder"),"Poseur de portes Settings","","",StarGate.GateseederSettings)
+	spawnmenu.AddToolMenuOption("EAP","ships",SGLanguage.GetMessage("ent_ship_prometheus"),"Promethee Settings","","",StarGate.PrometheeSettings)
+	spawnmenu.AddToolMenuOption("EAP","ships",SGLanguage.GetMessage("ent_ship_replicator"),"Replicator Settings","","",StarGate.ReplicatorSettings)
+	spawnmenu.AddToolMenuOption("EAP","ships",SGLanguage.GetMessage("ent_ship_daedalus"),"Deadalus Settings","","",StarGate.daedalusSettings)
 end
 
 -- Hook the Tab to the Spawn Menu
 hook.Add( "AddToolMenuTabs", "EAPTool", EAPTool )
+
+
+-- Client Functions
+
+--################# Creates a new Material according to a given VMT String @aVoN
+-- This is necessary, because sometimes you need to edit a material in an effect which results into conflicts with other scripts using that material too
+function StarGate.MaterialFromVMT(name,VMT)
+	if(type(VMT) ~= "string" or type(name) ~= "string") then return Material(" ") end; -- Return a dummy Material
+	local t = util.KeyValuesToTable("\"material\"{"..VMT.."}");
+	for shader,params in pairs(t) do
+		return CreateMaterial(name,shader,params);
+	end
+end
+
+--Function by @aVon
+
+function StarGate.VisualsWeapons(str)
+	if(LocalPlayer() and LocalPlayer().GetInfo and util.tobool(LocalPlayer():GetInfo("cl_stargate_visualsweapon")) and util.tobool(LocalPlayer():GetInfo(str))) then
+		return true;
+	end
+	return false;
+end

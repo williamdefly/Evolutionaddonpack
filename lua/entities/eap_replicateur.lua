@@ -1,7 +1,7 @@
 ENT.Base = "eap_base"
 ENT.Type = "vehicle"
 
-ENT.PrintName = "Mothership Replicateur"
+ENT.PrintName = SGLanguage.GetMessage('ent_ship_replicator');
 ENT.Author = ""
 ENT.Spawnable = true
 list.Set("EAP", ENT.PrintName, ENT);
@@ -11,7 +11,6 @@ list.Set("EAP", ENT.PrintName, ENT);
 if SERVER then
 
 --########Header########--
-if (StarGate==nil or StarGate.CheckModule==nil or not StarGate.CheckModule("ship")) then return end
 AddCSLuaFile()
 
 ENT.Model = Model("models/ship/rship01.mdl")
@@ -23,8 +22,8 @@ ENT.Sounds = {
 function ENT:SpawnFunction(ply, tr) --######## Pretty useless unless we can spawn it @RononDex
 	if (!tr.HitWorld) then return end
 
-	local PropLimit = GetConVar("CAP_ships_max"):GetInt()
-	if(ply:GetCount("CAP_ships")+1 > PropLimit) then
+	local PropLimit = GetConVar("Count_ships_max"):GetInt()
+	if(ply:GetCount("Count_ships")+1 > PropLimit) then
 		ply:SendLua("GAMEMODE:AddNotify(SGLanguage.GetMessage(\"entity_limit_ships\"), NOTIFY_ERROR, 5); surface.PlaySound( \"buttons/button2.wav\" )");
 		return
 	end
@@ -35,13 +34,13 @@ function ENT:SpawnFunction(ply, tr) --######## Pretty useless unless we can spaw
 	e:Spawn()
 	e:Activate()
 	e:SetWire("Health",e:GetNetworkedInt("health"));
-	ply:AddCount("CAP_ships", e)
+	ply:AddCount("Count_ships", e)
 	return e
 end
 
 function ENT:Initialize() --######## What happens when it first spawns(Set Model, Physics etc.) @RononDex
 	self.BaseClass.Initialize(self);
-	self.Vehicle = "Replicateur"
+	self.Vehicle = "ReplicateurMS"
 	self:SetModel(self.Model)
 	self:PhysicsInit(SOLID_VPHYSICS)
 	self:SetMoveType(MOVETYPE_VPHYSICS)
@@ -157,24 +156,20 @@ function ENT:FireBlast(diff)
 	end
 end
 
-if (StarGate and StarGate.CAP_GmodDuplicator) then
-	duplicator.RegisterEntityClass( "eap_replicateur", StarGate.CAP_GmodDuplicator, "Data" )
-end
-
 end
 
 if CLIENT then
 
 if (SGLanguage!=nil and SGLanguage.GetMessage!=nil) then
-ENT.Category = SGLanguage.GetMessage("Vaisseaux");
-ENT.PrintName = SGLanguage.GetMessage("Mothership Replicateur");
+ENT.Category = SGLanguage.GetMessage('cat_ship');
+ENT.PrintName = SGLanguage.GetMessage("ent_ship_replicator");
 end
 ENT.RenderGroup = RENDERGROUP_BOTH
 
 if (StarGate==nil or StarGate.KeyBoard==nil or StarGate.KeyBoard.New==nil) then return end
 
 --########## Keybinder stuff
-local KBD = StarGate.KeyBoard:New("Replicateur")
+local KBD = StarGate.KeyBoard:New("ReplicateurMS")
 --Navigation
 KBD:SetDefaultKey("FWD",StarGate.KeyBoard.BINDS["+forward"] or "W") -- Forward
 KBD:SetDefaultKey("LEFT",StarGate.KeyBoard.BINDS["+moveleft"] or "A")
@@ -211,7 +206,7 @@ function ENT:Initialize( )
 	self.UDist=120
 	self.KBD = self.KBD or KBD:CreateInstance(self)
 	self.FirstPerson=false
-	self.Vehicle = "Replicateur"
+	self.Vehicle = "ReplicateurMS"
 end
 
 --[[
