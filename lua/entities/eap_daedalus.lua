@@ -305,3 +305,73 @@ function ENT:Think()
 		end
 	end
 end
+
+function DrawHUD() -- Draw that HUD @Elanis
+
+local ply = LocalPlayer();
+local self = ply:GetNetworkedEntity("ScriptedVehicle", NULL)
+local vehicle = ply:GetNWEntity("daedalus")
+
+local MainHud_left = surface.GetTextureID("VGUI/HUD/BC304_HUD/mainhud_left");
+local MainHud_right = surface.GetTextureID("VGUI/HUD/BC304_HUD/mainhud_right");
+local WeaponsHud_middle = surface.GetTextureID("VGUI/HUD/BC304_HUD/weaponshud_middle");
+local WeaponsHud_left = surface.GetTextureID("VGUI/HUD/BC304_HUD/weaponshud_left");
+local WeaponsHud_right = surface.GetTextureID("VGUI/HUD/BC304_HUD/weaponshud_right");
+local WepBar = surface.GetTextureID("VGUI/HUD/BC304_HUD/weapons_bar");
+
+	if (self and self:IsValid() and vehicle and vehicle:IsValid()) then
+
+		surface.SetTexture(MainHud_left);
+		surface.SetDrawColor(255,255,255,255);
+		surface.DrawTexturedRect(0,ScrH()-512,256,512);
+
+		surface.SetTexture(MainHud_right);
+		surface.SetDrawColor(255,255,255,255);
+		surface.DrawTexturedRect(ScrW()-256,ScrH()-512,256,512);
+
+		surface.SetTexture(WeaponsHud_middle);
+		surface.SetDrawColor(255,255,255,255);
+		surface.DrawTexturedRect(ScrW()/2-256,0,512,64);
+
+		surface.SetTexture(WeaponsHud_left);
+		surface.SetDrawColor(255,255,255,255);
+		surface.DrawTexturedRect(0,0,256,64);
+
+		surface.SetTexture(WeaponsHud_right);
+		surface.SetDrawColor(255,255,255,255);
+		surface.DrawTexturedRect(ScrW()-256,0,256,64);
+
+		local yy = 55
+		surface.SetTexture(WepBar);
+		surface.SetDrawColor(255,255,255,255);
+
+		surface.DrawTexturedRect(20,yy,8,8);
+		surface.DrawTexturedRect(70,yy,8,8);
+		surface.DrawTexturedRect(100,yy,8,8);
+		surface.DrawTexturedRect(150,yy,8,8);
+		surface.DrawTexturedRect(180,yy,8,8);
+		surface.DrawTexturedRect(220,yy,8,8);
+
+		surface.DrawTexturedRect(ScrW()/2+70,yy,8,8);
+		surface.DrawTexturedRect(ScrW()/2+60,yy,8,8);
+		surface.DrawTexturedRect(ScrW()/2+50,yy,8,8);
+		surface.DrawTexturedRect(ScrW()/2+40,yy,8,8);
+		surface.DrawTexturedRect(ScrW()/2+30,yy,8,8);
+		surface.DrawTexturedRect(ScrW()/2+20,yy,8,8);
+		surface.DrawTexturedRect(ScrW()/2-20,yy,8,8);
+		surface.DrawTexturedRect(ScrW()/2-30,yy,8,8);
+		surface.DrawTexturedRect(ScrW()/2-40,yy,8,8);
+		surface.DrawTexturedRect(ScrW()/2-50,yy,8,8);
+		surface.DrawTexturedRect(ScrW()/2-60,yy,8,8);
+		surface.DrawTexturedRect(ScrW()/2-70,yy,8,8);
+
+		surface.DrawTexturedRect(ScrW()-20,yy,8,8);
+		surface.DrawTexturedRect(ScrW()-70,yy,8,8);
+		surface.DrawTexturedRect(ScrW()-100,yy,8,8);
+		surface.DrawTexturedRect(ScrW()-150,yy,8,8);
+		surface.DrawTexturedRect(ScrW()-180,yy,8,8);
+		surface.DrawTexturedRect(ScrW()-220,yy,8,8);
+    end
+
+end
+hook.Add("HUDPaint","DrawHUDDeadalus",DrawHUD);

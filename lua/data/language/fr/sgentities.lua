@@ -20,3 +20,9 @@ ent_ship_alkesh = Alkesh
 
 //Player Weapons Entities
 ent_frag_grenade = Entitée de la grenade a fragmentation
+
+//Entities Messages
+ent_sarco_exit = Utiliser pour quitter ou attendez d'avoir la vie complète
+ent_sarco_god_inside = Votre Dieu est déja à l'interieur
+ent_sarco_enter = Essaye de rentrer dans le sarcophage
+ent_sarco_full = Votre vie est déja maximale

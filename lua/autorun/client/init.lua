@@ -1,8 +1,6 @@
 EAP = {};
 EAP.SpawnList = {};
 
-CreateConVar( "Count_ships_max", "10", FCVAR_ARCHIVE, "Max Ships" )
-
 IncludeCS("autorun/shared/tracelines.lua");
 
 EAP.SpawnList.Props = {

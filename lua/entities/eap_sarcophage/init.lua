@@ -1,8 +1,10 @@
+if (StarGate!=nil and StarGate.LifeSupportAndWire!=nil) then StarGate.LifeSupportAndWire(ENT); end
+
 AddCSLuaFile("cl_init.lua");
 AddCSLuaFile("shared.lua");
 include("shared.lua");
 
-ENT.Model = "models/abydos/sarcophagus/sarcophagus.mdl";
+ENT.Model = "models/elanis/sarcophage/sarcophage_goauld.mdl";
 ENT.Sounds = {
 	Enter = Sound("eap/entities/sarcophage.wav"),
 	Exit = Sound("eap/entities/sarcophage.wav"),
@@ -107,18 +109,18 @@ end
 
  
 function ENT:Use(ply)
-	if self.Active then
+	if self.Active and self.Pilot != nil then
 		if self.Pilot == ply then
 			self:Exit()
 		else
-			ply:PrintMessage(HUD_PRINTTALK,"Votre Dieu est déjà à l'intérieur");
-			self.Pilot:PrintMessage(HUD_PRINTTALK,ply:Nick().." Essaye de rentrer dans le sarcophage");
+			ply:PrintMessage(HUD_PRINTTALK,SGLanguage.GetMessage("ent_sarco_god_inside"));
+			self.Pilot:PrintMessage(HUD_PRINTTALK,ply:Nick()..""..SGLanguage.GetMessage("ent_sarco_enter"));
 		end
 	else
 		if ply:Health() < self.MaxHealth then
 			self:Enter(ply);
 		else
-			ply:PrintMessage(HUD_PRINTTALK,"Le sarcophage ne peut pas régénérer plus de vie");
+			ply:PrintMessage(HUD_PRINTTALK,SGLanguage.GetMessage("ent_sarco_full"));
 		end
 	end
 end
@@ -146,7 +148,6 @@ function ENT:HealPlayer(ply)
 		if ply:Health() > self.MaxHealth then ply:SetHealth(self.MaxHealth) end
 		self.health = ply:Health()
 	end
-	ply:PrintMessage(HUD_PRINTCENTER,"Health : "..ply:Health())
 end
 
 function ENT:Enter(ply) --############### Get in the jumper @ RononDex

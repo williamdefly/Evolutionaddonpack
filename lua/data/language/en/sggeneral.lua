@@ -25,3 +25,6 @@ key_view_zoomin = Zoom +
 key_view_zoomout = Zoom -
 key_view_up = Rise view
 key_view_down = Descend view
+
+//Player Vars
+health = Health

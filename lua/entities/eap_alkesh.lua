@@ -21,7 +21,7 @@ ENT.Sounds = {
 }
 
 function ENT:SpawnFunction(ply, tr) --######## Pretty useless unless we can spawn it @RononDex
-	//if (!tr.HitWorld) then return end
+	if (!tr.HitWorld) then return end
 
 	local PropLimit = GetConVar("Count_ships_max"):GetInt()
 	if(ply:GetCount("Count_ships")+1 > PropLimit) then

@@ -332,22 +332,22 @@ function ENT:Think()
 	end
 end
 
-end
+function DrawHUD() -- Draw that HUD @Elanis
 
-if CLIENT then
+	local ply = LocalPlayer();
+	local self = ply:GetNetworkedEntity("ScriptedVehicle", NULL)
+    local vehicle = ply:GetNWEntity("Destiny")
 
-function DrawHUD()
-
-	 if (self and self:IsValid() and not self.Pilot == nil ) then
+	if (self and self:IsValid() and vehicle and vehicle:IsValid()) then
 
 		local MainHud = surface.GetTextureID("vgui/hud/destiny_hud/main_hud");
 
 		surface.SetTexture(MainHud);
 		surface.SetDrawColor(255,255,255,255);
 		surface.DrawTexturedRect(0,0,ScrW(),ScrH());
-	 end
+	end
 
 end
-hook.Add("HUDPaint","ShipHUD",DrawHUD);
+hook.Add("HUDPaint","DrawHUDDestiny",DrawHUD);
 
 end

@@ -24,4 +24,7 @@ key_view_title = Vue
 key_view_zoomin = Zoom
 key_view_zoomout = Dezoom
 key_view_up = Monter la Vue
-key_view_down = Baisser la Vu
+key_view_down = Baisser la Vue
+
+//Player Vars
+health = Vie
