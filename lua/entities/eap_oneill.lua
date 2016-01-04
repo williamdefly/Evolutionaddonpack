@@ -188,8 +188,8 @@ end
 if CLIENT then
 
 if (SGLanguage!=nil and SGLanguage.GetMessage!=nil) then
-ENT.Category = SGLanguage.GetMessage("Vaisseaux");
-ENT.PrintName = "Oneill";
+ENT.Category = SGLanguage.GetMessage("cat_ship");
+ENT.PrintName = SGLanguage.GetMessage("ent_ship_oneill");
 end
 ENT.RenderGroup = RENDERGROUP_BOTH
 
