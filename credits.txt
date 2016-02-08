@@ -5,6 +5,7 @@ Active Contributors :
 - Lilou : 3D Modeler & Texturer
 - Elanis : 3D Modeler & Lua scripter
 - Physics : Texturer
+- Xaxaxaxa87 : Texturer
 
 Old Contributors :
 - Matspyder : Lua Scripter
@@ -22,6 +23,7 @@ Contributeurs Actuels :
 - Lilou : Modeliseur 3D et textureur
 - Elanis : Modeliseur 3D et codeur LUA
 - Physics : Textureur
+- Xaxaxaxa87 : Textureur
 
 Anciens Contributeurs :
 - Matspyder : codeur LUA
