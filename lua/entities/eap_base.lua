@@ -25,13 +25,13 @@
 	Ronon Dex
 ]]--
 
-if (StarGate!=nil and StarGate.LifeSupportAndWire!=nil) then StarGate.LifeSupportAndWire(ENT); end
+if (Lib!=nil and Lib.Wire!=nil) then Lib.Wiremod(ENT); end
 
 ENT.PrintName = "Stargate Vehicle Base"
 ENT.Author = "RononDex"
 ENT.Base = "base_anim"
 ENT.Type = "vehicle"
-ENT.Category = SGLanguage.GetMessage("cat_ship");
+ENT.Category = Lib.Language.GetMessage("cat_ship");
 
 ENT.Spawnable = false
 ENT.AdminSpawnable = false
@@ -155,7 +155,7 @@ end
 function ENT:Exit(kill) --####### Get out @RononDex
 
 	if (IsValid(self.Pilot)) then
-		StarGate.KeyBoard.ResetKeys(self.Pilot,self.Vehicle);
+		Lib.KeyBoard.ResetKeys(self.Pilot,self.Vehicle);
 		self.Pilot:UnSpectate();
 		self.Pilot:DrawViewModel(true);
 		self.Pilot:DrawWorldModel(true);
@@ -380,18 +380,18 @@ function ENT:Rotorwash(b) --########## Toggle the rotorwash @RononDex
 end
 
 function ENT:PostEntityPaste(ply, Ent, CreatedEntities)
-	if (StarGate.NotSpawnable(Ent:GetClass(),ply)) then self.Entity:Remove(); return end
+	if (Lib.NotSpawnable(Ent:GetClass(),ply)) then self.Entity:Remove(); return end
 	if (IsValid(ply)) then
 		local PropLimit = GetConVar("Count_ships_max"):GetInt()
 		if(ply:GetCount("Count_ships")+1 > PropLimit) then
-			ply:SendLua("GAMEMODE:AddNotify(SGLanguage.GetMessage(\"entity_limit_ships\"), NOTIFY_ERROR, 5); surface.PlaySound( \"buttons/button2.wav\" )");
+			ply:SendLua("GAMEMODE:AddNotify(Lib.Language.GetMessage(\"entity_limit_ships\"), NOTIFY_ERROR, 5); surface.PlaySound( \"buttons/button2.wav\" )");
 			Ent:Remove();
 			return
 		end
 		ply:AddCount("Count_ships", Ent);
 		Ent.Owner = ply;
 	end
-	StarGate.WireRD.PostEntityPaste(self,ply,Ent,CreatedEntities)
+	Lib.Wire.PostEntityPaste(self,ply,Ent,CreatedEntities)
 end
 
 function playerDies( victim, weapon, killer )

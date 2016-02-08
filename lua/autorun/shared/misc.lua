@@ -1,1 +1,0 @@
-list.Add( "OverrideMaterials", "space/hyperspace" )

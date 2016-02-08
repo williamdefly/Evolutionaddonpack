@@ -1,4 +1,4 @@
-SWEP.PrintName  = SGLanguage.GetMessage("wp_m9_berreta");
+SWEP.PrintName  = Lib.Language.GetMessage("wp_m9_berreta");
 SWEP.ClassName  ="weapon_beretta";
 
 SWEP.Author = "Matspyder"
@@ -14,9 +14,9 @@ SWEP.ViewModel = "models/weapons/m9/v_pist_fiveseven.mdl";
 SWEP.WorldModel = "models/weapons/m9/w_pist_fiveseven.mdl";
 SWEP.HoldType = "SMG"
 
+SWEP.Spawnable = true
+
 SWEP.Category			= "EAP"
-SWEP.Spawnable			= true
-SWEP.AdminSpawnable		= false
 
 
 -- primary.

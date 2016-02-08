@@ -1,13 +1,12 @@
 ENT.Type = "anim"
 ENT.Base = "base_anim"
+ENT.Spawnable = true
  
-ENT.PrintName= SGLanguage.GetMessage("ent_goauld_sarcophage");
+ENT.PrintName= Lib.Language.GetMessage("ent_goauld_sarcophage");
 ENT.Author= "Elanis, Matspyder"
 ENT.Contact= "N/A"
 ENT.Purpose= "For a Goa\'uld long life."
 ENT.Instructions= "For a Goa\'uld long life."
-ENT.Spawnable = true
-ENT.AdminSpawnable = true
-ENT.Category = SGLanguage.GetMessage("cat_technology");
+ENT.Category = Lib.Language.GetMessage("cat_technology");
 
 list.Set("EAP", ENT.PrintName, ENT);

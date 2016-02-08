@@ -1,14 +1,14 @@
-if (StarGate!=nil and StarGate.LifeSupportAndWire!=nil) then StarGate.LifeSupportAndWire(ENT); end
+if (Lib!=nil and Lib.Wire!=nil) then Lib.Wiremod(ENT); end
 
 ENT.Type = "anim"
 ENT.Base = "base_anim"
-ENT.PrintName = SGLanguage.GetMessage('ent_shield_identifier');
+ENT.PrintName = Lib.Language.GetMessage('ent_shield_identifier');
 ENT.Purpose	= "Pass throught a shield or not"
 ENT.Author = "Matspyder"
 ENT.Contact	= "mat.spyder@gmail.com"
 ENT.Instructions= "Press E to use and set a frequency with the Wire Advanced"
-ENT.Category = SGLanguage.GetMessage('cat_technology');
-ENT.WireDebugName = SGLanguage.GetMessage('ent_shield_identifier');
+ENT.Category = Lib.Language.GetMessage('cat_technology');
+ENT.WireDebugName = Lib.Language.GetMessage('ent_shield_identifier');
 ENT.Spawnable = false
 
 --list.Set("EAP", ENT.PrintName, ENT);
@@ -175,7 +175,7 @@ if CLIENT then
 	    image:SetImage("img/eap_logo");
 
 	    local title = vgui.Create( "DLabel", DermaPanel );
-	 	-- title:SetText(SGLanguage.GetMessage("shieldid_title"));
+	 	-- title:SetText(Lib.Language.GetMessage("shieldid_title"));
 	 	title:SetText("Shield Identifier");
 	  	title:SetPos( 25, 0 );
 	 	title:SetSize( 400, 25 );
@@ -184,12 +184,12 @@ if CLIENT then
 	    frequency:SetPos( 10, 35 )
 	    frequency:SetSize( 320, 50 )
 	    frequency:SetText("Frequency")
-		-- frequency:SetText( SGLanguage.GetMessage("shieldid_frequency") )
+		-- frequency:SetText( Lib.Language.GetMessage("shieldid_frequency") )
 	    frequency:SetMin(1)
 	    frequency:SetMax(1500)
 		frequency:SetValue(SIfrequency);
 	    frequency:SetDecimals(0)
-		//frequency:SetToolTip(SGLanguage.GetMessage("iriscomp_time_desc"))
+		//frequency:SetToolTip(Lib.Language.GetMessage("iriscomp_time_desc"))
 
 		local function saveFrequency()
 			net.Start("shieldid_sendinfo")
@@ -201,7 +201,7 @@ if CLIENT then
 
 		local saveClose = vgui.Create("DButton" , DermaPanel )
 	    saveClose:SetParent( DermaPanel )
-	    saveClose:SetText(SGLanguage.GetMessage("iriscomp_ok"))
+	    saveClose:SetText(Lib.Language.GetMessage("iriscomp_ok"))
 	    saveClose:SetPos(230,100)
 	    saveClose:SetSize(80,25)
 		saveClose.DoClick = function ( btn3 )
@@ -210,7 +210,7 @@ if CLIENT then
 
 	    local ToggleActive = vgui.Create("DButton" , DermaPanel )
 		ToggleActive:SetParent( DermaPanel )
-		-- ToggleActive:SetText(SGLanguage.GetMessage("shieldid_toggle"))
+		-- ToggleActive:SetText(Lib.Language.GetMessage("shieldid_toggle"))
 		ToggleActive:SetText("Toggle")
 	    ToggleActive:SetPos(110, 100)
 	    ToggleActive:SetSize(100, 25)
@@ -223,7 +223,7 @@ if CLIENT then
 
 	    local cancelButton = vgui.Create("DButton" , DermaPanel )
 	    cancelButton:SetParent( DermaPanel )
-	    cancelButton:SetText(SGLanguage.GetMessage("iriscomp_cancel"))
+	    cancelButton:SetText(Lib.Language.GetMessage("iriscomp_cancel"))
 	    cancelButton:SetPos(10, 100)
 	    cancelButton:SetSize(80, 25)
 		cancelButton.DoClick = function ( btn4 )

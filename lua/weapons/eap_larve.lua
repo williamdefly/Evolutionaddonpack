@@ -1,9 +1,6 @@
-SWEP.PrintName = SGLanguage.GetMessage("wp_goa_symb");
+SWEP.PrintName = Lib.Language.GetMessage("wp_goa_symb");
 SWEP.Category = "EAP"
 SWEP.ClassName  ="eap_larve"
-
-SWEP.Spawnable			= true
-SWEP.AdminSpawnable		= false
 
 SWEP.Author = "Williamdefly"
 SWEP.Contact = "http://sg-e.fr"
@@ -15,6 +12,8 @@ SWEP.DrawAmmo = false;
 SWEP.DrawCrosshair = true;
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
+
+SWEP.Spawnable = true
 
 SWEP.ViewModel      = "models/weapons/v_larve.mdl"
 SWEP.WorldModel   = "models/weapons/w_larve.mdl"

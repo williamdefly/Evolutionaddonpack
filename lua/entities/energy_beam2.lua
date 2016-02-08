@@ -92,7 +92,7 @@ function ENT:OnRemove()
 end
 
 function ENT:Think()
-	self.StargateTrace = self.LastStargateTrace or StarGate.Trace:New(self.EndPos,self.Dir*self.Speed,{self.Entity, self.Owner, self.EndEntity, self.StartEntity,});
+	self.StargateTrace = self.LastStargateTrace or Lib.Trace:New(self.EndPos,self.Dir*self.Speed,{self.Entity, self.Owner, self.EndEntity, self.StartEntity,});
 
 	if (self.UpdateStart == true) then self:UpdateStartPos(); end
 	if (self.UpdateEnd == true) then self:UpdateEndPos(); end
@@ -210,7 +210,7 @@ function ENT:OnHitEventHorizon(eventHorizon, hitPos)
 
 	if (IsValid(remoteEH) and IsValid(remoteEH:GetParent()) and remoteEH:GetParent():IsBlocked()) then self.AlreadyHitEH = true; if IsValid(remoteEH:GetParent().Iris) then remoteEH:GetParent().Iris:EmitSound(remoteEH:GetParent().Iris.Sounds.Hit,90,math.random(98,103)); end return end
 
-	local teleportedPos, teleportedForward = StarGate.GetTeleportedVector2(eventHorizon, remoteEH, hitPos, self.Dir);
+	local teleportedPos, teleportedForward = Lib.GetTeleportedVector2(eventHorizon, remoteEH, hitPos, self.Dir);
 
    	local ent = ents.Create("energy_beam2");
 	ent.Owner = self.Owner;
@@ -239,8 +239,8 @@ end
 
 if CLIENT then
 
-if (SGLanguage!=nil and SGLanguage.GetMessage!=nil) then
-language.Add("energy_beam2",SGLanguage.GetMessage("energy_beam_kill"));
+if (Lib.Language!=nil and Lib.Language.GetMessage!=nil) then
+language.Add("energy_beam2",Lib.Language.GetMessage("energy_beam_kill"));
 end
 
 function ENT:Draw()

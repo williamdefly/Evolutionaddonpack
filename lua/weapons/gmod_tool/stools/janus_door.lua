@@ -1,4 +1,4 @@
-TOOL.Name = SGLanguage.GetMessage("wp_janus_door");
+TOOL.Name = Lib.Language.GetMessage("wp_janus_door");
 TOOL.Category="Technologie";
 TOOL.Tab = "EAP";
 

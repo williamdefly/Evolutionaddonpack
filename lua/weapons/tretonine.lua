@@ -1,12 +1,12 @@
-SWEP.PrintName = SGLanguage.GetMessage("wp_tretonine");
+SWEP.PrintName = Lib.Language.GetMessage("wp_tretonine");
 SWEP.ClassName  = "tretonine";
 
 SWEP.Category			= "EAP"
-SWEP.Spawnable			= true
-SWEP.AdminSpawnable		= false
 SWEP.Author = "Williamdefly"
 SWEP.Contact = "http://sg-e.fr"
 SWEP.Purpose = "Soigner vous de l'esclavage des symbiote Goauld"
+
+SWEP.Spawnable = true
 
 SWEP.ViewModelFOV 	= 64
 SWEP.ViewModel 		= "models/weapons/v_medic.mdl"

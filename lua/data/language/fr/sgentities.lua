@@ -9,7 +9,6 @@ ent_ship_replicator = Vaisseau Mère Réplicateur
 ent_ship_prometheus = Promethée
 ent_ship_orims = Vaisseau Mère Ori
 ent_ship_oneill = O'neill
-ent_ship_navigator = Navigateur
 ent_ship_anubisms = Vaisseau Mère d'Anubis
 ent_ship_hatak = Ha'tak
 ent_ship_gateseeder = Poseur de Portes
@@ -17,6 +16,7 @@ ent_ship_destiny = Destinée
 ent_ship_daedalus = Dédale
 ent_ship_wraithcruiser = Croiseur Wraith
 ent_ship_alkesh = Alkesh
+ent_ship_aurora = Aurore
 
 //Player Weapons Entities
 ent_frag_grenade = Entitée de la grenade a fragmentation

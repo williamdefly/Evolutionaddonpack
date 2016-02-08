@@ -1,9 +1,7 @@
-SWEP.PrintName = SGLanguage.GetMessage("wp_ori_hand");
+SWEP.PrintName = Lib.Language.GetMessage("wp_ori_hand");
 SWEP.ClassName  ="eap_ori_handweapon";
 
 SWEP.Category			= "EAP"
-SWEP.Spawnable			= true
-SWEP.AdminSpawnable		= false
 
 SWEP.Author = "Elanis"
 SWEP.Contact = "http://sg-e.fr"
@@ -15,6 +13,8 @@ SWEP.DrawAmmo = false;
 SWEP.DrawCrosshair = true;
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
+
+SWEP.Spawnable = true
 
 SWEP.ViewModel      = "models/weapons/v_arms2.mdl"
 

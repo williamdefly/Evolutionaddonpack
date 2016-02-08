@@ -1,0 +1,6 @@
+"UnlitGeneric"
+{
+	"$basetexture" "vgui/hud/alkeshhud/alkeshhud"
+	"$selfillum" 1
+	"$translucent" 1    
+}

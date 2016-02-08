@@ -17,7 +17,7 @@ if (SERVER) then
 end
 
 if (CLIENT) then
-	SWEP.PrintName 			= SGLanguage.GetMessage("wp_goauld_zatarc");
+	SWEP.PrintName 			= Lib.Language.GetMessage("wp_goauld_zatarc");
 	SWEP.Slot 				= 2
 end
 
@@ -31,9 +31,6 @@ SWEP.Base 					= "zatarc_gun_base"
 SWEP.Category				= "EAP"
 SWEP.MuzzleEffect			= "ryan_muzzle_laser" -- This is an extra muzzleflash effect
 
-
-SWEP.Spawnable 				= true
-SWEP.AdminSpawnable 		= true
 SWEP.UseHands 				= true
 SWEP.HoldType 				= "pistol"
 SWEP.ViewModelFlip 			= true
@@ -41,6 +38,8 @@ SWEP.ViewModelFOV			= 60
 
 SWEP.ViewModel				= "models/weapons/v_models/v_zatarc.mdl"
 SWEP.WorldModel				= "models/weapons/w_zatarc.mdl"
+
+SWEP.Spawnable = true
 
 SWEP.Primary.Sound 			= Sound("eap/weapons/zar.wav")
 SWEP.Primary.Recoil 		= 1.4

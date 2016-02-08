@@ -1,9 +1,7 @@
-SWEP.PrintName = SGLanguage.GetMessage("wp_wraith_enzyme");
+SWEP.PrintName = Lib.Language.GetMessage("wp_wraith_enzyme");
 SWEP.ClassName  ="eap_enzyme";
 
 SWEP.Category			= "EAP"
-SWEP.Spawnable			= true
-SWEP.AdminSpawnable		= false
 
 SWEP.Author = "Williamdefly"
 SWEP.Contact = "http://sg-e.fr"
@@ -15,6 +13,8 @@ SWEP.WorldModel 	= "models/weapons/weapons/w_medic.mdl"
 
 SWEP.AutoSwitchTo 	= false
 SWEP.AutoSwitchFrom = true
+
+SWEP.Spawnable = true
 
 SWEP.Slot 			= 1
 SWEP.SlotPos = 1

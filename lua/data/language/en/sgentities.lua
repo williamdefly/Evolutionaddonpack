@@ -16,6 +16,7 @@ ent_ship_destiny = Destiny
 ent_ship_daedalus = Daedalus
 ent_ship_wraithcruiser = Wraith Cruiser
 ent_ship_alkesh = Alkesh
+ent_ship_aurora = Aurora
 
 //Player Weapons Entities
 ent_frag_grenade = Frag Grenade Entity

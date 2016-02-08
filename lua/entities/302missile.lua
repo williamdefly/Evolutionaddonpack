@@ -39,8 +39,8 @@ ENT.AdminSpawnable = false
 
 if CLIENT then
 
-if (SGLanguage!=nil and SGLanguage.GetMessage!=nil) then
-	language.Add("302missile",SGLanguage.GetMessage("entity_f302"));
+if (Lib.Language!=nil and Lib.Language.GetMessage!=nil) then
+	language.Add("302missile",Lib.Language.GetMessage("entity_f302"));
 end
 
 --################### Init @aVoN

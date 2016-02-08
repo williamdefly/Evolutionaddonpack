@@ -1,4 +1,4 @@
-if (StarGate!=nil and StarGate.LifeSupportAndWire!=nil) then StarGate.LifeSupportAndWire(ENT); end
+if (Lib!=nil and Lib.Wire!=nil) then Lib.Wiremod(ENT); end
 
 AddCSLuaFile("cl_init.lua");
 AddCSLuaFile("shared.lua");
@@ -113,14 +113,14 @@ function ENT:Use(ply)
 		if self.Pilot == ply then
 			self:Exit()
 		else
-			ply:PrintMessage(HUD_PRINTTALK,SGLanguage.GetMessage("ent_sarco_god_inside"));
-			self.Pilot:PrintMessage(HUD_PRINTTALK,ply:Nick()..""..SGLanguage.GetMessage("ent_sarco_enter"));
+			ply:PrintMessage(HUD_PRINTTALK,Lib.Language.GetMessage("ent_sarco_god_inside"));
+			self.Pilot:PrintMessage(HUD_PRINTTALK,ply:Nick()..""..Lib.Language.GetMessage("ent_sarco_enter"));
 		end
 	else
 		if ply:Health() < self.MaxHealth then
 			self:Enter(ply);
 		else
-			ply:PrintMessage(HUD_PRINTTALK,SGLanguage.GetMessage("ent_sarco_full"));
+			ply:PrintMessage(HUD_PRINTTALK,Lib.Language.GetMessage("ent_sarco_full"));
 		end
 	end
 end

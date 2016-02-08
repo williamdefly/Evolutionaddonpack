@@ -41,7 +41,7 @@ function EFFECT:Think()
 
 	if ((CurTime() - self.Time) > 0.03 )then
 		self.Time = CurTime();
-		self.StargateTrace = self.LastStargateTrace or StarGate.Trace:New(self.EndPos,self.Dir*self.Speed,{self.Entity, self.Parent});
+		self.StargateTrace = self.LastStargateTrace or Lib.Trace:New(self.EndPos,self.Dir*self.Speed,{self.Entity, self.Parent});
 
 		if (self.StartTime < CurTime()) then self:UpdateStartPos(); end
 		if self.UpdateEnd then self:UpdateEndPos(); end

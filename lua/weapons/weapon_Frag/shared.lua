@@ -8,7 +8,7 @@ end
 
 if (CLIENT) then
 
-	SWEP.PrintName 			= SGLanguage.GetMessage("wp_frag_grenade");
+	SWEP.PrintName 			= Lib.Language.GetMessage("wp_frag_grenade");
 	SWEP.Slot 				= 4
 	SWEP.SlotPos 			= 1
 	SWEP.DrawAmmo 			= true
@@ -31,11 +31,10 @@ SWEP.Purpose 				= ""
 
 SWEP.UseHands = true
 
-SWEP.Spawnable 				= true
-SWEP.AdminSpawnable 			= false
-
 SWEP.ViewModel 				= "models/weapons/cstrike/c_eq_fraggrenade.mdl"
 SWEP.WorldModel 				= "models/weapons/w_eq_fraggrenade.mdl"
+
+SWEP.Spawnable = true
 
 SWEP.Primary.ClipSize 			= 1
 SWEP.Primary.DefaultClip 		= 1

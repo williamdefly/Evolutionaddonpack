@@ -1,7 +1,8 @@
 ENT.Base = "eap_base"
 ENT.Type = "vehicle"
+ENT.Spawnable = true
 
-ENT.PrintName = SGLanguage.GetMessage('ent_ship_anubisms');
+ENT.PrintName = Lib.Language.GetMessage('ent_ship_anubisms');
 ENT.Author = ""
 ENT.Spawnable = false //Disabled since a model added
 ENT.AdminSpawnable = false
@@ -25,7 +26,7 @@ function ENT:SpawnFunction(ply, tr) --######## Pretty useless unless we can spaw
 
 	local PropLimit = GetConVar("Count_ships_max"):GetInt()
 	if(ply:GetCount("Count_ships")+1 > PropLimit) then
-		ply:SendLua("GAMEMODE:AddNotify(SGLanguage.GetMessage(\"entity_limit_ships\"), NOTIFY_ERROR, 5); surface.PlaySound( \"buttons/button2.wav\" )");
+		ply:SendLua("GAMEMODE:AddNotify(Lib.Language.GetMessage(\"entity_limit_ships\"), NOTIFY_ERROR, 5); surface.PlaySound( \"buttons/button2.wav\" )");
 		return
 	end
 
@@ -157,31 +158,31 @@ end
 
 if CLIENT then
 
-if (SGLanguage!=nil and SGLanguage.GetMessage!=nil) then
-ENT.Category = SGLanguage.GetMessage("cat_ship");
-ENT.PrintName = SGLanguage.GetMessage("ent_ship_anubisms");
+if (Lib.Language!=nil and Lib.Language.GetMessage!=nil) then
+ENT.Category = Lib.Language.GetMessage("cat_ship");
+ENT.PrintName = Lib.Language.GetMessage("ent_ship_anubisms");
 end
 ENT.RenderGroup = RENDERGROUP_BOTH
 
-if (StarGate==nil or StarGate.KeyBoard==nil or StarGate.KeyBoard.New==nil) then return end
+if (Lib==nil or Lib.KeyBoard==nil or Lib.KeyBoard.New==nil) then return end
 
 --########## Keybinder stuff
-local KBD = StarGate.KeyBoard:New("AnubisMotherShip")
+local KBD = Lib.KeyBoard:New("AnubisMotherShip")
 --Navigation
-KBD:SetDefaultKey("FWD",StarGate.KeyBoard.BINDS["+forward"] or "W") -- Forward
-KBD:SetDefaultKey("LEFT",StarGate.KeyBoard.BINDS["+moveleft"] or "A")
-KBD:SetDefaultKey("RIGHT",StarGate.KeyBoard.BINDS["+moveright"] or "D")
-KBD:SetDefaultKey("BACK",StarGate.KeyBoard.BINDS["+back"] or "S")
-KBD:SetDefaultKey("UP",StarGate.KeyBoard.BINDS["+jump"] or "SPACE")
-KBD:SetDefaultKey("DOWN",StarGate.KeyBoard.BINDS["+duck"] or "CTRL")
-KBD:SetDefaultKey("SPD",StarGate.KeyBoard.BINDS["+speed"] or "SHIFT")
+KBD:SetDefaultKey("FWD",Lib.KeyBoard.BINDS["+forward"] or "W") -- Forward
+KBD:SetDefaultKey("LEFT",Lib.KeyBoard.BINDS["+moveleft"] or "A")
+KBD:SetDefaultKey("RIGHT",Lib.KeyBoard.BINDS["+moveright"] or "D")
+KBD:SetDefaultKey("BACK",Lib.KeyBoard.BINDS["+back"] or "S")
+KBD:SetDefaultKey("UP",Lib.KeyBoard.BINDS["+jump"] or "SPACE")
+KBD:SetDefaultKey("DOWN",Lib.KeyBoard.BINDS["+duck"] or "CTRL")
+KBD:SetDefaultKey("SPD",Lib.KeyBoard.BINDS["+speed"] or "SHIFT")
 --Roll
 KBD:SetDefaultKey("RL","MWHEELDOWN") -- Roll left
 KBD:SetDefaultKey("RR","MWHEELUP") -- Roll right
 KBD:SetDefaultKey("RROLL","MOUSE3") -- Reset Roll
 --Attack
-KBD:SetDefaultKey("FIRE",StarGate.KeyBoard.BINDS["+attack"] or "MOUSE1")
-KBD:SetDefaultKey("TRACK",StarGate.KeyBoard.BINDS["+attack2"] or "MOUSE2")
+KBD:SetDefaultKey("FIRE",Lib.KeyBoard.BINDS["+attack"] or "MOUSE1")
+KBD:SetDefaultKey("TRACK",Lib.KeyBoard.BINDS["+attack2"] or "MOUSE2")
 --Special Actions
 KBD:SetDefaultKey("BOOM","BACKSPACE")
 --View
@@ -191,7 +192,7 @@ KBD:SetDefaultKey("Z-","DOWNARROW")
 KBD:SetDefaultKey("A+","LEFTARROW")
 KBD:SetDefaultKey("A-","RIGHTARROW")
 
-KBD:SetDefaultKey("EXIT",StarGate.KeyBoard.BINDS["+use"] or "E")
+KBD:SetDefaultKey("EXIT",Lib.KeyBoard.BINDS["+use"] or "E")
 
 ENT.Sounds={
 	Engine=Sound("eap/ship/moteur/anubis.mp3"),

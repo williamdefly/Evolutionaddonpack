@@ -50,9 +50,11 @@ function ENT:Initialize()
 	self.Entity:DrawShadow(false);
 	self.LastPosition = self.Entity:GetPos()
 	self.TrackTime = CurTime()+self.Parent.TrackTime;
-	self.Fuel = StarGate.CFG:Get("drone","distance",20000);
+	--self.Fuel = StarGate.CFG:Get("drone","distance",20000); -- Don't have config yet
+	self.Fuel = 20000;
 	self.CurrentVelocity = 500;
-	self.MaxVelocity = StarGate.CFG:Get("drone","maxspeed",6000);
+	--self.MaxVelocity = StarGate.CFG:Get("drone","maxspeed",6000); -- Don't have config yet
+	self.MaxVelocity = 6000;
 	self.Created = CurTime();
 	-- Defines, how "curvey" the drone will fly. This makes them not all flying the same route (looks actually to artificial)
 	self.Randomness = math.random(3,9)/10;
@@ -60,8 +62,10 @@ function ENT:Initialize()
 	self.TrackStart = math.random(5,15)/10;
 	self.AntiRandomness = 1-self.Randomness;
 	-- Damage system
-	self.Radius = StarGate.CFG:Get("drone","radius",200);
-	self.Damage = StarGate.CFG:Get("drone","damage",150);
+	--self.Radius = StarGate.CFG:Get("drone","radius",200); -- Don't have config yet
+	self.Radius = 200;
+	--self.Damage = StarGate.CFG:Get("drone","damage",150); -- Don't have config yet
+	self.Damage = 150;
 	self.CanTrack = false;
 	-- Trail on the drone
 	self.Trail = util.SpriteTrail(self.Entity,0,Color(255,230,100,255),true,20,3,0.15,1/12,"sprites/smoke.vmt");
@@ -190,8 +194,8 @@ function ENT:Blast(pos)
 	fx:SetOrigin(pos);
 	util.Effect("HelicopterMegaBomb",fx,true,true);
 	util.Effect("Explosion",fx,true,true);
-	local attacker,owner = StarGate.GetAttackerAndOwner(self.Entity);
-	StarGate.BlastDamage(attacker,owner,pos,self.Radius,self.Damage);
+	local attacker,owner = Lib.GetAttackerAndOwner(self.Entity);
+	Lib.BlastDamage(attacker,owner,pos,self.Radius,self.Damage);
 end
 
 --################# This is a remove function to avoid crashing when hitting the world @aVoN
@@ -237,7 +241,7 @@ function ENT:StartTouch(e,delay_deletion)
 		if(not (phys and phys:IsValid())) then return end; -- Nothing "solid" or physical to collide
 	end
 	local vel = self.Entity:GetVelocity();
-	if(StarGate.CanTouch({BaseVelocity=self.CannonVeloctiy,Velocity=self.Entity:GetVelocity(),Time=self.Created})) then
+	if(Lib.CanTouch({BaseVelocity=self.CannonVeloctiy,Velocity=self.Entity:GetVelocity(),Time=self.Created})) then
 		local pos = self.Entity:GetPos();
 		vel = vel:GetNormalized()*512;
 		-- Like the staffweapon blasts, I don't want the drones to explode when they hit the sky
@@ -276,8 +280,8 @@ end
 
 if CLIENT then
 
-if (StarGate==nil or StarGate.MaterialFromVMT==nil) then return end
-ENT.Glow = StarGate.MaterialFromVMT(
+if (Lib==nil or Lib.MaterialFromVMT==nil) then return end
+ENT.Glow = Lib.MaterialFromVMT(
 	"DroneSprite",
 	[["UnLitGeneric"
 	{
@@ -288,8 +292,8 @@ ENT.Glow = StarGate.MaterialFromVMT(
 		"$vertexcolor" 1
 	}]]
 );
-if (SGLanguage!=nil and SGLanguage.GetMessage!=nil) then
-language.Add("drone",SGLanguage.GetMessage("drone_kill"));
+if (Lib.Language!=nil and Lib.Language.GetMessage!=nil) then
+language.Add("drone",Lib.Language.GetMessage("drone_kill"));
 end
 
 --################### Init @aVoN
@@ -309,7 +313,7 @@ function ENT:Draw()
 			self.Size = math.Clamp((2-CurTime()+(time+1))*60,0,60);
 		end
 	end
-	if(StarGate.VisualsWeapons("cl_drone_glow")) then
+	if(Lib.VisualsWeapons("cl_drone_glow")) then
 		-- The sprite on the drone
 		render.SetMaterial(self.Glow);
 		render.DrawSprite(

@@ -1,9 +1,6 @@
-SWEP.PrintName = SGLanguage.GetMessage("wp_goauld_stick");
+SWEP.PrintName = Lib.Language.GetMessage("wp_goauld_stick");
 SWEP.Category = "EAP"
 SWEP.ClassName  ="eap_torture"
-
-SWEP.Spawnable			= true
-SWEP.AdminSpawnable		= false
 
 SWEP.Author = "Williamdefly"
 SWEP.Contact = "http://sg-e.fr"
@@ -15,6 +12,8 @@ SWEP.DrawAmmo = false;
 SWEP.DrawCrosshair = true;
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
+
+SWEP.Spawnable = true
 
 SWEP.ViewModel      = "models/weapons/v_batsup.mdl"
 SWEP.WorldModel   = "models/weapons/weapons/w_batsup.mdl"

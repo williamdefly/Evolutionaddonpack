@@ -16,8 +16,8 @@ function DrawHUD() -- Draw that HUD @Elanis
 		surface.SetDrawColor(255,255,255,255);
 		surface.DrawTexturedRect(0,0,ScrW(),ScrH());
 
-		draw.SimpleText( SGLanguage.GetMessage("health").." : "..ply:Health(),"CloseCaption_Normal",ScrW()*0.46, 50, Color(0,0,0) )
-		draw.SimpleText( SGLanguage.GetMessage("ent_sarco_exit") ,"CloseCaption_Normal",ScrW()*0.39, 100, Color(0,0,0) )
+		draw.SimpleText( Lib.Language.GetMessage("health").." : "..ply:Health(),"CloseCaption_Normal",ScrW()*0.46, 50, Color(0,0,0) )
+		draw.SimpleText( Lib.Language.GetMessage("ent_sarco_exit") ,"CloseCaption_Normal",ScrW()*0.39, 100, Color(0,0,0) )
 	end
 
 end

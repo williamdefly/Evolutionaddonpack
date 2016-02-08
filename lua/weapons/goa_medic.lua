@@ -1,9 +1,7 @@
-SWEP.PrintName = SGLanguage.GetMessage("wp_goauld_medical");
+SWEP.PrintName = Lib.Language.GetMessage("wp_goauld_medical");
 SWEP.ClassName  ="goauld_medic"
 
 SWEP.Category			= "EAP"
-SWEP.Spawnable			= true
-SWEP.AdminSpawnable		= false
 
 SWEP.Author = "Williamdefly"
 SWEP.Contact = "http://sg-e.fr"
@@ -16,6 +14,8 @@ SWEP.DrawCrosshair = true;
 SWEP.ViewModel = "models/weapons/v_goaregen.mdl";
 SWEP.WorldModel = "models/weapons/weapons/w_goamedic.mdl";
 SWEP.HoldType = "normal"
+
+SWEP.Spawnable = true
 
 -- primary.
 SWEP.Primary.ClipSize = -1;

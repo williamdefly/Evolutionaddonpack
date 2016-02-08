@@ -195,7 +195,7 @@ function ENT.FixAngles(self,pos,ang,vel,old_pos,old_ang,old_vel,ang_delta)
 	end
 	self.Entity:SetLocalVelocity(vel2)
 end
-StarGate.Teleport:Add("energy_pulse",ENT.FixAngles);
+Lib.Teleport:Add("energy_pulse",ENT.FixAngles);
 
 -- ######################## Damage system
 function ENT:Blast(effect,pos,ent,norm,smoke,dmg,rad,old_vel)
@@ -217,8 +217,8 @@ function ENT:Blast(effect,pos,ent,norm,smoke,dmg,rad,old_vel)
 		dmg = math.Clamp(self.ExplosiveDamage*i,0,dmg); -- Necessary, or the powerfull shot won't go throug breakable stuff such good anymore
 	end
 
-	local attacker,owner = StarGate.GetAttackerAndOwner(self.Entity);
-	StarGate.BlastDamage(attacker,owner,pos,rad,dmg*i);
+	local attacker,owner = Lib.GetAttackerAndOwner(self.Entity);
+	Lib.BlastDamage(attacker,owner,pos,rad,dmg*i);
 	util.ScreenShake(pos,2,2.5,1,700);
 
 	if (ent:GetClass() == "shield") then -- aVoN shield!
@@ -290,7 +290,7 @@ function ENT:Destroy()
 end
 
 --################### Earthquake! @aVoN
-concommand.Add("_StarGate.StaffBlast.ScreenShake",
+concommand.Add("_Lib.StaffBlast.ScreenShake",
 	function(p,_,arg)
 		if(IsValid(p)) then
 			util.ScreenShake(Vector(unpack(arg)),2,2.5,1,700);
@@ -302,8 +302,8 @@ end
 
 if CLIENT then
 
-if (StarGate==nil or StarGate.MaterialFromVMT==nil) then return end
-ENT.Glow = StarGate.MaterialFromVMT(
+if (Lib==nil or Lib.MaterialFromVMT==nil) then return end
+ENT.Glow = Lib.MaterialFromVMT(
 	"StaffGlow",
 	[["UnLitGeneric"
 	{
@@ -376,7 +376,7 @@ function ENT:Think()
 	local size = self.Entity:GetNWInt("Size", 0);
 	self.Sizes={20+size*3,20+size*3,180+size*10}; -- X,Y and shaft-leght!
 	-- ######################## Flyby-light
-	if(StarGate.VisualsWeapons(self.LightSettings)) then
+	if(Lib.VisualsWeapons(self.LightSettings)) then
 		local color = self.Entity:GetColor();
 		local r,g,b = color.r,color.g,color.b;
 		local dlight = DynamicLight(self:EntIndex());
@@ -404,7 +404,7 @@ function ENT:Think()
 			-- Vector math: Get the distance from the player orthogonally to the projectil's velocity vector
 			local intensity = math.sqrt(1 - dot_prod^2)*len;
 			self.Entity:EmitSound(self.Sounds[math.random(1,#self.Sounds)],100*(1-intensity/2500),math.random(80,120));
-			p:ConCommand("_StarGate.StaffBlast.ScreenShake "..tostring(pos)); -- Sadly, util.ScreenShake fails clientside so we need to tell the server that we want screenshake!
+			p:ConCommand("_Lib.StaffBlast.ScreenShake "..tostring(pos)); -- Sadly, util.ScreenShake fails clientside so we need to tell the server that we want screenshake!
 			self.Last = time;
 		end
 	end

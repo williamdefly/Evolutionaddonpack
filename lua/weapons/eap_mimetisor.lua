@@ -1,4 +1,4 @@
-SWEP.PrintName  = SGLanguage.GetMessage("wp_mimetisor");
+SWEP.PrintName  = Lib.Language.GetMessage("wp_mimetisor");
 SWEP.ClassName  ="eap_mimetisor";
 
 SWEP.Author = "Matspyder"
@@ -14,10 +14,10 @@ SWEP.ViewModel = "models/weapons/c_arms_animations.mdl";
 SWEP.WorldModel = "models/roltzy/w_sodan.mdl";
 
 SWEP.Category			= "EAP"
-SWEP.Spawnable			= true
-SWEP.AdminSpawnable		= false
 SWEP.AdminOnly = false
 SWEP.HoldType = "normal"
+
+SWEP.Spawnable = true
 
 
 -- primary.
@@ -108,7 +108,7 @@ net.Receive("EAP.ChangeApparence",function(len,ply)
 	if (IsValid(tent)) then
 		self:TakeApparence(tent);
 	else
-	   ply:SendLua("GAMEMODE:AddNotify(SGLanguage.GetMessage(\"asgardtp_error\"), NOTIFY_ERROR, 3); surface.PlaySound( \"buttons/button2.wav\" )");
+	   ply:SendLua("GAMEMODE:AddNotify(Lib.Language.GetMessage(\"asgardtp_error\"), NOTIFY_ERROR, 3); surface.PlaySound( \"buttons/button2.wav\" )");
 	end
 end)
 

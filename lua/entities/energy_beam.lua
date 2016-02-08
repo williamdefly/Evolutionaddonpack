@@ -84,7 +84,7 @@ function ENT.Start:IsValid()
       else
          local startGate = self.Entity:GetParent()
 
-         return StarGate:IsIrisClosed(startGate) == false
+         return Lib:IsIrisClosed(startGate) == false
       end
    else
       return false
@@ -501,19 +501,19 @@ function ENT:Extend()
    local owner = self.Entity:GetVar("Owner", self.Entity)
    if not IsValid(owner) then return end
 
-   -- self.trace = StarGate:ShieldTrace(startPos,
+   -- self.trace = Lib:ShieldTrace(startPos,
                                            -- beamVector,
                                            -- ignorableEntities,
                                            -- true)
 
-	self.trace = StarGate.Trace:New(startPos,beamVector,ignorableEntities);
+	self.trace = Lib.Trace:New(startPos,beamVector,ignorableEntities);
 
    local hitEnt = self.trace.Entity
    local hitPos = self.trace.HitPos
 
    self:SetEndPos(hitPos)
 
-   StarGate:EmitHeat(hitPos,
+   Lib:EmitHeat(hitPos,
                            (self.Damage.amount / 50) * self.Ftime,
                            self.Damage.radius,
                            owner)
@@ -556,7 +556,7 @@ function ENT:OnHitEventHorizon(eventHorizon, hitPos)
     error("energy_beam hit an event horizon that has no endpoint - should be impossible!")
   end
 
-  local teleportedPos, teleportedForward = StarGate:GetTeleportedVector(eventHorizon, remoteEH, hitPos, self.forward)
+  local teleportedPos, teleportedForward = Lib:GetTeleportedVector(eventHorizon, remoteEH, hitPos, self.forward)
 
   local Start = {}
   Start.Entity = remoteEH
@@ -624,8 +624,8 @@ end
 
 if CLIENT then
 
-if (SGLanguage!=nil and SGLanguage.GetMessage!=nil) then
-language.Add("energy_beam", SGLanguage.GetMessage("energy_beam_kill"))
+if (Lib.Language!=nil and Lib.Language.GetMessage!=nil) then
+language.Add("energy_beam", Lib.Language.GetMessage("energy_beam_kill"))
 end
 
 function ENT:GetStartEntity()
