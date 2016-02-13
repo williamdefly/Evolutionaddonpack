@@ -83,14 +83,17 @@ function ENT:Initialize() --######## What happens when it first spawns(Set Model
 	self.GoesRight=true
 	self.GoesUp=true
 	self.CanRoll=true
+	self:CreateWireInputs("X","Y","Z","Target [VECTOR]");
 	self:CreateWireOutputs("Health");
 
 	--Drones
+	self.Target=Vector(0,0,0);
 	self.DroneMaxSpeed= 6000;
 	self.TrackTime = 3;
 	self.Drones = {};
 	self.DroneCount = 0;
 	self.MaxDrones = 6;
+	self.Track = false;
 
 	local phys = self:GetPhysicsObject()
 	self:GetPhysicsObject():EnableMotion(false)
@@ -124,7 +127,6 @@ function ENT:Think()
 		if(self.Pilot:KeyDown(self.Vehicle,"FIRE")) then
 			if(self.CanShootStuff) then
 				self:FireBlast(self:GetRight()*80);
-				self:FireBlast(self:GetRight()*-80);
 				self.CanShootStuff = false
 				timer.Create("AuroraCanShoot"..self:EntIndex(),self.TimeBetweenEachStuffShoot,1,function()
 					self.CanShootStuff = true
@@ -152,15 +154,78 @@ end
 
 function ENT:FireBlast(diff)
 	/* Drone launch */
-	ent = ents.Create("drone");
+	ent = ents.Create("aurora_drone");
 	ent.Parent = self;
-	ent:SetPos(self:GetPos()+self:GetUp()*100);
+	ent:SetPos(self:GetPos()+self:GetUp()*110-self:GetForward()*100);
 	ent:SetAngles(self:GetAngles());
 	ent:Spawn();
 	ent:Activate();
 	ent:SetVelocity((self:GetUp()-self:GetPos())*self.MissileMaxVel);
 	ent:SetCollisionGroup(COLLISION_GROUP_PROJECTILE);
 	ent:SetOwner(self.Entity);
+
+	timer.Create("AuroraShoot2"..self:EntIndex(),self.TimeBetweenEachStuffShoot/8,1,function()
+
+	/* Drone launch */
+	ent2 = ents.Create("aurora_drone");
+	ent2.Parent = self;
+	ent2:SetPos(self:GetPos()+self:GetUp()*110+self:GetForward()*100);
+	ent2:SetAngles(self:GetAngles());
+	ent2:Spawn();
+	ent2:Activate();
+	ent2:SetVelocity((self:GetUp()-self:GetPos())*self.MissileMaxVel);
+	ent2:SetCollisionGroup(COLLISION_GROUP_PROJECTILE);
+	ent2:SetOwner(self.Entity);
+
+	end)
+
+	timer.Create("AuroraShoot3"..self:EntIndex(),self.TimeBetweenEachStuffShoot/4,1,function()
+
+	/* Drone launch */
+	ent3 = ents.Create("aurora_drone");
+	ent3.Parent = self;
+	ent3:SetPos(self:GetPos()+self:GetUp()*110-self:GetForward()*200);
+	ent3:SetAngles(self:GetAngles());
+	ent3:Spawn();
+	ent3:Activate();
+	ent3:SetVelocity((self:GetUp()-self:GetPos())*self.MissileMaxVel);
+	ent3:SetCollisionGroup(COLLISION_GROUP_PROJECTILE);
+	ent3:SetOwner(self.Entity);
+
+	end)
+
+	timer.Create("AuroraShoot4"..self:EntIndex(),self.TimeBetweenEachStuffShoot/6,1,function()
+
+	/* Drone launch */
+	ent4 = ents.Create("aurora_drone");
+	ent4.Parent = self;
+	ent4:SetPos(self:GetPos()+self:GetUp()*110+self:GetForward()*200);
+	ent4:SetAngles(self:GetAngles());
+	ent4:Spawn();
+	ent4:Activate();
+	ent4:SetVelocity((self:GetUp()-self:GetPos())*self.MissileMaxVel);
+	ent4:SetCollisionGroup(COLLISION_GROUP_PROJECTILE);
+	ent4:SetOwner(self.Entity);
+
+	end)
+end
+
+--############## Add wire inputs
+function ENT:TriggerInput(k,v)
+
+	if(not self.EyeTrack and k == "X") then
+		self.PositionSet = true
+		self.Target.x = v
+	elseif(not self.EyeTrack and k == "Y") then
+		self.PositionSet = true
+		self.Target.y = v
+	elseif(not self.EyeTrack and k == "Z") then
+		self.PositionSet = true
+		self.Target.z = v
+	elseif(not self.EyeTrack and k =="Target") then
+		self.PositionSet = true;
+		self.Target = v;
+	end
 end
 
 end
@@ -204,7 +269,7 @@ KBD:SetDefaultKey("A-","RIGHTARROW")
 KBD:SetDefaultKey("EXIT",Lib.KeyBoard.BINDS["+use"] or "E")
 
 ENT.Sounds={
-	Engine=Sound("glider/deathglideridleoutside.wav"),
+	Engine=Sound("eap/ship/moteur/aurora.wav"),
 }
 
 function ENT:Initialize( )
@@ -277,6 +342,12 @@ function ENT:Think()
 			self.UDist=self.UDist+5
 		elseif(p:KeyDown("Aurora","A-")) then
 			self.UDist=self.UDist-5
+		end
+
+		if(p:KeyDown("Aurora","TRACK")) then -- TRACK!!!!!!
+			self.Track = true
+		else
+			self.Track = false
 		end
 	end
 end
