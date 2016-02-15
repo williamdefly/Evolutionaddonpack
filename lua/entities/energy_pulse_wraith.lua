@@ -47,7 +47,7 @@ function ENT:Initialize()
 	self:DrawShadow(false)
 	-- Config
 	self.Radius = 20+30*self.Size;  --StarGate.CFG:Get("staff","radius",50);
-	self.Damage = 30+40*self.Size;  --StarGate.CFG:Get("staff","damage",150);
+	self.Damage = 20+35*self.Size;  --StarGate.CFG:Get("staff","damage",150);
 	self.MaxPasses = 5; --StarGate.CFG:Get("staff","maxpasses",5);
 	self.Passes = 1;
 	self.Passed = {}; -- Necessary, so you can shoot out of Catdaemons shield

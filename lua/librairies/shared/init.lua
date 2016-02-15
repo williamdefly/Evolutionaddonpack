@@ -5,6 +5,8 @@ EAP = EAP or { } --Init Global Var !
 EAP.WebRev = "https://raw.githubusercontent.com/williamdefly/Evolutionaddonpack/master/lua/revision.lua"
 EAP.LastRev = 0; --Default
 
+Lib.IsCapDetected = false;
+
 
 if (SERVER) then
 	AddCSLuaFile();
@@ -35,6 +37,18 @@ function EAPIsUpdated()
 		end
 	);
 	
+end
+
+function IsCapDetected() --Detect if the Carter Addon Pack is installed , in other files , this info can help
+
+	if (file.Exists("lua/stargate/shared/cap.lua","GAME")) then
+
+		Lib.IsCapDetected = true
+
+		MsgN("Carter Addon Pack detected : Compatibility Mode Activated");
+
+	end
+
 end
 
 function InitEAP()
@@ -90,6 +104,8 @@ MsgN("Searching Addons ...");
 		MsgN("Git/SVN/Zip Version Found !")
 	
 	end
+
+	IsCapDetected()	
 	
 MsgN("=======================================================");
 

@@ -120,7 +120,7 @@ hook.Add( "EAPTab", "AddEAPEntity", function( pnlContent, tree, node )
 		if(CategoryName=="EAP") then
 		
 		-- Add a node to the tree
-		local node = tree:AddNode( "Armes", "icon16/gun.png" );
+		local node = tree:AddNode( Lib.Language.GetMessage("cat_weapons"), "icon16/gun.png" );
 				
 		-- When we click on the node - populate it using this function
 		node.DoPopulate = function( self )
@@ -214,11 +214,18 @@ function EAPTool()
 	spawnmenu.AddToolMenuOption("EAP","ships",Lib.Language.GetMessage("ent_ship_oneill"),"Oneill Settings","","",Lib.Settings.Oneill)
 	spawnmenu.AddToolMenuOption("EAP","ships",Lib.Language.GetMessage("ent_ship_orims"),"Ori Mothership Settings","","",Lib.Settings.OriMs)
 	spawnmenu.AddToolMenuOption("EAP","ships",Lib.Language.GetMessage("ent_ship_wraithcruiser"),"Wraith Cruiser Settings","","",Lib.Settings.WraithCruiser)
-	spawnmenu.AddToolMenuOption("EAP","ships",Lib.Language.GetMessage("ent_ship_gateseeder"),"Poseur de portes Settings","","",Lib.Settings.Gateseeder)
+	spawnmenu.AddToolMenuOption("EAP","ships",Lib.Language.GetMessage("ent_ship_gateseeder"),"GateSeeder Settings","","",Lib.Settings.Gateseeder)
 	spawnmenu.AddToolMenuOption("EAP","ships",Lib.Language.GetMessage("ent_ship_prometheus"),"Promethee Settings","","",Lib.Settings.Promethee)
 	spawnmenu.AddToolMenuOption("EAP","ships",Lib.Language.GetMessage("ent_ship_replicator"),"Replicator Settings","","",Lib.Settings.Replicator)
-	spawnmenu.AddToolMenuOption("EAP","ships",Lib.Language.GetMessage("ent_ship_daedalus"),"Deadalus Settings","","",Lib.Settings.daedalus)
+	spawnmenu.AddToolMenuOption("EAP","ships",Lib.Language.GetMessage("ent_ship_daedalus"),"Deadalus Settings","","",Lib.Settings.Daedalus)
+	spawnmenu.AddToolMenuOption("EAP","ships",Lib.Language.GetMessage("ent_ship_dart"),"Dart Settings","","",Lib.Settings.WraithDart)
+	spawnmenu.AddToolMenuOption("EAP","ships",Lib.Language.GetMessage("ent_ship_gateglider"),"Gate Glider Settings","","",Lib.Settings.GateGlider)
+	spawnmenu.AddToolMenuOption("EAP","ships",Lib.Language.GetMessage("ent_ship_f302"),"F-302 Settings","","",Lib.Settings.F302)
+	spawnmenu.AddToolMenuOption("EAP","ships",Lib.Language.GetMessage("ent_ship_jumper"),"Jumper Settings","","",Lib.Settings.Jumper)
+	spawnmenu.AddToolMenuOption("EAP","ships",Lib.Language.GetMessage("ent_ship_shuttle"),"Destiny Shuttle Settings","","",Lib.Settings.Shuttle)
+	spawnmenu.AddToolMenuOption("EAP","ships",Lib.Language.GetMessage("ent_ship_deathglider"),"DeathGlider Settings","","",Lib.Settings.DeathGlider)
+	spawnmenu.AddToolMenuOption("EAP","ships",Lib.Language.GetMessage("ent_ship_teltak"),"TelTak Settings","","",Lib.Settings.Teltak)
 end
 
 -- Hook the Tab to the Spawn Menu
-hook.Add( "AddToolMenuTabs", "EAPTool", EAPTool )
+hook.Add( "AddToolMenuTabs", "EAPTool", EAPTool)

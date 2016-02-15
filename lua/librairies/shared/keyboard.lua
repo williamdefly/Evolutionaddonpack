@@ -208,19 +208,29 @@ function Lib.KeyBoard.ResetKeys(p,name)
 	end
 end
 
---################### Overwrites the player's KeyDown etc function to use our system, if two arguments are given @aVoN
-local meta = FindMetaTable("Player");
-if(not meta) then return end;
---Backup old
-meta.__KeyDown = meta.__KeyDown or meta.KeyDown;
--- I'm currently not planning to add this "feature" to KeyPressed and KeyReleased because we dont use it
+/* The next functions were made to overwrite the CAP KeyDown , then the EAP Ship will Work @Elanis */
 
-function meta:KeyDown(name,key)
-	if(name and key) then
-		return (Lib.KeyBoard.Pressed[self][name][key] == true);
+function Lib.KeyBoard.Override()
+
+	if(StarGate==nil and Stargate.Keyboard==nil and Lib.IsCapDetected==true) then return false; end -- If CAP is initialized or if CAP isn't installed we can overwrite the function keyDown
+
+	--################### Overwrites the player's KeyDown etc function to use our system, if two arguments are given @aVoN
+	local meta = FindMetaTable("Player");
+	if(not meta) then return end;
+	--Backup old
+	meta.__KeyDown = meta.__KeyDown or meta.KeyDown;
+	-- I'm currently not planning to add this "feature" to KeyPressed and KeyReleased because we dont use it
+
+	function meta:KeyDown(name,key)
+		if(name and key) then
+			return (Lib.KeyBoard.Pressed[self][name][key] == true);
+		end
+		return meta.__KeyDown(self,name); -- Old GMod behaviour
 	end
-	return meta.__KeyDown(self,name); -- Old GMod behaviour
+
+	timer.Create("KBOverride", 1, 1, Lib.KeyBoard.Override );
 end
+timer.Create("KBOverride", 1, 1, Lib.KeyBoard.Override );
 
 -- fix by AlexALX
 local function playerDies(p)

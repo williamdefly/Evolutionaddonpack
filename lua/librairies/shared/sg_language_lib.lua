@@ -31,7 +31,7 @@ if (SERVER) then
 end
 
 if (CLIENT) then
-	CreateClientConVar( "sg_language", GetConVarString("gmod_language") or "en", true, false )
+	CreateClientConVar( "eap_language", GetConVarString("gmod_language") or "en", true, false )
 end
 
 StarGate = StarGate or {}
@@ -165,10 +165,10 @@ local Language_Messages = {};
 local lang_names = {["Name"]={},["Lang"]={}}
 
 local function LangNames()
-	local fi,fo = file.Find("lua/data/language/*","GAME");
+	local fi,fo = file.Find("lua/data/language_data/*","GAME");
 	for k,lang in pairs(fo) do
-		if (not file.Exists("lua/data/language/"..lang.."/stargate.lua","GAME")) then continue; end
-		local ini = LANGParser:new("lua/data/language/"..lang.."/stargate.lua");
+		if (not file.Exists("lua/data/language_data/"..lang.."/sggeneral.lua","GAME")) then continue; end
+		local ini = LANGParser:new("lua/data/language_data/"..lang.."/sggeneral.lua");
 		if (ini and ini.messages) then
 			for _,v in pairs(ini.messages) do
 				if (v["global_lang_name"]) then lang_names["Name"][lang] = v["global_lang_name"]; lang_names["Lang"][v["global_lang_name"]] = lang; break; end
@@ -178,12 +178,12 @@ local function LangNames()
 end
 
 local function LangInit()
-	local langfiles = file.Find("lua/data/language/en/*.lua","GAME");
+	local langfiles = file.Find("lua/data/language_data/en/*.lua","GAME");
 	for _,f in pairs(langfiles) do
 		Lib.Language.ParseFile("en",f);
 	end
 	if CLIENT then
-		langfiles = file.Find("lua/data/language/"..Lib.Language.GetClientLanguage().."/*.lua","GAME");
+		langfiles = file.Find("lua/data/language_data/"..Lib.Language.GetClientLanguage().."/*.lua","GAME");
 		for _,f in pairs(langfiles) do
 			Lib.Language.ParseFile(Lib.Language.GetClientLanguage(),f);
 		end
@@ -210,25 +210,25 @@ local old_langs = {
     ["es"] = "es-es",
 }
 if (CLIENT) then
-	local lang = GetConVarString("sg_language") or "en";
+	local lang = GetConVarString("eap_language") or "en";
 	if (old_langs[lang]) then
 		if (lang=="english") then
 			local lg = GetConVarString("gmod_language") or "en";
 			if (lg=="uk") then lg = "ru"; end
-			RunConsoleCommand("sg_language",lg);
+			RunConsoleCommand("eap_language",lg);
 		else
-			RunConsoleCommand("sg_language",old_langs[lang]);
+			RunConsoleCommand("eap_language",old_langs[lang]);
 		end
 	elseif (lang:len()>5) then
 		local lg = GetConVarString("gmod_language") or "en";
 		if (lg=="uk") then lg = "ru"; end
-		RunConsoleCommand("sg_language",lg);
+		RunConsoleCommand("eap_language",lg);
 	end
 end
 
 function Lib.Language.GetClientLanguage()
 	if SERVER then return "en" end
-	local lang = GetConVarString("sg_language") or "en";
+	local lang = GetConVarString("eap_language") or "en";
 	if (lang=="uk") then lang = "ru"; end
 	if (old_langs[lang]) then return old_langs[lang]; end
 	return lang;
@@ -236,9 +236,9 @@ end
 
 function Lib.Language.SetClientLanguage(lang)
 	if SERVER then return end
-	RunConsoleCommand("sg_language",lang);
+	RunConsoleCommand("eap_language",lang);
 	timer.Remove("Lib.Language.Reload");
-	timer.Create("Lib.Language.Reload",0.5,1,function() RunConsoleCommand("sg_language_reload") end);
+	timer.Create("Lib.Language.Reload",0.5,1,function() RunConsoleCommand("eap_language_reload") end);
 end
 
 function Lib.Language.GetMessage(message, ...)
@@ -268,10 +268,10 @@ end
 
 function Lib.Language.CountMessagesInLanguage(lang,return_msgs)
 	if (not lang) then lang = Lib.Language.GetClientLanguage(); end
-	local langfiles = file.Find("lua/data/language/"..lang.."/*.lua","GAME");
+	local langfiles = file.Find("lua/data/language_data/"..lang.."/*.lua","GAME");
 	local count,msgs = 0,{};
 	for _,f in pairs(langfiles) do
-		local ini = LANGParser:new("lua/data/language/"..lang.."/"..f);
+		local ini = LANGParser:new("lua/data/language_data/"..lang.."/"..f);
 		if (ini and ini.messages and ini.messages[1]) then
 			for k,v in pairs(ini.messages[1]) do
 				--count = count + table.Count(v);
@@ -293,11 +293,11 @@ if (CLIENT) then
 		LangInit();
 		if (not no_msg) then MsgN("Languages successfully reloded."); end
 	end
-	concommand.Add("sg_language_reload", function() Lib.Language.Reload() end);
+	concommand.Add("eap_language_reload", function() Lib.Language.Reload() end);
 end
 
 function Lib.Language.ParseFile(lang, file)
-	local ini = LANGParser:new("lua/data/language/"..lang.."/"..file);
+	local ini = LANGParser:new("lua/data/language_data/"..lang.."/"..file);
 	if (ini and ini.messages) then
 		for _,v in pairs(ini.messages) do
 			for k,m in pairs(v) do

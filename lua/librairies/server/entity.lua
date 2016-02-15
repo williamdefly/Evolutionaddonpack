@@ -348,3 +348,81 @@ if(meta and not meta.__SetMaterial) then
 		end
 	end
 end
+
+function CAPSpawnedEntDetect( ply, oldent ) --Because of incompatibility between CAP/EAP keyboards
+
+	local newclass="";
+	local oldclass=oldent:GetClass();
+
+	--MsgN('Old : '..oldclass);
+
+	if(oldclass=="sg_vehicle_daedalus") then newclass="ship_daedalus" end
+	if(oldclass=="sg_vehicle_dart") then newclass="ship_dart" end
+	if(oldclass=="sg_vehicle_f302") then newclass="ship_f302" end
+	if(oldclass=="sg_vehicle_glider") then newclass="ship_glider" end
+	if(oldclass=="sg_vehicle_gate_glider") then newclass="ship_gate_glider" end
+	if(oldclass=="puddle_jumper") then newclass="ship_puddle_jumper" end
+	if(oldclass=="sg_vehicle_shuttle") then newclass="ship_shuttle" end
+	if(oldclass=="sg_vehicle_teltac") then newclass="ship_teltak" end
+
+	--MsgN('New : '..newclass);
+
+
+	if(newclass=="") then return false end
+
+		local pos = oldent:GetPos()
+		local ang = oldent:GetAngles()
+
+		oldent:Remove()
+
+	local PropLimit = GetConVar("Count_ships_max"):GetInt()
+	if(ply:GetCount("Count_ships")+1 > PropLimit) then
+		ply:SendLua("GAMEMODE:AddNotify(Lib.Language.GetMessage(\"entity_limit_ships\"), NOTIFY_ERROR, 5); surface.PlaySound( \"buttons/button2.wav\" )");
+	else
+
+		ply:PrintMessage(HUD_PRINTTALK,oldclass..' '..Lib.Language.GetMessage("replacing_by_eap_sent"));
+
+		local newent = ents.Create(newclass);
+		newent:SetPos(pos);
+		newent:SetAngles(ang);
+		newent:Spawn();
+
+		undo.Create(newclass)
+	   	 undo.AddEntity(newent)
+	    	undo.SetPlayer(ply)
+		undo.Finish()
+		
+		newent:Activate();
+		newent.Owner = ply;
+		newent:SetVar("Owner",ply);
+
+		if(newclass=="ship_puddle_jumper")then
+		newent:SpawnBackDoor(nil,ply)
+		newent:SpawnBulkHeadDoor(nil,ply)
+		newent:SpawnToggleButton(ply)
+		newent:SpawnShieldGen(ply)
+		end
+
+		if(newclass=="ship_f302")then
+		newent:CockpitSpawn(ply) -- Spawn the cockpit
+		newent:SpawnSeats(ply); -- Spawn the seats
+		newent:SpawnRocketClamps(nil,ply); -- Spawn the rocket clamps
+		newent:SpawnMissile(ply); -- Spawn the missile props
+		newent:Turrets(ply); -- Spawn turrets
+		newent:SpawnWheels(nil,ply);
+		end
+
+		if(newclass=="ship_teltak")then
+		--newent:SpawnRings(ply);  Temporary disable dues of not added yet in EAP @Elanis
+		--newent:SpawnRingPanel(ply); Temporary disable dues of not added yet in EAP @Elanis
+		newent:SpawnDoor(ply)
+		newent:SpawnButtons(ply);
+		end
+
+		ply:AddCount("Count_ships", newent)
+		return ent
+
+	end
+
+end
+hook.Add( "PlayerSpawnedSENT", "RemoveIfCAPBlackistedSENTIsSpawn", CAPSpawnedEntDetect );
