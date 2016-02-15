@@ -11,7 +11,7 @@ function DrawHUD() -- Draw that HUD @Elanis
     local sarcophage = ply:GetNWEntity("sarcophagus")
 	local self = ply:GetNetworkedEntity("ScriptedVehicle", NULL)
 
-	if (self and self:IsValid() and sarcophage and sarcophage:IsValid()) then
+	if (self and self:IsValid() and sarcophage and sarcophage:IsValid() and self==sarcophage) then
 
 		surface.SetDrawColor(255,255,255,255);
 		surface.DrawTexturedRect(0,0,ScrW(),ScrH());

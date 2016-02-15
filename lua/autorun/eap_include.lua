@@ -22,6 +22,9 @@ include('librairies/server/teleport.lua');
 include('librairies/server/entity.lua');
 end
 
+-- Client ConVars
+IncludeCS("librairies/client/clientconvars.lua");
+
 -- Menu
 IncludeCS("librairies/client/menu.lua");
 
@@ -43,6 +46,9 @@ IncludeCS('librairies/shared/sg_language_lib.lua');
 
 -- VGui Interface
 IncludeCS('librairies/vgui/init.lua');
+IncludeCS('librairies/vgui/jumperhud.lua');
+IncludeCS('librairies/vgui/jumperlsd.lua');
+
 
 if(SERVER)then
 -- ConVars

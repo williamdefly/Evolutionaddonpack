@@ -11,11 +11,32 @@ function Lib.MaterialFromVMT(name,VMT)
 	end
 end
 
---Function by @aVon
+--Functions by @aVon
 
 function Lib.VisualsWeapons(str)
-	if(LocalPlayer() and LocalPlayer().GetInfo and util.tobool(LocalPlayer():GetInfo("cl_stargate_visualsweapon")) and util.tobool(LocalPlayer():GetInfo(str))) then
+	if(LocalPlayer() and LocalPlayer().GetInfo and util.tobool(LocalPlayer():GetInfo("cl_visualsweapon_active")) and util.tobool(LocalPlayer():GetInfo(str))) then
 		return true;
 	end
 	return false;
+end
+
+function Lib.VisualsShips(str)
+	if(LocalPlayer() and LocalPlayer().GetInfo and util.tobool(LocalPlayer():GetInfo("cl_stargate_visualsship")) and util.tobool(LocalPlayer():GetInfo(str))) then
+		return true;
+	end
+	return false;
+end
+
+function Lib.VisualsMisc(str,ignore)
+	if(LocalPlayer() and LocalPlayer().GetInfo and (util.tobool(LocalPlayer():GetInfo("cl_stargate_visualsmisc")) or ignore) and util.tobool(LocalPlayer():GetInfo(str))) then
+		return true;
+	end
+	return false;
+end
+
+--################# Creates a copy of an existing Material and returns it @aVoN
+function Lib.MaterialCopy(name,filename)
+	if(type(filename) ~= "string" or type(name) ~= "string") then return Material(" ") end; -- Return a dummy Material
+	filename = "materials/"..filename:Trim():gsub(".vmt$","")..".vmt";
+	return Lib.MaterialFromVMT(name,file.Read(filename,"GAME"));
 end
