@@ -15,6 +15,9 @@ if(SERVER)then
 -- Wiremod
 include('librairies/server/wire.lua');
 
+-- Ressource Distribution : LS / CAF / SB / ENV / SL
+include('librairies/server/rd.lua');
+
 -- Teleport
 include('librairies/server/teleport.lua');
 

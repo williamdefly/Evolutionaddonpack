@@ -161,33 +161,6 @@ function Lib.Wire.GetWire(self,key,default,out)
 	return default or 0; -- Error. Either wire is not installed or the input is not SET. Return the default value instead
 end
 
--- Added by AlexALX for zpm hubs etc
-function Lib.Wire.GetEntListTable(ent)
-	if (not IsValid(ent)) then return {}; end
-	if (Lib.HasResourceDistribution) then
-		if(Lib.RDThree()) then
-			local entTable = RD.GetEntityTable(ent);
-			local netTable = RD.GetNetTable(entTable["network"]);
-			return netTable["entities"] or {};
-		elseif(Lib.RDEnv()) then
-			if (ent.node and ent.node.connected) then
-				return ent.node.connected or {};
-			end
-			return {ent.Entity};
-		elseif(Lib.RDTwo()) then
-			if (ent.resources2links==nil) then return {}; end
-			local entTable = ent.resources2links or {};
-			for k, v in pairs(entTable) do
-				if IsValid(v) and v.resources2links then
-					return v.resources2links or {};
-				end
-			end
-			return {ent.Entity}; -- for single connections
-		end
-	end
-	return {};
-end
-
 --################# Store Entity modifiers @aVoN
 function Lib.Wire.PreEntityCopy(self)
 	if(WireAddon) then
