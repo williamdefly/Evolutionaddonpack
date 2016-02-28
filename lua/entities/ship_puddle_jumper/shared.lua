@@ -1,4 +1,6 @@
 if (Lib!=nil and Lib.Wire!=nil) then Lib.Wiremod(ENT); end
+if (Lib!=nil and Lib.RD!=nil) then Lib.LifeSupport(ENT); end
+
 
 ENT.RenderGroup = RENDERGROUP_OPAQUE
 ENT.Base = "base_anim"

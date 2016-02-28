@@ -26,6 +26,8 @@
 ]]--
 
 if (Lib!=nil and Lib.Wire!=nil) then Lib.Wiremod(ENT); end
+if (Lib!=nil and Lib.RD!=nil) then Lib.LifeSupport(ENT); end
+
 
 ENT.PrintName = "Stargate Vehicle Base"
 ENT.Author = "RononDex"
@@ -507,7 +509,18 @@ function ENT:Think()
 			doppler = velo:Dot(dir)/(150*dir:Length());
 		end
 		if(self.SoundsOn.Engine) then
-			self.EngineSound:ChangePitch(math.Clamp(60 + pitch/25,75,100) + doppler,0);
+			if(	(self:GetClass()=="ship_dart")or
+				(self:GetClass()=="ship_shuttle")or
+				(self:GetClass()=="ship_gate_glider")or
+				(self:GetClass()=="ship_glider")or
+				(self:GetClass()=="ship_teltak")or
+				(self:GetClass()=="ship_f302")
+			) then
+				self.EngineSound:ChangePitch(math.Clamp(60 + pitch/25,75,100) + doppler,0);
+			else
+				self.EngineSound:ChangePitch(math.Clamp(60 + pitch/25,25,150) + doppler,0);
+				
+			end
 		end
 	else
 		self:StopClientsideSound("Engine");
