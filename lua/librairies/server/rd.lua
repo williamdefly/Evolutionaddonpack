@@ -37,8 +37,8 @@ function Lib.LifeSupport(ENT)
 	ENT.GetNetworkCapacity = Lib.RD.GetNetworkCapacity;
 
 	-- For LifeSupport and Resource Distribution and Wire - Makes all connections savable with Duplicator
-	ENT.PreEntityCopy = StarGate.WireRD.PreEntityCopy;
-	ENT.PostEntityPaste = StarGate.WireRD.PostEntityPaste;
+	ENT.PreEntityCopy = Lib.RD.PreEntityCopy;
+	ENT.PostEntityPaste = Lib.RD.PostEntityPaste;
 
 	if (Environments) then
 		ENT.Link = function(self, ent, delay)
@@ -163,14 +163,14 @@ end
 --added compatiblity with RD3 @JDM12989
 function Lib.RD.OnRemove(self,only_rd,only_wire)
 	if(self.HasRD and not only_wire) then
-		if(StarGate.RDThree()) then
+		if(RD.RDThree()) then
 			if (self.IsNode) then
 				RD.UnlinkAllFromNode(self.netid);
 			else
 				RD.Unlink(self.Entity); -- Lol, why someone not added this? Fix by AlexALX
 			end
 			RD.RemoveRDEntity(self.Entity);
-		elseif(StarGate.RDEnv()) then
+		elseif(RD.RDEnv()) then
 			self:Unlink()
 		elseif(Dev_Unlink_All and self.resources2links) then
 			Dev_Unlink_All(self.Entity);
