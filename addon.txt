@@ -1,7 +1,7 @@
  "AddonInfo"		  "AddonInfo"
   {		  {
   	"name"				"Evolution Addon Pack ( EAP )"
- -	"version"			"5.1.0 officiel"
+ -	"version"			"5.1.2 officiel"
  -	"author_name"		"Team EAP"
   	"author_email"		"stargate-evolution@hotmail.com"
  -	"author_url"		"www.sg-e.space"

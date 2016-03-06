@@ -12,7 +12,7 @@ function ENT:Initialize()
 	self.EntityLife = 200
 	self.NextUse = CurTime()
 
-	self:SetModel("models/abydos/hatakcontainer/hatakcontainer.mdl")
+	self:SetModel("models/elanis/container/hatak_container.mdl")
 	self:PhysicsInit(SOLID_VPHYSICS)      -- Make us work with physics,
 	self:SetMoveType(MOVETYPE_VPHYSICS)   -- after all, gmod is a physics
 	self:SetSolid(SOLID_VPHYSICS)

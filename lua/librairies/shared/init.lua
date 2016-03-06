@@ -2,7 +2,7 @@
 --Made by Elanis
 
 EAP = EAP or { } --Init Global Var !
-EAP.WebRev = "https://raw.githubusercontent.com/williamdefly/Evolutionaddonpack/master/lua/revision.lua"
+EAP.WebRev = "https://raw.githubusercontent.com/williamdefly/Evolutionaddonpack/master/lua/eap_revision.lua"
 EAP.LastRev = 0; --Default
 
 Lib.IsCapDetected = false;
@@ -14,8 +14,8 @@ end
 
 function GetRevision()
 
-	if (file.Exists("lua/revision.lua","GAME")) then
-			EAP.Revision = tonumber(file.Read("lua/revision.lua","GAME"));
+	if (file.Exists("lua/eap_revision.lua","GAME")) then
+			EAP.Revision = tonumber(file.Read("lua/eap_revision.lua","GAME"));
 	else
 			EAP.Revision = 0 -- For no Lua Errors
 	end

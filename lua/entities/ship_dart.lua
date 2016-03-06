@@ -31,7 +31,7 @@ if SERVER then
 --########Header########--
 AddCSLuaFile()
 
-ENT.Model = Model("models/Madman07/wraith_dart/wraith_dart.mdl")
+ENT.Model = Model("models/Madman07/dart_wraith/dart_wraith.mdl")
 
 ENT.Sounds = {
 	Railgunsound = Sound("weapons/wraith_dart_shoot.mp3"),

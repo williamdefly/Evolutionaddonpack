@@ -1,0 +1,8 @@
+"VertexLitGeneric"
+{
+"$basetexture" "models/elanis/container/containerfrise"
+ "$selfillum" 1
+ "$surfaceprop" "metal"
+ "$nodecal" "1"
+"$basetexturetransform" "center 0 0 scale 20 20 rotate 0 translate .35 .45"
+}

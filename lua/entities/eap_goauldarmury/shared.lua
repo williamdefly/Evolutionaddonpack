@@ -7,8 +7,8 @@ ENT.Author= "Matspyder"
 ENT.Contact= "N/A"
 ENT.Purpose= "To take Zat and Staff Weapon."
 ENT.Instructions= "Press E to use."
-ENT.Spawnable = false 
-ENT.AdminSpawnable = false 
+ENT.Spawnable = true 
+ENT.AdminSpawnable = true 
 ENT.Category = Lib.Language.GetMessage("cat_others");
 
---list.Set("EAP", ENT.PrintName, ENT); // Disabled Since have a model
+list.Set("EAP", ENT.PrintName, ENT);

@@ -16,7 +16,7 @@ AddCSLuaFile()
 ENT.Model = Model("models/ship/oneil.mdl")
 
 ENT.Sounds = {
-	Staff=Sound("eap/ship/armes/asgardflak.wav")
+	Staff=Sound("eap/ship/armes/asgardflak.mp3")
 }
 
 function ENT:SpawnFunction(ply, tr) --######## Pretty useless unless we can spawn it @RononDex

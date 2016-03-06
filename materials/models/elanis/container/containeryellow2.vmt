@@ -1,0 +1,16 @@
+"VertexLitGeneric"
+{
+	"$basetexture" "models/SGW/Hatak/TestHull"
+	"$bumpmap"    "models/SGW/Hatak/TestHull_normal"
+	"$normalmapalphaenvmapmask" "1"
+	"$normalmapalphaphongmask"    "1"
+    	"$surfaceprop" "metal"
+	"$model" "1"	
+ 	"$phong" "1"
+	"$phongexponent" "28"
+	"$phongboost"	"1"
+	"$phongfresnelranges"	"[1 9 6]"
+	"$halflambert" "1"
+	"$phongalbedotint" "1"
+	"$basetexturetransform" "center .5 .5 scale 10 10 rotate -90 translate 0 0"
+}

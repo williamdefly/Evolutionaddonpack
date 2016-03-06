@@ -1,0 +1,10 @@
+"VertexLitGeneric"
+{
+"$basetexture" "models/elanis/container/containerserpentsign"
+ "$selfillum" 1
+ "$surfaceprop" "metal"
+ "$nodecal" "1"
+"$basetexturetransform" "center 0 0 scale 45 45 rotate 0 translate .35 .45"
+}
+
+
