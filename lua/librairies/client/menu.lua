@@ -14,7 +14,7 @@ EAP.SpawnList.Props = {
 "models/ship/oneil.mdl",
 "models/ship/ori.mdl",
 "models/ship/petheship.mdl",
-"models/ship/rship.mdl",
+"models/ship/rship01.mdl",
 "models/ship/sgw_hatak.mdl",
 "models/ship/wraith.mdl",
 "models/elanis/container/hatak_container.mdl",
