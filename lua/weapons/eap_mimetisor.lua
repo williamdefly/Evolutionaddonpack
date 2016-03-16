@@ -35,14 +35,12 @@ SWEP.Secondary.Automatic = false;
 SWEP.Secondary.Ammo = "none";
 
 -- Add weapon for NPCs
-//list.Add("NPCUsableWeapons", {class = "weapon_kull", title = SWEP.PrintName or ""});
 
 function SWEP:Initialize()
 	self.Weapon:SetWeaponHoldType(self.HoldType)
 end
 
 function SWEP:Deploy()
-	//if SERVER and IsValid(self) and IsValid(self.Owner) then self.Owner:EmitSound(self.Sounds.Deploy,math.random(90,110),math.random(90,110)) end;
 	return true;
 end
 
@@ -119,7 +117,7 @@ end
 
 function SWEP:TakeApparence(entity)
 	if(self.Owner.HaveChangeModel) then
-		self.Owner:PrintMessage(HUD_PRINTTALK,"Vous avez déjà configurer ce mimétiseur")
+		self.Owner:PrintMessage(HUD_PRINTTALK,"Vous avez déjà configuré ce mimétiseur")
 		self.Owner:EmitSound(Sounds.Fail,100,100)
 	else
 		self.Owner.BaseModel = self.Owner:GetModel()
@@ -141,15 +139,6 @@ function SWEP:ResetModel()
 	end
 end
 
-hook.Add("PlayerSpawn","EAP.MimetisorSpawn",function(player)
-	player.HaveChangeModel = false
-	player.BaseModel = nil
-	player.PlayerSkin = nil
-	if(player:IsAdmin())then
-		player:Give("eap_mimetisor")
-	end
-end)
-
 --################### Holster @aVoN
 function SWEP:Holster()
 	//self.Owner:EmitSound(self.Sounds.Holster,90,math.random(90,110));
@@ -160,9 +149,9 @@ end
 
 if CLIENT then
 -- Inventory Icon
-if(file.Exists("materials/VGUI/kullweapon.vmt","GAME")) then
-	SWEP.WepSelectIcon = surface.GetTextureID("VGUI/kullweapon");
-end
+--if(file.Exists("materials/VGUI/kullweapon.vmt","GAME")) then
+--	SWEP.WepSelectIcon = surface.GetTextureID("VGUI/kullweapon");
+--end
 -- Kill Icon
 if(file.Exists("materials/VGUI/weapons/staff_killicon.vmt","GAME")) then
 	killicon.Add("weapon_staff","VGUI/weapons/staff_killicon",Color(255,255,255));
