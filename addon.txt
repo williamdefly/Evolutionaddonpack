@@ -1,10 +1,9 @@
  "AddonInfo"		  "AddonInfo"
-  {		  {
+  {
   	"name"				"Evolution Addon Pack ( EAP )"
- -	"version"			"5.1.2 officiel"
+ -	"version"			"5.1.3 officiel"
  -	"author_name"		"Team EAP"
   	"author_email"		"stargate-evolution@hotmail.com"
- -	"author_url"		"www.sg-e.space"
-  	"info"				"Un add-on Stargate FRANCAIS."
- -	"Forum"             "www.sg-e.space/forum"	  
+ -	"author_url"		"www.sg-eap.space"
+ -	"Forum"             "www.sg-eap.space/forum"	  
   }

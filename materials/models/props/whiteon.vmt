@@ -1,0 +1,14 @@
+"vertexlitgeneric" 
+{
+    	"$basetexture" "iziraider\gatebearing\whiteon"
+	"$bumpmap"    "iziraider\gatebearing\normal"
+	"$normalmapalphaenvmapmask" 1
+    	"$surfaceprop" "metal"
+    	"$selfillum" 1
+ 	"$phong" "1"
+	"$phongexponent" "33"
+	"$phongboost"	"1"
+	"$phongfresnelranges"	"[1 8 6]"
+	"$halflambert" "1"
+	"$phongalbedotint" "1"
+}

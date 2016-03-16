@@ -4,7 +4,22 @@ end
 
 EAP.SpawnList.Props = {
 "models/props_lodka/ori_bucher.mdl",
-"models/atero.mdl"
+"models/atero.mdl",
+"models/yorkus/transporter/tray.mdl",
+"models/ships/madman07/daedalus/daedalus.mdl",
+"models/ship/alkesh.mdl",
+"models/ship/aurore.mdl",
+"models/ship/destiny.mdl",
+"models/ship/doors_setter.mdl",
+"models/ship/oneil.mdl",
+"models/ship/ori.mdl",
+"models/ship/petheship.mdl",
+"models/ship/rship.mdl",
+"models/ship/sgw_hatak.mdl",
+"models/ship/wraith.mdl",
+"models/elanis/container/hatak_container.mdl",
+"models/elanis/sarcophage/sarcophage_goauld.mdl",
+"models/destbar.mdl"
 }
 
 spawnmenu.AddContentType( "eap_entity", function( container, obj )

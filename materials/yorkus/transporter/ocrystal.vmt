@@ -1,0 +1,5 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "yorkus/Transporter/ocrystal"
+	"$translucent" 1
+}

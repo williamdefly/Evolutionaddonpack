@@ -1,0 +1,24 @@
+ //this texture is made by boba fett and is licensed under a creative commons attribution-noncommercial-noderivs 3.0 unported license.
+// you are not allowed to alter, distribute or use this work for commercial purposes. without permission of the author "boba fett"
+"vertexlitgeneric" 
+{
+	"$basetexture" "iziraider\kino\grey"
+	"$bumpmap"    "iziraider\kino\normal"
+	"$normalmapalphaenvmapmask" 1
+	"$surfaceprop" "metal"
+	"$envmap" "env_cubemap"
+	"$envmaptint" "[ .1 .1 .1 ]"
+	"$envmapconstrast" "1"
+
+	"$phong"     "1"
+	"$phongexponent"  "33"
+	"$phongboost"   "1"
+	"$phongfresnelranges"   "[1 9 3]"
+	"$phongalbedotint" "1"
+	"$phongwarptexture"  "boba_fett/shaders/phongwarp"
+	"$halflambert" "1"
+
+	"$rimlight" "1"
+	"$rimlightexponent" "22"	
+	"$rimlightboost" "0.2"
+}

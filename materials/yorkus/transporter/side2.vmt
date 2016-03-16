@@ -1,0 +1,7 @@
+"UnlitGeneric"
+{
+	"$basetexture" "yorkus/Transporter/side2"
+	"$additive" 1
+	"$nodecal" 1
+	"$translucent" 1
+}
