@@ -65,7 +65,7 @@ function ENT:Initialize()
 	--self.Radius = StarGate.CFG:Get("drone","radius",200); -- Don't have config yet
 	self.Radius = 200;
 	--self.Damage = StarGate.CFG:Get("drone","damage",150); -- Don't have config yet
-	self.Damage = 150;
+	self.Damage = 200;
 	self.CanTrack = false;
 	-- Trail on the drone
 	self.Trail = util.SpriteTrail(self.Entity,0,Color(255,230,100,255),true,20,3,0.15,1/12,"sprites/smoke.vmt");

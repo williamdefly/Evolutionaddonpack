@@ -48,7 +48,7 @@ function ENT:Initialize() --######## What happens when it first spawns(Set Model
 	self:PhysicsInit(SOLID_VPHYSICS)
 	self:SetMoveType(MOVETYPE_VPHYSICS)
 	self:SetSolid(SOLID_VPHYSICS)
-	self.EntHealth = 20000
+	self.EntHealth = 27000 --Health 18000 + Shield 9000
 	self:SetNetworkedInt("health",self.EntHealth)
 	self:SetNWInt("maxEntHealth",self.EntHealth)
 	self:SetNWInt("CanFire",1)
@@ -180,7 +180,7 @@ end
 function ENT:FireBlast(diff)
 	if(self.CanShoot) then
 		local e = ents.Create("energy_pulse_destiny");
-		e:PrepareBullet(self:GetForward(), 10, 12000, 20, {self.Entity});
+		e:PrepareBullet(self:GetForward(), 10, 12000, 25, {self.Entity});
 		e:SetPos(self:GetPos()+diff);
 		e:SetOwner(self);
 		e.Owner = self;
@@ -196,7 +196,7 @@ end
 
 function ENT:FireSmallTurrets(diff)
 	local e = ents.Create("energy_pulse_destiny");
-	e:PrepareBullet(self:GetForward(), 10, 12000, 10, {self.Entity});
+	e:PrepareBullet(self:GetForward(), 10, 12000, 12, {self.Entity});
 	e:SetPos(self:GetPos()+self:GetRight()*250+self:GetForward()*-900);
 	e:SetOwner(self);
 	e.Owner = self;
@@ -204,7 +204,7 @@ function ENT:FireSmallTurrets(diff)
 	e:Activate();
 	self:EmitSound(self.Sounds.Staff,90,math.random(90,110))
 	local e2 = ents.Create("energy_pulse_destiny");
-	e2:PrepareBullet(self:GetForward(), 10, 12000, 10, {self.Entity});
+	e2:PrepareBullet(self:GetForward(), 10, 12000, 12, {self.Entity});
 	e2:SetPos(self:GetPos()+self:GetRight()*-250+self:GetForward()*-900);
 	e2:SetOwner(self);
 	e2.Owner = self;

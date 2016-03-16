@@ -30,7 +30,7 @@ list.Set("EAP", ENT.PrintName, ENT);
 ENT.AutomaticFrameAdvance = true
 
 ENT.IsSGVehicleCustomView = true
-ENT.EntHealth = 20000;
+ENT.EntHealth = 13000;
 
 if SERVER then
 

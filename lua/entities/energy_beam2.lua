@@ -48,7 +48,7 @@ function ENT:SpawnBeam()
 	beam:SetOwner(self.Entity:GetOwner());
 	beam:SetVar("Owner", self.Entity:GetVar("Owner", nil));
 	beam:SetKeyValue("width", "50");
-	beam:SetKeyValue("damage", 10000);
+	beam:SetKeyValue("damage", 2500);
 	beam:SetKeyValue("dissolvetype", "0");
 	beam:Spawn();
 	beam:SetTrigger(true)

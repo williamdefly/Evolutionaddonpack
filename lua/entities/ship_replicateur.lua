@@ -45,7 +45,7 @@ function ENT:Initialize() --######## What happens when it first spawns(Set Model
 	self:PhysicsInit(SOLID_VPHYSICS)
 	self:SetMoveType(MOVETYPE_VPHYSICS)
 	self:SetSolid(SOLID_VPHYSICS)
-	self.EntHealth = 15000
+	self.EntHealth = 25000 --Health 25000 + Shield 0
 	self:SetNetworkedInt("health",self.EntHealth)
 	self:SetNWInt("maxEntHealth",self.EntHealth)
 	self:SetNWInt("CanFire",1)

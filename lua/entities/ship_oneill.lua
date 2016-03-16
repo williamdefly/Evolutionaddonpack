@@ -45,7 +45,7 @@ function ENT:Initialize() --######## What happens when it first spawns(Set Model
 	self:PhysicsInit(SOLID_VPHYSICS)
 	self:SetMoveType(MOVETYPE_VPHYSICS)
 	self:SetSolid(SOLID_VPHYSICS)
-	self.EntHealth = 20000
+	self.EntHealth = 30000 --Health 20000 + Shield 10000
 	self:SetNetworkedInt("health",self.EntHealth)
 	self:SetNetworkedInt("maxEntHealth",self.EntHealth)
 	self:SetNWInt("CanFire",1)
@@ -173,7 +173,7 @@ end
 function ENT:FireBlast(diff)
 	if(self.CanShoot) then
 		local e = ents.Create("energy_pulse_oneil");
-		e:PrepareBullet(self:GetForward(), 10, 16000, 12, {self.Entity});
+		e:PrepareBullet(self:GetForward(), 10, 16000, 6, {self.Entity});
 		e:SetPos(self:GetPos()+diff);
 		e:SetOwner(self);
 		e.Owner = self;
