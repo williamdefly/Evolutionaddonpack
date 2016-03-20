@@ -81,8 +81,8 @@ function ENT:SpawnFunction(pl, tr)
 	e.Owner = pl;
 
     pl:AddCount("Count_ships",e)
-	pl:Give("weapon_jumper_remote");
-	pl:SelectWeapon("weapon_jumper_remote")
+	pl:Give("eap_jumper_remote");
+	pl:SelectWeapon("eap_jumper_remote")
 	return e;
 end
 

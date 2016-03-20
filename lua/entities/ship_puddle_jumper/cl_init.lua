@@ -21,7 +21,7 @@ include("shared.lua");
 
 if (Lib.Language!=nil and Lib.Language.GetMessage!=nil) then
 ENT.Category = Lib.Language.GetMessage("cat_ship");
-ENT.PrintName = Lib.Language.GetMessage('ent_ship_jumper') or "Puddle Jumper";
+ENT.PrintName = Lib.Language.GetMessage('ent_ship_jumper') or "PuddleJumper";
 end
 
 if (Lib==nil or Lib.KeyBoard==nil or Lib.KeyBoard.New==nil) then return end

@@ -9,3 +9,4 @@ wp_ori_hand = Arme à main Ori
 wp_mimetisor =  Mimetiseur
 wp_goa_symb = Symbiote Goa'uld
 wp_wraith_enzyme = Enzyme wraith
+eap_misc_jumper = Télécommande Jumper
