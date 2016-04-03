@@ -300,4 +300,24 @@ function ENT:Think()
 		end
 	end
 end
+
+
+function DrawHUD() -- Draw that HUD @Elanis
+
+	local ply = LocalPlayer();
+	local self = ply:GetNetworkedEntity("ScriptedVehicle", NULL)
+    local vehicle = ply:GetNWEntity("OriMs")
+
+	if (self and self:IsValid() and vehicle and vehicle:IsValid() and self==vehicle) then
+
+		local MainHud = surface.GetTextureID("vgui/hud/ori_hud/main_hud");
+
+		surface.SetTexture(MainHud);
+		surface.SetDrawColor(255,255,255,255);
+		surface.DrawTexturedRect(0,0,ScrW(),ScrH());
+	end
+
+end
+hook.Add("HUDPaint","DrawHUDOriMs",DrawHUD);
+
 end

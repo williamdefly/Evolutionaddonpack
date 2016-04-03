@@ -5,7 +5,7 @@ Active Contributors :
 - Lilou : 3D Modeler & Texturer
 - Elanis : 3D Modeler & Lua scripter
 - Physics : Texturer
-- Xaxaxaxa87 : Texturer
+- Damlanil : Texturer
 - Crysalix Yelh'o : Webmaster
 
 Old Contributors :
@@ -24,7 +24,7 @@ Contributeurs Actuels :
 - Lilou : Modeliseur 3D et textureur
 - Elanis : Modeliseur 3D et codeur LUA
 - Physics : Textureur
-- Xaxaxaxa87 : Textureur
+- Damlanil : Textureur
 - Crysalix Yelh'o : Webmaster
 
 Anciens Contributeurs :
