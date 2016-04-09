@@ -1,11 +1,11 @@
 Credits [EN]
 
 Active Contributors :
-- Williamdefly : Owner & Mapper of the pack , basic knownledges in LUA
+- Williamdefly : Owner & Mapper of the pack , basic knownledges in LUA & Texturer
 - Lilou : 3D Modeler & Texturer
 - Elanis : 3D Modeler & Lua scripter
 - Physics : Texturer
-- Damlanil : Texturer
+- Damlanil : Texturer & Lua scripter
 - Crysalix Yelh'o : Webmaster
 
 Old Contributors :
@@ -20,11 +20,11 @@ Before EAP , mods/addons we have to never forgot :
 Credits [FR]
 
 Contributeurs Actuels :
-- Williamdefly : Gerant & Mappeur du pack , connaissances basiques en LUA
+- Williamdefly : Gerant & Mappeur du pack , connaissances basiques en LUA et textureur
 - Lilou : Modeliseur 3D et textureur
 - Elanis : Modeliseur 3D et codeur LUA
 - Physics : Textureur
-- Damlanil : Textureur
+- Damlanil : Textureur et codeur LUA
 - Crysalix Yelh'o : Webmaster
 
 Anciens Contributeurs :
