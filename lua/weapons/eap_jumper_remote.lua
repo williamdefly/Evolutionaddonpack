@@ -1,5 +1,4 @@
-if (StarGate==nil or StarGate.CheckModule==nil or not StarGate.CheckModule("ship")) then return end
-if (SGLanguage!=nil and SGLanguage.GetMessage!=nil) then
+if (Lib.Language!=nil and Lib.Language!=nil) then
 SWEP.PrintName = Lib.Language.GetMessage("eap_misc_jumper");
 SWEP.Category = "EAP"
 end

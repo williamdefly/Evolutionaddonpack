@@ -21,54 +21,8 @@ include("shared.lua");
 
 if (Lib.Language!=nil and Lib.Language.GetMessage!=nil) then
 ENT.Category = Lib.Language.GetMessage("cat_ship");
-ENT.PrintName = Lib.Language.GetMessage('ent_ship_jumper') or "PuddleJumper";
+ENT.PrintName = Lib.Language.GetMessage('ent_ship_jumper') or "Puddle Jumper";
 end
-
-if (Lib==nil or Lib.KeyBoard==nil or Lib.KeyBoard.New==nil) then return end
-
---########## Keybinder stuff
-local KBD = Lib.KeyBoard:New("PuddleJumper")
-
---Navigation
-KBD:SetDefaultKey("FWD",Lib.KeyBoard.BINDS["+forward"] or "W") -- Forward
-KBD:SetDefaultKey("LEFT",Lib.KeyBoard.BINDS["+moveleft"] or "A") -- Strafe Left
-KBD:SetDefaultKey("RIGHT",Lib.KeyBoard.BINDS["+moveright"] or "D") -- Strafe Right
-KBD:SetDefaultKey("BACK",Lib.KeyBoard.BINDS["+back"] or "S") -- Go backwards
-KBD:SetDefaultKey("UP",Lib.KeyBoard.BINDS["+jump"] or "SPACE") -- Strafe Up
-KBD:SetDefaultKey("DOWN",Lib.KeyBoard.BINDS["+duck"] or "CTRL") -- Strafe Down
-KBD:SetDefaultKey("SPD",Lib.KeyBoard.BINDS["+speed"] or "SHIFT") --  Drive Pods
-
---Roll
-KBD:SetDefaultKey("RL","MWHEELDOWN") -- Roll left
-KBD:SetDefaultKey("RR","MWHEELUP") -- Roll right
-KBD:SetDefaultKey("RROLL","MOUSE3") -- Reset Roll
-
---Attack
-KBD:SetDefaultKey("FIRE",Lib.KeyBoard.BINDS["+attack"] or "MOUSE1") -- Fire Drones
-KBD:SetDefaultKey("TRACK",Lib.KeyBoard.BINDS["+attack2"] or "MOUSE2") -- Lock target on drones
-
---Special Actions
-KBD:SetDefaultKey("RROLL","MOUSE3") -- Reset roll
-KBD:SetDefaultKey("CLOAK","ALT") -- Toggle Cloaking
-KBD:SetDefaultKey("DHD","R") -- DHD
-KBD:SetDefaultKey("HIDEHUD","H") -- Hide the pilot's HUD
-KBD:SetDefaultKey("HIDELSD","L") -- Hide the pilot's HUD
-KBD:SetDefaultKey("BOOM","BACKSPACE") -- Selfdestruct
-KBD:SetDefaultKey("DOOR","2") -- Rear Door
-KBD:SetDefaultKey("WEPPODS","Q") -- Weapon Pods
-KBD:SetDefaultKey("LIGHT","F") -- Flashlight
-KBD:SetDefaultKey("SHIELD","G") -- Shields
-KBD:SetDefaultKey("HOVER","T") -- Hover
-KBD:SetDefaultKey("AUTOPILOT","3") -- AutoPilot
-
---View
-KBD:SetDefaultKey("VIEW","1") -- Toggle FirstPerson View
-KBD:SetDefaultKey("Z+","UPARROW") -- Change the zoom in
-KBD:SetDefaultKey("Z-","DOWNARROW") -- Change the zoom out
-KBD:SetDefaultKey("A+","LEFTARROW") -- View Go up
-KBD:SetDefaultKey("A-","RIGHTARROW") -- View go down
-
-KBD:SetDefaultKey("EXIT",Lib.KeyBoard.BINDS["+use"] or "E")
 
 ENT.Sounds={
 	Engine=Sound("jumper/JumperEngineLoop.wav"),
@@ -98,7 +52,7 @@ function ENT:Initialize()
 	self:UpdateHUD();
 
 
-	self.KBD = self.KBD or KBD:CreateInstance(self);
+	self.KBD = self.KBD or Lib.Settings.KBD:CreateInstance(self);
 	self.EngineSound = self.EngineSound or CreateSound(self.Entity,self.Sounds.Engine);
 	self.HoverSound = self.HoverSound or CreateSound(self.Entity,self.Sounds.Hover);
 	self.SoundsOn = {}; -- Stores whether the Hover or Engine sound is on or off
@@ -298,7 +252,7 @@ function ENT:Think() --#########################  Overly complex think function 
 		local fx = self.CurrentCloak;
 		if(Inflight) then
 			if(IsDriver) then
-				if(p:KeyDown(self.Vehicle,"SPD")) then
+				if(p:KeyDown("EAP_KEYBOARD","PODS")) then
 					if(CloakData.WepPods and CloakData.Pods) then
 						fx:ToggleJumperWeps(false);
 					end
@@ -309,11 +263,11 @@ function ENT:Think() --#########################  Overly complex think function 
 				end
 				
 				if(!CloakData.Pods) then
-					if(p:KeyDown(self.Vehicle,"DOOR")) then
+					if(p:KeyDown("EAP_KEYBOARD","DOOR")) then
 						fx:ToggleJumperDoor(false);
 					end
 				else
-					if(p:KeyDown(self.Vehicle,"WEPPODS")) then
+					if(p:KeyDown("EAP_KEYBOARD","WEPPODS")) then
 						fx:ToggleJumperWeps(false);
 					end
 				end			
@@ -377,19 +331,19 @@ function ENT:Think() --#########################  Overly complex think function 
 
 	--###################### View Changers @ RononDex
 	if(HasDriver) then
-		if(p:KeyDown(self.Vehicle,"Z+")) then --In
+		if(p:KeyDown("EAP_KEYBOARD","Z+")) then --In
 			View.Distance = math.Clamp(View.Distance - 5,200,2000); --Can only go between 200 and 2000
-		elseif(p:KeyDown(self.Vehicle,"Z-")) then --Out
+		elseif(p:KeyDown("EAP_KEYBOARD","Z-")) then --Out
 			View.Distance = math.Clamp(View.Distance + 5,200,2000);
 		end
 
-		if(p:KeyDown(self.Vehicle,"A-")) then --Down
+		if(p:KeyDown("EAP_KEYBOARD","A-")) then --Down
 			View.Angle = math.Clamp(View.Angle - 5,-1000,1000)
-		elseif(p:KeyDown(self.Vehicle,"A+")) then --Up
+		elseif(p:KeyDown("EAP_KEYBOARD","A+")) then --Up
 			View.Angle = math.Clamp(View.Angle + 5,-1000,1000)
 		end
 
-		if(p:KeyDown(self.Vehicle,"VIEW")) then
+		if(p:KeyDown("EAP_KEYBOARD","VIEW")) then
 			if self.NextUse < CurTime() then
 				if View.FirstPerson then
 					View.FirstPerson = false;
@@ -404,7 +358,7 @@ function ENT:Think() --#########################  Overly complex think function 
 			end
 		end
 
-		if(p:KeyDown(self.Vehicle,"HIDEHUD")) then
+		if(p:KeyDown("EAP_KEYBOARD","HIDEHUD")) then
 			if self.NextUse < CurTime() then
 				if View.HideHud then
 					View.HideHud = false;
@@ -415,7 +369,7 @@ function ENT:Think() --#########################  Overly complex think function 
 			end
 		end
 
-		if(p:KeyDown(self.Vehicle,"HIDELSD")) then
+		if(p:KeyDown("EAP_KEYBOARD","HIDELSD")) then
 			if self.NextUse < CurTime() then
 				if View.HideLSD then
 					View.HideLSD = false;

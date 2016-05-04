@@ -1,10 +1,10 @@
 include("shared.lua");
-if (SGLanguage!=nil and SGLanguage.GetMessage!=nil) then
-language.Add("ship_shield",SGLanguage.GetMessage("ship_shield"));
+if (Lib.Language!=nil and Lib.Language.GetMessage!=nil) then
+language.Add("ship_shield",Lib.Language.GetMessage("ship_shield"));
 end
-if (StarGate==nil or StarGate.Trace==nil) then return end
+if (Lib==nil or Lib.Trace==nil) then return end
 -- Register shield SENT to the trace class
-StarGate.Trace:Add("shield",
+Lib.Trace:Add("shield",
 	function(e,values,trace,in_box)
 		local depleted = e:GetNetworkedBool("depleted",false);
 		local containment = e:GetNWBool("containment",false);

@@ -18,6 +18,8 @@
 
 --################# Adds WireSupport to an entity when getting called - HAS TO BE CALLED BEFORE ANY OTHERTHING IS DONE IN A SENT (like includes) @aVoN
 -- My suggestion is to put this on the really top of the shared.lua
+MsgN("librairies/server/wire.lua")
+
 Lib.Wire = {};
 function Lib.Wiremod(ENT)
 	ENT.WireDebugName = ENT.WireDebugName or "No Name";

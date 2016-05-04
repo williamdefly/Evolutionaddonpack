@@ -1,15 +1,15 @@
 Credits [EN]
 
 Active Contributors :
-- Williamdefly : Owner & Mapper of the pack , basic knownledges in LUA
-- Lilou : 3D Modeler & Texturer
+- Williamdefly : Owner & Mapper of the pack , basic knownledges in LUA & Texturer
+- Lilou905 : 3D Modeler & Texturer
 - Elanis : 3D Modeler & Lua scripter
 - Physics : Texturer
-- Xaxaxaxa87 : Texturer
-- Crysalix Yelh'o : Webmaster
+- Damlanil : Texturer & Lua scripter
 
 Old Contributors :
 - Matspyder : Lua Scripter
+- USG - Benny [FR] : Models
 
 Before EAP , mods/addons we have to never forgot :
 - SGMod
@@ -20,15 +20,15 @@ Before EAP , mods/addons we have to never forgot :
 Credits [FR]
 
 Contributeurs Actuels :
-- Williamdefly : Gerant & Mappeur du pack , connaissances basiques en LUA
-- Lilou : Modeliseur 3D et textureur
+- Williamdefly : Gerant & Mappeur du pack , connaissances basiques en LUA et textureur
+- Lilou905 : Modeliseur 3D et textureur
 - Elanis : Modeliseur 3D et codeur LUA
 - Physics : Textureur
-- Xaxaxaxa87 : Textureur
-- Crysalix Yelh'o : Webmaster
+- Damlanil : Textureur et codeur LUA
 
 Anciens Contributeurs :
 - Matspyder : codeur LUA
+- USG - Benny [FR] : Modeles
 
 Avant l'EAP , les mods/addons que nous devons jamais oublier :
 - SGMod

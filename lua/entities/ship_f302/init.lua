@@ -46,8 +46,8 @@ ENT.Sounds = {
 function ENT:SpawnFunction(p, tr) --######## Pretty useless unless we can spawn it @RononDex
 	if (!tr.HitWorld) then return end;
 
-	local PropLimit = GetConVar("Count_ships_max"):GetInt()
-	if(p:GetCount("Count_ships")+1 > PropLimit) then
+	local PropLimit = GetConVar("EAP_ships_max"):GetInt()
+	if(p:GetCount("EAP_ships")+1 > PropLimit) then
 		p:SendLua("GAMEMODE:AddNotify(\"Ships limit reached!\", NOTIFY_ERROR, 5); surface.PlaySound( \"buttons/button2.wav\" )");
 		return
 	end
@@ -64,7 +64,7 @@ function ENT:SpawnFunction(p, tr) --######## Pretty useless unless we can spawn 
 	e:Turrets(p); -- Spawn turrets
 	e:SpawnWheels(nil,p);
 	e:SetWire("Health",e:GetNetworkedInt("health"));
-	p:AddCount("Count_ships", e)
+	p:AddCount("EAP_ships", e)
 	return e;
 end
 
@@ -325,7 +325,7 @@ function ENT:Think() --####### Now let me think... @RononDex
 
 	if(IsValid(self.Pilot) and self.Bullets and not self.Missile) then
 		if(self.Inflight and IsValid(self.Turret) and IsValid(self.Turret2)) then
-			if((self.Pilot:KeyDown(self.Vehicle,"FIRE"))and(not(self.TurretDisabled))) then
+			if((self.Pilot:KeyDown("EAP_KEYBOARD","FIRE"))and(not(self.TurretDisabled))) then
 				self.Turret.Firing = true;
 				self.Turret2.Firing = true;
 			else
@@ -337,7 +337,7 @@ function ENT:Think() --####### Now let me think... @RononDex
 
 	if self.Inflight then
 		if IsValid(self.Pilot) then
-			if self.Pilot:KeyDown(self.Vehicle,"BOOST") then
+			if self.Pilot:KeyDown("EAP_KEYBOARD","SPD") then
 				if self.NextUse.Boost < CurTime() then
 					if not self.Boost and self.CanBoost then
 						self.Boost = true;
@@ -359,7 +359,7 @@ function ENT:Think() --####### Now let me think... @RononDex
 
 
 	if(self.Inflight) then
-		if(IsValid(self.Pilot) and self.Pilot:KeyDown(self.Vehicle,"FIRE") and self.Missile) then
+		if(IsValid(self.Pilot) and self.Pilot:KeyDown("EAP_KEYBOARD","FIRE") and self.Missile) then
 			if(self.NextFire < CurTime()) then
 				self:FireMissiles()
 				self.NextFire = CurTime()+0.5;
@@ -376,7 +376,7 @@ function ENT:Think() --####### Now let me think... @RononDex
 	end
 
 	if(self.Inflight and IsValid(self.Pilot)) then
-		if(self.Pilot:KeyDown(self.Vehicle,"CHGATK") and self.NextUse.Change < CurTime()) then
+		if(self.Pilot:KeyDown("EAP_KEYBOARD","CHGATK") and self.NextUse.Change < CurTime()) then
 			if(not(self.Bullets)and(self.Missile)) then
 				if not self.TurretDisabled then
 					self.Bullets = true;
@@ -394,23 +394,23 @@ function ENT:Think() --####### Now let me think... @RononDex
 			self.NextUse.Change = CurTime() + 1;
 		end
 
-		if(self.Pilot:KeyDown(self.Vehicle,"TRACK")) then
+		if(self.Pilot:KeyDown("EAP_KEYBOARD","TRACK")) then
 			self.Track = true;
 		else
 			self.Track = false;
 		end
 
-		if(self.Pilot:KeyDown(self.Vehicle,"WHEELS") and self.Wheels.CanDoAnim and self.NextUse.Wheels < CurTime()) then
+		if(self.Pilot:KeyDown("EAP_KEYBOARD","WHEELS") and self.Wheels.CanDoAnim and self.NextUse.Wheels < CurTime()) then
 			self:ToggleWheels();
 			self.NextUse.Wheels = CurTime() + 1;
 		end
 
-		if(self.Pilot:KeyDown(self.Vehicle,"EJECT")) then
+		if(self.Pilot:KeyDown("EAP_KEYBOARD","EJECT")) then
 			self:EjectorSeat();
 		end
 		
 		if(not(self.PoppedFlares) and IsValid(self.Pilot)) then
-			if(self.Pilot:KeyDown(self.Vehicle,"FLARES")) then
+			if(self.Pilot:KeyDown("EAP_KEYBOARD","FLARES")) then
 				self:Flares();
 			end
 		end
@@ -419,7 +419,7 @@ function ENT:Think() --####### Now let me think... @RononDex
 				self:ToggleCockpit();
 			end
 		else
-			if(IsValid(self.Pilot) and self.Pilot:KeyDown(self.Vehicle,"COCKPIT")) then
+			if(IsValid(self.Pilot) and self.Pilot:KeyDown("EAP_KEYBOARD","DOOR")) then
 				self:ToggleCockpit();
 			end
 		end
@@ -831,7 +831,7 @@ function ENT:PhysicsSimulate(phys,deltatime)
 	if IsValid(self and self.Pilot) then
 
 		if self.NextUse.Brake < CurTime() then
-			if self.Pilot:KeyDown(self.Vehicle,"BRAKE") then
+			if self.Pilot:KeyDown("EAP_KEYBOARD","BRAKE") then
 				self.Accel.FWD = 1
 				self.Pilot:SetEyeAngles(Angle(self.Pilot:EyeAngles().Pitch,self.Pilot:EyeAngles().Yaw+180,self.Pilot:EyeAngles().Roll));
 				timer.Simple(0.5, function()
@@ -876,16 +876,16 @@ function ENT:PostEntityPaste(ply, Ent, CreatedEntities)
 		self.RocketClamps = CreatedEntities[dupeInfo.RocketClamps];
 	end
 
-	if (StarGate.NotSpawnable(Ent:GetClass(),ply)) then self.Entity:Remove(); return end
+	if (Lib.NotSpawnable(Ent:GetClass(),ply)) then self.Entity:Remove(); return end
 
 	if (IsValid(ply)) then
-		local PropLimit = GetConVar("Count_ships_max"):GetInt()
-		if(ply:GetCount("Count_ships_")+1 > PropLimit) then
+		local PropLimit = GetConVar("EAP_ships_max"):GetInt()
+		if(ply:GetCount("EAP_ships_")+1 > PropLimit) then
 			ply:SendLua("GAMEMODE:AddNotify(Lib.Language.GetMessage(\"entity_limit_ships\"), NOTIFY_ERROR, 5); surface.PlaySound( \"buttons/button2.wav\" )");
 			self.Entity:Remove();
 			return
 		end
-		ply:AddCount("Count_ships_", Ent);
+		ply:AddCount("EAP_ships_", Ent);
 	end
 
 	self:CockpitSpawn() -- Spawn the cockpit

@@ -1,6 +1,8 @@
 -- Support for gmod13 by AlexALX
 -- This lib still needed for fix some problems and add removed functions
 
+MsgN("librairies/shared/a_gmod13.lua")
+
 if (Gmod13Lib!=nil) then return end -- prevent calling this file twice
 
 if (SERVER) then
@@ -231,8 +233,8 @@ if (SERVER) then
 	local gmsave_LoadMap = gmsave.LoadMap
 	function gmsave.LoadMap(strMapContents, ply)
 		-- fix for gatespawner
-	   	if (StarGate and StarGate.GateSpawner and StarGate.GateSpawner.Restored) then
-	   		StarGate.GateSpawner.Restored();
+	   	if (Lib and Lib.GateSpawner and Lib.GateSpawner.Restored) then
+	   		Lib.GateSpawner.Restored();
 		end
 		return gmsave_LoadMap(strMapContents, ply);
 	end

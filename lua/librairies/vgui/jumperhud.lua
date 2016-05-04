@@ -1,6 +1,4 @@
-if(SERVER)then
-	return false
-end
+MsgN("librairies/vgui/jumperhud.lua")
 
 local PANEL = {};
 PANEL.Fonts = {};

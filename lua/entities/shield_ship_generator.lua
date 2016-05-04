@@ -60,11 +60,11 @@ function ENT:Initialize()
 	self.Entity:SetModel("models/micropro/shield_gen.mdl");
 	self.StrengthMultiplier = {2,2,2}; -- The first argument is the strength multiplier, the second is the regeneration multiplier. The third value is the "raw" value n, set by SetMultiplier(n) This will get set by the TOOL
 	self.Strength = 100; -- Start with 100% Strength by default
-	self.RestoreMultiplier = 1 --StarGate.CFG:Get("shield","restore_multiplier",1); -- How fast can it restore it's health?
-	self.StrengthConfigMultiplier = 1 --StarGate.CFG:Get("shield","strength_multiplier",1); -- Doing this value higher will make the shiels stronger (look at the config)
-	self.MaxSize = 1024-- StarGate.CFG:Get("shield","max_size",1024)
+	self.RestoreMultiplier = Lib.CFG:Get("shield","restore_multiplier",1); -- How fast can it restore it's health?
+	self.StrengthConfigMultiplier = Lib.CFG:Get("shield","strength_multiplier",1); -- Doing this value higher will make the shiels stronger (look at the config)
+	self.MaxSize = Lib.CFG:Get("shield","max_size",1024)
 	self.Size = 512;
-	self.RestoreThresold = 15--StarGate.CFG:Get("shield","restore_thresold",15); -- Which powerlevel has the shield to reach again until it works again?
+	self.RestoreThresold = Lib.CFG:Get("shield","restore_thresold",15); -- Which powerlevel has the shield to reach again until it works again?
 	--self:AddResource("energy",1);
 	self:CreateWireInputs("Activate");
 	self:CreateWireOutputs("Active","Strength");
@@ -100,7 +100,7 @@ end
 
 --################# Activates or deactivates the shield @aVoN
 function ENT:Status(b,nosound)
-	--if (not StarGate.CFG:Get("cap_misc","ship_shield",true)) then return end // disable shield if convar != 1
+	--if (not Lib.CFG:Get("cap_misc","ship_shield",true)) then return end // disable shield if convar != 1
 	if(b) then
 		if(not self:Enabled() and not self.CantBeEnabled) then
 			/*local energy = self:GetResource("energy",self.EngageEnergy);
@@ -189,11 +189,11 @@ function ENT:Hit(strength,normal,pos)
 	-- Calculate strenght-taking multiplier: Are we a shield, which is not moving? If so, we are many times stronger than a shield of a ship which is moving.
 	local divisor = 1;
 	if(self.Entity:GetVelocity():Length() < 5) then
-		divisor = 10 --StarGate.CFG:Get("shield","stationary_shield_multiplier",10);
+		divisor = Lib.CFG:Get("shield","stationary_shield_multiplier",10);
 	end
 	-- Take strength
 	self.Strength = math.Clamp(self.Strength-2*math.Clamp(strength,1,20)/(self.StrengthMultiplier[1]*self.StrengthConfigMultiplier*divisor),0,100);
-	--if(StarGate.CFG:Get("shield","apply_force",false)) then
+	--if(Lib.CFG:Get("shield","apply_force",false)) then
 		-- Make us bounce around
 		--self.Phys:ApplyForceOffset(-1*normal*strength*100*self.Phys:GetMass()/self.StrengthMultiplier[1],pos);
 	--end

@@ -16,6 +16,8 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+MsgN("librairies/server/entity.lua")
+
 --#########################################
 --						SENT related additions
 --#########################################
@@ -354,8 +356,9 @@ function CAPSpawnedEntDetect( ply, oldent ) --Because of incompatibility between
 	local newclass="";
 	local oldclass=oldent:GetClass();
 
-	--MsgN('Old : '..oldclass);
+	--MsgN("Old : '..oldclass);
 
+	--Ships
 	if(oldclass=="sg_vehicle_daedalus") then newclass="ship_daedalus" end
 	if(oldclass=="sg_vehicle_dart") then newclass="ship_dart" end
 	if(oldclass=="sg_vehicle_f302") then newclass="ship_f302" end
@@ -364,65 +367,203 @@ function CAPSpawnedEntDetect( ply, oldent ) --Because of incompatibility between
 	if(oldclass=="puddle_jumper") then newclass="ship_puddle_jumper" end
 	if(oldclass=="sg_vehicle_shuttle") then newclass="ship_shuttle" end
 	if(oldclass=="sg_vehicle_teltac") then newclass="ship_teltak" end
+	
+	--Stargates
+	if(oldclass=="stargate_atlantis") then newclass="sg_atlantis" end
+	if(oldclass=="stargate_infinity") then newclass="sg_infinity" end
+	if(oldclass=="stargate_movie") then newclass="sg_movie" end
+	if(oldclass=="stargate_orlin") then newclass="sg_orlin" end
+	if(oldclass=="stargate_sg1") then newclass="sg_sg1" end
+	if(oldclass=="stargate_supergate") then newclass="sg_supergate" end
+	if(oldclass=="stargate_tollan") then newclass="sg_tollan" end
+	if(oldclass=="stargate_universe") then newclass="sg_universe" end
 
-	--MsgN('New : '..newclass);
+	--DHD
+	if(oldclass=="dhd_sg1") then newclass="dhd_milk" end
+	if(oldclass=="dhd_atlantis") then newclass="dhd_atl" end
+	if(oldclass=="dhd_universe") then newclass="dhd_uni" end
+	if(oldclass=="dhd_concept") then newclass="dhd_con" end
+	if(oldclass=="dhd_city") then newclass="dhd_atl_city" end
+	if(oldclass=="dhd_infinity") then newclass="dhd_inf" end
+
+	--Ring
+	if(oldclass=="ring_base_ancient") then newclass="rg_base_ancient" end
+	if(oldclass=="ring_base_goauld") then newclass="rg_base_goauld" end
+	if(oldclass=="ring_base_ori") then newclass="rg_base_ori" end
+
+	--Ring Panel
+	if(oldclass=="ring_panel_ancient") then newclass="rg_panel_ancient" end
+	if(oldclass=="ring_panel_goauld") then newclass="rg_panel_goauld" end
+	if(oldclass=="ring_panel_ori") then newclass="rg_panel_ori" end
+
+	--Obelisk
+	if(oldclass=="ancient_obelisk") then newclass="obelisk_ancient" end
+	if(oldclass=="sodan_obelisk") then newclass="obelisk_sodan" end
+
+	--Tranporters
+	if(oldclass=="transporter") then newclass="asgard_transporter" end
+	if(oldclass=="atlantis_transporter") then newclass="atlantis_trans" end
+
+	--MsgN("New : '..newclass);
 
 
 	if(newclass=="") then return false end
 
-		local pos = oldent:GetPos()
-		local ang = oldent:GetAngles()
+	local pos = oldent:GetPos()
+	local ang = oldent:GetAngles()
 
-		oldent:Remove()
+	oldent:Remove()
 
-	local PropLimit = GetConVar("Count_ships_max"):GetInt()
-	if(ply:GetCount("Count_ships")+1 > PropLimit) then
-		ply:SendLua("GAMEMODE:AddNotify(Lib.Language.GetMessage(\"entity_limit_ships\"), NOTIFY_ERROR, 5); surface.PlaySound( \"buttons/button2.wav\" )");
-	else
+	if(string.sub(newclass,0, 5)=="ship_") then
+		print("its a ship")
 
-		ply:PrintMessage(HUD_PRINTTALK,oldclass..' '..Lib.Language.GetMessage("replacing_by_eap_sent"));
+		local PropLimit = GetConVar("EAP_ships_max"):GetInt()
 
-		local newent = ents.Create(newclass);
-		newent:SetPos(pos);
-		newent:SetAngles(ang);
-		newent:Spawn();
+		if(ply:GetCount("EAP_ships")+1 > PropLimit) then
+			ply:SendLua("GAMEMODE:AddNotify(Lib.Language.GetMessage(\"entity_limit_ships\"), NOTIFY_ERROR, 5); surface.PlaySound( \"buttons/button2.wav\" )");
+		else
 
-		undo.Create(newclass)
-	   	 undo.AddEntity(newent)
-	    	undo.SetPlayer(ply)
-		undo.Finish()
-		
-		newent:Activate();
-		newent.Owner = ply;
-		newent:SetVar("Owner",ply);
+			ply:PrintMessage(HUD_PRINTTALK,oldclass..' '..Lib.Language.GetMessage("replacing_by_eap_sent"));
 
-		if(newclass=="ship_puddle_jumper")then
-		newent:SpawnBackDoor(nil,ply)
-		newent:SpawnBulkHeadDoor(nil,ply)
-		newent:SpawnToggleButton(ply)
-		newent:SpawnShieldGen(ply)
+			local newent = ents.Create(newclass);
+			newent:SetPos(pos);
+			newent:SetAngles(ang);
+			newent:Spawn();
+
+			undo.Create(newclass)
+		   	 undo.AddEntity(newent)
+		    	undo.SetPlayer(ply)
+			undo.Finish()
+			
+			newent:Activate();
+			newent.Owner = ply;
+			newent:SetVar("Owner",ply);
+
+			if(newclass=="ship_puddle_jumper")then
+			newent:SpawnBackDoor(nil,ply)
+			newent:SpawnBulkHeadDoor(nil,ply)
+			newent:SpawnToggleButton(ply)
+			newent:SpawnShieldGen(ply)
+			end
+
+			if(newclass=="ship_f302")then
+			newent:CockpitSpawn(ply) -- Spawn the cockpit
+			newent:SpawnSeats(ply); -- Spawn the seats
+			newent:SpawnRocketClamps(nil,ply); -- Spawn the rocket clamps
+			newent:SpawnMissile(ply); -- Spawn the missile props
+			newent:Turrets(ply); -- Spawn turrets
+			newent:SpawnWheels(nil,ply);
+			end
+
+			if(newclass=="ship_teltak")then
+			newent:SpawnRings(ply);
+			newent:SpawnRingPanel(ply);
+			newent:SpawnDoor(ply)
+			newent:SpawnButtons(ply);
+			end
+
+			ply:AddCount("EAP_ships", newent)
 		end
+		elseif(string.sub(newclass,0, 3)=="sg_") then	--Stargates
+			ply:PrintMessage(HUD_PRINTTALK,oldclass..' '..Lib.Language.GetMessage("replacing_by_eap_sent"));
 
-		if(newclass=="ship_f302")then
-		newent:CockpitSpawn(ply) -- Spawn the cockpit
-		newent:SpawnSeats(ply); -- Spawn the seats
-		newent:SpawnRocketClamps(nil,ply); -- Spawn the rocket clamps
-		newent:SpawnMissile(ply); -- Spawn the missile props
-		newent:Turrets(ply); -- Spawn turrets
-		newent:SpawnWheels(nil,ply);
+			local newent = ents.Create(newclass);
+			newent:SetPos(pos);
+			newent:SetAngles(ang);
+			newent:Spawn();
+
+			undo.Create(newclass)
+		   	 undo.AddEntity(newent)
+		    	undo.SetPlayer(ply)
+			undo.Finish()
+			
+			newent:Activate();
+			newent.Owner = ply;
+			newent:SetVar("Owner",ply);
+
+			newent:SetWire("Dialing Mode",-1);
+
+			if(newclass=="sg_orlin" or newclass=="sg_sg1" or newclass=="sg_infinity" or newclass=="sg_movie" or newclass=="sg_tollan")then
+				newent:SetGateGroup("M@");
+				newent:SetLocale(true);
+			elseif(newclass=="sg_atlantis")then
+				newent:SetGateGroup("P@");
+				newent:SetLocale(true);
+			elseif(newclass=="sg_universe")then
+				newent:SetGateGroup("U@#");
+				newent:SetLocale(true);
+			end
+
+			if(newclass=="sg_orlin")then
+				local e = ents.Create("ramps");
+				e:SetModel("models/ZsDaniel/minigate-ramp/ramp.mdl");
+				e:SetPos(pos);
+				e:DrawShadow(true);
+				e:Spawn();
+				e:Activate();
+				e:SetAngles(ang);
+				if(CPPI and IsValid(p) and e.CPPISetOwner)then e:CPPISetOwner(p) end
+				newent.Ramp = e;
+				local phys = e:GetPhysicsObject();
+				if(phys and phys:IsValid())then
+					phys:EnableMotion(false);
+				end
+			end
+		elseif(string.sub(newclass,0, 7)=="rg_base") then	--Rings
+			ply:PrintMessage(HUD_PRINTTALK,oldclass..' '..Lib.Language.GetMessage("replacing_by_eap_sent"));
+
+			local newent = ents.Create(newclass);
+			newent:SetPos(pos);
+			newent:SetAngles(ang);
+			newent:Spawn();
+
+			undo.Create(newclass)
+		   	 undo.AddEntity(newent)
+		    	undo.SetPlayer(ply)
+			undo.Finish()
+			
+			newent:Activate();
+			newent.Owner = ply;
+			newent:SetVar("Owner",ply);
+			newent:SetModel(newent.BaseModel);
+		elseif(newclass=="atlantis_trans")then --Atlantis Transporter
+			ply:PrintMessage(HUD_PRINTTALK,oldclass..' '..Lib.Language.GetMessage("replacing_by_eap_sent"));
+
+			local newent = ents.Create(newclass);
+			newent:SetPos(pos);
+			newent:SetAngles(ang);
+			newent:Spawn();
+
+			undo.Create(newclass)
+		   	 undo.AddEntity(newent)
+		    	undo.SetPlayer(ply)
+			undo.Finish()
+			
+			newent:Activate();
+			newent.Owner = ply;
+			newent:SetVar("Owner",ply);
+
+			newent:CreateDoors(ply);
+			newent:OnReloaded();
+		else --Others : rings panels, obelisk, asgard transporter, etc
+			ply:PrintMessage(HUD_PRINTTALK,oldclass..' '..Lib.Language.GetMessage("replacing_by_eap_sent"));
+
+			local newent = ents.Create(newclass);
+			newent:SetPos(pos);
+			newent:SetAngles(ang);
+			newent:Spawn();
+
+			undo.Create(newclass)
+		   	 undo.AddEntity(newent)
+		    	undo.SetPlayer(ply)
+			undo.Finish()
+			
+			newent:Activate();
+			newent.Owner = ply;
+			newent:SetVar("Owner",ply);
 		end
-
-		if(newclass=="ship_teltak")then
-		--newent:SpawnRings(ply);  Temporary disable dues of not added yet in EAP @Elanis
-		--newent:SpawnRingPanel(ply); Temporary disable dues of not added yet in EAP @Elanis
-		newent:SpawnDoor(ply)
-		newent:SpawnButtons(ply);
-		end
-
-		ply:AddCount("Count_ships", newent)
-		return ent
-
 	end
 
+if(Lib.IsCapDetected)then
+	hook.Add( "PlayerSpawnedSENT", "RemoveIfCAPBlackistedSENTIsSpawn", CAPSpawnedEntDetect );
 end
-hook.Add( "PlayerSpawnedSENT", "RemoveIfCAPBlackistedSENTIsSpawn", CAPSpawnedEntDetect );

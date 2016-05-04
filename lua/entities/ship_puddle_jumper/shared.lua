@@ -10,6 +10,7 @@ ENT.PrintName = Lib.Language.GetMessage('ent_ship_jumper');
 ENT.Author = "RononDex, Iziraider, Boba Fett"
 ENT.Category = Lib.Language.GetMessage("cat_ship");
 ENT.AutomaticFrameAdvance = true
+ENT.Spawnable = true
 
 list.Set("EAP", ENT.PrintName, ENT);
 

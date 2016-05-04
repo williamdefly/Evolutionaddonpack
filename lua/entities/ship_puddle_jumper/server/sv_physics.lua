@@ -11,11 +11,11 @@ local FlightPhys={
 
 ENT.IgnoreCollisionEnts = {
 	"worldspawn",
-	"stargate_*",
+	"sg_*",
 	"dhd_*",
 	"prop_physics",
 	"ship_puddle_jumper",
-	"sg_vehicle_*",
+	"ship_*",
 };
 
 function ENT:ShouldIgnoreCollision(e)
@@ -80,7 +80,7 @@ function ENT:PhysicsSimulate(phys,deltatime)--############## Flight code@ RononD
 		if(self.Inflight) then
 
 			-- Accelerate
-			if(self.Pilot:KeyDown(self.Vehicle,"FWD")) then
+			if(self.Pilot:KeyDown("EAP_KEYBOARD","FWD")) then
 				if(self.Engine) then
 					if(self.epodo) then
 						if(self:WaterLevel()<1) then
@@ -98,7 +98,7 @@ function ENT:PhysicsSimulate(phys,deltatime)--############## Flight code@ RononD
 				else
 					self.num = 750;
 				end
-			elseif(self.Pilot:KeyDown(self.Vehicle,"BACK")) then
+			elseif(self.Pilot:KeyDown("EAP_KEYBOARD","BACK")) then
 				self.num = -600;
 			else
 				self.num = 0;
@@ -106,9 +106,9 @@ function ENT:PhysicsSimulate(phys,deltatime)--############## Flight code@ RononD
 			self.Accel.FWD=math.Approach(self.Accel.FWD,self.num,6.75)
 
 			-- Strafe
-			if(self.Pilot:KeyDown(self.Vehicle,"RIGHT")) then
+			if(self.Pilot:KeyDown("EAP_KEYBOARD","RIGHT")) then
 				self.num2 = 700;
-			elseif(self.Pilot:KeyDown(self.Vehicle,"LEFT")) then
+			elseif(self.Pilot:KeyDown("EAP_KEYBOARD","LEFT")) then
 				self.num2 = -700;
 			else
 				self.num2 = 0;
@@ -116,9 +116,9 @@ function ENT:PhysicsSimulate(phys,deltatime)--############## Flight code@ RononD
 			self.Accel.RIGHT=math.Approach(self.Accel.RIGHT,self.num2,8)
 
 			-- Up and Down
-			if(self.Pilot:KeyDown(self.Vehicle,"UP")) then
+			if(self.Pilot:KeyDown("EAP_KEYBOARD","UP")) then
 				self.num3 = 700;
-            elseif(self.Pilot:KeyDown(self.Vehicle,"DOWN")) then
+            elseif(self.Pilot:KeyDown("EAP_KEYBOARD","DOWN")) then
 				self.num3 = -700;
 			else
 				self.num3 = 0;
@@ -126,11 +126,11 @@ function ENT:PhysicsSimulate(phys,deltatime)--############## Flight code@ RononD
 			self.Accel.UP=math.Approach(self.Accel.UP,self.num3,8)
 
 			--Roll
-			if(self.Pilot:KeyDown(self.Vehicle,"RL")) then
+			if(self.Pilot:KeyDown("EAP_KEYBOARD","RL")) then
 				self.Roll = self.Roll - 5;
-			elseif(self.Pilot:KeyDown(self.Vehicle,"RR")) then
+			elseif(self.Pilot:KeyDown("EAP_KEYBOARD","RR")) then
 				self.Roll = self.Roll + 5;
-			elseif(self.Pilot:KeyDown(self.Vehicle,"RROLL")) then
+			elseif(self.Pilot:KeyDown("EAP_KEYBOARD","RROLL")) then
 				self.Roll = 0;
 			end
 

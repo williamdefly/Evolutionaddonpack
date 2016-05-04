@@ -1,6 +1,8 @@
 -- This is an EAP library file --
 -- Function made/updated by aVon / AlexALX / Elanis --
 
+MsgN("librairies/client/visual.lua")
+
 --################# Creates a new Material according to a given VMT String @aVoN
 -- This is necessary, because sometimes you need to edit a material in an effect which results into conflicts with other scripts using that material too
 function Lib.MaterialFromVMT(name,VMT)

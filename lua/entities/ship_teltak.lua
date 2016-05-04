@@ -21,11 +21,12 @@ ENT.RenderGroup = RENDERGROUP_BOTH
 ENT.Type = "vehicle"
 ENT.Base = "ship_base"
 
-ENT.PrintName = "Tel_Tak"
+ENT.PrintName = "GoauldTeltak"
 ENT.Author	= "RononDex, Madman07, James, Boba Fett"
 ENT.Contact	= ""
 ENT.Purpose	= ""
 ENT.Instructions= ""
+ENT.Spawnable = true
 list.Set("EAP", ENT.PrintName, ENT);
 ENT.AutomaticFrameAdvance = true
 
@@ -66,8 +67,8 @@ local DOORE_POS = Vector(-162.5597, 5.3606, 47.9206)
 function ENT:SpawnFunction(pl, tr) --######## Pretty useless unless we can spawn it @RononDex
 	if (!tr.HitWorld) then return end;
 
-	local PropLimit = GetConVar("Count_ships_max"):GetInt()
-	if(pl:GetCount("Count_ships")+1 > PropLimit) then
+	local PropLimit = GetConVar("EAP_ships_max"):GetInt()
+	if(pl:GetCount("EAP_ships")+1 > PropLimit) then
 		pl:SendLua("GAMEMODE:AddNotify(Lib.Language.GetMessage(\"entity_limit_ships\"), NOTIFY_ERROR, 5); surface.PlaySound( \"buttons/button2.wav\" )");
 		return
 	end
@@ -77,14 +78,14 @@ function ENT:SpawnFunction(pl, tr) --######## Pretty useless unless we can spawn
 	e:Spawn();
 	e:Activate();
 	e:SetVar("Owner",pl)
-	--e:SpawnRings(pl);  Temporary disable dues of not added yet in EAP @Elanis
-	--e:SpawnRingPanel(pl); Temporary disable dues of not added yet in EAP @Elanis
+	e:SpawnRings(pl);
+	e:SpawnRingPanel(pl);
 	e:SpawnDoor(pl)
 	e:SpawnButtons(pl);
 	//e:ToggleDoors("out")
 	e:SetWire("Health",e:GetNetworkedInt("health"));
-	pl:Give("weapon_ringcaller");
-	pl:AddCount("Count_ships", e)
+	pl:Give("ring_caller");
+	pl:AddCount("EAP_ships", e)
 	e.Owner = pl;
 	return e;
 end
@@ -93,7 +94,7 @@ function ENT:Initialize() --######## What happens when it first spawns(Set Model
 
 	self.BaseClass.Initialize(self)
 
-	self.Vehicle = "Tel_tak";
+	self.Vehicle = "GoauldTeltak";
 	self.BlastMaxVel = 10000000;
 	self.Blasts = {};
 	self.BlastCount = 0;
@@ -149,12 +150,12 @@ function ENT:Initialize() --######## What happens when it first spawns(Set Model
 	self.Open = false;
 	
 	self.HyperspaceDist = 0;
-	self.MaxCharge = 15000-- StarGate.CFG:Get("teltak","jump_distance",15000); //Max Jump Distance
+	self.MaxCharge = Lib.CFG:Get("GoauldTeltak","jump_distance",15000); //Max Jump Distance
 	self.CanJump = true;
 	self.CanFire = true;
 	self.CooledDown = true; //Beam Cooldown
 	self.TeltakHealth = self:GetNetworkedInt("health");	
-	self.WeaponAllowed = true --StarGate.CFG:Get("teltak","allow_beam_weapon",true);
+	self.WeaponAllowed = Lib.CFG:Get("GoauldTeltak","allow_beam_weapon",true);
 
 end
 
@@ -248,9 +249,9 @@ function ENT:Think()
 
 	if(self.Inflight) then
 		if(IsValid(self.Pilot)) then
-			if(self.Pilot:KeyDown(self.Vehicle,"CLOAK")) then
+			if(self.Pilot:KeyDown("EAP_KEYBOARD","CLOAK")) then
 				self:ToggleCloak()
-			elseif(self.Pilot:KeyDown(self.Vehicle,"DOOR")) then
+			elseif(self.Pilot:KeyDown("EAP_KEYBOARD","DOOR")) then
 				self:ToggleDoors("out")
 			end
 			
@@ -258,7 +259,7 @@ function ENT:Think()
 			-- THIS FUNCTION DOESN'T WORK , IT'S DISABLED SINCE WE MAKE A NEW HYPERSPACE
 
 			-- if(self.CanJump) then
-			-- 	if(self.Pilot:KeyDown(self.Vehicle,"HYPERSPACE") and not self.OutRing.Laser) then
+			-- 	if(self.Pilot:KeyDown("EAP_KEYBOARD","HYPERSPACE") and not self.OutRing.Laser) then
 			-- 		if(self.HyperspaceDist < self.MaxCharge) then
 			-- 			self.HyperspaceDist = self.HyperspaceDist + (250 + math.Round(self.TeltakHealth/self.EntHealth*100));
 			-- 		end
@@ -280,46 +281,44 @@ function ENT:Think()
 				
 			-- end
 			self.Pilot:SetNWInt("Charge",self.HyperspaceDist);
-			
-			-- WE HAVEN'T ADDED THE RING IN EAP YET
 
-			-- if(not self.LandingMode and self.OutRing.Laser) then
-			-- 	self.OutRing:StopLaser();
-			-- end
+			if(not self.LandingMode and self.OutRing.Laser) then
+				self.OutRing:StopLaser();
+			end
 			
-			-- if(self.WeaponAllowed) then
-			-- 	if(self.Pilot:KeyDown(self.Vehicle,"FIRE")) then
-			-- 		if(not self.Cloaked and self.CanFire and self.CooledDown and self.LandingMode) then
-			-- 			if(not self.OutRing.Laser) then
-			-- 				self.OutRing:StartLaser();
-			-- 				self.OutRing.Busy = true;
-			-- 				timer.Simple(30, function()
-			-- 					if(IsValid(self)) then
-			-- 						self.CooledDown = false;
-			-- 						if(IsValid(self.OutRing)) then
-			-- 							self.OutRing.Busy = false;
-			-- 							self.OutRing:StopLaser();
-			-- 						end
-			-- 						if(IsValid(self.Pilot)) then
-			-- 							self.BeamTimer = "BeamCooldown"..self.Pilot:SteamID()
-			-- 						else
-			-- 							self.BeamTimer = "BeamCooldown"..self:EntIndex();
-			-- 						end
-			-- 						timer.Create(self.BeamTimer,60,1, function()
-			-- 							if(IsValid(self)) then 
-			-- 								self.CooledDown = true;
-			-- 							end
-			-- 						end);
-			-- 					end
-			-- 				end);
-			-- 			end
-			-- 		end
-			-- 	end
+			if(self.WeaponAllowed) then
+				if(self.Pilot:KeyDown("EAP_KEYBOARD","FIRE")) then
+					if(not self.Cloaked and self.CanFire and self.CooledDown and self.LandingMode) then
+						if(not self.OutRing.Laser) then
+							self.OutRing:StartLaser();
+							self.OutRing.Busy = true;
+							timer.Simple(30, function()
+								if(IsValid(self)) then
+									self.CooledDown = false;
+									if(IsValid(self.OutRing)) then
+										self.OutRing.Busy = false;
+										self.OutRing:StopLaser();
+									end
+									if(IsValid(self.Pilot)) then
+										self.BeamTimer = "BeamCooldown"..self.Pilot:SteamID()
+									else
+										self.BeamTimer = "BeamCooldown"..self:EntIndex();
+									end
+									timer.Create(self.BeamTimer,60,1, function()
+										if(IsValid(self)) then 
+											self.CooledDown = true;
+										end
+									end);
+								end
+							end);
+						end
+					end
+				end
 				
-			-- 	if(not self.CooledDown) then
-			-- 		self.Pilot:SetNWInt("BeamCooldown", timer.TimeLeft(self.BeamTimer));
-			-- 	end
-			-- end
+				if(not self.CooledDown) then
+					self.Pilot:SetNWInt("BeamCooldown", timer.TimeLeft(self.BeamTimer));
+				end
+			end
 		end
 		
 	end
@@ -346,7 +345,7 @@ ENT.Buttons = {};
 function ENT:SpawnButtons(p)
 	local e = {};
 	for i=1,5 do
-		e[i] = ents.Create("teltak_button");
+		e[i] = ents.Create("teltakbutton");
 		e[i]:Spawn();
 		e[i]:Activate();
 		//constraint.Weld(e[i],self,0,0,0,true);
@@ -537,7 +536,7 @@ function ENT:Use(p)
 end
 
 function ENT:SpawnRings(p)
-	local e = ents.Create("ring_base_ancient");
+	local e = ents.Create("rg_base_ancient");
 	e:SetModel(e.BaseModel);
 	e:SetPos(self:LocalToWorld(Vector(0,0,7)));
 	e:Spawn();
@@ -550,7 +549,7 @@ function ENT:SpawnRings(p)
 	self.OutRing = e;
 	if CPPI and IsValid(p) and e.CPPISetOwner then e:CPPISetOwner(p) end
 
-	local e = ents.Create("ring_base_ancient");
+	local e = ents.Create("rg_base_ancient");
 	e:SetModel(e.BaseModel);
 	e:SetPos(self:LocalToWorld(Vector(0,-5,44)));
 	e:Spawn();
@@ -565,7 +564,7 @@ function ENT:SpawnRings(p)
 end
 
 function ENT:SpawnRingPanel(p)
-	local e = ents.Create("ring_panel_goauld");
+	local e = ents.Create("rg_panel_goauld");
 	e:SetPos(self:GetPos()+self:GetForward()*137+self:GetRight()*-50+self:GetUp()*100);
 	e:SetAngles(self:GetAngles()+Angle(0,180,0));
 	e:Spawn();
@@ -580,7 +579,7 @@ end
 function ENT:Status(b,nosound)
 	if(b) then
 		if(not(self:Enabled())) then
-			local e = ents.Create("cloaking")
+			local e = ents.Create("cloak")
 			e.Size = 300
 			e:SetPos(self:GetPos()+Vector(0,0,70))
 			e:SetAngles(self:GetAngles())
@@ -701,7 +700,7 @@ function ENT:LSSupport()
 		for _,p in pairs(player.GetAll()) do -- Find all players
 			local pos = (p:GetPos()-ent_pos):Length(); -- Where they are in relation to the jumper
 			if(pos<800 and p.suit) then -- If they're close enough
-				if(not(StarGate.RDThree())) then
+				if(not(Lib.RDThree())) then
 					p.suit.air = 100; -- They get air
 					p.suit.energy = 100; -- and energy
 					p.suit.coolant = 100; -- and coolant
@@ -727,6 +726,7 @@ function ENT:PreEntityCopy()
 
 	duplicator.StoreEntityModifier(self, "TelTakDupeInfo", dupeInfo)
 	Lib.Wire.PreEntityCopy(self)
+	Lib.RD.PreEntityCopy(self)
 end
 
 function ENT:PostEntityPaste(ply, Ent, CreatedEntities)
@@ -745,16 +745,17 @@ function ENT:PostEntityPaste(ply, Ent, CreatedEntities)
 	if (Lib.NotSpawnable(Ent:GetClass(),ply)) then self.Entity:Remove(); return end
 
 	if (IsValid(ply)) then
-		local PropLimit = GetConVar("Count_ships_max"):GetInt()
-		if(ply:GetCount("Count_ships")+1 > PropLimit) then
+		local PropLimit = GetConVar("EAP_ships_max"):GetInt()
+		if(ply:GetCount("EAP_ships")+1 > PropLimit) then
 			ply:SendLua("GAMEMODE:AddNotify(Lib.Language.GetMessage(\"entity_limit_ships\"), NOTIFY_ERROR, 5); surface.PlaySound( \"buttons/button2.wav\" )");
 			self.Entity:Remove();
 			return
 		end
-		ply:AddCount("Count_ships", Ent);
+		ply:AddCount("EAP_ships", Ent);
 	end
 
-	Lib.WirD.PostEntityPaste(self,ply,Ent,CreatedEntities)
+	Lib.Wire.PostEntityPaste(self,ply,Ent,CreatedEntities)
+	Lib.RD.PostEntityPaste(self,ply,Ent,CreatedEntities)
 end
 
 if (Lib and Lib.CAP_GmodDuplicator) then
@@ -774,52 +775,17 @@ ENT.Sounds = {
 	Engine=Sound("vehicles/AlkeshEngine.wav"),
 }
 
-if (Lib==nil or Lib.KeyBoard==nil or Lib.KeyBoard.New==nil) then return end
-
---########## Keybinder stuff
-local KBD = Lib.KeyBoard:New("Tel_tak")
---Navigation
-KBD:SetDefaultKey("FWD",Lib.KeyBoard.BINDS["+forward"] or "W"); -- Forward
-KBD:SetDefaultKey("LEFT",Lib.KeyBoard.BINDS["+moveleft"] or "A"); -- Forward
-KBD:SetDefaultKey("RIGHT",Lib.KeyBoard.BINDS["+moveright"] or "D"); -- Forward
-KBD:SetDefaultKey("BACK",Lib.KeyBoard.BINDS["+back"] or "S"); -- Forward
-KBD:SetDefaultKey("UP",Lib.KeyBoard.BINDS["+jump"] or "SPACE"); -- Forward
-KBD:SetDefaultKey("DOWN",Lib.KeyBoard.BINDS["+duck"] or "CTRL"); -- Forward
-KBD:SetDefaultKey("SPD",Lib.KeyBoard.BINDS["+speed"] or "SHIFT");
-KBD:SetDefaultKey("LAND","ENTER");
---Roll
-KBD:SetDefaultKey("RL","MWHEELDOWN"); -- Roll left
-KBD:SetDefaultKey("RR","MWHEELUP"); -- Roll right
-KBD:SetDefaultKey("RROLL","MOUSE3"); -- Reset Roll
---Attack
-KBD:SetDefaultKey("FIRE",Lib.KeyBoard.BINDS["+attack"] or "MOUSE1"); -- Fire blasts
---Special Actions
-KBD:SetDefaultKey("RROLL","MOUSE3"); -- Reset roll
-KBD:SetDefaultKey("BOOM","BACKSPACE");
-KBD:SetDefaultKey("CLOAK","ALT");
-KBD:SetDefaultKey("DOOR","2");
---KBD:SetDefaultKey("HYPERSPACE","R");
-
---View
-KBD:SetDefaultKey("Z+","UPARROW");
-KBD:SetDefaultKey("Z-","DOWNARROW");
-KBD:SetDefaultKey("A+","LEFTARROW");
-KBD:SetDefaultKey("A-","RIGHTARROW");
-KBD:SetDefaultKey("FPV","1");
-
-KBD:SetDefaultKey("EXIT",Lib.KeyBoard.BINDS["+use"] or "E");
-
 local MaxCharge;
 function ENT:Initialize()
 	self.Dist=-1160
 	self.UDist=450
-	self.KBD = self.KBD or KBD:CreateInstance(self)
+	self.KBD = self.KBD or Lib.Settings.KBD:CreateInstance(self)
 	self.BaseClass.Initialize(self)
-	self.Vehicle = "Tel_tak";
+	self.Vehicle = "GoauldTeltak";
 	self.NextPress = CurTime();
 	self.FPV = 0;
 	//MaxCharge = LocalPlayer():GetNWInt("MaxCharge") or 15000;
-	MaxCharge = 15000 --StarGate.CFG:Get("teltak","jump_distance",15000);
+	MaxCharge = Lib.CFG:Get("GoauldTeltak","jump_distance",15000);
 end
 
 
@@ -868,19 +834,19 @@ function ENT:Think()
 	end
 
 	if((vehicle)and((vehicle)==self)and(vehicle:IsValid())) then
-		if(p:KeyDown(self.Vehicle,"Z+")) then
+		if(p:KeyDown("EAP_KEYBOARD","Z+")) then
 			self.Dist = self.Dist-5
-		elseif(p:KeyDown(self.Vehicle,"Z-")) then
+		elseif(p:KeyDown("EAP_KEYBOARD","Z-")) then
 			self.Dist = self.Dist+5
 		end
 
-		if(p:KeyDown(self.Vehicle,"A+")) then
+		if(p:KeyDown("EAP_KEYBOARD","A+")) then
 			self.UDist=self.UDist+5
-		elseif(p:KeyDown(self.Vehicle,"A-")) then
+		elseif(p:KeyDown("EAP_KEYBOARD","A-")) then
 			self.UDist=self.UDist-5
 		end
 
-		if(p:KeyDown(self.Vehicle,"FPV") and self.NextPress < CurTime()) then
+		if(p:KeyDown("EAP_KEYBOARD","VIEW") and self.NextPress < CurTime()) then
 			if(self.FPV == 2) then self.FPV = 0
 		else
 			self.FPV = self.FPV + 1
@@ -907,7 +873,7 @@ function PrintHUD()
 	local p = LocalPlayer()
 	local self = p:GetNetworkedEntity("ScriptedVehicle", NULL)
 	local Charging = p:GetNWBool("Charging");
-	local Teltak = p:GetNetworkedEntity("Tel_tak")
+	local Teltak = p:GetNetworkedEntity("GoauldTeltak")
 	
 	local Charge = p:GetNWInt("Charge");
 	local Cooldown = math.Round(p:GetNWInt("BeamCooldown"));

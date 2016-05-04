@@ -18,6 +18,8 @@
 
 --################# Adds LifeSupport,ResourceDistribution to an entity when getting called - HAS TO BE CALLED BEFORE ANY OTHERTHING IS DONE IN A SENT (like includes) @aVoN
 -- My suggestion is to put this on the really top of the shared.lua
+MsgN("librairies/server/rd.lua")
+
 Lib.RD = {};
 function Lib.LifeSupport(ENT)
 
@@ -163,14 +165,14 @@ end
 --added compatiblity with RD3 @JDM12989
 function Lib.RD.OnRemove(self,only_rd,only_wire)
 	if(self.HasRD and not only_wire) then
-		if(RD.RDThree()) then
+		if(Lib.RDThree()) then
 			if (self.IsNode) then
 				RD.UnlinkAllFromNode(self.netid);
 			else
 				RD.Unlink(self.Entity); -- Lol, why someone not added this? Fix by AlexALX
 			end
 			RD.RemoveRDEntity(self.Entity);
-		elseif(RD.RDEnv()) then
+		elseif(Lib.RDEnv()) then
 			self:Unlink()
 		elseif(Dev_Unlink_All and self.resources2links) then
 			Dev_Unlink_All(self.Entity);

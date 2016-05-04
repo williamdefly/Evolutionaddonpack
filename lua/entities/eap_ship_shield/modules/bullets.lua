@@ -17,10 +17,10 @@
 */
 -- Conditions (if we hit or not is defined in ini/cl.init!)
 --################# This is the workaround for stopping bullets (FROM SWEPS AND SENTS ONLY!) getting into a shield @aVoN
-hook.Add("StarGate.Bullet","StarGate.ShieldShip.Bullet",
+hook.Add("Lib.Bullet","Lib.ShieldShip.Bullet",
 	function(self,bullet,trace)
 		local e = trace.Entity;
-		if(IsValid(e) and e:GetClass() == "ship_shield") then
+		if(IsValid(e) and e:GetClass() == "eap_ship_shield") then
 			-- Call the callback (e.g. to draw effects like bullet tracers!)
 			if(bullet.Callback) then
 				local dmg = DamageInfo();

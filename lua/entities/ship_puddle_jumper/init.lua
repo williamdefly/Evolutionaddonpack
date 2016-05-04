@@ -60,9 +60,9 @@ ENT.Gibs={
 function ENT:SpawnFunction(pl, tr)
 	if (!tr.HitWorld) then return end
 
-	local PropLimit = GetConVar("Count_ships_max"):GetInt()
-	if(pl:GetCount("Count_ships")+1 > PropLimit) then
-		pl:SendLua("GAMEMODE:AddNotify(SGLanguage.GetMessage(\"entity_limit_ships\"), NOTIFY_ERROR, 5); surface.PlaySound( \"buttons/button2.wav\" )");
+	local PropLimit = GetConVar("EAP_ships_max"):GetInt()
+	if(pl:GetCount("EAP_ships")+1 > PropLimit) then
+		pl:SendLua("GAMEMODE:AddNotify(Lib.Language.GetMessage(\"entity_limit_ships\"), NOTIFY_ERROR, 5); surface.PlaySound( \"buttons/button2.wav\" )");
 		return
 	end
 
@@ -80,7 +80,7 @@ function ENT:SpawnFunction(pl, tr)
 	//e:SpawnOpenedDoor();
 	e.Owner = pl;
 
-    pl:AddCount("Count_ships",e)
+    pl:AddCount("EAP_ships",e)
 	pl:Give("eap_jumper_remote");
 	pl:SelectWeapon("eap_jumper_remote")
 	return e;
@@ -313,13 +313,13 @@ function ENT:Think()   --######### Do a lot of stuff@ RononDex
 			end
 		end
 
-		if(self.Pilot:KeyDown(self.Vehicle,"TRACK")) then -- TRACK!!!!!!
+		if(self.Pilot:KeyDown("EAP_KEYBOARD","TRACK")) then -- TRACK!!!!!!
 			self.Track = true
 		else
 			self.Track = false
 		end
 		
-		if(self.Pilot:KeyDown(self.Vehicle,"AUTOPILOT")) then
+		if(self.Pilot:KeyDown("EAP_KEYBOARD","AUTOPILOT")) then
 			if(self.NextUse.Autopilot < CurTime()) then
 				if(not self.Autopilot) then
 					self:AutoPilot(true);
@@ -330,16 +330,16 @@ function ENT:Think()   --######### Do a lot of stuff@ RononDex
 			end
 		end
 
-		if(self.Pilot:KeyDown(self.Vehicle,"LIGHT")) then
+		if(self.Pilot:KeyDown("EAP_KEYBOARD","LIGHT")) then
 			self:ToggleLight()
 		end
 		
-		if(self.Pilot:KeyDown(self.Vehicle,"DHD")) then
+		if(self.Pilot:KeyDown("EAP_KEYBOARD","DHD")) then
 			self:OpenDHD(self.Pilot) -- Open DHD for pilot
 		end
 		
 		if(!self.Autopilot) then
-			if(self.Pilot:KeyDown(self.Vehicle,"FIRE")) then
+			if(self.Pilot:KeyDown("EAP_KEYBOARD","FIRE")) then
 				if(not self.Cloaked) then
 					self:FireDrone()
 				else
@@ -349,7 +349,7 @@ function ENT:Think()   --######### Do a lot of stuff@ RononDex
 
 			if(self.epodo) then
 				if(self.CanWepPods) then
-					if(self.Pilot:KeyDown(self.Vehicle,"WEPPODS")) then
+					if(self.Pilot:KeyDown("EAP_KEYBOARD","WEPPODS")) then
 						self:RemoveDrones()
 						self:ToggleWeaponPods()
 					end
@@ -358,27 +358,27 @@ function ENT:Think()   --######### Do a lot of stuff@ RononDex
 
 
 			if(IsValid(self)) then
-				if(self.Pilot:KeyDown(self.Vehicle,"BOOM")) then
+				if(self.Pilot:KeyDown("EAP_KEYBOARD","BOOM")) then
 					self:DoKill()
 				end
 			end
 
 			if (IsValid(self.Pilot)) then
-				if(self.Pilot:KeyDown(self.Vehicle,"SPD")) then
+				if(self.Pilot:KeyDown("EAP_KEYBOARD","SPD")) then
 					self:TogglePods()
 				end
 
 
 
-				if(self.Pilot:KeyDown(self.Vehicle,"CLOAK")) then
+				if(self.Pilot:KeyDown("EAP_KEYBOARD","CLOAK")) then
 					self:ToggleCloak()
 				end
 
-				if(self.Pilot:KeyDown(self.Vehicle,"SHIELD")) then
+				if(self.Pilot:KeyDown("EAP_KEYBOARD","SHIELD")) then
 					self:ToggleShield()
 				end
 
-				if(self.Pilot:KeyDown(self.Vehicle,"HOVER")) then
+				if(self.Pilot:KeyDown("EAP_KEYBOARD","HOVER")) then
 					if(self.NextUse.Hover < CurTime()) then
 						if(not self.HoverAlways) then
 							self.HoverAlways = true;
@@ -392,13 +392,13 @@ function ENT:Think()   --######### Do a lot of stuff@ RononDex
 				end
 
 				if(not(self.epodo)) then
-					if(self.Pilot:KeyDown(self.Vehicle,"DOOR")) then
+					if(self.Pilot:KeyDown("EAP_KEYBOARD","DOOR")) then
 						self:ToggleDoor()
 					end
 				end
 
 				if(self.AllowActivation) then
-					if(self.Pilot:KeyDown(self.Vehicle,"EXIT")) then
+					if(self.Pilot:KeyDown("EAP_KEYBOARD","EXIT")) then
 						self:ExitJumper()
 					end
 				end
@@ -444,8 +444,8 @@ function ENT:OpenDHD(p)   --######### @ aVoN
 	if(not IsValid(p)) then return end
 	local e = self:FindGate(5000)
 	if(not IsValid(e)) then return end
-	if(hook.Call("StarGate.Player.CanDialGate",GAMEMODE,p,e) == false) then return end
-	net.Start("StarGate.VGUI.Menu");
+	if(hook.Call("Lib.Player.CanDialGate",GAMEMODE,p,e) == false) then return end
+	net.Start("Lib.VGUI.Menu");
 	net.WriteEntity(e);
 	net.WriteInt(1,8);
 	net.Send(p);
@@ -455,7 +455,7 @@ end
 function ENT:FindGate(dist)  --######### @ aVoN
 	local gate
 	local pos = self:GetPos()
-	for _,v in pairs(ents.FindByClass("stargate_*")) do
+	for _,v in pairs(ents.FindByClass("sg_*")) do
 		if (not v.IsStargate or v.IsSupergate) then continue end
 		local sg_dist = (pos - v:GetPos()):Length()
 		if(dist >= sg_dist) then
@@ -521,7 +521,7 @@ function ENT:LSSupport()
 		for _,p in pairs(player.GetAll()) do -- Find all players
 			local pos = (p:GetPos()-ent_pos):Length(); -- Where they are in relation to the jumper
 			if(pos<400 and p.suit) then -- If they're close enough
-				if(not(StarGate.RDThree())) then
+				if(not(Lib.RDThree())) then
 					if (p.suit.air<100) then p.suit.air = 100; end -- They get air
 					if (p.suit.energy<100) then p.suit.energy = 100; end -- and energy
 					if (p.suit.coolant<100) then p.suit.coolant = 100; end -- and coolant
@@ -632,7 +632,7 @@ function ENT:PostEntityPaste(ply, Ent, CreatedEntities)
 	if (IsValid(ply)) then
 		local PropLimit = GetConVar("CAP_ships_max"):GetInt()
 		if(ply:GetCount("CAP_ships")+1 > PropLimit) then
-			ply:SendLua("GAMEMODE:AddNotify(SGLanguage.GetMessage(\"entity_limit_ships\"), NOTIFY_ERROR, 5); surface.PlaySound( \"buttons/button2.wav\" )");
+			ply:SendLua("GAMEMODE:AddNotify(Lib.Language.GetMessage(\"entity_limit_ships\"), NOTIFY_ERROR, 5); surface.PlaySound( \"buttons/button2.wav\" )");
 			self.Entity:Remove();
 			return
 		end

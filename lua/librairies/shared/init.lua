@@ -1,9 +1,14 @@
---Initializing System
+--EAP Initializing System
 --Made by Elanis
 
 EAP = EAP or { } --Init Global Var !
+
+Lib = Lib or { } --Init Global Var !
+
 EAP.WebRev = "https://raw.githubusercontent.com/williamdefly/Evolutionaddonpack/master/lua/eap_revision.lua"
 EAP.LastRev = 0; --Default
+
+Lib.CYCLE_INTERVAL = 0.2
 
 Lib.IsCapDetected = false;
 
@@ -12,7 +17,7 @@ if (SERVER) then
 	AddCSLuaFile();
 end
 
-function GetRevision()
+function EAP.GetRevision()
 
 	if (file.Exists("lua/eap_revision.lua","GAME")) then
 			EAP.Revision = tonumber(file.Read("lua/eap_revision.lua","GAME"));
@@ -22,7 +27,7 @@ function GetRevision()
 
 end
 
-function EAPIsUpdated()
+function EAP.IsUpdated()
 
 	http.Fetch(EAP.WebRev,
 		function(html,size)
@@ -39,7 +44,7 @@ function EAPIsUpdated()
 	
 end
 
-function IsCapDetected() --Detect if the Carter Addon Pack is installed , in other files , this info can help
+function EAP.IsCapDetected() --Detect if the Carter Addon Pack is installed , in other files , this info can help
 
 	if (file.Exists("lua/stargate/shared/cap.lua","GAME")) then
 
@@ -48,14 +53,38 @@ function IsCapDetected() --Detect if the Carter Addon Pack is installed , in oth
 		MsgN("Carter Addon Pack detected : Compatibility Mode Activated");
 
 	end
-
 end
 
-function InitEAP()
+function EAP.IsWireDetected()
+	-- Wire?
+	if(WireAddon or file.Exists("weapons/gmod_tool/stools/wire_adv.lua","LUA")) then
+		Lib.HasWire = true;
+		if (file.IsDir("expression2","DATA") and not file.IsDir("expression2/cap_shared","DATA")) then
+			file.CreateDir("expression2/cap_shared");
+		end
+		if (file.IsDir("starfall","DATA") and not file.IsDir("starfall/cap_shared","DATA")) then
+			file.CreateDir("starfall/cap_shared");
+		end
+	else
+		Lib.HasWire = false;
+	end
+end
 
-GetRevision()
+function EAP.IsRDDetected()
+	-- Resource Distribution Installed?
+	-- fix for client/server energy will be later @ AlexALX
+	if((Environments or #file.Find("weapons/gmod_tool/environments_tool_base.lua","LUA") == 1 or Dev_Link or rd3_dev_link or #file.Find("weapons/gmod_tool/stools/dev_link.lua","LUA") == 1 or #file.Find("weapons/gmod_tool/stools/rd3_dev_link.lua","LUA") == 1 or Spacelife or #file.Find("weapons/gmod_tool/stools/sl_link_tool.lua","LUA") == 1)) then //Thanks to mercess2911: http://www.facepunch.com/showpost.php?p=15508150&postcount=10070
+		Lib.HasResourceDistribution = true;
+	else
+		Lib.HasResourceDistribution = false;
+	end
+end
 
-EAPIsUpdated()
+function EAP.Init()
+
+EAP.GetRevision()
+
+EAP.IsUpdated()
 
 
 MsgN("=======================================================");
@@ -105,11 +134,30 @@ MsgN("Searching Addons ...");
 	
 	end
 
-	IsCapDetected()	
+	EAP.IsCapDetected()
+	EAP.IsWireDetected()
+	EAP.IsRDDetected()
 	
-MsgN("=======================================================");
+			MsgN("Loading Librairies ...")
 
 end
 
 ----------------------------------------Launch !!!!!!!!!!!-------------------------------------------------------
-InitEAP()
+EAP.Init()
+
+--################# For the concommand @aVoN
+function EAP.CallReload(p) -- Override is called in sg_base/init.lua if someone calls lua_reloadents
+	if(not IsValid(p) or game.SinglePlayer() or p:IsAdmin()) then
+		EAP.Init();
+		for _,v in pairs(player.GetAll()) do
+			v:SendLua("EAP.Init()");
+		end
+	else
+		p:SendLua("EAP.Init()");
+		timer.Simple(0,function() Lib.Hook.PlayerInitialSpawn(p) end); -- fix for reload cfg
+	end
+end
+
+if SERVER then
+	concommand.Add("eap_reload",EAP.CallReload);
+end

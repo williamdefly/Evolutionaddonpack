@@ -1,0 +1,20 @@
+"vertexlitgeneric"
+ {
+ 	"$basetexture" "Iziraider\ramp3\ramp3"
+	"$bumpmap" "Iziraider\ramp3\ramp3_normal"
+	"$normalmapalphaenvmapmask" "1"
+	"$normalmapalphaphongmask"    "1"
+	"$surfaceprop" "brick"
+	"$model" "1"
+
+	"$phong"     "1"
+	"$phongexponent"  "33"
+	"$phongboost"   "1"
+	"$phongfresnelranges"   "[1 8 4]"
+	"$phongalbedotint" "1"
+	"$halflambert" "1"
+
+	"$rimlight" "1"
+	"$rimlightexponent" "22"	
+	"$rimlightboost" "0.2"
+}

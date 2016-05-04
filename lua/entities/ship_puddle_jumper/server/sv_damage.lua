@@ -10,7 +10,7 @@ function ENT:DoKill(ply)   --######### @ RononDex
 
 	for k,v in pairs(ents.FindInSphere(self:GetPos(),500)) do
 		if(v:IsPlayer() and not v:HasGodMode()) then
-			local allow = hook.Call("StarGate.Jumper.KillPlayer",nil,v,self);
+			local allow = hook.Call("Lib.Jumper.KillPlayer",nil,v,self);
 			if (allow==nil or allow) then
 				v:Kill();
 			end

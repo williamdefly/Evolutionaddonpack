@@ -17,7 +17,6 @@
 */
 
 --################# HEADER #################
-if (StarGate==nil or StarGate.CheckModule==nil or not StarGate.CheckModule("ship")) then return end
 AddCSLuaFile("cl_init.lua");
 AddCSLuaFile("shared.lua");
 AddCSLuaFile("modules/bullets.lua");
@@ -32,7 +31,7 @@ ENT.CDSIgnore = true; -- CDS Immunity
 function ENT:gcbt_breakactions() end; ENT.hasdamagecase = true; -- GCombat invulnarability!
 
 -- Register shield SENT to the trace class (everything else is handled in bullets.lua)
-StarGate.Trace:Add("shield",
+Lib.Trace:Add("shield",
 	function(e,values,trace,in_box)
 		if(not e.Parent.Depleted) then
 			if((e.Parent.Containment and in_box) or (not e.Parent.Containment and not in_box)) then
@@ -93,7 +92,7 @@ function ENT:Initialize()
 			end
 		);
 	end
-	--local multi_shield = StarGate.CFG:Get("shield","multiple_shields",false); -- Allow multiple shields?
+	local multi_shield = Lib.CFG:Get("shield","multiple_shields",false); -- Allow multiple shields?
 	--################# Fetch all things in a sphere to make it nocollide
 	-- for _,v in pairs(ents.FindInSphere(self.Entity:GetPos(),self.Size)) do
 		-- if(not multi_shield and v ~= self.Entity and v:GetClass() == "shield") then
@@ -122,7 +121,7 @@ function ENT:Initialize()
 	self.nocollide[game.GetWorld()] = true;
 	-- Constrained? Add constrained entities to the list, but only do 10 passes to save performances (must fit for most contraptions)
 	if(constraint.HasConstraints(self.Parent)) then
-		local entities = StarGate.GetConstrainedEnts(self.Parent,10);
+		local entities = Lib.GetConstrainedEnts(self.Parent,10);
 		if(entities) then
 			for _,v in pairs(entities) do
 				self.nocollide[v] = true;
@@ -252,7 +251,7 @@ function ENT:Touch(e,override)
 		-- Reflect a bit more (like ships )- so they won't take the complete energy of a shield when colliding and it will "really" get reflected (more force)
 		if(constraint.HasConstraints(e) and cons_check) then
 			local time = CurTime();
-			local entities = StarGate.GetConstrainedEnts(e,3); -- Maxcheck 3 seems to be OK
+			local entities = Lib.GetConstrainedEnts(e,3); -- Maxcheck 3 seems to be OK
 			for _,v in pairs(entities) do
 				if(v ~= e) then
 					self:Reflect(v,true);

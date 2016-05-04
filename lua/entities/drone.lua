@@ -50,11 +50,9 @@ function ENT:Initialize()
 	self.Entity:DrawShadow(false);
 	self.LastPosition = self.Entity:GetPos()
 	self.TrackTime = CurTime()+self.Parent.TrackTime;
-	--self.Fuel = StarGate.CFG:Get("drone","distance",20000); -- Don't have config yet
-	self.Fuel = 20000;
+	self.Fuel = Lib.CFG:Get("drone","distance",20000);
 	self.CurrentVelocity = 500;
-	--self.MaxVelocity = StarGate.CFG:Get("drone","maxspeed",6000); -- Don't have config yet
-	self.MaxVelocity = 6000;
+	self.MaxVelocity = Lib.CFG:Get("drone","maxspeed",6000);
 	self.Created = CurTime();
 	-- Defines, how "curvey" the drone will fly. This makes them not all flying the same route (looks actually to artificial)
 	self.Randomness = math.random(3,9)/10;
@@ -62,10 +60,8 @@ function ENT:Initialize()
 	self.TrackStart = math.random(5,15)/10;
 	self.AntiRandomness = 1-self.Randomness;
 	-- Damage system
-	--self.Radius = StarGate.CFG:Get("drone","radius",200); -- Don't have config yet
-	self.Radius = 200;
-	--self.Damage = StarGate.CFG:Get("drone","damage",150); -- Don't have config yet
-	self.Damage = 200;
+	self.Radius = Lib.CFG:Get("drone","radius",200);
+	self.Damage = Lib.CFG:Get("drone","damage",150);
 	self.CanTrack = false;
 	-- Trail on the drone
 	self.Trail = util.SpriteTrail(self.Entity,0,Color(255,230,100,255),true,20,3,0.15,1/12,"sprites/smoke.vmt");

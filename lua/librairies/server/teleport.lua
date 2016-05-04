@@ -22,6 +22,8 @@
 
 -- The reason, this is not in the event horizon sent itself is, it needs to be loaded before the SENTs.
 
+MsgN("librairies/server/teleport.lua")
+
 Lib.Teleport = Lib.Teleport or {};
 Lib.Teleport.Class = Lib.Teleport.Class or {};
 

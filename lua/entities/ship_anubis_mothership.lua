@@ -24,8 +24,8 @@ ENT.Sounds = {
 function ENT:SpawnFunction(ply, tr) --######## Pretty useless unless we can spawn it @RononDex
 	if (!tr.HitWorld) then return end
 
-	local PropLimit = GetConVar("Count_ships_max"):GetInt()
-	if(ply:GetCount("Count_ships")+1 > PropLimit) then
+	local PropLimit = GetConVar("EAP_ships_max"):GetInt()
+	if(ply:GetCount("EAP_ships")+1 > PropLimit) then
 		ply:SendLua("GAMEMODE:AddNotify(Lib.Language.GetMessage(\"entity_limit_ships\"), NOTIFY_ERROR, 5); surface.PlaySound( \"buttons/button2.wav\" )");
 		return
 	end
@@ -36,7 +36,7 @@ function ENT:SpawnFunction(ply, tr) --######## Pretty useless unless we can spaw
 	e:Spawn()
 	e:Activate()
 	e:SetWire("Health",e:GetNetworkedInt("health"));
-	ply:AddCount("Count_ships", e)
+	ply:AddCount("EAP_ships", e)
 	return e
 end
 
@@ -164,36 +164,6 @@ ENT.PrintName = Lib.Language.GetMessage("ent_ship_anubisms");
 end
 ENT.RenderGroup = RENDERGROUP_BOTH
 
-if (Lib==nil or Lib.KeyBoard==nil or Lib.KeyBoard.New==nil) then return end
-
---########## Keybinder stuff
-local KBD = Lib.KeyBoard:New("AnubisMotherShip")
---Navigation
-KBD:SetDefaultKey("FWD",Lib.KeyBoard.BINDS["+forward"] or "W") -- Forward
-KBD:SetDefaultKey("LEFT",Lib.KeyBoard.BINDS["+moveleft"] or "A")
-KBD:SetDefaultKey("RIGHT",Lib.KeyBoard.BINDS["+moveright"] or "D")
-KBD:SetDefaultKey("BACK",Lib.KeyBoard.BINDS["+back"] or "S")
-KBD:SetDefaultKey("UP",Lib.KeyBoard.BINDS["+jump"] or "SPACE")
-KBD:SetDefaultKey("DOWN",Lib.KeyBoard.BINDS["+duck"] or "CTRL")
-KBD:SetDefaultKey("SPD",Lib.KeyBoard.BINDS["+speed"] or "SHIFT")
---Roll
-KBD:SetDefaultKey("RL","MWHEELDOWN") -- Roll left
-KBD:SetDefaultKey("RR","MWHEELUP") -- Roll right
-KBD:SetDefaultKey("RROLL","MOUSE3") -- Reset Roll
---Attack
-KBD:SetDefaultKey("FIRE",Lib.KeyBoard.BINDS["+attack"] or "MOUSE1")
-KBD:SetDefaultKey("TRACK",Lib.KeyBoard.BINDS["+attack2"] or "MOUSE2")
---Special Actions
-KBD:SetDefaultKey("BOOM","BACKSPACE")
---View
-KBD:SetDefaultKey("VIEW","1")
-KBD:SetDefaultKey("Z+","UPARROW")
-KBD:SetDefaultKey("Z-","DOWNARROW")
-KBD:SetDefaultKey("A+","LEFTARROW")
-KBD:SetDefaultKey("A-","RIGHTARROW")
-
-KBD:SetDefaultKey("EXIT",Lib.KeyBoard.BINDS["+use"] or "E")
-
 ENT.Sounds={
 	Engine=Sound("eap/ship/moteur/anubis.mp3"),
 }
@@ -202,7 +172,7 @@ function ENT:Initialize( )
 	self.BaseClass.Initialize(self)
 	self.Dist=-750
 	self.UDist=120
-	self.KBD = self.KBD or KBD:CreateInstance(self)
+	self.KBD = self.KBD or Lib.Settings.KBD:CreateInstance(self)
 	self.FirstPerson=false
 	self.Vehicle = "AnubisMotherShip"
 end

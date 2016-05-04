@@ -1,6 +1,4 @@
-if(SERVER)then
-	return false
-end
+MsgN("librairies/vgui/jumperlsd.lua")
 
 local PANEL = {};
 local LSD = surface.GetTextureID("Markjaw/LSD/dot");
@@ -76,22 +74,22 @@ function PANEL:Paint()
 				surface.SetTextColor(Color(255,0,0,255));
 				surface.DrawText(gate);
 				surface.SetTextPos(sX+60,sY-45-(pos/75));
-				surface.DrawText(SGLanguage.GetMessage("stargate_vgui_name").." "..v:GetGateName());
+				surface.DrawText(Lib.Language.GetMessage("stargate_vgui_name").." "..v:GetGateName());
 				surface.SetTextPos(sX+60,sY-30-(pos/75));
-				surface.DrawText(SGLanguage.GetMessage("stargate_vgui_address").." "..v:GetGateAddress());
+				surface.DrawText(Lib.Language.GetMessage("stargate_vgui_address").." "..v:GetGateAddress());
 				local posy = 15;
 				if (self.GroupSystem and not v.IsSupergate) then
 					posy = 0;
 					surface.SetTextPos(sX+60,sY-15-(pos/75));
-					if (v:GetClass()=="stargate_universe") then
-						surface.DrawText(SGLanguage.GetMessage("stargate_vgui_type").." "..v:GetGateGroup());
+					if (v:GetClass()=="sg_universe") then
+						surface.DrawText(Lib.Language.GetMessage("stargate_vgui_type").." "..v:GetGateGroup());
 					else
-						surface.DrawText(SGLanguage.GetMessage("stargate_vgui_group").." "..v:GetGateGroup());
+						surface.DrawText(Lib.Language.GetMessage("stargate_vgui_group").." "..v:GetGateGroup());
 					end
 				end
 				if(v:GetDialledAddress()!="") then
 					surface.SetTextPos(sX+60,sY-posy-(pos/75));
-					surface.DrawText(SGLanguage.GetMessage("jumper_hud_dial").." "..v:GetDialledAddress());
+					surface.DrawText(Lib.Language.GetMessage("jumper_hud_dial").." "..v:GetDialledAddress());
 					print_r(v.Outputs)
 				end
 			else
@@ -128,7 +126,7 @@ end
 --################# Activate Panel @aVoN
 function PANEL:Activate()
 	if(not self.Active) then
-		self.GroupSystem = util.tobool(StarGate.GroupSystem or 0);
+		self.GroupSystem = util.tobool(Lib.GroupSystem or 0);
 		self:SetVisible(true); -- Calling SetVisible all the time causes heavy CPU Load
 		self.Active = true;
 	end

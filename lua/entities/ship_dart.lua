@@ -23,6 +23,7 @@ ENT.Author	= "RononDex"
 ENT.Contact	= ""
 ENT.Purpose	= ""
 ENT.Instructions= ""
+ENT.Spawnable = true
 
 list.Set("EAP", ENT.PrintName, ENT);
 
@@ -39,8 +40,8 @@ ENT.Sounds = {
 
 function ENT:SpawnFunction(p, tr) --######## Pretty useless unless we can spawn it @RononDex
 	if (!tr.HitWorld) then return end
-	local PropLimit = GetConVar("Count_ships_max"):GetInt()
-	if(p:GetCount("Count_ships")+1 > PropLimit) then
+	local PropLimit = GetConVar("EAP_ships_max"):GetInt()
+	if(p:GetCount("EAP_ships")+1 > PropLimit) then
 		p:SendLua("GAMEMODE:AddNotify(Lib.Language.GetMessage(\"entity_limit_ships\"), NOTIFY_ERROR, 5); surface.PlaySound( \"buttons/button2.wav\" )");
 		return
 	end
@@ -53,7 +54,7 @@ function ENT:SpawnFunction(p, tr) --######## Pretty useless unless we can spawn 
 	e:Activate()
 	
 	e:SetWire("Health",e:GetNetworkedInt("health"));
-	p:AddCount("Count_ships", e)
+	p:AddCount("EAP_ships", e)
 	return e
 end
 
@@ -147,22 +148,22 @@ function ENT:Think() --####### Now let me think... @RononDex
 	if(IsValid(self.Pilot)) then
 		if(not(self.Inflight)) then return end
 		if(self.Delay>=3) then
-			if(self.Pilot:KeyDown(self.Vehicle,"FIRE")) then
+			if(self.Pilot:KeyDown("EAP_KEYBOARD","FIRE")) then
 				self.Delay=0
 				self.StartDelay=true
 				self:FireTurrets()
 			end
 		end
 
-		if(self.Pilot:KeyDown(self.Vehicle,"SUCK") and IsValid(self.Harvester)) then
+		if(self.Pilot:KeyDown("EAP_KEYBOARD","SUCK") and IsValid(self.Harvester)) then
 			self.Harvester:TurnOn(true)
 		end
 
-		if(self.Pilot:KeyDown(self.Vehicle,"DHD")) then
+		if(self.Pilot:KeyDown("EAP_KEYBOARD","DHD")) then
 			self:OpenDHD(self.Pilot)
 		end
 
-		if(self.Pilot:KeyDown(self.Vehicle,"SPIT") and IsValid(self.Harvester)) then
+		if(self.Pilot:KeyDown("EAP_KEYBOARD","SPIT") and IsValid(self.Harvester)) then
 			self.Harvester:Spit()
 		end
 	end
@@ -179,7 +180,7 @@ function ENT:SpawnHarvester()
 	local data = self:GetAttachment(self:LookupAttachment("Suck")) --@Madman07
 	if(not (data and data.Pos)) then return end
 
-	local e = ents.Create("dart_harvester")
+	local e = ents.Create("dart_harvest")
 	e:SetModel("models/miriam/minidrone/minidrone.mdl")
 	e:SetPos(data.Pos)
 	e:SetAngles(self:GetAngles()+Angle(0,0,180))
@@ -194,6 +195,7 @@ function ENT:SpawnHarvester()
 	self.Harvester.MaxEnts = 10
 	self.Harvester.Disallowed={};
 	table.insert(self.Harvester.Disallowed, "ship_*");
+	table.insert(self.Harvester.Disallowed, "dart_harvest");
 end
 
 function ENT:FireTurrets() --####### Fire!@ Madman07
@@ -253,7 +255,7 @@ end
 function ENT:FindGate(dist)  --######### @ aVoN
 	local gate;
 	local pos = self:GetPos();
-	for _,v in pairs(ents.FindByClass("stargate_*")) do
+	for _,v in pairs(ents.FindByClass("sg_*")) do
 		if (not v.IsStargate or v.IsSupergate) then continue end
 		local sg_dist = (pos - v:GetPos()):Length();
 		if(dist >= sg_dist) then
@@ -266,7 +268,7 @@ end
 
 
 function ENT:Power(supply)
-	/*if(StarGate.RDThree()) then
+	/*if(Lib.RDThree()) then
 		RD.Link(self.Harvester,supply)
 	else
 		Dev_Link(self.Harvester,supply)
@@ -286,36 +288,6 @@ ENT.Category = Lib.Language.GetMessage('cat_ship');
 ENT.PrintName = Lib.Language.GetMessage('ent_ship_dart');
 end
 
-if (Lib==nil or Lib.KeyBoard==nil or Lib.KeyBoard.New==nil) then return end
-
---########## Keybinder stuff
-local KBD = Lib.KeyBoard:New("WraithDart")
---Navigation
-KBD:SetDefaultKey("FWD",Lib.KeyBoard.BINDS["+forward"] or "W") -- Forward
-KBD:SetDefaultKey("SPD",Lib.KeyBoard.BINDS["+speed"] or "SHIFT") --  Boost
-KBD:SetDefaultKey("UP",Lib.KeyBoard.BINDS["+jump"] or "SPACE")
-KBD:SetDefaultKey("DOWN",Lib.KeyBoard.BINDS["+duck"] or "CTRL")
-KBD:SetDefaultKey("LEFT",Lib.KeyBoard.BINDS["+moveleft"] or "A")
-KBD:SetDefaultKey("RIGHT",Lib.KeyBoard.BINDS["+moveright"] or "D")
---Roll
-KBD:SetDefaultKey("RL","MWHEELDOWN") -- Roll left
-KBD:SetDefaultKey("RR","MWHEELUP") -- Roll right
-KBD:SetDefaultKey("RROLL","MOUSE3") -- Reset Roll
---Attack
-KBD:SetDefaultKey("FIRE",Lib.KeyBoard.BINDS["+attack"] or "MOUSE1") -- Fire
---Special Actions
-KBD:SetDefaultKey("SUCK","C") --  Cull
-KBD:SetDefaultKey("SPIT","ALT") -- UnCull
-KBD:SetDefaultKey("DHD","R") -- DHD
---View
-KBD:SetDefaultKey("Z+","UPARROW")
-KBD:SetDefaultKey("Z-","DOWNARROW")
-KBD:SetDefaultKey("A+","LEFTARROW")
-KBD:SetDefaultKey("A-","RIGHTARROW")
-
-KBD:SetDefaultKey("BOOM","BACKSPACE")
-KBD:SetDefaultKey("EXIT",Lib.KeyBoard.BINDS["+use"] or "E")
-
 ENT.Sounds={
 	Engine=Sound("vehicles/DartEngine.wav"),
 }
@@ -325,7 +297,7 @@ function ENT:Initialize( )
 	LocalPlayer().Missiles=0
 	self.Dist=-650
 	self.UDist=190
-	self.KBD = self.KBD or KBD:CreateInstance(self)
+	self.KBD = self.KBD or Lib.Settings.KBD:CreateInstance(self)
 	self.Vehicle="WraithDart"
 end
 
@@ -365,7 +337,7 @@ function ENT:Draw()
 	self.BaseClass.Draw(self)
 
 	if((dart)and(dart:IsValid())) then
-		if(p:KeyDown("WraithDart","FWD")) then
+		if(p:KeyDown("EAP_KEYBOARD","FWD")) then
 			self:Effects(true)
 		else
 			self:Effects(false)
@@ -389,15 +361,15 @@ function ENT:Think()
 
 	if((dart)and((dart)==self)and(dart:IsValid())) then
 
-		if(p:KeyDown("WraithDart","Z+")) then
+		if(p:KeyDown("EAP_KEYBOARD","Z+")) then
 			self.Dist = self.Dist-5
-		elseif(p:KeyDown("WraithDart","Z-")) then
+		elseif(p:KeyDown("EAP_KEYBOARD","Z-")) then
 			self.Dist = self.Dist+5
 		end
 
-		if(p:KeyDown("WraithDart","A+")) then
+		if(p:KeyDown("EAP_KEYBOARD","A+")) then
 			self.UDist=self.UDist+5
-		elseif(p:KeyDown("WraithDart","A-")) then
+		elseif(p:KeyDown("EAP_KEYBOARD","A-")) then
 			self.UDist=self.UDist-5
 		end
 	end

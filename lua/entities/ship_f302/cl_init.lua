@@ -6,40 +6,6 @@ end
 ENT.RenderGroup = RENDERGROUP_BOTH;
 ENT.ViewOverride = true;
 
-if (Lib==nil or Lib.KeyBoard==nil or Lib.KeyBoard.New==nil) then return end
-
---########## Keybinder stuff
-local KBD = Lib.KeyBoard:New("F-302");
---Navigation
-KBD:SetDefaultKey("FWD",Lib.KeyBoard.BINDS["+forward"] or "W"); -- Forward
-KBD:SetDefaultKey("SPD",Lib.KeyBoard.BINDS["+speed"] or "SHIFT"); --  Boost
---Roll
-KBD:SetDefaultKey("RL","MWHEELDOWN"); -- Roll left
-KBD:SetDefaultKey("RR","MWHEELUP"); -- Roll right
-KBD:SetDefaultKey("RROLL","MOUSE3"); -- Reset Roll
---Attack
-KBD:SetDefaultKey("FIRE",Lib.KeyBoard.BINDS["+attack"] or "MOUSE1"); -- Fire missiles
-KBD:SetDefaultKey("TRACK",Lib.KeyBoard.BINDS["+attack2"] or "MOUSE2"); -- Track missiles
---Special Actions
-KBD:SetDefaultKey("CHGATK","R"); --  Toggle Bullets and Missiles
-KBD:SetDefaultKey("WHEELS",Lib.KeyBoard.BINDS["+duck"] or "CTRL");
-KBD:SetDefaultKey("FLARES","ALT");
-KBD:SetDefaultKey("EJECT","2");
-KBD:SetDefaultKey("BRAKE",Lib.KeyBoard.BINDS["+jump"] or "SPACE");
-KBD:SetDefaultKey("BOOST","B");
-KBD:SetDefaultKey("COCKPIT","3");
-KBD:SetDefaultKey("WINCH","4");
---View
-KBD:SetDefaultKey("Z+","UPARROW");
-KBD:SetDefaultKey("Z-","DOWNARROW");
-KBD:SetDefaultKey("A+","LEFTARROW");
-KBD:SetDefaultKey("A-","RIGHTARROW");
-KBD:SetDefaultKey("FPV","1");
-KBD:SetDefaultKey("HIDE","H");
-
-KBD:SetDefaultKey("BOOM","BACKSPACE")
-KBD:SetDefaultKey("EXIT",Lib.KeyBoard.BINDS["+use"] or "E")
-
 ENT.Sounds={
 	Engine=Sound("f302/f302_Engine.wav"),
 }
@@ -68,7 +34,7 @@ function ENT:Initialize()
 	self.Dist = -850;
 	self.UDist = 250;
 	self.NextPress = CurTime();
-	self.KBD = self.KBD or KBD:CreateInstance(self);
+	self.KBD = self.KBD or Lib.Settings.KBD:CreateInstance(self)
 	self.Vehicle = "F-302";
 end
 
@@ -133,7 +99,7 @@ function ENT:Effects(b)
 			else
 				drawfx = true;
 			end
-			if((p:KeyDown("F-302","FWD")) and drawfx) then
+			if((p:KeyDown("EAP_KEYBOARD","FWD")) and drawfx) then
 
 
 				if(Lib.VisualsShips("cl_F302_sprites")) then
@@ -381,20 +347,20 @@ function ENT:Think()
 	end
 
 	if((IsValid(f302))and((f302)==self)) then
-		if(p:KeyDown("F-302","Z+")) then
+		if(p:KeyDown("EAP_KEYBOARD","Z+")) then
 			self.Dist = self.Dist-5;
-		elseif(p:KeyDown("F-302","Z-")) then
+		elseif(p:KeyDown("EAP_KEYBOARD","Z-")) then
 			self.Dist = self.Dist+5;
 		end
 
-		if(p:KeyDown("F-302","A+")) then
+		if(p:KeyDown("EAP_KEYBOARD","A+")) then
 			self.UDist = self.UDist+5;
-		elseif(p:KeyDown("F-302","A-")) then
+		elseif(p:KeyDown("EAP_KEYBOARD","A-")) then
 			self.UDist = self.UDist-5;
 		end
 
 		if(self.NextPress < CurTime()) then
-			if(p:KeyDown(self.Vehicle,"HIDE")) then
+			if(p:KeyDown("EAP_KEYBOARD","HIDE")) then
 				if(self.HideHUD) then
 					self.HideHUD = false;
 				else
@@ -403,7 +369,7 @@ function ENT:Think()
 				self.NextPress = CurTime() + 1;
 			end
 
-			if(p:KeyDown(self.Vehicle,"FPV")) then
+			if(p:KeyDown("EAP_KEYBOARD","VIEW")) then
 				if(self.FPV) then
 					self.FPV = false;
 				else

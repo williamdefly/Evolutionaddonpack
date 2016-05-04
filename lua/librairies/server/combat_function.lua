@@ -1,3 +1,5 @@
+MsgN("librairies/server/combat_function.lua")
+
 function Lib.EmitHeat(pos, damage, radius, inflictor)
    if(CombatDamageSystem) then
       cds_heatpos(pos, damage, radius)

@@ -26,6 +26,7 @@ ENT.Author	= "RononDex, Iziraider, Madman, Boba Fett"
 ENT.Contact	= ""
 ENT.Purpose	= ""
 ENT.Instructions= ""
+ENT.Spawnable = true
 list.Set("EAP", ENT.PrintName, ENT);
 
 ENT.EntHealth = 2000
@@ -41,8 +42,8 @@ ENT.Shuttle=true
 function ENT:SpawnFunction(ply, tr) --######## Pretty useless unless we can spawn it @RononDex
 	if (!tr.HitWorld) then return end
 
-	local PropLimit = GetConVar("Count_ships_max"):GetInt()
-	if(ply:GetCount("Count_ships")+1 > PropLimit) then
+	local PropLimit = GetConVar("EAP_ships_max"):GetInt()
+	if(ply:GetCount("EAP_ships")+1 > PropLimit) then
 		ply:SendLua("GAMEMODE:AddNotify(Lib.Language.GetMessage(\"entity_limit_ships\"), NOTIFY_ERROR, 5); surface.PlaySound( \"buttons/button2.wav\" )");
 		return
 	end
@@ -52,7 +53,7 @@ function ENT:SpawnFunction(ply, tr) --######## Pretty useless unless we can spaw
 	e:Spawn()
 	e:Activate()
 	e:SetWire("Health",e:GetNetworkedInt("health"));
-	ply:AddCount("Count_ships", e)
+	ply:AddCount("EAP_ships", e)
 	e.Owner = ply;
 	return e
 end
@@ -190,7 +191,7 @@ function ENT:Think()
 
 	if(self.Inflight) then
 		if((self.Pilot)and(self.Pilot:IsValid())) then
-			if(self.Pilot:KeyDown("Shuttle","SHIELD")) then
+			if(self.Pilot:KeyDown("EAP_KEYBOARD","SHIELD")) then
 				if(self.ShieldOffline) then
 					self.Pilot:ChatPrint("Shuttle is to badly Damaged!/nShield's are offline")
 				end
@@ -216,10 +217,10 @@ function ENT:Think()
 	end
 
 	if(self.Inflight) then
-		if((self.TurretDisabled)and(self.Pilot:KeyDown(self.Vehicle,"FIRE"))) then
+		if((self.TurretDisabled)and(self.Pilot:KeyDown("EAP_KEYBOARD","FIRE"))) then
 			self.Pilot:ChatPrint("Taken to much damage! Turrets are offline")
 		end
-		if((self.Pilot:KeyDown(self.Vehicle,"FIRE"))and(not(self.TurretDisabled))) then
+		if((self.Pilot:KeyDown("EAP_KEYBOARD","FIRE"))and(not(self.TurretDisabled))) then
 			self:FireBlast(self:GetRight()*-525)
 			self:FireBlast(self:GetRight()*525)
 		end
@@ -394,30 +395,6 @@ ENT.PrintName = Lib.Language.GetMessage("ent_ship_shuttle");
 end
 ENT.RenderGroup = RENDERGROUP_BOTH
 
-if (Lib==nil or Lib.KeyBoard==nil or Lib.KeyBoard.New==nil) then return end
-
---########## Keybinder stuff
-local KBD = Lib.KeyBoard:New("Shuttle")
---Navigation
-KBD:SetDefaultKey("FWD",Lib.KeyBoard.BINDS["+forward"] or "W") -- Forward
-KBD:SetDefaultKey("SPD",Lib.KeyBoard.BINDS["+speed"] or "SHIFT") --  Boost
-KBD:SetDefaultKey("UP",Lib.KeyBoard.BINDS["+jump"] or "SPACE")
-KBD:SetDefaultKey("DOWN",Lib.KeyBoard.BINDS["+duck"] or "CTRL")
-KBD:SetDefaultKey("LEFT",Lib.KeyBoard.BINDS["+moveleft"] or "A")
-KBD:SetDefaultKey("RIGHT",Lib.KeyBoard.BINDS["+moveright"] or "D")
---Attack
-KBD:SetDefaultKey("FIRE",Lib.KeyBoard.BINDS["+attack"] or "MOUSE1")
---View
-KBD:SetDefaultKey("Z+","UPARROW")
-KBD:SetDefaultKey("Z-","DOWNARROW")
-KBD:SetDefaultKey("A+","LEFTARROW")
-KBD:SetDefaultKey("A-","RIGHTARROW")
---Special Actions
-KBD:SetDefaultKey("SHIELD","ALT")
-
-KBD:SetDefaultKey("BOOM","BACKSPACE")
-KBD:SetDefaultKey("EXIT",Lib.KeyBoard.BINDS["+use"] or "E")
-
 ENT.Sounds={
 	Engine=Sound("f302/f302_Engine.wav"),
 }
@@ -426,7 +403,7 @@ function ENT:Initialize( )
 	self.BaseClass.Initialize(self)
 	self.Dist=-1150
 	self.UDist=400
-	self.KBD = self.KBD or KBD:CreateInstance(self)
+	self.KBD = self.KBD or Lib.Settings.KBD:CreateInstance(self)
 	self.Vehicle = "Shuttle"
 end
 
@@ -445,7 +422,7 @@ function ENT:Effects()
 
 	if((Shuttle)and(Shuttle:IsValid()and(Shuttle==self))) then
 		for i=1,4 do
-			if((p:KeyDown("Shuttle","FWD"))) then
+			if((p:KeyDown("EAP_KEYBOARD","FWD"))) then
 				if(Lib.VisualsShips("cl_shuttle_heatwave")) then
 					local fx = self.FXEmitter:Add("sprites/heatwave",pos[i])
 					fx:SetVelocity(normal*2)
@@ -488,7 +465,7 @@ function ENT:BoostFX()
 	local p = LocalPlayer()
 	local Shuttle = p:GetNetworkedEntity("ScriptedVehicle", NULL)
 
-	if((p:KeyDown("Shuttle","SPD"))and(p:KeyDown("Shuttle","FWD"))and((Shuttle)and(Shuttle:IsValid())and(Shuttle==self))) then
+	if((p:KeyDown("EAP_KEYBOARD","SPD"))and(p:KeyDown("EAP_KEYBOARD","FWD"))and((Shuttle)and(Shuttle:IsValid())and(Shuttle==self))) then
 
 		local vel = Shuttle:GetVelocity()
 		for i=1,4 do
@@ -527,11 +504,11 @@ function ENT:Draw()
 
 	self.BaseClass.Draw(self)
 
-	if(p:KeyDown("Shuttle","FWD")) then
+	if(p:KeyDown("EAP_KEYBOARD","FWD")) then
 		self:Effects()
 	end
 
-	if(p:KeyDown("Shuttle","SPD")) then
+	if(p:KeyDown("EAP_KEYBOARD","SPD")) then
 		self:BoostFX()
 	end
 end
@@ -551,15 +528,15 @@ function ENT:Think()
 	end
 
 	if((Shuttle)and((Shuttle)==self)and(Shuttle:IsValid())) then
-		if(p:KeyDown("Shuttle","Z+")) then
+		if(p:KeyDown("EAP_KEYBOARD","Z+")) then
 			self.Dist = self.Dist-5
-		elseif(p:KeyDown("Shuttle","Z-")) then
+		elseif(p:KeyDown("EAP_KEYBOARD","Z-")) then
 			self.Dist = self.Dist+5
 		end
 
-		if(p:KeyDown("Shuttle","A+")) then
+		if(p:KeyDown("EAP_KEYBOARD","A+")) then
 			self.UDist=self.UDist+5
-		elseif(p:KeyDown("Shuttle","A-")) then
+		elseif(p:KeyDown("EAP_KEYBOARD","A-")) then
 			self.UDist=self.UDist-5
 		end
 	end

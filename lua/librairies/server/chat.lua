@@ -1,5 +1,6 @@
---CAP
+MsgN("librairies/server/chat.lua")
 
+--CAP
 hook.Add("PlayerAuthed","CAP_PlayerAuthedMSG",function(ply)
 	if (game.SinglePlayer()) then return nil end
 	local tbl = {"STEAM_0:0:15310103","STEAM_0:1:44681506","STEAM_0:0:30148988"};
@@ -9,7 +10,6 @@ hook.Add("PlayerAuthed","CAP_PlayerAuthedMSG",function(ply)
 end)
 
 --EAP
-
 hook.Add("PlayerAuthed","EAP_PlayerAuthedMSG",function(ply)
 	if (game.SinglePlayer()) then return nil end
 	local tbl = {"STEAM_0:0:44570515","STEAM_0:0:56878593","STEAM_0:0:8026971"};

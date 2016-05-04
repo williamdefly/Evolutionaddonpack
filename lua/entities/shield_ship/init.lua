@@ -105,7 +105,7 @@ function ENT:Initialize()
 			end
 		);
 	end
-	--local multi_shield = StarGate.CFG:Get("shield","multiple_shields",false); -- Allow multiple shields?
+	local multi_shield = Lib.CFG:Get("shield","multiple_shields",false); -- Allow multiple shields?
 	--################# Fetch all things in a sphere to make it nocollide
 	-- for _,v in pairs(ents.FindInSphere(self.Entity:GetPos(),self.Size)) do
 		-- if(not multi_shield and v ~= self.Entity and v:GetClass() == "shield") then

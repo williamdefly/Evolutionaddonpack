@@ -26,6 +26,8 @@
 	###################################
 */
 
+MsgN("librairies/shared/sb_language_lib.lua")
+
 if (SERVER) then
 	AddCSLuaFile();
 end
@@ -34,7 +36,7 @@ if (CLIENT) then
 	CreateClientConVar( "eap_language", GetConVarString("gmod_language") or "en", true, false )
 end
 
-StarGate = StarGate or {}
+Lib = Lib or {}
 
 
 LANGParser = {};

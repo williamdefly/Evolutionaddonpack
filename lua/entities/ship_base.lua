@@ -102,12 +102,12 @@ function ENT:Think()
 
 	if(self.Inflight) then
 		if(IsValid(self.Pilot)) then
-			if(self.Pilot:KeyDown(self.Vehicle,"BOOM")) then
+			if(self.Pilot:KeyDown("EAP_KEYBOARD","BOOM")) then
 				self:Bang(); return
 			end
 
 			if(self.NextExit<CurTime()) then
-				if(self.Pilot:KeyDown(self.Vehicle,"EXIT")) then
+				if(self.Pilot:KeyDown("EAP_KEYBOARD","EXIT")) then
 					self.NextExit = CurTime()+1;
 					self:Exit();
 				end
@@ -157,7 +157,7 @@ end
 function ENT:Exit(kill) --####### Get out @RononDex
 
 	if (IsValid(self.Pilot)) then
-		Lib.KeyBoard.ResetKeys(self.Pilot,self.Vehicle);
+		Lib.KeyBoard.ResetKeys(self.Pilot,"EAP_KEYBOARD");
 		self.Pilot:UnSpectate();
 		self.Pilot:DrawViewModel(true);
 		self.Pilot:DrawWorldModel(true);
@@ -218,13 +218,13 @@ function ENT:PhysicsSimulate( phys, deltatime )--############## Flight code@ Ron
 	if(self.Inflight and IsValid(self.Pilot)) then
 		-- Accelerate
 		if not self.AirBrake and not self.Boost then
-			if((self.Pilot:KeyDown(self.Vehicle,"FWD"))and(self.Pilot:KeyDown(self.Vehicle,"SPD"))) then
+			if((self.Pilot:KeyDown("EAP_KEYBOARD","FWD"))and(self.Pilot:KeyDown("EAP_KEYBOARD","SPD"))) then
 				self.num = self.MaxSpeed;
 				self.Entity:SetSkin(0);
-			elseif((self.Pilot:KeyDown(self.Vehicle,"FWD"))) then
+			elseif((self.Pilot:KeyDown("EAP_KEYBOARD","FWD"))) then
 				self.num = self.ForwardSpeed;
 				self.Entity:SetSkin(0);
-			elseif(self.Pilot:KeyDown(self.Vehicle,"BACK")) then
+			elseif(self.Pilot:KeyDown("EAP_KEYBOARD","BACK")) then
 				self.num = self.BackwardSpeed;
 			else
 				self.Entity:SetSkin(1);
@@ -235,9 +235,9 @@ function ENT:PhysicsSimulate( phys, deltatime )--############## Flight code@ Ron
 
 		-- Strafe
 		if(self.GoesRight) then
-			if(self.Pilot:KeyDown(self.Vehicle,"RIGHT")) then
+			if(self.Pilot:KeyDown("EAP_KEYBOARD","RIGHT")) then
 				self.num2 = self.RightSpeed;
-			elseif(self.Pilot:KeyDown(self.Vehicle,"LEFT")) then
+			elseif(self.Pilot:KeyDown("EAP_KEYBOARD","LEFT")) then
 				self.num2 = -self.RightSpeed;
 			else
 				self.num2 = 0;
@@ -247,9 +247,9 @@ function ENT:PhysicsSimulate( phys, deltatime )--############## Flight code@ Ron
 
 		-- Up and Down
 		if(self.GoesUp) then
-			if(self.Pilot:KeyDown(self.Vehicle,"UP")) then
+			if(self.Pilot:KeyDown("EAP_KEYBOARD","UP")) then
 				self.num3 = self.UpSpeed;
-			elseif(self.Pilot:KeyDown(self.Vehicle,"DOWN")) then
+			elseif(self.Pilot:KeyDown("EAP_KEYBOARD","DOWN")) then
 				self.num3 = -self.UpSpeed;
 			else
 				self.num3 = 0;
@@ -258,11 +258,11 @@ function ENT:PhysicsSimulate( phys, deltatime )--############## Flight code@ Ron
 		self.Accel.UP = math.Approach(self.Accel.UP,self.num3,self.Accel.SpeedUp);
 
 		if(self.CanRoll and not self.LandingMode) then
-			if(self.Pilot:KeyDown(self.Vehicle,"RL")) then
+			if(self.Pilot:KeyDown("EAP_KEYBOARD","RL")) then
 				self.Roll = self.Roll - 5;
-			elseif(self.Pilot:KeyDown(self.Vehicle,"RR")) then
+			elseif(self.Pilot:KeyDown("EAP_KEYBOARD","RR")) then
 				self.Roll = self.Roll + 5;
-			elseif(self.Pilot:KeyDown(self.Vehicle,"RROLL")) then
+			elseif(self.Pilot:KeyDown("EAP_KEYBOARD","RROLL")) then
 				self.Roll = 0;
 			end
 		end
@@ -290,7 +290,7 @@ function ENT:PhysicsSimulate( phys, deltatime )--############## Flight code@ Ron
 		ang.Roll = (ang.Roll + self.Roll - ExtraRoll*mul) % 360;
 		if (ang.Roll!=ang.Roll) then ang.Roll = oldRoll; end -- fix for nan values what cause despawing/crash.
 
-		if(self.Pilot:KeyDown(self.Vehicle,"LAND")) then
+		if(self.Pilot:KeyDown("EAP_KEYBOARD","LAND")) then
 			self.LandingMode = true;
 			self:SetAngles(Angle(0,self:GetAngles().Yaw,self.Roll));
 		else
@@ -384,13 +384,13 @@ end
 function ENT:PostEntityPaste(ply, Ent, CreatedEntities)
 	if (Lib.NotSpawnable(Ent:GetClass(),ply)) then self.Entity:Remove(); return end
 	if (IsValid(ply)) then
-		local PropLimit = GetConVar("Count_ships_max"):GetInt()
-		if(ply:GetCount("Count_ships")+1 > PropLimit) then
+		local PropLimit = GetConVar("EAP_ships_max"):GetInt()
+		if(ply:GetCount("EAP_ships")+1 > PropLimit) then
 			ply:SendLua("GAMEMODE:AddNotify(Lib.Language.GetMessage(\"entity_limit_ships\"), NOTIFY_ERROR, 5); surface.PlaySound( \"buttons/button2.wav\" )");
 			Ent:Remove();
 			return
 		end
-		ply:AddCount("Count_ships", Ent);
+		ply:AddCount("EAP_ships", Ent);
 		Ent.Owner = ply;
 	end
 	Lib.Wire.PostEntityPaste(self,ply,Ent,CreatedEntities)

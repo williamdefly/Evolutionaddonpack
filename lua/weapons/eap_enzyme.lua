@@ -175,8 +175,8 @@ if (SERVER) then
 	// 		victim:SetNetworkedBool("SGAdrenaline_Heal", false);
 	// 	end
 	// end
-	// hook.Add( "PlayerDeath", "StarGate.Adrenaline", playerDies )
-	// hook.Add( "PlayerSilentDeath", "StarGate.Adrenaline", playerDies )
+	// hook.Add( "PlayerDeath", "Lib.Adrenaline", playerDies )
+	// hook.Add( "PlayerSilentDeath", "Lib.Adrenaline", playerDies )
 end
 
 

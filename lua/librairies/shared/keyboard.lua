@@ -17,6 +17,8 @@
 */
 Lib.KeyBoard = Lib.KeyBoard or {};
 
+MsgN("librairies/shared/keyboard.lua")
+
 AddCSLuaFile();
 
 if SERVER then
@@ -208,11 +210,11 @@ function Lib.KeyBoard.ResetKeys(p,name)
 	end
 end
 
-/* The next functions were made to overwrite the CAP KeyDown , then the EAP Ship will Work @Elanis */
+/* The next functions were made to overwrite the CAP KeyDown , then the EAP Ship will Work @Elanis , an another function will replace CAP ships by EAP ships to keep working */
 
 function Lib.KeyBoard.Override()
 
-	if(StarGate==nil and Stargate.Keyboard==nil and Lib.IsCapDetected==true) then return false; end -- If CAP is initialized or if CAP isn't installed we can overwrite the function keyDown
+	if((StarGate==nil or StarGate.KeyBoard==nil) and Lib.IsCapDetected==true) then return false; end -- If CAP is initialized or if CAP isn't installed we can overwrite the function keyDown
 
 	--################### Overwrites the player's KeyDown etc function to use our system, if two arguments are given @aVoN
 	local meta = FindMetaTable("Player");

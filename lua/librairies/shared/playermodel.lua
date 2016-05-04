@@ -1,3 +1,5 @@
+MsgN("librairies/shared/playermodel.lua")
+
 list.Set( "PlayerOptionsModel", "atlante",             "models/humans/male_01.mdl" )
 player_manager.AddValidModel( "atlante",             "models/humans/male_01.mdl" )
 

@@ -26,6 +26,8 @@ ENT.Author	= "RononDex, Iziraider, Boba Fett"
 ENT.Contact	= ""
 ENT.Purpose	= ""
 ENT.Instructions= ""
+ENT.Spawnable = true
+
 list.Set("EAP", ENT.PrintName, ENT);
 
 if SERVER then
@@ -42,8 +44,8 @@ ENT.Sounds = {
 function ENT:SpawnFunction(ply, tr) --######## Pretty useless unless we can spawn it @RononDex
 	if (!tr.HitWorld) then return end
 
-	local PropLimit = GetConVar("Count_ships_max"):GetInt()
-	if(ply:GetCount("Count_ships")+1 > PropLimit) then
+	local PropLimit = GetConVar("EAP_ships_max"):GetInt()
+	if(ply:GetCount("EAP_ships")+1 > PropLimit) then
 		ply:SendLua("GAMEMODE:AddNotify(Lib.Language.GetMessage(\"entity_limit_ships\"), NOTIFY_ERROR, 5); surface.PlaySound( \"buttons/button2.wav\" )");
 		return
 	end
@@ -53,7 +55,7 @@ function ENT:SpawnFunction(ply, tr) --######## Pretty useless unless we can spaw
 	e:Spawn()
 	e:Activate()
 	e:SetWire("Health",e:GetNetworkedInt("health"));
-	ply:AddCount("Count_ships", e)
+	ply:AddCount("EAP_ships", e)
 	return e
 end
 
@@ -138,7 +140,7 @@ function ENT:Think()
 	end
 
 	if(IsValid(self.Pilot)) then
-		if((self.Pilot:KeyDown(self.Vehicle,"FIRE"))) then
+		if((self.Pilot:KeyDown("EAP_KEYBOARD","FIRE"))) then
 			if(self.Delay>=10) then
 				self:FireBlast(self:GetRight()*-130)
 				self:FireBlast(self:GetRight()*130)
@@ -186,39 +188,13 @@ ENT.Sounds = {
 	Engine=Sound("glider/deathglideridleoutside.wav"),
 }
 
-if (Lib==nil or Lib.KeyBoard==nil or Lib.KeyBoard.New==nil) then return end
-
---########## Keybinder stuff
-local KBD = Lib.KeyBoard:New("DeathGlider")
---Navigation
-KBD:SetDefaultKey("FWD",Lib.KeyBoard.BINDS["+forward"] or "W") -- Forward
-KBD:SetDefaultKey("SPD",Lib.KeyBoard.BINDS["+speed"] or "SHIFT")
---Roll
-KBD:SetDefaultKey("RL","MWHEELDOWN") -- Roll left
-KBD:SetDefaultKey("RR","MWHEELUP") -- Roll right
-KBD:SetDefaultKey("RROLL","MOUSE3") -- Reset Roll
---Attack
-KBD:SetDefaultKey("FIRE",Lib.KeyBoard.BINDS["+attack"] or "MOUSE1") -- Fire blasts
---Special Actions
-KBD:SetDefaultKey("RROLL","MOUSE3") -- Reset roll
-KBD:SetDefaultKey("BOOM","BACKSPACE")
-
---View
-KBD:SetDefaultKey("Z+","UPARROW")
-KBD:SetDefaultKey("Z-","DOWNARROW")
-KBD:SetDefaultKey("A+","LEFTARROW")
-KBD:SetDefaultKey("A-","RIGHTARROW")
-KBD:SetDefaultKey("VIEW","1")
-
-KBD:SetDefaultKey("EXIT",Lib.KeyBoard.BINDS["+use"] or "E")
-
 function ENT:Initialize()
 	self.Dist=-850
 	self.UDist=250
 	self.FirstPerson=false
 	self.lastswitch = CurTime();
 	self.on1=0;
-	self.KBD = self.KBD or KBD:CreateInstance(self)
+	self.KBD = self.KBD or Lib.Settings.KBD:CreateInstance(self)
 	self.BaseClass.Initialize(self)
 	self.Vehicle = "DeathGlider";
 end
@@ -240,15 +216,15 @@ function ENT:Think()
 	end
 
 	if((vehicle)and((vehicle)==self)and(vehicle:IsValid())) then
-		if(p:KeyDown(self.Vehicle,"Z+")) then
+		if(p:KeyDown("EAP_KEYBOARD","Z+")) then
 			self.Dist = self.Dist-5
-		elseif(p:KeyDown(self.Vehicle,"Z-")) then
+		elseif(p:KeyDown("EAP_KEYBOARD","Z-")) then
 			self.Dist = self.Dist+5
 		end
 
-		if(p:KeyDown(self.Vehicle,"A+")) then
+		if(p:KeyDown("EAP_KEYBOARD","A+")) then
 			self.UDist=self.UDist+5
-		elseif(p:KeyDown(self.Vehicle,"A-")) then
+		elseif(p:KeyDown("EAP_KEYBOARD","A-")) then
 			self.UDist=self.UDist-5
 		end
 	end
