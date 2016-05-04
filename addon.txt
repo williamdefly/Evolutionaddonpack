@@ -5,5 +5,5 @@
  -	"author_name"		"Team EAP"
   	"author_email"		"stargate-evolution@hotmail.com"
  -	"author_url"		"www.sg-eap.space"
- -	"Forum"             "www.sg-eap.space/forum"	  
+ -	"Forum"             "forum.sg-eap.space"	  
   }
