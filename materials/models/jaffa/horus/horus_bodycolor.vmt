@@ -1,0 +1,12 @@
+"VertexLitGeneric"
+{
+	"$baseTexture" "models\jaffa\horus\horus_bodycolor"
+	"$bumpmap" "models\jaffa\horus\horus_bodycolor_normal"
+	"$envmap" "env_cubemap"
+	"$normalmapalphaenvmapmask" 1
+	"$model" 1
+	"$phong" "1"
+	"$phongexponent" "30"
+	"$phongboost" "50"	
+	"$phongfresnelranges"	"[.1 1 3]"
+}

@@ -35,7 +35,7 @@ else
 	-- Shit happens aVoN;p Especialy in gmod ;p (Mad)
 end
 if (Lib.Language!=nil and Lib.Language.GetMessage!=nil) then
-SWEP.PrintName = Lib.Language.GetMessage("weapon_ring_caller");
+SWEP.PrintName = Lib.Language.GetMessage("wp_ring_caller");
 SWEP.Category = "EAP"
 end
 SWEP.Author = "aVoN"

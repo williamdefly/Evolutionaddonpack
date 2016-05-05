@@ -1,0 +1,13 @@
+"VertexLitGeneric"
+{
+	"$baseTexture" "Models/jaffa/serpent/colar"
+	"%keywords" "sgtc2"
+	"$surfaceprop" "metal"
+	"$envmap" "env_cubemap"
+	//"$bumpmap" "Models/jaffa/serpent/col_normal"
+	"$envmaptint" "[0.10 0.10 0.10]"
+	"$envmapconstrast" "1"
+	"$normalmapalphaenvmapmask" 1
+}
+
+

@@ -24,6 +24,7 @@ ent_ship_replicator = Replicator MotherShip
 ent_ship_shuttle = Destiny Shuttle
 ent_ship_teltak = Tel'tak
 ent_ship_wraithcruiser = Wraith Cruiser
+ent_ship_traveler = Traveler
 
 //Player Weapons Entities
 ent_frag_grenade = Frag Grenade Entity

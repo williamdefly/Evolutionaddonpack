@@ -24,6 +24,7 @@ ent_ship_replicator = Vaisseau Mère Réplicateur
 ent_ship_shuttle = Navette du Destinée
 ent_ship_teltak = Tel'tak
 ent_ship_wraithcruiser = Croiseur Wraith
+ent_ship_traveler = Voyageur
 
 //Player Weapons Entities
 ent_frag_grenade = Entitée de la grenade a fragmentation

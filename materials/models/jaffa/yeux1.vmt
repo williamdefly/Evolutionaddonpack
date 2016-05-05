@@ -1,0 +1,10 @@
+"VertexLitGeneric"
+{
+	"$baseTexture" "Models/jaffa/yeux1"
+	"$phong" "1"
+	"$phongexponent" "15"
+	"$phongboost" "20"	
+	"$phongfresnelranges"	"[.1 1 3]"
+}
+
+

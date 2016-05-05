@@ -1,0 +1,12 @@
+"VertexLitGeneric"
+{
+	"$baseTexture" "Models/jaffa/head1"
+	
+	"%keywords" "sgtc2"
+	"$phong" "1"
+	"$phongexponent" "5"
+	"$phongboost" "1"	
+	"$phongfresnelranges"	"[.1 1 3]"
+}
+
+

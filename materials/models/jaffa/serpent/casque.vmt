@@ -1,0 +1,15 @@
+"VertexLitGeneric"
+{
+	"$baseTexture" "models/jaffa/helmet_jaffa"
+	"%keywords" "sgtc2"
+	"$bumpmap" "models/jaffa/helmet_jaffa_normal"
+	"$envmap" "env_cubemap"
+	"$normalmapalphaenvmapmask" 1
+	"$model" 1
+	"$surfaceprop" "metal"
+	"$phong" "1"
+	"$phongexponent" "30"
+	"$phongboost" "50"	
+	"$phongfresnelranges"	"[.1 1 3]"
+}
+

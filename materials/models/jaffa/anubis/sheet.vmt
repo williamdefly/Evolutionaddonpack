@@ -1,0 +1,12 @@
+"VertexLitGeneric"
+{
+	"$baseTexture" "models\jaffa\anubis\sheet"
+	"$bumpmap" "models\jaffa\anubis\sheet_normal"
+	"$envmap" "env_cubemap"
+	"$normalmapalphaenvmapmask" 1
+	"$model" 1
+	"$phong" "1"
+	"$phongexponent" "25"
+	"$phongboost" "40"	
+	"$phongfresnelranges"	"[.1 1 3]"
+}
