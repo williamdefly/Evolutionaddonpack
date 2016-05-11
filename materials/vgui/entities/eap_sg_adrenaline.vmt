@@ -1,0 +1,11 @@
+"UnlitGeneric" 
+{ 
+	"$basetexture"		"vgui/entities/eap_sg_adrenaline" 
+	"$vertexcolor" 		1 
+	"$vertexalpha" 		1 
+	"$nolod" 			1 
+} 
+
+
+
+

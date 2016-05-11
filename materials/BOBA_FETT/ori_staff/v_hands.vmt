@@ -1,0 +1,17 @@
+VertexLitGeneric
+{
+	"$basetexture" "Boba_Fett\hands\v_hands"
+	"$bumpmap"    "Boba_Fett\hands\v_hands_normal"
+	"$normalmapalphaenvmapmask" "1"
+	"$normalmapalphaphongmask"    "1"
+
+ 	"$phong" "1"
+                "$phongexponent" "38"
+	"$phongboost"	"0.2"
+	"$phongfresnelranges"	"[1 5 2]"
+	"$phongalbedotint" "1"
+
+	"$rimlight" "1"
+	"$rimlightexponent" "40"	
+	"$rimlightboost" "0,2"
+}

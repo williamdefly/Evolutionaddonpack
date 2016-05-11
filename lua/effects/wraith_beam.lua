@@ -40,7 +40,7 @@ function EFFECT:Init(data)
 		fx:SetOrigin(self.EndPos);
 		fx:SetScale(data:GetScale());
 		fx:SetEntity(e);
-		util.Effect("wraithbeam",fx,true,true);
+		util.Effect("wraith_beam",fx,true,true);
 	else
 		e.GotFirstSpawnEffect = true;
 	end

@@ -319,12 +319,12 @@ function ENT:ReadyChecks()
 			local effectdata = EffectData()
 				effectdata:SetOrigin( self.Entity:LocalToWorld(self.EndPos) )
 				effectdata:SetMagnitude(1)
-			util.Effect( "transportcore", effectdata )
+			util.Effect( "transport_core", effectdata )
 
 			local effectdata = EffectData()
 				effectdata:SetOrigin( self.Other:LocalToWorld(self.Other.EndPos) )
 				effectdata:SetMagnitude(1)
-			util.Effect( "transportcore", effectdata )
+			util.Effect( "transport_core", effectdata )
 
 			if (self.Other:GetClass() == "rg_base_ori") then
 				for i=1,5 do
@@ -361,7 +361,7 @@ end
 
 function ENT:DoRings()
 	self.Busy=true
-	self.Entity:EmitSound("tech/ring_transporter2.wav", 100, 100)
+	self.Entity:EmitSound("tech/ring_transporter.mp3", 100, 100)
 	self:Anim(false);
 
 	local dir = 1;

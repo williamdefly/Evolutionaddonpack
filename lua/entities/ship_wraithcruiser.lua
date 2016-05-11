@@ -254,6 +254,11 @@ function ENT:Think()
 	end
 end
 
+local hudpos = {
+	healthw = (ScrW()/10*1.4),
+	healthh = (ScrH()/10*8.2),
+}
+
 function DrawHUD() -- Draw that HUD @Elanis
 
 	local ply = LocalPlayer();
@@ -267,6 +272,9 @@ function DrawHUD() -- Draw that HUD @Elanis
 		surface.SetTexture(MainHud);
 		surface.SetDrawColor(255,255,255,255);
 		surface.DrawTexturedRect(0,0,ScrW(),ScrH());
+			local health = math.Round(self:GetNetworkedInt("health")/18000*100) -- test fix
+			draw.WordBox(8,hudpos.healthw,hudpos.healthh, Lib.Language.GetMessage("health")..": "..health.."%","ScoreboardText",Color(50,50,75,0), Color(255,100,200,255))
+
 	end
 
 end

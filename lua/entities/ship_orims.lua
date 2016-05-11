@@ -271,6 +271,12 @@ function ENT:Think()
 	end
 end
 
+local hudpos = {
+	healthw = (ScrW()/10*1.2),
+	healthh = (ScrH()/10*7.8),
+	weaponw = (ScrW()/10*1.2),
+	weaponh = (ScrH()/10*7.5),
+}
 function DrawHUD() -- Draw that HUD @Elanis
 
 	local ply = LocalPlayer();
@@ -284,6 +290,15 @@ function DrawHUD() -- Draw that HUD @Elanis
 		surface.SetTexture(MainHud);
 		surface.SetDrawColor(255,255,255,255);
 		surface.DrawTexturedRect(0,0,ScrW(),ScrH());
+			local health = math.Round(self:GetNetworkedInt("health")/32000*100) -- test fix
+
+--		if self.CanShoot == 1 then
+--			draw.WordBox(8,hudpos.weaponw,hudpos.weaponh, "Weapon: 100%","ScoreboardText",Color(50,50,75,0), Color(235, 235, 210,255))
+--		else	
+--			draw.WordBox(8,hudpos.weaponw,hudpos.weaponh, "Weapon: 0%","ScoreboardText",Color(50,50,75,0), Color(235, 235, 210,255))
+--		end
+			draw.WordBox(8,hudpos.healthw,hudpos.healthh, Lib.Language.GetMessage("health")..": "..health.."%","ScoreboardText",Color(50,50,75,0), Color(235, 235, 210,255))
+
 	end
 
 end

@@ -5,8 +5,8 @@ include("shared.lua");
 function ENT:Initialize()
 	self.hasZat =false
 	self.hasStaff = false
-	self.ZatClass = "weapon_zat"
-	self.StaffClass = "weapon_staff"
+	self.ZatClass = "eap_weapon_zat"
+	self.StaffClass = "eap_weapon_staff"
 
 	self.PlayerWeapons = {}
 	self.EntityLife = 200

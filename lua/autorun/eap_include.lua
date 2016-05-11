@@ -71,6 +71,9 @@ IncludeCS('librairies/shared/playermodel.lua');
 -- Matrix
 IncludeCS('librairies/shared/matrix.lua');
 
+-- Weapons
+IncludeCS('librairies/shared/weapons.lua');
+
 -- Language Libs
 IncludeCS('librairies/shared/sg_language_lib.lua');
 

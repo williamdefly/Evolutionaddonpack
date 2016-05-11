@@ -1,6 +1,0 @@
-If you have a bug , please chack this :
-
-- server.cfg :
-	mp_forcecamera "1" will create viewing bugs
-
-If this not resolve your bugs you can contact us on our forum at sg-eap.space

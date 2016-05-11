@@ -518,7 +518,7 @@ function ENT:Think()
 			) then
 				self.EngineSound:ChangePitch(math.Clamp(60 + pitch/25,75,100) + doppler,0);
 			else
-				self.EngineSound:ChangePitch(math.Clamp(60 + pitch/25,25,150) + doppler,0);
+				self.EngineSound:ChangePitch(math.Clamp(255,0,255),99999999);
 				
 			end
 		end

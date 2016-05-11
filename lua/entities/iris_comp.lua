@@ -490,7 +490,7 @@ local function gdopc_menuhook(len)
 	local image = vgui.Create("DImage" , DermaPanel);
     image:SetSize(16, 16);
     image:SetPos(5, 5);
-    image:SetImage("gui/cap_logo");
+    image:SetImage("img/eap_logo");
 
   	local title = vgui.Create( "DLabel", DermaPanel );
  	title:SetText(Lib.Language.GetMessage("iriscomp_title"));

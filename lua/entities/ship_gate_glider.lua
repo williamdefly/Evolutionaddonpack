@@ -161,7 +161,7 @@ function ENT:FireBlast(diff)
 			-- fx:SetAngles(Angle(255,200,120));
 			-- fx:SetRadius(80);
 		-- util.Effect("avon_energy_muzzle",fx,true);
-		local e = ents.Create("energy_pulse");
+		local e = ents.Create("eap_energy_pulse");
 		e:PrepareBullet(self:GetForward(), 10, 16000, 6, {self.Entity});
 		e:SetPos(self:GetPos()+diff);
 		e:SetOwner(self);

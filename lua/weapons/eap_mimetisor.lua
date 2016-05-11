@@ -2,7 +2,7 @@ SWEP.PrintName  = Lib.Language.GetMessage("wp_mimetisor");
 SWEP.ClassName  ="eap_mimetisor";
 
 SWEP.Author = "Matspyder"
-SWEP.Contact = "http://sg-e.fr"
+SWEP.Contact = "http://sg-eap.space"
 SWEP.Purpose = "Take Apparence of someone"
 SWEP.Instructions = ""
 SWEP.Base = "weapon_base";
@@ -34,8 +34,6 @@ SWEP.Secondary.DefaultClip = -1;
 SWEP.Secondary.Automatic = false;
 SWEP.Secondary.Ammo = "none";
 
--- Add weapon for NPCs
-//list.Add("NPCUsableWeapons", {class = "weapon_kull", title = SWEP.PrintName or ""});
 
 function SWEP:Initialize()
 	self.Weapon:SetWeaponHoldType(self.HoldType)
@@ -119,13 +117,13 @@ end
 
 function SWEP:TakeApparence(entity)
 	if(self.Owner.HaveChangeModel) then
-		self.Owner:PrintMessage(HUD_PRINTTALK,"Vous avez déjà configurer ce mimétiseur")
+		self.Owner:PrintMessage(HUD_PRINTTALK,Lib.Language.GetMessage("mimetisor_config_b"))
 		self.Owner:EmitSound(Sounds.Fail,100,100)
 	else
 		self.Owner.BaseModel = self.Owner:GetModel()
 		self.Owner:SetModel(entity:GetModel());
 		self.Owner:EmitSound(Sounds.Engage,100,100)
-		self.Owner:ChatPrint("Vous avez maintenant l'apparence de "..entity:Nick())
+		self.Owner:ChatPrint(Lib.Language.GetMessage("mimetisor_sucess")..entity:Nick())       
 		self.Owner.HaveChangeModel = true
 		self.Owner.PlayerSkin = entity:GetModel()
 	end
@@ -135,20 +133,12 @@ function SWEP:ResetModel()
 	if(self.Owner.HaveChangeModel)then
 		self.Owner:SetModel(self.Owner.BaseModel)
 		self.Owner:EmitSound(Sounds.Disengage,100,100)
-		self.Owner:ChatPrint("Vous avez retrouvé votre apparence normale")
+		self.Owner:ChatPrint(Lib.Language.GetMessage"mimetisor_reset")
 		self.Owner.HaveChangeModel = false
 		self.Owner.PlayerSkin = nil
 	end
 end
 
-hook.Add("PlayerSpawn","EAP.MimetisorSpawn",function(player)
-	player.HaveChangeModel = false
-	player.BaseModel = nil
-	player.PlayerSkin = nil
-	if(player:IsAdmin())then
-		player:Give("eap_mimetisor")
-	end
-end)
 
 --################### Holster @aVoN
 function SWEP:Holster()
@@ -159,15 +149,6 @@ end
 end
 
 if CLIENT then
--- Inventory Icon
-if(file.Exists("materials/VGUI/kullweapon.vmt","GAME")) then
-	SWEP.WepSelectIcon = surface.GetTextureID("VGUI/kullweapon");
-end
--- Kill Icon
-if(file.Exists("materials/VGUI/weapons/staff_killicon.vmt","GAME")) then
-	killicon.Add("weapon_staff","VGUI/weapons/staff_killicon",Color(255,255,255));
-	killicon.Add("staff_pulse","VGUI/weapons/staff_killicon",Color(255,255,255));
-end
 
 --################### Positions the viewmodel correctly @aVoN
 function SWEP:GetViewModelPosition(p,a)
@@ -212,7 +193,7 @@ net.Receive("EAP.ChangeApparence",function(len)
 	end
 
   	local title = vgui.Create( "DLabel", DermaPanel );
- 	title:SetText("Mimetisor Select Target");
+ 	title:SetText(Lib.Language.GetMessage"mimetisor_select");
   	title:SetPos( 25, 0 );
  	title:SetSize( 400, 25 );
 
@@ -225,7 +206,7 @@ net.Receive("EAP.ChangeApparence",function(len)
 	targetList:SetMultiSelect(false)
 	targetList:SetPos(75, 55)
 	targetList:SetSize(160, 200)
-	targetList:AddColumn("Cible")
+	targetList:AddColumn(Lib.Language.GetMessage"mimetisor_target")
 	targetList:SortByColumn(1, true)
 	DermaPanel.targetList = targetList;
 
@@ -236,7 +217,7 @@ net.Receive("EAP.ChangeApparence",function(len)
 
 	local sendButton = vgui.Create("DButton" , DermaPanel )
 	sendButton:SetParent( DermaPanel )
-	sendButton:SetText("Changer d'apparence")
+	sendButton:SetText(Lib.Language.GetMessage"mimetisor_change")
 	sendButton:SetPos(75, 260)
 	sendButton:SetSize(160, 25)
 	sendButton.DoClick = function ( btn )
@@ -253,7 +234,7 @@ net.Receive("EAP.ChangeApparence",function(len)
 			net.SendToServer();
 			DermaPanel:Close()
 		else
-			GAMEMODE:AddNotify("Pas de cible valide", NOTIFY_ERROR, 5); surface.PlaySound( "buttons/button2.wav" );
+			GAMEMODE:AddNotify(Lib.Language.GetMessage"mimetisor_error", NOTIFY_ERROR, 5); surface.PlaySound( "buttons/button2.wav" );
 		end
 	end
 

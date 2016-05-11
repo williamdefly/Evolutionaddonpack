@@ -5,10 +5,11 @@ include("shared.lua");
 function ENT:Initialize()
 	self.hasZat =false
 	self.hasStaff = false
-	self.ZatClass = "weapon_zat"
-	self.P90 = "fnp90"
-	self.GDO = "weapon_gdo"
-	self.Adrenaline = "sg_adrenaline"
+	self.ZatClass = "eap_weapon_zat"
+	self.P90 = "eap_fnp90"
+	self.GDO = "eap_weapon_gdo"
+	self.beretta = "weapon_beretta"
+	self.Adrenaline = "eap_sg_adrenaline"
 
 	self.PlayerWeapons = {}
 	self.EntityLife = 200
@@ -83,6 +84,7 @@ function ENT:GiveWeapon(p)
 		p:Give(self.ZatClass)
 		p:Give(self.P90)
 		p:Give(self.GDO)
+		p:Give(self.beretta)
 		p:Give(self.Adrenaline)
 		if(p:GetAmmoCount("GaussEnergy")<150)then
 			p:GiveAmmo(50,"GaussEnergy",false)

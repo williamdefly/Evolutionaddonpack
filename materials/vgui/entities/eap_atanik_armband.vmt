@@ -1,0 +1,11 @@
+"UnlitGeneric" 
+{ 
+	"$basetexture"		"vgui/entities/eap_atanik_armband" 
+	"$vertexcolor" 		1 
+	"$vertexalpha" 		1 
+	"$nolod" 			1 
+} 
+
+
+
+
