@@ -6,6 +6,7 @@ Active Contributors :
 - Elanis : 3D Modeler & Lua scripter
 - Physics : Texturer
 - Damlanil : Texturer & Lua scripter
+- ExiLon2400 : Webmaster
 
 Old Contributors :
 - Matspyder : Lua Scripter
@@ -25,6 +26,7 @@ Contributeurs Actuels :
 - Elanis : Modeliseur 3D et codeur LUA
 - Physics : Textureur
 - Damlanil : Textureur et codeur LUA
+- ExiLon2400 : Webmaster
 
 Anciens Contributeurs :
 - Matspyder : codeur LUA
