@@ -130,38 +130,38 @@ angles=15.000 -101.709 -0.000
 classname=dhd_atl
 position=-6569.0688 11304.8311 3000.3340
 angles=15.000 38.612 0.000
-[ring_panel]
+[rg_panel]
 classname=rg_panel_ancient
 position=-10847.8457 -1293.6012 3225.5115
 angles=-24.315 148.313 0.007
-[ring_panel]
+[rg_panel]
 classname=rg_panel_ancient
 position=10631.6035 -9967.0693 -12487.5244
 angles=-68.083 -54.808 -12.979
-[ring_panel]
+[rg_panel]
 classname=rg_panel_goauld
 position=-4471.0791 -2664.0256 28.9578
 angles=-30.963 -0.415 0.003
-[ring_panel]
+[rg_panel]
 classname=rg_panel_goauld
 position=-13222.9375 -12979.3496 -12070.2686
 angles=0.000 -0.021 0.000
-[ring_base]
+[rg_base]
 classname=rg_base_ancient
 position=-10962.4473 -1238.3064 3193.7778
 angles=-0.911 -88.565 -4.357
 address=2
-[ring_base]
+[rg_base]
 classname=rg_base_ancient
 position=10662.2998 -10064.4980 -12498.0000
 angles=0.000 -11.329 0.000
 address=3
-[ring_base]
+[rg_base]
 classname=rg_base_goauld
 position=-4340.0469 -2665.7666 7.0313
 angles=0.000 -1.468 0.000
 address=1
-[ring_base]
+[rg_base]
 classname=rg_base_goauld
 position=-13103.9063 -12978.9316 -12111.5010
 angles=-0.080 -0.109 -0.007

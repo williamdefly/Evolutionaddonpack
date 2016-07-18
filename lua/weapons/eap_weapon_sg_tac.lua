@@ -30,7 +30,7 @@ SWEP.Secondary.Ammo	= "none";
 
 SWEP.HoldType = "grenade";
 
-
+SWEP.Spawnable = true
 
 function SWEP:Initialize()
 	self:SetWeaponHoldType(self.HoldType);

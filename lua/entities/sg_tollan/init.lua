@@ -34,7 +34,7 @@ ENT.Sounds = {
 	Open=Sound("stargate/sg1/open.mp3"),
 	Travel=Sound("stargate/gate_travel.mp3"),
 	Close=Sound("stargate/gate_close.mp3"),
-	ChevronDHD=Sound("stargate/dhd_sg1.mp3"),
+	ChevronDHD=Sound("stargate/dhd_milk.mp3"),
 	Inbound=Sound("stargate/chevron_incoming.mp3");
 	Fail=Sound("stargate/dial_fail.mp3"),
 	OnButtonLock=Sound("stargate/stargate/dhd/dhd_usual_dial.wav"),
@@ -133,7 +133,7 @@ function ENT:SpawnFunction(p,t)
 	e:SetAngles(ang);
 	e:SetGateGroup("M@");
 	e:SetLocale(true);
-	e:CartersRamps(t); -- put gate on carters ramps @Llapp
+	e:Ramps(t); -- put gate on ramps @Llapp
 	e:SetWire("Dialing Mode",-1);
 	return e;
 end
@@ -245,6 +245,6 @@ function ENT:Shutdown()
 	end
 end
 
-if (Lib and Lib.CAP_GmodDuplicator) then
-	duplicator.RegisterEntityClass( "sg_tollan", Lib.CAP_GmodDuplicator, "Data" )
+if (Lib and Lib.EAP_GmodDuplicator) then
+	duplicator.RegisterEntityClass( "sg_tollan", Lib.EAP_GmodDuplicator, "Data" )
 end

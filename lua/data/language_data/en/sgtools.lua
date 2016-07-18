@@ -33,6 +33,13 @@ stool_stargate_iris_err3 = Iris can't be spawned on gatespawner gate!
 
 //Goauld Iris
 stool_giris = Goa'uld Iris
+stool_goauld_iris_spawner = Goauld Iris Spawner
+stool_goauld_iris_create = Creates a Goauld Iris
+stool_goauld_iris_desc = Left click, to spawn or update a Goauld Iris
+stool_goauld_iris_undone = Goauld Iris removed
+stool_goauld_iris_cleanup = Goauld Iris
+stool_goauld_iris_cleaned = Removed all Goauld Irises
+stool_goauld_iris_limit = Hit the Goauld Iris limit
 
 // Ramps
 stool_anim_ramps = Animated Ramps
@@ -46,10 +53,36 @@ stool_ramp_cleanup = Ramps
 stool_ramp_cleaned = Removed all Ramps
 stool_ramp_limit = Hit the Ramp limit
 stool_ramp_anim_limit = Anim ramp limit reached!
+stool_ramps_spawner = Ramp Spawner
+stool_ramps_create = Creates a Ramp
+stool_ramps_desc = Left click, to spawn a Ramp
+stool_ramps_remove = Ramp removed
+stool_ramps_cleanup = Ramps
+stool_ramps_cleaned = Removed all Ramps
+stool_ramps_limit = Hit the Ramp limit
+stool_ramps_anim_limit = Anim ramp limit reached!
 
-//DHD
+// Mobile DHD
 stool_mdhd = Mobile DHD
+stool_stargate_eap_dhd_spawner = Mobile DHD Spawner
+stool_stargate_eap_dhd_create = Creates a Mobile DHD
+stool_stargate_eap_dhd_desc = Left click, to spawn a Mobile DHD
+stool_stargate_eap_dhd_undone = Mobile DHD removed
+stool_stargate_eap_dhd_cleanup = Mobile DHDs
+stool_stargate_eap_dhd_cleaned = Removed all Mobile DHDs
+stool_stargate_eap_dhd_limit = Hit the Mobile DHD limit
+
+// Supergate DHD
 stool_sdhd = Supergate DHD
+stool_supergate_dhd_spawner = Supergate DHD Spawner
+stool_supergate_dhd_create = Creates a Supergate DHD
+stool_supergate_dhd_desc = Left click, to spawn a Supergate DHD
+stool_supergate_dhd_undone = Supergate DHD removed
+stool_supergate_dhd_cleanup = Supergate DHDs
+stool_supergate_dhd_cleaned = Removed all Supergate DHDs
+stool_supergate_dhd_limit = Hit the Supergate DHD limit
+stool_supergate_dhd_err = You are not pointing at a Supergate!
+stool_supergate_dhd_exs = Supergate DHD is already exist on this Supergate!
 
 // Floor Chevron
 stool_fchev = Floor Chevron
@@ -112,3 +145,183 @@ stool_gravitycontroller_hmd_desc = The GC will act like a hoverball. It will aut
 stool_gravitycontroller_lbd = Local Brake Description
 stool_gravitycontroller_lbd_desc = If you enable that, the GC will brake seperate on every axis. If you set every but one axis to 100, it will 'slide' along that axis. So if you want your ship not to brake as hard forward as it should sideways or upwards, this is for you!
 stool_gravitycontroller_sga = SGA Powernode Mode
+
+//Ashen 
+entity_asgard_ashen_def = Ashen Defence
+stool_ashen_defence_spawner = Ashen Defence Spawner
+stool_ashen_defence_create = Spawn Ashen Defences
+stool_ashen_defence_desc = Left Click, to spawn an ashen defence
+stool_ashen_defence_undone = Ashen Defence removed
+stool_ashen_defence_cleanup = Ashen Defence
+stool_ashen_defence_cleaned = Removed all the Ashen Defences
+stool_ashen_defence_limit = Hit the Ashen Defence Limit
+
+// Drones
+stool_drones = Drones
+stool_drones_spawner = Drone Launcher Spawner
+stool_drones_create = Spawns a drone launcher
+stool_drones_desc = Left click, to spawn a drone launcher
+stool_drones_undone = Drone launcher removed
+stool_drones_cleanup = Drone launchers
+stool_drones_cleaned = Removed all drone launchers
+stool_drones_limit = Hit the drone launcher limit
+stool_drones_shoot = Shoot:
+stool_drones_kill = Kill Drones:
+stool_drones_track = Track Target:
+stool_drones_eye_track = Eye Track:
+
+// Cloaking
+stool_cloak = Cloaking Device
+stool_stargate_cloaking_spawner = Cloaking Spawner
+stool_stargate_cloaking_create = Creates a Cloaking Generator
+stool_stargate_cloaking_desc = Left click, to spawn a Cloaking Generator
+stool_stargate_cloaking_undone = Cloaking Generator removed
+stool_stargate_cloaking_cleanup = Cloaking Generators
+stool_stargate_cloaking_cleaned = Removed all Cloaking Generators
+stool_stargate_cloaking_limit = Hit the Cloaking Generator limit
+stool_stargate_cloaking_note = Note: Props which are attached to this are getting cloaked automatically. Just set the size if you really need a field. If you want to cloak attached props only, set the size to 1!
+stool_stargate_cloaking_ow = Visible for Owner
+stool_stargate_cloaking_ow_desc = When this is enabled, the owner of the cloaking generator can always\nsee his cloaked props
+stool_stargate_cloaking_nc = Phase Shifting
+stool_stargate_cloaking_nc_desc = Makes all cloaked props nocollide with anything but world
+stool_stargate_cloaking_ca = Cloak Attached
+stool_stargate_cloaking_ca_desc = If selected, every prop attached to this will get cloaked (Works like the Duplicator), if not only the one in the radius
+
+// Wraith Stun Bomb
+stool_wh_bomb = Wraith Bomb
+stool_wraithbomb_spawner = Wraith Bomb Spawner
+stool_wraithbomb_create = Creates a Wraith Stun Bomb
+stool_wraithbomb_desc = Left click to create the bomb
+stool_wraithbomb_undone = Wraith Bomb removed
+stool_wraithbomb_cleanup = Wraith Bombs
+stool_wraithbomb_cleaned = Removed all Wraith Bombs
+stool_wraithbomb_limit = Maximum number of Wraith Bombs created
+stool_wraithbomb_yield = Yield
+stool_wraithbomb_timer = Timer
+stool_wraithbomb_power = Power
+
+// Naquadah Bomb
+stool_naq_bomb = Naquadah Bomb
+stool_naqbomb_spawner = Naquadah Bomb Spawner
+stool_naqbomb_create = Creates a naquadah-powered explosive device
+stool_naqbomb_desc = Left click to create the bomb
+stool_naqbomb_undone = Naquadah Bomb removed
+stool_naqbomb_cleanup = Naquadah Bombs
+stool_naqbomb_cleaned = Removed all naquadah bombs
+stool_naqbomb_limit = Maximum number of naquadah bombs created
+entity_naq_bomb = Naquadah Bomb
+naq_bomb_menu_01 = Enter Detonation Code
+naq_bomb_menu_02 = Detonation Code:
+naq_bomb_menu_01a = Enter Abort Code
+naq_bomb_menu_02a = Abort Code:
+naq_stool_menu_y = Yield:
+naq_stool_menu_d = Charge Duration:
+naq_stool_menu_h = HUD
+naq_stool_menu_h_d = Display or hide HUD on bomb. (Does not show on Lucian Bomb)
+naq_stool_menu_c = Cart
+naq_stool_menu_c_d = Spawn with cart. (Only works with Tauri bomb)
+naq_stool_menu_a_d = Autoweld bomb to stuff. If it's spawned with cart, then bomb won't be welded (except cart).
+naq_stool_menu_code = Enter the code you wish to use to detonate the bomb.
+naq_stool_menu_abort = Enter the code you wish to use to abort the detonation.
+
+// Staff Weapon
+stool_staff = Staff Weapon
+stool_staff_weapon_spawner = Staffweapon Spawner
+stool_staff_weapon_create = Spawns a stationary staffweapon
+stool_staff_weapon_desc = Left click, to spawn a staffweapon
+stool_staff_weapon_undone = Glider staffweapon removed
+stool_staff_weapon_cleanup = Glider staffweapons
+stool_staff_weapon_cleaned = Removed all glider staffweapons
+stool_staff_weapon_limit = Hit the staffweapon limit
+stool_staff_weapon_shoot = Shoot:
+stool_staff_weapon_explode = Explode:
+stool_staff_weapon_color = Color:
+stool_staff_weapon_explosion = Explosion
+
+// Shield
+stool_stargate_shield_spawner = Shield Spawner
+stool_stargate_shield_create = Creates a Shield
+stool_stargate_shield_desc = Left click, to spawn a Shield
+stool_stargate_shield_undone = Shield removed
+stool_stargate_shield_cleanup = Shields
+stool_stargate_shield_cleaned = Removed all Shields
+stool_stargate_shield_limit = Hit the Shield limit
+stool_stargate_shield_str = Faster - Stronger
+stool_stargate_shield_str_desc = Note: Increasing the Strength will result into slower Regeneration and more Energy Usage
+stool_stargate_shield_str_color = Color:
+stool_stargate_shield_imm = When this is enabled, the owner of the shield can always go or shoot through\nno matter if he was inside the shield when it was turned on or not
+stool_stargate_shield_db = Draw Bubble
+stool_stargate_shield_db_desc = Draw a bubble when hit?
+stool_stargate_shield_se = Show Effect when Passing Shield
+stool_stargate_shield_se_desc = Draws the shield effect, when something passes it
+stool_stargate_shield_co = Containment
+stool_stargate_shield_co_desc = Enable this to keep things inside a shield instead of keeping it away
+stool_stargate_shield_an = Anti Noclip
+stool_stargate_shield_an_desc = People can't noclip in the shield?
+
+// Shield identifier
+shieldid_title = Shield Identifier
+stool_stargate_shield_ident_spawner = Shield Identifier Spawner
+stool_stargate_shield_ident_create = Creates a Shield Identifier
+stool_stargate_shield_ident_desc = Left click, to spawn a Shield Identifier
+stool_stargate_shield_ident_undone = Shield Identifier removed
+stool_stargate_shield_ident_cleanup = Shield Identifiers
+stool_stargate_shield_ident_cleaned = Removed all Shield Identifiers
+stool_stargate_shield_ident_limit = Hit the Shield Identifier limit
+stool_stargate_shield_ident_text =[[If device active and his frequency is the same of the shield, then this allow constrained entities to device (for example welded) pass through the shield.
+Also when we shoot and the shield fire frequency equal to the fire frequency of the weapon, then:
+Shield take 25%% of damage, but if the fire frequency wasn't the same, the shield take in 5 times more damage.
+There possible difference in fire frequency of 50 more or less.
+By default shield has both frequencies equal to 0.
+Weapon frequencies:
+850 - ag3, asgard/ori beam weapons
+575 - asuran gate weapon, ring beam
+325 - all other cap energy weapons (player weapons, destiny turrets etc)
+]]
+shieldid_frequency = Frequency
+shieldid_toggle = Toggle
+shieldid_save = Save
+
+//Tokra Shield
+stool_tshield = Tokra Shield Emmiter
+stool_tshieldc = Tokra Shield Controller
+
+// Tokra Shield Emmiter
+stool_tokra_shield_emmiter_spawner = Tokra Shield Emmiter Spawner
+stool_tokra_shield_emmiter_create = Creates a Tokra Shield Emmiter
+stool_tokra_shield_emmiter_desc = Left click, to spawn Tokra Shield Emmiter
+stool_tokra_shield_emmiter_undone = Tokra Shield Emmiter removed
+stool_tokra_shield_emmiter_cleanup = Tokra Shield Emmiters
+stool_tokra_shield_emmiter_cleaned = Removed all Tokra Shield Emmiters
+stool_tokra_shield_emmiter_limit = Hit the Tokra Shield Emmiters limit
+
+// Tokra Shield Controller
+stool_tokra_shield_key_spawner = Tokra Shield Controller Spawner
+stool_tokra_shield_key_create = Creates a Tokra Shield Controller
+stool_tokra_shield_key_desc = Left click, to spawn Tokra Shield Controller
+stool_tokra_shield_key_undone = Tokra Shield Controller removed
+stool_tokra_shield_key_cleanup = Tokra Shield Controllers
+stool_tokra_shield_key_cleaned = Removed all Tokra Shield Controllers
+stool_tokra_shield_key_limit = Hit the Tokra Shield Controllers limit
+
+//Tollan Disabler
+stool_tolland = Tollan Weapon Disabler
+stool_tollan_disabler_spawner = Tollan Weapon Disabler Spawner
+stool_tollan_disabler_create = Creates a Weapon Disabler
+stool_tollan_disabler_desc = Left click, to spawn or update a Weapon Disabler
+stool_tollan_disabler_undone = Weapon Disabler removed
+stool_tollan_disabler_cleanup = Tollan Weapon Disabler
+stool_tollan_disabler_cleaned = Removed all Weapon Disablers
+stool_tollan_disabler_limit = Hit the Weapon Disabler limit
+stool_tollan_disabler_imm = Note: Immunity allows you to use your weapons, if disabler is online
+
+//Jamming
+stool_jamming = Jamming Device
+stool_jamming_spawner = Jamming Device Spawner
+stool_jamming_create = Creates a Jamming Device
+stool_jamming_desc = Left click, to spawn or update a Jamming Device
+stool_jamming_undone = Jamming Device removed
+stool_jamming_cleanup = Jamming Device
+stool_jamming_cleaned = Removed all Jamming Devices
+stool_jamming_limit = Hit the Jamming Device limit
+stool_jamming_imm_desc = Note: Immunity allows you to beam even if jamming is online

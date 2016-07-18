@@ -494,7 +494,7 @@ function ENT:Flares()
 
 	for _,v in pairs(ents.FindInSphere(e:GetPos(),1500)) do
 		if(IsValid(v)) then
-			if(v:GetClass()==("drone" or "302missile")) then
+			if(v:GetClass()==("drones" or "aurora_drone" or "prometheus_missile" or "302missile")) then
 				local FX = EffectData()
 					FX:SetOrigin(v:GetPos())
 				util.Effect("dirtyxplo",FX)
@@ -921,6 +921,6 @@ hook.Add("PlayerEnteredVehicle","JumperSeatEnter", function(p,v)
 	end
 end);
 
-if (Lib and Lib.CAP_GmodDuplicator) then
-	duplicator.RegisterEntityClass( "ship_f302", Lib.CAP_GmodDuplicator, "Data" )
+if (Lib and Lib.EAP_GmodDuplicator) then
+	duplicator.RegisterEntityClass( "ship_f302", Lib.EAP_GmodDuplicator, "Data" )
 end

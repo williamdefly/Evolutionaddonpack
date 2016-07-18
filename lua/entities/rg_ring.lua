@@ -6,7 +6,7 @@ if SERVER then
 
 AddCSLuaFile()
 
-ENT.CAP_NotSave = true
+ENT.EAP_NotSave = true
 
 function ENT:Initialize()
 

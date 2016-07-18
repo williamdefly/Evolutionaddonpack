@@ -7,7 +7,7 @@ ENT.Type = "anim"
 ENT.Base = "dhdbase"
 ENT.PrintName = "DHD (Universe)"
 ENT.Author = "aVoN, Madman07, Llapp, Boba Fett, MarkJaw, AlexALX"
-ENT.Category = 	"Stargate Carter Addon Pack: Gates and Rings"
+ENT.Category = 	""
 ENT.Spawnable = true
 
 list.Set("EAP", ENT.PrintName, ENT);
@@ -38,12 +38,12 @@ function ENT:SpawnFunction(p,tr)
 	local ang = p:GetAimVector():Angle(); ang.p = 15; ang.r = 0; ang.y = (ang.y+180) % 360
 	e:SetAngles(ang);
 	e:Fire("skin",2);
-	e:CartersRampsDHD(tr);
+	e:RampsDHD(tr);
 	return e;
 end
 
-if (Lib and Lib.CAP_GmodDuplicator) then
-	duplicator.RegisterEntityClass( "dhd_uni", Lib.CAP_GmodDuplicator, "Data" )
+if (Lib and Lib.EAP_GmodDuplicator) then
+	duplicator.RegisterEntityClass( "dhd_uni", Lib.EAP_GmodDuplicator, "Data" )
 end
 
 end

@@ -71,6 +71,8 @@ SWEP.Secondary.TakeAmmo = 0
 SWEP.Secondary.ClipSize = -1
 SWEP.Secondary.Damage = 0
 
+SWEP.Spawnable = true
+
 function SWEP:Initialize()
 	self:SetWeaponHoldType( self.HoldType )
 end

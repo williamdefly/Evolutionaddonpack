@@ -170,7 +170,7 @@ end
 
 --################# Overwrite base code, we dont want flicker
 function ENT:OnTakeDamage(dmg)
-	// WormholeJump call is in gate_nuke
+	// WormholeJump call is in gatenuke
 end
 
 --################# @Madman07,Assassin21 Light Effect
@@ -325,6 +325,6 @@ function ENT:DisActivateLights(instant,fail)
 	self:SetWire("Active Segment",0);
 end
 
-if (Lib and Lib.CAP_GmodDuplicator) then
-	duplicator.RegisterEntityClass( "sg_supergate", Lib.CAP_GmodDuplicator, "Data" )
+if (Lib and Lib.EAP_GmodDuplicator) then
+	duplicator.RegisterEntityClass( "sg_supergate", Lib.EAP_GmodDuplicator, "Data" )
 end

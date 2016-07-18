@@ -10,7 +10,7 @@ ENT.Author			= "Madman07, Boba Fett, Catdaemon, aVoN"
 ENT.Contact			= ""
 ENT.Purpose			= ""
 ENT.Instructions	= ""
-ENT.Category		= "Stargate Carter Addon Pack: Gates and Rings"
+ENT.Category		= ""
 ENT.Spawnable = true
 
 list.Set("EAP", ENT.PrintName, ENT);
@@ -54,7 +54,7 @@ function ENT:SpawnFunction( ply, tr)
 
 	local phys = ent:GetPhysicsObject()
 	if IsValid(phys) then phys:EnableMotion(false) end
-	ent:CartersRampsRPanel(tr);
+	ent:RampsRPanel(tr);
 
 	return ent;
 end
@@ -140,8 +140,8 @@ function ENT:PressButton(button, ply)
 
 end
 
-if (Lib and Lib.CAP_GmodDuplicator) then
-	duplicator.RegisterEntityClass( "rg_panel_goauld", Lib.CAP_GmodDuplicator, "Data" )
+if (Lib and Lib.EAP_GmodDuplicator) then
+	duplicator.RegisterEntityClass( "rg_panel_goauld", Lib.EAP_GmodDuplicator, "Data" )
 end
 
 end
@@ -150,7 +150,7 @@ if CLIENT then
 
 if (Lib.Language!=nil and Lib.Language.GetMessage!=nil) then
 ENT.Category = Lib.Language.GetMessage("cat_transportation");
-ENT.PrintName = Lib.Language.GetMessage("ring_panel_goauld");
+ENT.PrintName = Lib.Language.GetMessage("rg_panel_goauld");
 end
 
 ENT.ButtonPos = {

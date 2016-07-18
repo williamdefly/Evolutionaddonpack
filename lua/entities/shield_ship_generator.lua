@@ -31,7 +31,7 @@ if SERVER then
 --################# HEADER #################
 AddCSLuaFile();
 
-ENT.CAP_NotSave = true;
+ENT.EAP_NotSave = true;
 
 ENT.Sounds={
 	Engage=Sound("shields/shield_engage.mp3"),

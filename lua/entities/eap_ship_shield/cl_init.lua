@@ -4,7 +4,7 @@ language.Add("ship_shield",Lib.Language.GetMessage("ship_shield"));
 end
 if (Lib==nil or Lib.Trace==nil) then return end
 -- Register shield SENT to the trace class
-Lib.Trace:Add("shield",
+Lib.Trace:Add("shields",
 	function(e,values,trace,in_box)
 		local depleted = e:GetNetworkedBool("depleted",false);
 		local containment = e:GetNWBool("containment",false);

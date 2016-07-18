@@ -350,7 +350,7 @@ function ENT:OnTakeDamage(dmg)
 	if (not IsValid(dmg:GetAttacker()) || dmg:GetAttacker():GetClass() == "point_hurt" || dmg:GetAttacker():GetClass() == "kawooshhurt" || self:GetClass()=="sg_orlin") then return end
 	local damage = dmg:GetDamage();
 
-	if(dmg:GetDamageType() == DMG_BLAST and (not self.GateSpawnerSpawned and not util.tobool(GetConVar("stargate_eap_protect"):GetInt()) or self.GateSpawnerSpawned and not util.tobool(GetConVar("stargate_eap_protect_spawner"):GetInt())))then
+	if(dmg:GetDamageType() == DMG_BLAST and (not self.EAPGateSpawnerSpawned and not util.tobool(GetConVar("stargate_eap_protect"):GetInt()) or self.EAPGateSpawnerSpawned and not util.tobool(GetConVar("stargate_eap_protect_spawner"):GetInt())))then
 		local class = self.Entity:GetClass();
 		if (class!="sg_supergate" and class!="sg_universe" and class!="sg_orlin") then
 			for i=1,9 do
@@ -409,7 +409,7 @@ function ENT:OnTakeDamage(dmg)
 		end
 	end
 
-	// WormholeJump call is in gate_nuke
+	// WormholeJump call is in gatenuke
 end
 
 function ENT:SubFlicker(target,jump,super)
@@ -450,22 +450,28 @@ function ENT:SubFlicker(target,jump,super)
 	timer.Simple(delay,function()
 		if (self.Jumping) then return end
 	    if(IsValid(self.EventHorizon) and self.EventHorizon:IsOpen())then
+
 			if(self.Entity:GetClass() == "sg_universe")then
-				self.EventHorizon:SetMaterial("sgu/effect_02.vmt");
-			elseif(self.Entity:GetClass() != "sg_infinity" or self.InfDefaultEH)then
-				self.EventHorizon:SetMaterial("sgorlin/effect_02.vmt");
-			elseif (self.Entity:GetClass()=="sg_infinity") then
+				self.EventHorizon:SetMaterial("sgu/effect_01.vmt");
+			elseif(self.Entity:GetClass() == "sg_atlantis" or self.Entity:GetClass() == "sg_tollan")then
+				self.EventHorizon:SetMaterial("sgorlin/effect_01.vmt");
+			elseif (self.Entity:GetClass()=="sg_infinity" and !(self.InfDefaultEH)) then
 				self.EventHorizon:SetNWBool("Flicker",false);
+			else
+				self.EventHorizon:SetMaterial("sgorlin/effect_02.vmt");
 			end
 			self.EventHorizon:SetColor(Color(255,255,255,255)); -- fix invisible eh sometimes in mp
 			self.EventHorizon.Unstable = false;
 		    if (IsValid(self.Target) and self.Target:GetClass()!="sg_supergate" and IsValid(self.Target.EventHorizon) and self.Target.EventHorizon:IsOpen()) then
+
 				if(self.Target.Entity:GetClass() == "sg_universe")then
-					self.Target.EventHorizon:SetMaterial("sgu/effect_02.vmt");
-				elseif(self.Target.Entity:GetClass() != "sg_infinity" or self.InfDefaultEH)then
-					self.Target.EventHorizon:SetMaterial("sgorlin/effect_02.vmt");
-				elseif (self.Entity:GetClass()=="sg_infinity") then
+					self.Target.EventHorizon:SetMaterial("sgu/effect_01.vmt");
+				elseif(self.Target.Entity:GetClass() == "sg_atlantis" or self.Target.Entity:GetClass() == "sg_tollan")then
+					self.Target.EventHorizon:SetMaterial("sgorlin/effect_01.vmt");
+				elseif (self.Target.Entity:GetClass()=="sg_infinity" and !(self.InfDefaultEH)) then
 					self.Target.EventHorizon:SetNWBool("Flicker",false);
+				else
+					self.Target.EventHorizon:SetMaterial("sgorlin/effect_02.vmt");
 				end
 				self.Target.EventHorizon:SetColor(Color(255,255,255,255)); -- fix invisible eh sometimes in mp
 				self.Target.EventHorizon.Unstable = false;
@@ -507,7 +513,7 @@ function ENT:Use(p)
 			else
 				allowed = false;
 			end
-		elseif(self.GateSpawnerProtected) then -- It's a protected gate. Can this user change it?
+		elseif(self.EAPGateSpawnerProtected) then -- It's a protected gate. Can this user change it?
 			allowed = hook.Call("Lib.Player.CanModifyProtectedGate",GAMEMODE,p,self.Entity);
 			if(allowed == nil) then allowed = (p:IsAdmin() or game.SinglePlayer()) end;
 			if(not allowed and alternatemenu) then
@@ -536,7 +542,7 @@ function ENT:CAP_CanModify(ply)
 	local allowed = true;
 	if(hook.Call("Lib.Player.CanModifyGate",GAMEMODE,ply,self.Entity) == false) then
 		allowed = false;
-	elseif(self.GateSpawnerProtected) then
+	elseif(self.EAPGateSpawnerProtected) then
 		allowed = hook.Call("Lib.Player.CanModifyProtectedGate",GAMEMODE,ply,self.Entity);
 		if(allowed == nil) then allowed = (ply:IsAdmin() or game.SinglePlayer()) end;
 	end
@@ -699,7 +705,7 @@ function ENT:IsConceptDHD()
 		return false;
 	end
 	for _,v in pairs(self:FindDHD()) do
-		if(v:IsValid() and v:GetClass() == "dhd_concept") then
+		if(v:IsValid() and v:GetClass() == "dhd_con") then
 			return true;
 		end
 	end
@@ -708,7 +714,7 @@ function ENT:IsConceptDHD()
 end
 
 --######################## @Alex, aVoN -- snap gates to cap ramps
-function ENT:CartersRamps(t)
+function ENT:Ramps(t)
 	local e = t.Entity;
 	if(not IsValid(e)) then return end;
 	local RampOffset = Lib.RampOffset.Gates;

@@ -273,3 +273,36 @@ usermessage.Hook( "Lib.EventHorizon.SecretStop", function(um)
 	hook.Remove("RenderScreenspaceEffects","Lib.EH.Secret");
 	e.SGSecretEffect = false;
 end)
+
+/* Wormhole Animation */
+usermessage.Hook( "Lib.EventHorizon.WormHoleStart", function(um)
+	started = CurTime();
+	local e = LocalPlayer();
+	e:EmitSound( "stargate/travelnew.mp3" )
+	hook.Add("EntityEmitSound","Lib.EH.WormHole",function() return false end)
+	hook.Add("PlayerBindPress","Lib.EH.WormHole",function() return true end)
+	hook.Add("PreRender","Lib.EH.WormHole",function()
+		render.UpdateScreenEffectTexture()
+		render.SetMaterial(Material("williamdefly/wormhole"))
+		render.DrawScreenQuad()
+		return true;
+	end)
+end)
+
+usermessage.Hook( "Lib.EventHorizon.WormHoleReset", function(um)
+	hook.Remove("PreRender","Lib.EH.WormHole");
+	hook.Remove("EntityEmitSound","Lib.EH.WormHole");
+	hook.Remove("PlayerBindPress","Lib.EH.WormHole");
+end)
+
+usermessage.Hook( "Lib.EventHorizon.WormHoleOut", function(um)
+	hook.Remove("PreRender","Lib.EH.WormHole");
+	hook.Remove("EntityEmitSound","Lib.EH.WormHole");
+	hook.Remove("PlayerBindPress","Lib.EH.WormHole");
+end)
+
+usermessage.Hook( "Lib.EventHorizon.WormHoleStop", function(um)
+	hook.Remove("PreRender","Lib.EH.WormHole");
+	hook.Remove("EntityEmitSound","Lib.EH.WormHole");
+	hook.Remove("PlayerBindPress","Lib.EH.WormHole");
+end)

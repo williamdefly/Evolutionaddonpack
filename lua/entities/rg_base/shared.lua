@@ -23,7 +23,7 @@ properties.Add( "Lib.Ring.Unusable.On",
 	MenuIcon	=	"icon16/plugin_delete.png",
 
 	Filter		=	function( self, ent, ply )
-						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsRings || ent:GetNWBool("GateSpawnerProtected",false) || ent:GetNWBool("Busy",false)) then return false end
+						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsRings || ent:GetNWBool("EAPGateSpawnerProtected",false) || ent:GetNWBool("Busy",false)) then return false end
 						if ( !gamemode.Call( "CanProperty", ply, "ringmodify", ent ) ) then return false end
 						return true
 
@@ -56,7 +56,7 @@ properties.Add( "Lib.Unusable.Off",
 
 	Filter		=	function( self, ent, ply )
 
-						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsRings || ent:GetNWBool("GateSpawnerProtected",false) || !ent:GetNWBool("Busy",false)) then return false end
+						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsRings || ent:GetNWBool("EAPGateSpawnerProtected",false) || !ent:GetNWBool("Busy",false)) then return false end
 						if ( !gamemode.Call( "CanProperty", ply, "ringmodify", ent ) ) then return false end
 						return true
 

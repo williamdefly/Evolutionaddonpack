@@ -161,7 +161,7 @@ function ENT:FireBlast(diff)
 			-- fx:SetAngles(Angle(255,200,120));
 			-- fx:SetRadius(80);
 		-- util.Effect("avon_energy_muzzle",fx,true);
-		local e = ents.Create("eap_energy_pulse");
+		local e = ents.Create("energypulse");
 		e:PrepareBullet(self:GetForward(), 10, 16000, 6, {self.Entity});
 		e:SetPos(self:GetPos()+diff);
 		e:SetOwner(self);
@@ -173,8 +173,8 @@ function ENT:FireBlast(diff)
 	end
 end
 
-if (Lib and Lib.CAP_GmodDuplicator) then
-	duplicator.RegisterEntityClass( "ship_gate_glider", Lib.CAP_GmodDuplicator, "Data" )
+if (Lib and Lib.EAP_GmodDuplicator) then
+	duplicator.RegisterEntityClass( "ship_gate_glider", Lib.EAP_GmodDuplicator, "Data" )
 end
 
 end

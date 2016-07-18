@@ -69,7 +69,7 @@ function TOOL:LeftClick(t)
 	    p:SendLua("GAMEMODE:AddNotify(Lib.Language.GetMessage(\"stool_stargate_iris_err2\"), NOTIFY_ERROR, 5); surface.PlaySound( \"buttons/button2.wav\" )");
 	    return
 	end
-	if (t.Entity.GateSpawnerSpawned and Lib.CFG and not Lib.CFG:Get("stargate_iris","gatespawner",true)) then
+	if (t.Entity.EAPGateSpawnerSpawned and Lib.CFG and not Lib.CFG:Get("stargate_iris","gatespawner",true)) then
 	    p:SendLua("GAMEMODE:AddNotify(Lib.Language.GetMessage(\"stool_stargate_iris_err3\"), NOTIFY_ERROR, 5); surface.PlaySound( \"buttons/button2.wav\" )");
 		return
 	end
@@ -83,7 +83,7 @@ function TOOL:LeftClick(t)
 	if(IsValid(t.Entity) and t.Entity.IsStargate) then
 		for _,v in pairs(ents.FindInSphere(t.Entity:GetPos(),10)) do
 			if(v.IsIris and v ~= e) then
-				if (v.GateSpawnerSpawned) then
+				if (v.EAPGateSpawnerSpawned) then
 					e:Remove();
 					p:SendLua("GAMEMODE:AddNotify(Lib.Language.GetMessage(\"iris_gatespawner\"), NOTIFY_ERROR, 5); surface.PlaySound( \"buttons/button2.wav\" )");
 					return
@@ -96,7 +96,7 @@ function TOOL:LeftClick(t)
 		e:SetAngles(t.Entity:GetAngles());
 	end
 	e.GateLink = t.Entity;
-	if (t.Entity.GateSpawnerSpawned) then
+	if (t.Entity.EAPGateSpawnerSpawned) then
 		p:SendLua("GAMEMODE:AddNotify(Lib.Language.GetMessage(\"iris_protection\"), NOTIFY_GENERIC, 5); surface.PlaySound( \"buttons/button9.wav\" )");
 		e:IrisProtection();
 	end

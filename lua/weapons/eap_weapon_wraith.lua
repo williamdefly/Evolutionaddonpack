@@ -39,6 +39,7 @@ SWEP.Sounds = {feeling=Sound("weapons/wraith_feeding.wav"),SwingSound = Sound( "
 
 SWEP.HitDistance = 67
 
+SWEP.Spawnable = true
 
 function SWEP:Deploy()
 	self.Weapon:SendWeaponAnim(ACT_VM_DRAW);

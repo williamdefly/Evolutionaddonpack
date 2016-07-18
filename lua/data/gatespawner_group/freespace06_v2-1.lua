@@ -158,29 +158,29 @@ angles=15.000 357.665 0.000
 classname=dhd_atl
 position=6756.9600 12736.2998 -4708.2100
 angles=15.000 161.219 0.000
-[ring_panel]
+[rg_panel]
 classname=rg_panel_goauld
 position=-1569.0576 -527.6080 -4203.2192
 angles=0.052 89.436 0.390
-[ring_panel]
+[rg_panel]
 classname=rg_panel_goauld
 position=-1036.2853 1937.0625 -2156.0532
 angles=0.000 90.001 0.000
-[ring_panel]
+[rg_panel]
 classname=rg_panel_goauld
 position=-5646.8481 5917.0229 -4292.5313
 angles=-48.803 -89.995 -0.151
-[ring_base]
+[rg_base]
 classname=rg_base_goauld
 position=-1564.4589 -424.1152 -4239.5068
 angles=0.000 22.203 -0.005
 address=1
-[ring_base]
+[rg_base]
 classname=rg_base_goauld
 position=-1032.1514 2038.2983 -2191.9688
 angles=0.000 92.615 -0.000
 address=3
-[ring_base]
+[rg_base]
 classname=rg_base_goauld
 position=-5650.3931 5703.8022 -4319.4468
 angles=0.005 -91.824 -0.024

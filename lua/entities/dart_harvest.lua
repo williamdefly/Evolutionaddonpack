@@ -27,7 +27,7 @@ ENT.PrintName = "Wraith Harvester"
 ENT.Spawnable = false
 ENT.AdminSpawnable = false
 
-ENT.CAP_NotSave = true;
+ENT.EAP_NotSave = true;
 
 --################# Gets the beam normal @aVoN
 function ENT:GetBeamNormal()
@@ -225,7 +225,7 @@ function ENT:Think()
 		local pos = self.Entity:GetPos();
 		--local trace = util.QuickTrace(pos,self:GetBeamNormal(),self.Entity);
 		local trace = Lib.Trace:New(pos,self:GetBeamNormal(),self.Entity);
-		if(trace.Entity:IsValid() and trace.Entity:GetClass() == "shield") then
+		if(trace.Entity:IsValid() and trace.Entity:GetClass() == "shields") then
 			trace.Entity:Hit(self.Entity,trace.HitPos,0);
 		end
 		local time = CurTime();

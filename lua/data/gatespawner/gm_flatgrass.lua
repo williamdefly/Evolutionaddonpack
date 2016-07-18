@@ -22,11 +22,11 @@ classname=dhd_milk
 position=227.2147 696.6854 -12302.7686
 angles=15.000 270.041 0.000
 destroyed=false
-[ring_panel]
+[rg_panel]
 classname=rg_panel_goauld
 position=-1043.5908 -37.1517 -12742.0303
 angles=0.000 179.998 0.000
-[ring_base]
+[rg_base]
 classname=rg_base_ancient
 position=-1149.5907 -37.1472 -12787.5313
 angles=0.000 179.998 0.000

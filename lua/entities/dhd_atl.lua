@@ -7,7 +7,7 @@ ENT.Type = "anim"
 ENT.Base = "dhdbase"
 ENT.PrintName = "DHD (Atlantis)"
 ENT.Author = "aVoN, Madman07, Llapp, Boba Fett, MarkJaw, AlexALX"
-ENT.Category = 	"Stargate Carter Addon Pack: Gates and Rings"
+ENT.Category = 	""
 ENT.Spawnable = true
 
 list.Set("EAP", ENT.PrintName, ENT);
@@ -23,7 +23,7 @@ if SERVER then
 --################# HEADER #################
 AddCSLuaFile()
 
-ENT.PlorkSound = "stargate/dhd_atlantis.mp3";
+ENT.PlorkSound = "stargate/dhd_atl.mp3";
 ENT.LockSound = "stargate/chevron_lock_atlantis_incoming.mp3";
 ENT.SkinNumber = 2;
 
@@ -38,12 +38,12 @@ function ENT:SpawnFunction(p,tr)
 	local ang = p:GetAimVector():Angle(); ang.p = 15; ang.r = 0; ang.y = (ang.y+180) % 360
 	e:SetAngles(ang);
 	e:Fire("skin",1);
-	e:CartersRampsDHD(tr);
+	e:RampsDHD(tr);
 	return e;
 end
 
-if (Lib and Lib.CAP_GmodDuplicator) then
-	duplicator.RegisterEntityClass( "dhd_atl", Lib.CAP_GmodDuplicator, "Data" )
+if (Lib and Lib.EAP_GmodDuplicator) then
+	duplicator.RegisterEntityClass( "dhd_atl", Lib.EAP_GmodDuplicator, "Data" )
 end
 
 end
@@ -55,7 +55,7 @@ ENT.RenderGroup = RENDERGROUP_BOTH -- This FUCKING THING avoids the clipping bug
 
 if (Lib.Language!=nil and Lib.Language.GetMessage!=nil) then
 ENT.Category = Lib.Language.GetMessage("cat_transportation");
-ENT.PrintName = Lib.Language.GetMessage("dhd_atlantis");
+ENT.PrintName = Lib.Language.GetMessage("dhd_atl");
 end
 
 end

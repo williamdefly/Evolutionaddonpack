@@ -1,4 +1,4 @@
-
+SWEP.Spawnable = true
 
 local HitImpact = function(attacker, tr, dmginfo)
 
@@ -73,7 +73,7 @@ SWEP.DrawWeaponInfoBox  	= true					-- Draw Weapon Info HUD
 
 SWEP.Category			= "EAP"
 SWEP.Author 			= "The Art of War, Boba Fett, Gmod4phun"
-SWEP.Contact 			= "info@sg-carterpack.com"
+SWEP.Contact 			= "info@sg-eap.space"
 SWEP.Purpose 			= "Shoot them aliens up."
 
 SWEP.Instructions 		= " Left click to fire.\n Right click to aim through the Red Dot Sight.\n Use + Right Click to change firing mode.\n Use + Left Click to attach/detach Kull Disruptor"

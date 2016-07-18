@@ -4,13 +4,13 @@ ENT.Type = "anim"
 
 ENT.PrintName = "Tel'Tak Button"
 ENT.Author = "RononDex"
-ENT.Category = "Stargate Carter Addon Pack"
+ENT.Category = ""
 
 if SERVER then
 
 AddCSLuaFile()
 
-ENT.CAP_NotSave = true;
+ENT.EAP_NotSave = true;
 
 function ENT:Initialize()
 

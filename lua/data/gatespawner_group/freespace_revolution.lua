@@ -190,101 +190,101 @@ angles=15.000 83.640 -0.000
 classname=dhd_milk
 position=-11603.3115 -12349.4170 -6151.5186
 angles=15.000 42.720 0.000
-[ring_panel]
+[rg_panel]
 classname=rg_panel_ancient
 position=11713.5625 11886.9375 -6141.4248
 angles=0.000 0.028 0.000
-[ring_panel]
+[rg_panel]
 classname=rg_panel_ancient
 position=7195.8345 6223.5669 -6142.9883
 angles=0.000 -134.995 0.000
-[ring_panel]
+[rg_panel]
 classname=rg_panel_ancient
 position=7817.5625 -13118.9941 -6138.9824
 angles=-0.000 0.001 0.000
-[ring_panel]
+[rg_panel]
 classname=rg_panel_goauld
 position=13362.4014 9640.9551 -5974.9038
 angles=-30.975 88.770 -0.259
-[ring_panel]
+[rg_panel]
 classname=rg_panel_goauld
 position=-9976.2344 -3345.0625 -5923.7388
 angles=0.000 -89.975 -0.250
-[ring_panel]
+[rg_panel]
 classname=rg_panel_goauld
 position=-5195.8706 -6483.6919 -6160.7271
 angles=-32.886 -46.823 0.005
-[ring_panel]
+[rg_panel]
 classname=rg_panel_goauld
 position=1070.9374 -12811.1104 -6056.4653
 angles=-0.000 179.979 0.000
-[ring_panel]
+[rg_panel]
 classname=rg_panel_goauld
 position=4609.7236 -11710.8809 -5109.9058
 angles=-16.699 -89.991 -0.002
-[ring_panel]
+[rg_panel]
 classname=rg_panel_goauld
 position=-2622.7859 -4278.9375 -6266.0249
 angles=0.000 89.999 0.000
-[ring_panel]
+[rg_panel]
 classname=rg_panel_goauld
 position=11829.3271 2619.1948 -6159.9780
 angles=-26.815 -0.072 -0.003
-[ring_panel]
+[rg_panel]
 classname=rg_panel_goauld
 position=-12065.3564 -12773.4395 -6150.5825
 angles=-0.000 -137.963 0.000
-[ring_base]
+[rg_base]
 classname=rg_base_ancient
 position=11828.2588 11881.5859 -6187.9688
 angles=0.000 88.807 -0.000
 address=2
-[ring_base]
+[rg_base]
 classname=rg_base_ancient
 position=7092.4536 6122.8315 -6183.9688
 angles=0.000 -135.418 0.000
 address=3
-[ring_base]
+[rg_base]
 classname=rg_base_ancient
 position=951.0090 -12808.7979 -6111.9688
 angles=0.000 -179.839 0.000
 address=14
-[ring_base]
+[rg_base]
 classname=rg_base_ancient
 position=7934.1606 -13114.5195 -6159.9688
 angles=0.000 1.720 -0.000
 address=21
-[ring_base]
+[rg_base]
 classname=rg_base_goauld
 position=13365.7383 9751.7295 -5999.9688
 angles=0.000 91.739 -0.000
 address=1
-[ring_base]
+[rg_base]
 classname=rg_base_goauld
 position=-9977.1406 -3444.5657 -5967.9688
 angles=0.000 -89.580 0.000
 address=12
-[ring_base]
+[rg_base]
 classname=rg_base_goauld
 position=-5114.2119 -6572.5825 -6183.9688
 angles=0.000 -46.740 0.000
 address=13
-[ring_base]
+[rg_base]
 classname=rg_base_goauld
 position=4607.4448 -11879.7646 -5151.9688
 angles=0.000 -91.179 0.000
 address=15
-[ring_base]
+[rg_base]
 classname=rg_base_goauld
 position=-2620.5034 -4176.0068 -6303.9688
 angles=0.000 91.999 -0.000
 address=23
-[ring_base]
+[rg_base]
 classname=rg_base_goauld
 position=11988.8301 2618.3555 -6192.0000
 angles=0.000 0.601 -0.000
 address=4
-[ring_base]
+[rg_base]
 classname=rg_base_goauld
 position=-12162.0391 -12867.2393 -6192.0000
 angles=0.000 -136.660 0.000

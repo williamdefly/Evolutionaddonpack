@@ -17,12 +17,12 @@ classname=dhd_milk
 position=-3297 1637 -472.4476
 angles=15 245 0
 
-[ring_panel]
+[rg_panel]
 classname=rg_panel_goauld
 position=-3455 370 -454.3253
 angles=0 -90 0
 
-[ring_base]
+[rg_base]
 classname=rg_base_ancient
 position=-3455 264 -499.8195
 angles=0 0 0
@@ -85,12 +85,12 @@ classname=dhd_uni
 position=15500 1000 -560
 angles=15 0 0
 
-[ring_panel]
+[rg_panel]
 classname=rg_panel_goauld
 position=-3328 840 -1327
 angles=0 180 0
 
-[ring_base]
+[rg_base]
 classname=rg_base_ancient
 position=-3455 840 -1184
 angles=0 0 180

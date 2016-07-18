@@ -26,8 +26,7 @@ ent_ship_teltak = Tel'tak
 ent_ship_wraithcruiser = Croiseur Wraith
 ent_ship_traveler = Voyageur
 
-//Player Weapons Entities
-ent_frag_grenade = Entitée de la grenade a fragmentation
+//Weapons
 
 //Entities Messages
 ent_sarco_exit = Utiliser pour quitter ou attendez d'avoir la vie complète
@@ -41,20 +40,20 @@ ent_sarco_god_inside = Votre Dieu est déja à l'interieur
 ring_ancient = Anneaux (Ancien)
 ring_goauld = Anneaux (Goauld)
 ring_ori = Anneaux (Ori)
-ring_panel_ancient = Cadran Ancien
-ring_panel_goauld = Cadran Goa'uld
-ring_panel_ori = Cadran Ori
+rg_panel_ancient = Cadran Ancien
+rg_panel_goauld = Cadran Goa'uld
+rg_panel_ori = Cadran Ori
 ring_name = Nommez ces anneaux (nombres uniquement!):
 ring_dial = Entrez la destination (nombres uniquement!):
 ring_dialb = Appeler
 ring_error = Des anneaux avec cette adresse existe déjà!
 
 //DHD
-dhd_atlantis = DHD (Atlantis)
-dhd_city = DHD (City)
-dhd_concept = DHD (Concept)
+dhd_atl = DHD (Atlantis)
+dhd_atl_city = DHD (City)
+dhd_con = DHD (Concept)
 dhd_infinity = DHD (Infinity)
-dhd_sg1 = DHD (SG1)
+dhd_milk = DHD (SG1)
 dhd_universe = DHD (Universe)
 
 //Portes
@@ -101,7 +100,7 @@ asgardtp_jamming = Impossible de téléporter à ces Coordonées - Brouilleur en
 asgardtp_succ = Téléportation efféctuée.
 
 //Teleporteur d'atlantis
-ent_atlantis_transporter = Teleporteur d'Atlantis
+ent_atlantis_trans = Teleporteur d'Atlantis
 atl_tp_01 = Saisir le nom de ce téléporteur:
 atl_tp_02 = Nom du téléporteur de destination:
 atl_tp_03 = Sauvegarder
@@ -134,3 +133,48 @@ iriscomp_open_desc = Si coché, L'iris ne s'ouvrira pas tant que le wire ne lui 
 iriscomp_cancel = Annulez
 iriscomp_toggle = Activer/Desactiver l'Iris
 iriscomp_ok = Sauvegarder
+
+// Dakara
+entity_dakara = Arme de Dakara
+ancient_control_panel = Panneau de contrôle Ancien
+dakara_energy_kill = Vague énergetique
+dakara_panel = Panneau de contrôle de Dakara
+dakara_power = Puissance de l'appareil, Influe sur le rayon et la puissance.
+dakara_power_d = Rapide - Fort
+dakara_menu_01 = Désintégrer les joueurs
+dakara_menu_02 = Désintégrera les joueurs.
+dakara_menu_03 = Désintégrer les props
+dakara_menu_04 = Désintégrera les props.
+dakara_menu_05 = Désintégrer les véhicules
+dakara_menu_06 = Désintégrera les véhicules.
+dakara_menu_07 = Désintégrer les réplicateurs
+dakara_menu_08 = Désintégrera les réplicateurs.
+dakara_menu_09 = Désintégrer les NPCs
+dakara_menu_10 = Désintégrera les NPCs.
+dakara_menu_11 = Fermer
+dakara_menu_12 = Lancer
+
+// Shaped Charge
+entity_directional_nuke = Bombe Directionnelle
+directional_nuke_menu_t = Décompteur
+directional_nuke_menu_d = Secondes avant explosion:
+directional_nuke_menu_c = Annuler
+
+// Weapons
+entity_ag3 = AG3
+entity_asgard_beam = Canon Asgard
+entity_asuran_satellite = Satellite Asuran
+entity_asuran_weapon = Arme de Porte
+entity_dest_main = Arme Principale du Destinée
+entity_dest_med = Arme Moyenne du Destinée
+entity_dest_small = Petite Arme du Destinée
+entity_drone = Lanceur de Drones
+entity_horizon_missile = Missile Horizon
+entity_ion_cannon = Canon à ion
+entity_minidrone = Lanceur de Minidrones
+entity_ori_beam = Canon Ori
+entity_ori_satellite = Satellite Ori
+entity_overloader = Surchargeur de portes
+entity_shiprail = Railgun
+entity_staff_weapon = Lance Jaffa
+entity_stat_railgun = Railgun Stationnaire

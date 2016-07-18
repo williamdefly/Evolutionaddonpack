@@ -458,7 +458,7 @@ function ENT:Use(p)
 		local allowed = true;
 		if(hook.Call("Lib.Player.CanModifyGate",GAMEMODE,p,self.Entity) == false) then
 			allowed = false; -- He is not allowed to modify stuff, so show him the normal dialling dialoge!
-		elseif(self.GateSpawnerProtected) then -- It's a protected gate. Can this user change it?
+		elseif(self.EAPGateSpawnerProtected) then -- It's a protected gate. Can this user change it?
 			allowed = hook.Call("Lib.Player.CanModifyProtectedGate",GAMEMODE,p,self.Entity);
 			if(allowed == nil) then allowed = (p:IsAdmin() or game.SinglePlayer()) end;
 		end
@@ -527,6 +527,6 @@ function ENT:PostEntityPaste(ply, Ent, CreatedEntities)
 	Lib.RD.PostEntityPaste(self,ply,Ent,CreatedEntities)
 end
 
-if (Lib and Lib.CAP_GmodDuplicator) then
-	duplicator.RegisterEntityClass( "sg_orlin", Lib.CAP_GmodDuplicator, "Data" )
+if (Lib and Lib.EAP_GmodDuplicator) then
+	duplicator.RegisterEntityClass( "sg_orlin", Lib.EAP_GmodDuplicator, "Data" )
 end

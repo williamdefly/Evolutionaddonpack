@@ -230,7 +230,7 @@ end
 function ENT:FireBlast(diff) --####### Fire! @Mad
 
 	if self.BlastCount < 10 and self.CanFire then
-		local e = ents.Create("eap_energy_pulse");
+		local e = ents.Create("energypulse");
 		e:PrepareBullet(self:GetForward(), 10, 16000, 6, {self.Entity});
 		e:SetPos(self:GetPos()+diff);
 		e:SetOwner(self);
@@ -381,8 +381,8 @@ function ENT:TriggerInput(k,v) --######### Wire Inputs @ RononDex
 	end
 end
 
-if (Lib and Lib.CAP_GmodDuplicator) then
-	duplicator.RegisterEntityClass( "ship_shuttle", Lib.CAP_GmodDuplicator, "Data" )
+if (Lib and Lib.EAP_GmodDuplicator) then
+	duplicator.RegisterEntityClass( "ship_shuttle", Lib.EAP_GmodDuplicator, "Data" )
 end
 
 end

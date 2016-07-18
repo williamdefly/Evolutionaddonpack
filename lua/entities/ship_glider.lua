@@ -158,7 +158,7 @@ function ENT:Exit(kill)
 end
 
 function ENT:FireBlast(diff)
-	local e = ents.Create("eap_energy_pulse");
+	local e = ents.Create("energypulse");
 	e:PrepareBullet(self:GetForward(), 10, 16000, 6, {self.Entity});
 	e:SetPos(self:GetPos()+diff);
 	e:SetOwner(self);
@@ -171,8 +171,8 @@ end
 function ENT:ShowOutput()
 end
 
-if (Lib and Lib.CAP_GmodDuplicator) then
-	duplicator.RegisterEntityClass( "ship_glider", Lib.CAP_GmodDuplicator, "Data" )
+if (Lib and Lib.EAP_GmodDuplicator) then
+	duplicator.RegisterEntityClass( "ship_glider", Lib.EAP_GmodDuplicator, "Data" )
 end
 
 end

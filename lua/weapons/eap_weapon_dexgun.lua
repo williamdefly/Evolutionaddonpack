@@ -45,6 +45,8 @@ SWEP.Secondary.DefaultClip = -1;
 SWEP.Secondary.Automatic = false;
 SWEP.Secondary.Ammo = "none";
 
+SWEP.Spawnable = true
+
 -- Add weapon for NPCs
 list.Add("NPCUsableWeapons", {class = "eap_weapon_dexgun", title = SWEP.PrintName or ""});
 
@@ -125,7 +127,7 @@ function SWEP:SVPrimaryAttack()
 	end
 	-- Add some randomness to the velocity
 	if not self.Stun then
-		local e = ents.Create("eap_energy_pulse");
+		local e = ents.Create("energypulse");
 		e:PrepareBullet(aimvector, multiply, 8000, 1);
 		e:SetPos(shootpos);
 		e:SetOwner(p);
@@ -136,7 +138,7 @@ function SWEP:SVPrimaryAttack()
 		p:EmitSound(self.Sounds.Shot[math.random(1,#self.Sounds.Shot)],90,math.random(97,103));
 		if(self.Owner:IsPlayer()) then self:TakePrimaryAmmo(1) end; -- Take one Ammo
 	else
-		local e = ents.Create("eap_energy_pulse_stun");
+		local e = ents.Create("energypulse_stun");
 		e:PrepareBullet(aimvector, multiply, 8000, 1);
 		e:SetPos(shootpos);
 		e:SetOwner(p);

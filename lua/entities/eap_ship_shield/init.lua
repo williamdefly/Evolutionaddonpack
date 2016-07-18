@@ -26,12 +26,12 @@ include("modules/bullets.lua");
 ENT.Sounds = {Hit=Sound("shields/shield_hit.mp3")};
 ENT.NotTeleportable = true;
 ENT.NoDissolve = true;
-ENT.CAP_NotSave = true;
+ENT.EAP_NotSave = true;
 ENT.CDSIgnore = true; -- CDS Immunity
 function ENT:gcbt_breakactions() end; ENT.hasdamagecase = true; -- GCombat invulnarability!
 
 -- Register shield SENT to the trace class (everything else is handled in bullets.lua)
-Lib.Trace:Add("shield",
+Lib.Trace:Add("shields",
 	function(e,values,trace,in_box)
 		if(not e.Parent.Depleted) then
 			if((e.Parent.Containment and in_box) or (not e.Parent.Containment and not in_box)) then
@@ -58,7 +58,6 @@ function ENT:Initialize()
 	self.Entity:SetModel("models/zup/shields/1024_shield.mdl");
 	self.Entity:SetNWString("shield_model", model);
 	self.Parent:SetNWString("shield_model", model);
-	--print(model)
 
 	self.Entity:SetMoveType(MOVETYPE_NONE);
 	self.Entity:SetSolid(SOLID_VPHYSICS);
@@ -95,7 +94,7 @@ function ENT:Initialize()
 	local multi_shield = Lib.CFG:Get("shield","multiple_shields",false); -- Allow multiple shields?
 	--################# Fetch all things in a sphere to make it nocollide
 	-- for _,v in pairs(ents.FindInSphere(self.Entity:GetPos(),self.Size)) do
-		-- if(not multi_shield and v ~= self.Entity and v:GetClass() == "shield") then
+		-- if(not multi_shield and v ~= self.Entity and v:GetClass() == "shields") then
 			----We are smaller - We have to go :(
 			-- if(v.Size >= self.Size) then
 				-- self.Parent:Status(false);

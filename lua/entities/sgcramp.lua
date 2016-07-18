@@ -4,7 +4,7 @@ ENT.Type = "anim"
 ENT.Base = "base_anim"
 ENT.PrintName = "SGC Ramp"
 ENT.Author = "Llapp (Models are linked to aVoN's Pack)"
-ENT.Category = "Stargate Carter Addon Pack"
+ENT.Category = ""
 
 ENT.Spawnable = false
 ENT.AdminSpawnable = false
@@ -142,8 +142,8 @@ function ENT:PostEntityPaste(ply, Ent, CreatedEntities)
 	end
 end
 
-if (Lib and Lib.CAP_GmodDuplicator) then
-	duplicator.RegisterEntityClass( "sgcramp", Lib.CAP_GmodDuplicator, "Data" )
+if (Lib and Lib.EAP_GmodDuplicator) then
+	duplicator.RegisterEntityClass( "sgcramp", Lib.EAP_GmodDuplicator, "Data" )
 end
 
 end

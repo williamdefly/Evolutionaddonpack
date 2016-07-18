@@ -22,6 +22,7 @@ SWEP.ViewModel = "models/MarkJaw/LSD/LSD_v.mdl";
 SWEP.WorldModel = "models/markjaw/lsd/lsd_w.mdl";
 SWEP.ViewModelFOV = 90
 SWEP.HoldType = "slam"
+SWEP.Spawnable = true
 
 -- Lol, without this we can't use this weapon in mp on gmod13...
 if SERVER then

@@ -26,8 +26,7 @@ ent_ship_teltak = Tel'tak
 ent_ship_wraithcruiser = Wraith Cruiser
 ent_ship_traveler = Traveler
 
-//Player Weapons Entities
-ent_frag_grenade = Frag Grenade Entity
+//Weapons
 
 //Entities Messages
 ent_sarco_exit = Type USE to Exit or wait full life
@@ -41,20 +40,20 @@ ent_sarco_god_inside = Your God is already inside
 ring_ancient = Rings (Ancient)
 ring_goauld = Rings (Goauld)
 ring_ori = Rings (Ori)
-ring_panel_ancient = Ring Panel (Ancient)
-ring_panel_goauld = Ring Panel (Goauld)
-ring_panel_ori = Ring Panel (Ori)
+rg_panel_ancient = Ring Panel (Ancient)
+rg_panel_goauld = Ring Panel (Goauld)
+rg_panel_ori = Ring Panel (Ori)
 ring_name = Name this ring (numbers only!):
 ring_dial = Enter destination address (numbers only!):
 ring_dialb = Dial
 ring_error = A Ring with this address already exists!
 
 //DHD
-dhd_atlantis = DHD (Atlantis)
-dhd_city = DHD (City)
-dhd_concept = DHD (Concept)
+dhd_atl = DHD (Atlantis)
+dhd_atl_city = DHD (City)
+dhd_con = DHD (Concept)
 dhd_infinity = DHD (Infinity)
-dhd_sg1 = DHD (SG1)
+dhd_milk = DHD (SG1)
 dhd_universe = DHD (Universe)
 
 //Stargate
@@ -101,7 +100,7 @@ asgardtp_jamming = Can't teleport by this coordinates - jamming device online.
 asgardtp_succ = Successful teleportation.
 
 //Atlantis Transporter
-ent_atlantis_transporter = Atlantis Transporter
+ent_atlantis_trans = Atlantis Transporter
 atl_tp_01 = Atlantis Transporter Settings
 atl_tp_02 = Destination transporter name:
 atl_tp_03 = Save
@@ -134,3 +133,48 @@ iriscomp_open_desc = If checked, the iris will not open until the wire input tel
 iriscomp_cancel = Cancel
 iriscomp_toggle = Toggle Iris
 iriscomp_ok = Save
+
+// Dakara
+entity_dakara = Dakara Weapon
+ancient_control_panel = Ancient Control Panel
+dakara_energy_kill = Dakara Energy Wave
+dakara_panel = Dakara Device Control Panel
+dakara_power = Set the Power of Device, which affect on radius and time of charging.
+dakara_power_d = Faster - Stronger
+dakara_menu_01 = Desintegrate Players
+dakara_menu_02 = Set for desintegrate players.
+dakara_menu_03 = Desintegrate Props
+dakara_menu_04 = Set for desintegrate props.
+dakara_menu_05 = Desintegrate Vehicles
+dakara_menu_06 = Set for desintegrate vehicles.
+dakara_menu_07 = Desintegrate Replicators
+dakara_menu_08 = Set for desintegrate replicators.
+dakara_menu_09 = Desintegrate NPCs
+dakara_menu_10 = Set for desintegrate NPCs.
+dakara_menu_11 = Close
+dakara_menu_12 = Launch
+
+// Shaped Charge
+entity_directional_nuke = Shaped Charge
+directional_nuke_menu_t = Shaped Charge Timer
+directional_nuke_menu_d = Seconds to explosion:
+directional_nuke_menu_c = Cancel
+
+// Weapons
+entity_ag3 = AG3
+entity_asgard_beam = Asgard Beam
+entity_asuran_satellite = Asuran Satellite
+entity_asuran_weapon = Asuran Gate Weapon
+entity_dest_main = Destiny Main Weapon
+entity_dest_med = Destiny Medium Weapon
+entity_dest_small = Destiny Small Weapon
+entity_drone = Drone Launcher
+entity_horizon_missile = Horizon Missile
+entity_ion_cannon = Ion Cannon
+entity_minidrone = Minidrone Launcher
+entity_ori_beam = Ori Beam
+entity_ori_satellite = Ori Satellite
+entity_overloader = Overloader
+entity_shiprail = Railgun
+entity_staff_weapon = Staff Weapon
+entity_stat_railgun = Stationnary Railgun

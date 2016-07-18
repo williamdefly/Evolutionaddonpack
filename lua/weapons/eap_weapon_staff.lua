@@ -46,6 +46,7 @@ SWEP.Secondary.DefaultClip = -1;
 SWEP.Secondary.Automatic = false;
 SWEP.Secondary.Ammo = "none";
 
+SWEP.Spawnable = true
 
 -- Add weapon for NPCs
 list.Add("NPCUsableWeapons", {class = "eap_weapon_staff", title = SWEP.PrintName or ""});
@@ -162,7 +163,7 @@ function SWEP:SVPrimaryAttack()
 		aimvector = (t.HitPos-shootpos):GetNormalized();
 	end
 	-- Add some randomness to the velocity
-	local e = ents.Create("eap_energy_pulse");
+	local e = ents.Create("energypulse");
 	e:PrepareBullet(aimvector, multiply, 8000, 2);
 	e:SetPos(shootpos);
 	e:SetOwner(p);

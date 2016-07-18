@@ -43,6 +43,8 @@ SWEP.Sounds = {feeling=Sound("weapons/wraith_feeding.wav"),SwingSound = Sound( "
 
 --SWEP.HitDistance = 67
 
+SWEP.Spawnable = true
+
 SWEP.Ammo = 3;
 
 function SWEP:Initialize()

@@ -90,7 +90,7 @@ end
 function ENT:ChangeSystemType(groupsystem)
 	self:GateWireInputs(groupsystem);
 	if (groupsystem) then
-		if (self.GateSpawnerSpawned) then
+		if (self.EAPGateSpawnerSpawned) then
 			timer.Simple(1.75, function()
 				if (IsValid(self)) then
 					self:GateWireOutputs(groupsystem);
@@ -105,7 +105,7 @@ function ENT:ChangeSystemType(groupsystem)
 		end
 		self.WireCharters = "A-Z0-9@#";
 	else
-		if (self.GateSpawnerSpawned) then
+		if (self.EAPGateSpawnerSpawned) then
 			timer.Simple(1.75, function()
 				if (IsValid(self)) then
 					self:GateWireOutputs(groupsystem);
@@ -154,7 +154,7 @@ function ENT:SpawnFunction(p,t)
 	e:SetAngles(ang);
 	e:SetGateGroup("P@");
 	e:SetLocale(true);
-	e:CartersRamps(t);
+	e:Ramps(t);
 	e:SetWire("Dialing Mode",-1);
 	return e;
 end
@@ -421,6 +421,6 @@ function ENT:Shutdown(fail,play_sound)
 	end
 end
 
-if (Lib and Lib.CAP_GmodDuplicator) then
-	duplicator.RegisterEntityClass( "sg_atlantis", Lib.CAP_GmodDuplicator, "Data" )
+if (Lib and Lib.EAP_GmodDuplicator) then
+	duplicator.RegisterEntityClass( "sg_atlantis", Lib.EAP_GmodDuplicator, "Data" )
 end

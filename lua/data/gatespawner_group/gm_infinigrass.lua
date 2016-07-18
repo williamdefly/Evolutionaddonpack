@@ -22,23 +22,23 @@ position=0 556 -16230
 angles=-0 270 0
 model=models/Iziraider/sga_ramp/sga_ramp.mdl
 
-[ring_panel]
+[rg_panel]
 classname=rg_panel_goauld
 position=-78 -224 -16186
 angles=345 315 0
 
-[ring_base]
+[rg_base]
 classname=rg_base_goauld
 position=0 -302 -16235
 angles=0 0 0
 address=1
 
-[ring_panel]
+[rg_panel]
 classname=rg_panel_ancient
 position=0 -5569 14962
 angles=0 90 0
 
-[ring_base]
+[rg_base]
 classname=rg_base_ancient
 position=0 -5470 14912
 angles=0 0 0

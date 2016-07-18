@@ -15,7 +15,7 @@ if SERVER then
 --################# HEADER #################
 AddCSLuaFile();
 
-ENT.CAP_NotSave = true;
+ENT.EAP_NotSave = true;
 ENT.NotTeleportable = true;
 ENT.NoDissolve = true;
 ENT.CDSIgnore = true; -- CDS Immunity
@@ -51,7 +51,7 @@ function ENT:AcceptInput( name, activator, caller, data )
 
 		for _,v in pairs(ents.FindInSphere(self.Entity:GetPos(),self.Radius)) do
 			if (IsValid(v)) then
-				if(not (parent.Attached[v] or v.GateSpawnerSpawned or v.NoDissolve)) then
+				if(not (parent.Attached[v] or v.EAPGateSpawnerSpawned or v.NoDissolve)) then
 					if (constraint.HasConstraints(v)) then
 						local entities = Lib.GetConstrainedEnts(v,2);
 						local cont = false;

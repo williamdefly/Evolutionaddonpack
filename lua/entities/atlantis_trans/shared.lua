@@ -3,7 +3,7 @@ if (Lib!=nil and Lib.RD!=nil) then Lib.LifeSupport(ENT); end
 ENT.Type = "anim"
 ENT.Base = "base_anim" --gmodentity
 if (Lib.Language!=nil and Lib.Language.GetMessage!=nil) then
-ENT.PrintName = Lib.Language.GetMessage("ent_atlantis_transporter")
+ENT.PrintName = Lib.Language.GetMessage("ent_atlantis_trans")
 ENT.Category = Lib.Language.GetMessage("cat_transportation")
 end
 ENT.Author = "AlexALX, Ronon Dex"

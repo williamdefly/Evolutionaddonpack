@@ -402,7 +402,7 @@ end
 function ENT:CheckEnergy(target,chevs)
 	if (not self:GetNWBool("HAS_RD",false)) then return true end -- without RD always have energy
 	if(not util.tobool(self:GetNetworkedInt("SG_ENERGY")))then return true end;
-	if(self:GetNWBool("GateSpawnerSpawned",false) and not util.tobool(self:GetNetworkedInt("SG_ENERGY_SP")))then return true end;
+	if(self:GetNWBool("EAPGateSpawnerSpawned",false) and not util.tobool(self:GetNetworkedInt("SG_ENERGY_SP")))then return true end;
 	self:CheckConnection(chevs);
 	local energy = false;
 	local en = self:GetNetworkedInt("RD_ENERGY",0);

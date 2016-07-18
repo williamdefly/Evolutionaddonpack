@@ -2,7 +2,7 @@ ENT.Type = "anim"
 ENT.Base = "sg_base"
 ENT.PrintName = "Stargate (SG1)"
 ENT.Author = "aVoN, Madman07, Llapp, Boba Fett, AlexALX"
-ENT.Category = "Stargate Carter Addon Pack: Gates and Rings"
+ENT.Category = ""
 ENT.Spawnable = true
 
 ENT.WireDebugName = "Stargate SG1"
@@ -22,7 +22,7 @@ properties.Add( "Lib.SGCType.On",
 
 	Filter		=	function( self, ent, ply )
 						local vg = {"sg_movie","sg_sg1","sg_infinity"}
-						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsStargate || !table.HasValue(vg,ent:GetClass()) || ent:GetNWBool("GateSpawnerProtected",false) || ent:GetNWBool("ActSGCT",false)) then return false end
+						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsStargate || !table.HasValue(vg,ent:GetClass()) || ent:GetNWBool("EAPGateSpawnerProtected",false) || ent:GetNWBool("ActSGCT",false)) then return false end
 						if ( !gamemode.Call( "CanProperty", ply, "stargatemodify", ent ) ) then return false end
 						return true
 
@@ -54,7 +54,7 @@ properties.Add( "Lib.SGCType.Off",
 
 	Filter		=	function( self, ent, ply )
                         local vg = {"sg_movie","sg_sg1","sg_infinity"}
-						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsStargate || !table.HasValue(vg,ent:GetClass()) || ent:GetNWBool("GateSpawnerProtected",false) || !ent:GetNWBool("ActSGCT",false)) then return false end
+						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsStargate || !table.HasValue(vg,ent:GetClass()) || ent:GetNWBool("EAPGateSpawnerProtected",false) || !ent:GetNWBool("ActSGCT",false)) then return false end
 						if ( !gamemode.Call( "CanProperty", ply, "stargatemodify", ent ) ) then return false end
 						return true
 
@@ -86,7 +86,7 @@ properties.Add( "Lib.PoO",
 
 	Filter		=	function( self, ent, ply )
 						local vg = {"sg_movie","sg_sg1","sg_infinity","sg_tollan"}
-						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsStargate || !table.HasValue(vg,ent:GetClass()) || ent:GetNWBool("GateSpawnerProtected",false)) then return false end
+						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsStargate || !table.HasValue(vg,ent:GetClass()) || ent:GetNWBool("EAPGateSpawnerProtected",false)) then return false end
 						if ( !gamemode.Call( "CanProperty", ply, "stargatemodify", ent ) ) then return false end
 						return true
 

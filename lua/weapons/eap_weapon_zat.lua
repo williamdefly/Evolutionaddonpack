@@ -46,6 +46,7 @@ SWEP.Secondary.DefaultClip = -1;
 SWEP.Secondary.Automatic = false;
 SWEP.Secondary.Ammo = "none";
 
+SWEP.Spawnable = true
 
 -- Add weapon for NPCs
 list.Add("NPCUsableWeapons", {class = "eap_weapon_zat", title = SWEP.PrintName or ""});
@@ -209,15 +210,15 @@ function SWEP:DoShoot()
 	fx:SetOrigin(pos);
 	fx:SetStart(trace.HitPos);
 	fx:SetEntity(p);
-	util.Effect("eap_zat_tracer",fx,true);
+	util.Effect("zattracer",fx,true);
 	--################### Hit the shield? Do a flicker effect FIXME: I Really should movethese HasEnergy <=> Depleted shit to the shield soon
 	if(IsValid(trace.Entity)) then
 		local class = trace.Entity:GetClass();
-		if(class == "shield") then
+		if(class == "shields") then
 			if(trace.Entity:Hit(self.Weapon,trace.HitPos,3,-1*trace.Normal)) then return end;
-		elseif(class == "shield_core_buble") then
+		elseif(class == "shieldcore_bubble") then
 			if(trace.Entity:Hit(self.Weapon,trace.HitPos,3,trace.Normal)) then return end;
-		elseif(class == "event_horizon") then
+		elseif(class == "eventhorizon") then
 			-- Event horizon! Make the shot go through! (This will make the zat only go through ONE (1!) time. So for any idiot, trying to shout the shot through 1000 gates: Be disappointed. It's not my intention to add idiotic-special cases!)
 			if(IsValid(trace.Entity.Target) and trace.Entity:GetForward():DotProduct(trace.Normal) < 0) then
 				local pos,normal = trace.Entity:TeleportVectorWithEffect(trace.HitPos,trace.Normal);
@@ -227,7 +228,7 @@ function SWEP:DoShoot()
 				fx:SetScale(1);
 				fx:SetOrigin(pos);
 				fx:SetStart(trace.HitPos);
-				util.Effect("eap_zat_tracer",fx,true);
+				util.Effect("zattracer",fx,true);
 				-- I have no clue, why this is necessary, but atleast one person has a problem with this line http://mantis.39051.vs.webtropia.com/view.php?id=7
 				if(IsValid(trace.Entity)) then
 					trace.Entity:EmitSound(self.Sounds.Shot[2],90,math.random(96,102));
@@ -404,7 +405,7 @@ function SWEP:DoShoot()
 						fx:SetEntity(v);
 						v:SetRenderMode(2);
 						v:SetKeyValue("renderamt",0);
-						util.Effect("eap_zat_disintegrate",fx);
+						util.Effect("zatdisintegrate",fx);
 						v:SetCollisionGroup(COLLISION_GROUP_DEBRIS);
 						timer.Simple(desintegration_time+0.3,function() if(v:IsValid()) then v:Remove() end end);
 						v.ZatMode = 3; -- Killed!
@@ -422,7 +423,7 @@ function SWEP:StunEffect(e,pos,size)
 	fx:SetOrigin(pos);
 	fx:SetScale(size); -- A type of refect ammount. As bigger the Entity is, as less energy-zaps
 	fx:SetEntity(e);
-	util.Effect("eap_zat_impact",fx,true);
+	util.Effect("zatimpact",fx,true);
 	-- Create a dummy SENT, so we can have the TeslaHitboxes where we shot
 	local e = e;
 	if(not e) then

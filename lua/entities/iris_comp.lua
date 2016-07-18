@@ -7,7 +7,7 @@ ENT.Purpose	= "Open/Close Iris"
 ENT.Author = "Rothon, AlexALX"
 ENT.Contact	= "steven@facklerfamily.org"
 ENT.Instructions= "Touch gate or Iris, press USE to change settings"
-ENT.Category = "Stargate Carter Addon Pack"
+ENT.Category = ""
 ENT.WireDebugName = "Stargate Iris Computer"
 ENT.Spawnable = true
 
@@ -447,8 +447,8 @@ function ENT:PostEntityPaste(ply, Ent, CreatedEntities)
 	Lib.Wire.PostEntityPaste(self,ply,Ent,CreatedEntities)
 end
 
-if (Lib and Lib.CAP_GmodDuplicator) then
-	duplicator.RegisterEntityClass( "iris_computer", Lib.CAP_GmodDuplicator, "Data" )
+if (Lib and Lib.EAP_GmodDuplicator) then
+	duplicator.RegisterEntityClass( "iris_computer", Lib.EAP_GmodDuplicator, "Data" )
 end
 
 end

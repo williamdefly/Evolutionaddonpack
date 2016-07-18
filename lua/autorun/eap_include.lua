@@ -6,108 +6,110 @@ EAP.SpawnList = {};
 -- We're including all librairies ! @Elanis
 
 --Initializing System
-IncludeCS('librairies/shared/init.lua');
+IncludeCS('eap_librairies/shared/init.lua');
 
 -- Compatibility with Gmod 13 - Thanks to AlexALX
-IncludeCS("librairies/shared/a_gmod13.lua");
+IncludeCS("eap_librairies/shared/a_gmod13.lua");
 
 -- Many Functions
-IncludeCS('librairies/shared/general.lua');
+IncludeCS('eap_librairies/shared/general.lua');
 
 --Weapons 
 IncludeCS('weapons/gmod_tool/eap_base_tool.lua');
 
 if(SERVER)then
 -- Wiremod
-include('librairies/server/wire.lua');
+include('eap_librairies/server/wire.lua');
 
 -- Ressource Distribution : LS / CAF / SB / ENV / SL
-include('librairies/server/rd.lua');
+include('eap_librairies/server/rd.lua');
 
 -- Tool
-include('librairies/server/tool.lua');
+include('eap_librairies/server/tool.lua');
 
 -- Teleport
-include('librairies/server/teleport.lua');
+include('eap_librairies/server/teleport.lua');
 
 -- Entity
-include('librairies/server/entity.lua');
+include('eap_librairies/server/entity.lua');
 
 -- Many Functions
-include('librairies/server/general.lua');
+include('eap_librairies/server/general.lua');
 
 -- GateSpawner
-include('librairies/server/spawner.lua');
+include('eap_librairies/server/spawner.lua');
 
 --INI Parser
-include('librairies/server/ini_parser.lua')
+include('eap_librairies/server/ini_parser.lua')
 
 end
 
 -- Many Functions
-IncludeCS('librairies/client/general.lua');
+IncludeCS('eap_librairies/client/general.lua');
 
 -- Client ConVars
-IncludeCS("librairies/client/clientconvars.lua");
+IncludeCS("eap_librairies/client/clientconvars.lua");
 
--- Menu
-IncludeCS("librairies/client/menu.lua");
 
 -- Keyboard
-IncludeCS('librairies/client/keyboard.lua');
+IncludeCS('eap_librairies/client/keyboard.lua');
 
-IncludeCS('librairies/shared/keyboard.lua');
+IncludeCS('eap_librairies/shared/keyboard.lua');
 
 --Settings
-IncludeCS("librairies/shared/general_settings.lua")
-IncludeCS('librairies/shared/ships_settings.lua');
+IncludeCS("eap_librairies/shared/general_settings.lua")
+IncludeCS('eap_librairies/shared/ships_settings.lua');
+IncludeCS('eap_librairies/shared/client_settings.lua');
+
+-- Menu
+IncludeCS("eap_librairies/client/menu.lua");
 
 -- Visual System
-IncludeCS("librairies/client/visual.lua");
+IncludeCS("eap_librairies/client/visual.lua");
 
 -- PlayerModels
-IncludeCS('librairies/shared/playermodel.lua');
+IncludeCS('eap_librairies/shared/playermodel.lua');
 
 -- Matrix
-IncludeCS('librairies/shared/matrix.lua');
+IncludeCS('eap_librairies/shared/matrix.lua');
 
 -- Weapons
-IncludeCS('librairies/shared/weapons.lua');
+IncludeCS('eap_librairies/shared/weapons.lua');
 
 -- Language Libs
-IncludeCS('librairies/shared/sg_language_lib.lua');
+IncludeCS('eap_librairies/shared/sg_language_lib.lua');
 
 if(SERVER)then
-AddCSLuaFile('librairies/vgui/init.lua');
-AddCSLuaFile('librairies/vgui/dmultichoice.lua');
-AddCSLuaFile('librairies/vgui/doldnumslider.lua');
-AddCSLuaFile('librairies/vgui/jumperhud.lua');
-AddCSLuaFile('librairies/vgui/jumperlsd.lua');
-AddCSLuaFile('librairies/vgui/stargatemenus.lua');
+AddCSLuaFile('eap_librairies/vgui/init.lua');
+AddCSLuaFile('eap_librairies/vgui/dmultichoice.lua');
+AddCSLuaFile('eap_librairies/vgui/doldnumslider.lua');
+AddCSLuaFile('eap_librairies/vgui/jumperhud.lua');
+AddCSLuaFile('eap_librairies/vgui/jumperlsd.lua');
+AddCSLuaFile('eap_librairies/vgui/stargatemenus.lua');
 end
 
 if(CLIENT)then
 -- VGui Interface
-IncludeCS('librairies/vgui/init.lua');
-IncludeCS('librairies/vgui/dmultichoice.lua');
-IncludeCS('librairies/vgui/doldnumslider.lua');
-IncludeCS('librairies/vgui/jumperhud.lua');
-IncludeCS('librairies/vgui/jumperlsd.lua');
-IncludeCS('librairies/vgui/stargatemenus.lua');
+IncludeCS('eap_librairies/vgui/init.lua');
+IncludeCS('eap_librairies/vgui/dmultichoice.lua');
+IncludeCS('eap_librairies/vgui/doldnumslider.lua');
+IncludeCS('eap_librairies/vgui/jumperhud.lua');
+IncludeCS('eap_librairies/vgui/jumperlsd.lua');
+IncludeCS('eap_librairies/vgui/stargatemenus.lua');
 end
 
 if(SERVER)then
 -- ConVars
-include('librairies/server/convar.lua');
+include('eap_librairies/server/convar.lua');
 
 -- Chat
-include('librairies/server/chat.lua');
+include('eap_librairies/server/chat.lua');
 
 -- Combat
-include('librairies/server/combat_function.lua');
+include('eap_librairies/server/combat_function.lua');
 end
 
 -- Traceline
-IncludeCS('librairies/shared/tracelines.lua');
+IncludeCS('eap_librairies/shared/tracelines.lua');
 
 MsgN("=======================================================");

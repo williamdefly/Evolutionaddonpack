@@ -644,6 +644,6 @@ function ENT:PostEntityPaste(ply, Ent, CreatedEntities)
 	Lib.Wire.PostEntityPaste(self,ply,Ent,CreatedEntities)
 end
 
-if (Lib and Lib.CAP_GmodDuplicator) then
-	duplicator.RegisterEntityClass( "ship_puddle_jumper", Lib.CAP_GmodDuplicator, "Data" )
+if (Lib and Lib.EAP_GmodDuplicator) then
+	duplicator.RegisterEntityClass( "ship_puddle_jumper", Lib.EAP_GmodDuplicator, "Data" )
 end

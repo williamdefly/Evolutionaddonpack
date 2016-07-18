@@ -11,7 +11,7 @@ if SERVER then
 
 AddCSLuaFile()
 
-ENT.CAP_NotSave = true;
+ENT.EAP_NotSave = true;
 
 ENT.Sounds={
 	Loop = Sound("weapons/asuran_beam.wav"),
@@ -121,7 +121,7 @@ function ENT:UpdateEndPos()
 	if self.StargateTrace.Hit then
 		local ent = self.StargateTrace.Entity;
 
-		if (IsValid(ent) and (ent:GetClass() == "shield" or ent:GetClass() == "shield_core_buble")) then
+		if (IsValid(ent) and (ent:GetClass() == "shields" or ent:GetClass() == "shieldcore_bubble")) then
 			ent:Hit(self.Entity,self.StargateTrace.HitPos, 3, self.StargateTrace.HitNormal, self.FireFrequency);
 		end
 

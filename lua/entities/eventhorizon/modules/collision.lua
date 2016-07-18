@@ -42,7 +42,6 @@ function ShouldEHEntitiesCollide(ent1,ent2)
 		entb.___last_entb = nil;
 		enta.___last_res = nil;
 		entb.___last_res = nil;
-		--print("PREVENT PHYSICS CRASH");
 		noupdate = true;
 
 	else

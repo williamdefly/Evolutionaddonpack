@@ -68,6 +68,8 @@ SWEP.Secondary.ClipSize = -1
 SWEP.Secondary.Damage = 0
 SWEP.DrawWorldModel = true
 
+SWEP.Spawnable = true
+
 SWEP.WElements = {
 	["World_weapon_model"] = { type = "Model", model = "models/pg_props/pg_stargate/pg_shot.mdl", bone = "ValveBiped.Bip01_R_Hand", rel = "", pos = Vector(3.2, 1.6, 0), angle = Angle(180, 0, 0), size = Vector(0.8, 0.8, 0.8), color = Color(255, 255, 255, 255), surpresslightning = false, material = "", skin = 0, bodygroup = {} }
 }
@@ -184,8 +186,8 @@ if (SERVER) then
 			victim:SetNetworkedBool("SGAdrenaline_Heal", false);
 		end
 	end
-	hook.Add( "PlayerDeath", "StarGate.Adrenaline", playerDies )
-	hook.Add( "PlayerSilentDeath", "StarGate.Adrenaline", playerDies )
+	hook.Add( "PlayerDeath", "Lib.Adrenaline", playerDies )
+	hook.Add( "PlayerSilentDeath", "Lib.Adrenaline", playerDies )
 end
 
 

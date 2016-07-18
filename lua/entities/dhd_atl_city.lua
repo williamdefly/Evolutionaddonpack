@@ -11,7 +11,7 @@ ENT.Type = "anim"
 ENT.Base = "dhdbase"
 ENT.PrintName = "DHD (City)"
 ENT.Author = "aVoN, Madman07, ZsDaniel, Boba Fett, AlexALX"
-ENT.Category = "Stargate Carter Addon Pack: Gates and Rings"
+ENT.Category = ""
 ENT.WireDebugName = "DHD (City)"
 ENT.Spawnable = true
 
@@ -176,7 +176,7 @@ end
 if SERVER then
 AddCSLuaFile();
 
-ENT.PlorkSound = "stargate/dhd_atlantis.mp3";
+ENT.PlorkSound = "stargate/dhd_atl.mp3";
 ENT.LockSound = "stargate/chevron_lock_atlantis_incoming.mp3";
 ENT.Model = "models/ZsDaniel/atlantis_console/dhd.mdl"
 
@@ -283,15 +283,15 @@ function ENT:EnergyThink()
 	end
 end
 
-if (Lib and Lib.CAP_GmodDuplicator) then
-	duplicator.RegisterEntityClass( "dhd_atl_city", Lib.CAP_GmodDuplicator, "Data" )
+if (Lib and Lib.EAP_GmodDuplicator) then
+	duplicator.RegisterEntityClass( "dhd_atl_city", Lib.EAP_GmodDuplicator, "Data" )
 end
 
 else -- CLIENT
 
 if (Lib.Language!=nil and Lib.Language.GetMessage!=nil) then
 	ENT.Category = Lib.Language.GetMessage("cat_transportation");
-	ENT.PrintName = Lib.Language.GetMessage("dhd_city");
+	ENT.PrintName = Lib.Language.GetMessage("dhd_atl_city");
 end
 
 end

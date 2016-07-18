@@ -3,7 +3,7 @@ ENT.Base = "rg_base"
 ENT.PrintName = "Rings (Ori)"
 ENT.Author = "Catdaemon, Madman07, Boba Fett"
 ENT.Instructions = "Place where desired, USE to set its address."
-ENT.Category = 	"Stargate Carter Addon Pack: Gates and Rings"
+ENT.Category = 	""
 ENT.Spawnable = true
 
 list.Set("EAP", ENT.PrintName, ENT);
@@ -34,8 +34,8 @@ function ENT:SpawnFunction(p,tr)
 	return e;
 end
 
-if (Lib and Lib.CAP_GmodDuplicator) then
-	duplicator.RegisterEntityClass( "rg_base_ori", Lib.CAP_GmodDuplicator, "Data" )
+if (Lib and Lib.EAP_GmodDuplicator) then
+	duplicator.RegisterEntityClass( "rg_base_ori", Lib.EAP_GmodDuplicator, "Data" )
 end
 
 end

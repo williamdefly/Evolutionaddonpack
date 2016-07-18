@@ -127,47 +127,47 @@ classname=dhd_milk
 position=6983.8555 4417.7168 -414.7687
 angles=15.000 5.801 -0.000
 destroyed=false
-[ring_panel]
+[rg_panel]
 classname=rg_panel_goauld
 position=9994.6719 8121.5171 -377.4950
 angles=-30.966 -0.056 -0.005
-[ring_panel]
+[rg_panel]
 classname=rg_panel_goauld
 position=11497.0625 4185.7275 -132.2616
 angles=0.000 -0.008 0.000
-[ring_panel]
+[rg_panel]
 classname=rg_panel_goauld
 position=10509.6328 1965.0631 -842.9276
 angles=-0.000 89.993 0.000
-[ring_panel]
+[rg_panel]
 classname=rg_panel_goauld
 position=8904.1738 3153.0635 -468.0524
 angles=-0.000 89.987 0.000
-[ring_panel]
+[rg_panel]
 classname=rg_panel_goauld
 position=7049.8496 9566.9375 -156.2848
 angles=-0.000 -90.013 0.000
-[ring_base]
+[rg_base]
 classname=rg_base_goauld
 position=10131.0713 8121.4839 -403.6124
 angles=0.029 0.453 0.001
 address=1
-[ring_base]
+[rg_base]
 classname=rg_base_goauld
 position=11602.2158 4183.5220 -191.9688
 angles=0.000 -0.819 0.000
 address=2
-[ring_base]
+[rg_base]
 classname=rg_base_goauld
 position=10509.2949 2066.6387 -887.9688
 angles=0.000 89.602 -0.000
 address=3
-[ring_base]
+[rg_base]
 classname=rg_base_goauld
 position=8905.1299 3240.8452 -240.4432
 angles=0.001 -95.802 180.000
 address=4
-[ring_base]
+[rg_base]
 classname=rg_base_goauld
 position=7049.4741 9460.1045 -207.9688
 angles=0.000 -90.677 0.000

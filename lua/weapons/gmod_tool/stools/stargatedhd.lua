@@ -41,7 +41,6 @@ list.Set(TOOL.List,"models/props_c17/computer01_keyboard.mdl",{});
 list.Set(TOOL.List,"models/props_lab/keypad.mdl",{Angle=Angle(-90,0,0),Position=Vector(-5,0,0)});
 list.Set(TOOL.List,"models/props_combine/breenconsole.mdl",{Angle=Angle(0,90,0)});
 list.Set(TOOL.List,"models/zsdaniel/atlantis-dhd/dhd.mdl",{});
---list.Set(TOOL.List,"models/micropro/atlantisdhd/atlantis_dhd.mdl",{});
 list.Set(TOOL.List,"models/iziraider/kinoremote/w_kinoremote.mdl",{});
 
 -- Information about the SENT to spawn

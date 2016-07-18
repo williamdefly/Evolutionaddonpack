@@ -43,29 +43,29 @@ classname=dhd_milk
 position=-8703.6455 12095.1367 3249.2312
 angles=15.000 -89.500 -0.000
 [dhd]
-classname=dhd_city
+classname=dhd_atl_city
 position=7912.3652 8023.3291 2848.0313
 angles=0.000 -154.380 0.000
 [dhd]
 classname=dhd_milk
 position=-3749.4753 5410.2446 8433.2314
 angles=15.000 178.396 0.000
-[ring_base]
+[rg_base]
 classname=rg_base_ancient
 position=-8704.3008 11775.7715 3551.5020
 angles=0.027 -74.750 179.985
 address=planet
-[ring_base]
+[rg_base]
 classname=rg_base_ancient
 position=-4696.3481 5408.6216 8449.3965
 angles=0.000 5.465 0.004
 address=
-[ring_base]
+[rg_base]
 classname=rg_base_ancient
 position=-4096.5430 5216.8540 9089.3789
 angles=-0.001 89.611 -0.004
 address=
-[ring_base]
+[rg_base]
 classname=rg_base_ancient
 position=-4096.5308 5119.3721 8257.3838
 angles=-0.001 0.461 -0.000

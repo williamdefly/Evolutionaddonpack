@@ -243,7 +243,7 @@ function ENT:Toggle(ignore_energy)
 			self:SetWire("Activated",false);
 			self:SetNWBool("Activated",false);
 		else
-			if (not ignore_energy and IsValid(self.GateLink) and self.GateLink.GateSpawnerSpawned and not self:IsComputer()) then return end
+			if (not ignore_energy and IsValid(self.GateLink) and self.GateLink.EAPGateSpawnerSpawned and not self:IsComputer()) then return end
 			if(self.HasRD) then
 				local gate = self:FindGate();
 				if IsValid(gate) and gate.IsStargate and not gate:HaveEnergy(true,true) then if (self.Sounds and self.Sounds.Fail) then self.Entity:EmitSound(self.Sounds.Fail,90,math.random(90,110)); end return end
@@ -287,7 +287,7 @@ function ENT:TrueActivate(deactivate,wire)
 			self:SetWire("Activated",false);
 			self:SetNWBool("Activated",false);
 		elseif (not self.IsActivated and not deactivate) then
-			if (not ignore_energy and IsValid(self.GateLink) and self.GateLink.GateSpawnerSpawned and not self:IsComputer()) then return end
+			if (not ignore_energy and IsValid(self.GateLink) and self.GateLink.EAPGateSpawnerSpawned and not self:IsComputer()) then return end
 			if(self.HasRD and self.Entity:GetModel() == "models/zup/stargate/sga_shield.mdl") then
 				local gate = self:FindGate();
 				if IsValid(gate) and gate.IsStargate and not gate:HaveEnergy(true,true) then return end

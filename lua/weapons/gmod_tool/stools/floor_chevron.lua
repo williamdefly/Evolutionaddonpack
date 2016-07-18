@@ -8,7 +8,7 @@ TOOL.ClientConVar["autoweld"] = 1;
 TOOL.List = "FloorChevronModels";
 list.Set(TOOL.List,"models/The_Sniper_9/Universe/Stargate/floorchevron.mdl",{});
 list.Set(TOOL.List,"models/Boba_Fett/ramps/sgu_ramp/floor_chev.mdl",{});
-TOOL.Entity.Class = "floorchevron";
+TOOL.Entity.Class = "floor_chevron";
 TOOL.Entity.Keys = {"model"};
 TOOL.Entity.Limit = 10;
 TOOL.Topic["name"] = Lib.Language.GetMessage("stool_floorchevron_spawner");

@@ -23,8 +23,6 @@ if SERVER then
 
 AddCSLuaFile();
 
---include("entities/event_horizon/modules/teleport.lua"); -- FIXME: Move all teleportation code of the eventhorizon to /stargate/server/teleport.lua. Then create a teleportation class
-
 local snd = {Sound("tech/asgard_teleport.mp3"),Sound("tech/asgard_beamup.mp3")};
 
 --################### Init @PiX06,aVoN
@@ -102,7 +100,7 @@ end
 --################### Is the entity we want to teleport valid? @aVoN
 function ENT:ValidForTeleport(e)
 	local phys = e:GetPhysicsObject();
-	if(not IsValid(phys) or e.GateSpawnerProtected or e:IsWorld() or IsValid(e:GetParent())) then return false end;
+	if(not IsValid(phys) or e.EAPGateSpawnerProtected or e:IsWorld() or IsValid(e:GetParent())) then return false end;
 	if(e:IsWeapon() and type(e:GetParent()) == "Player") then return end;
 	local class = e:GetClass():lower();
 	local mdl = e:GetModel() or "";
@@ -224,7 +222,7 @@ function ENT:Teleport(from,to,ply,gps_ent)
 	local radius = 1024; -- max range of jamming, we will adjust it later
 	local jaiming_online = false;
 	for _,v in pairs(ents.FindInSphere(from,  radius)) do
-		if IsValid(v) and v.CapJammingDevice then
+		if IsValid(v) and (v.CapJammingDevice or v.JammingDevice) then
 			if v.IsEnabled then
 				local dist = from:Distance(v:GetPos());
 				if (dist < v.Size) then  -- ow jaiming, we cant do anything
@@ -235,7 +233,7 @@ function ENT:Teleport(from,to,ply,gps_ent)
 		end
 	end
 	for _,v in pairs(ents.FindInSphere(to,  radius)) do
-		if IsValid(v) and v.CapJammingDevice then
+		if IsValid(v) and (v.CapJammingDevice or v.JammingDevice) then
 			if v.IsEnabled then
 				local dist = to:Distance(v:GetPos());
 				if (dist < v.Size) then -- ow jaiming, we cant do anything
@@ -314,8 +312,8 @@ function ENT:PostEntityPaste(ply, Ent, CreatedEntities)
 	Lib.RD.PostEntityPaste(self,ply,Ent,CreatedEntities)
 end
 
-if (Lib and Lib.CAP_GmodDuplicator) then
-	duplicator.RegisterEntityClass( "asgard_transporter", Lib.CAP_GmodDuplicator, "Data" )
+if (Lib and Lib.EAP_GmodDuplicator) then
+	duplicator.RegisterEntityClass( "asgard_transporter", Lib.EAP_GmodDuplicator, "Data" )
 end
 
 util.AddNetworkString("EAP.AsgardTransporter");

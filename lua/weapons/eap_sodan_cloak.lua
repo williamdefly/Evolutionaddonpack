@@ -46,6 +46,7 @@ SWEP.Secondary.DefaultClip = -1;
 SWEP.Secondary.Automatic = false;
 SWEP.Secondary.Ammo = "none";
 
+SWEP.Spawnable = true
 
 function SWEP:Initialize()
 	self.Weapon:SetWeaponHoldType(self.HoldType)
@@ -96,7 +97,7 @@ end
 
 --################### Removes a bit health "due to the radiation" the cloak emits to get away phaseshifted insects,worms etc (which are the EVIL himself) @aVoN
 -- No seriously, I added this so a person can't be cloaked infinite - http://mantis.39051.vs.webtropia.com/view.php?id=148
-timer.Create("StarGate.SodanCloaking.DamagePlayerOverTime",1,0,
+timer.Create("Lib.SodanCloaking.DamagePlayerOverTime",1,0,
 	function()
 		for _,v in pairs(player.GetAll()) do
 			if(IsValid(v) and v:GetNWBool("pCloaked",false)) then
@@ -120,7 +121,7 @@ timer.Create("StarGate.SodanCloaking.DamagePlayerOverTime",1,0,
 );
 
 --################### PlayerDeath @aVoN
-hook.Add("PlayerDeath","StarGate.SodanCloaking.PlayerDeath",
+hook.Add("PlayerDeath","Lib.SodanCloaking.PlayerDeath",
 	function(p)
 		if(IsValid(p)) then
 			p:SetNWBool("pCloaked",false);
@@ -134,7 +135,7 @@ hook.Add("PlayerDeath","StarGate.SodanCloaking.PlayerDeath",
 	end
 );
 
-hook.Add("PlayerSilentDeath","StarGate.SodanCloaking.PlayerDeath",
+hook.Add("PlayerSilentDeath","Lib.SodanCloaking.PlayerDeath",
 	function(p)
 		if(IsValid(p)) then
 			p:SetNWBool("pCloaked",false);
@@ -160,7 +161,7 @@ end
 --################### Think @Catdaemon
 -- code moved to arthur_mantle
 /*
-hook.Add("Think","StarGate.SodanCloaking.Think",
+hook.Add("Think","Lib.SodanCloaking.Think",
 	function()
 		local cloaked_self = LocalPlayer():GetNetworkedBool("pCloaked",false);
 		for _,p in pairs(player.GetAll()) do
@@ -200,7 +201,7 @@ hook.Add("Think","StarGate.SodanCloaking.Think",
 
 --################### Color override @Catdaemon
 local BlurEdges = Material("bluredges");
-hook.Add("RenderScreenspaceEffects","StarGate.SodanCloaking.RenderScreenspaceEffects",
+hook.Add("RenderScreenspaceEffects","Lib.SodanCloaking.RenderScreenspaceEffects",
 	function()
 		if(LocalPlayer():GetNWBool("pCloaked",false)) then
 			-- Color Modify - The "Bluish" overlay
@@ -228,7 +229,7 @@ hook.Add("RenderScreenspaceEffects","StarGate.SodanCloaking.RenderScreenspaceEff
 );
 
 --################### Footsteps sound? (Hopefully comes along the next update) @aVoN
-hook.Add("PlayerFootstep","StarGate.SodanCloaking.PlayerFootStep",
+hook.Add("PlayerFootstep","Lib.SodanCloaking.PlayerFootStep",
 	function(p)
 		if(IsValid(p) and p:IsPlayer()) then
 			if(p:GetNWBool("pCloaked",false) and not LocalPlayer():GetNWBool("pCloaked",false)) then
@@ -253,7 +254,7 @@ function util.TraceLine(...)
 end    */
 
 -- Stops making players "recognizeable" if they are cloaked (E.g. by looking at them - Before you e.g. saw "Catdaemon - Health 100" if you lookaed at a cloaked player. Now, you dont see anything if he is cloaked
-hook.Add("HUDDrawTargetID","StarGate.SodanCloak", function()
+hook.Add("HUDDrawTargetID","Lib.SodanCloak", function()
 	local tr = util.GetPlayerTrace( LocalPlayer() )
 	local trace = util.TraceLine( tr )
 	if (!trace.Hit) then return end

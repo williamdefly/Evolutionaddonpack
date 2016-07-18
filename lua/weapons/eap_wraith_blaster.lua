@@ -37,6 +37,8 @@ SWEP.Secondary.DefaultClip = -1;
 SWEP.Secondary.Automatic = false;
 SWEP.Secondary.Ammo = "none";
 
+SWEP.Spawnable = true
+
 list.Add("NPCUsableWeapons", {class = "wraith_blaster", title = SWEP.PrintName or ""});
 
 SWEP.Sounds = Sound("weapons/wraith_stunner.wav");
@@ -114,7 +116,7 @@ function SWEP:PrimaryAttack() --###### Shoot @Ronondex, aVoN
 			aimvector = (trace.HitPos-shootpos):GetNormalized();
 		end
 		-- Add some randomness to the velocity
-		local e = ents.Create("eap_energy_pulse");
+		local e = ents.Create("energypulse");
 		e:PrepareBullet(aimvector, multiply, 8000, 1);
 		e:SetPos(shootpos);
 		e:SetOwner(p);
@@ -169,7 +171,7 @@ function SWEP:SecondaryAttack() --###### Shoot @Ronondex, aVoN
 			aimvector = (trace.HitPos-shootpos):GetNormalized();
 		end
 		-- Add some randomness to the velocity
-		local e = ents.Create("eap_energy_pulse_stun");
+		local e = ents.Create("energypulse_stun");
 		e:PrepareBullet(aimvector, multiply, 8000, 1);
 		e:SetPos(shootpos);
 		e:SetOwner(p);

@@ -287,7 +287,7 @@ function ENT:Think()
 			end
 			
 			if(self.WeaponAllowed) then
-				if(self.Pilot:KeyDown("EAP_KEYBOARD","FIRE")) then
+				if(self.Pilot:KeyDown("EAP_KEYBOARD","FIRE")) then	
 					if(not self.Cloaked and self.CanFire and self.CooledDown and self.LandingMode) then
 						if(not self.OutRing.Laser) then
 							self.OutRing:StartLaser();
@@ -758,8 +758,8 @@ function ENT:PostEntityPaste(ply, Ent, CreatedEntities)
 	Lib.RD.PostEntityPaste(self,ply,Ent,CreatedEntities)
 end
 
-if (Lib and Lib.CAP_GmodDuplicator) then
-	duplicator.RegisterEntityClass( "ship_teltak", Lib.CAP_GmodDuplicator, "Data" )
+if (Lib and Lib.EAP_GmodDuplicator) then
+	duplicator.RegisterEntityClass( "ship_teltak", Lib.EAP_GmodDuplicator, "Data" )
 end
 
 end

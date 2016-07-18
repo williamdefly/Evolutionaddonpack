@@ -2,7 +2,7 @@ ENT.Type = "anim";
 ENT.Base = "sg_base";
 ENT.PrintName = "Stargate (Atlantis)";
 ENT.Author = "aVoN, Madman07, Llapp, Boba Fett, AlexALX";
-ENT.Category = "Stargate Carter Addon Pack: Gates and Rings"
+ENT.Category = ""
 ENT.Spawnable = true
 
 list.Set("EAP", ENT.PrintName, ENT);
@@ -15,7 +15,7 @@ properties.Add( "Lib.Atl.RingLight.On",
 	MenuIcon	=	"icon16/plugin_disabled.png",
 
 	Filter		=	function( self, ent, ply )
-						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsStargate || ent:GetClass()!="sg_atlantis" || ent:GetNWBool("GateSpawnerProtected",false) || ent:GetNWBool("ActRingL",false)) then return false end
+						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsStargate || ent:GetClass()!="sg_atlantis" || ent:GetNWBool("EAPGateSpawnerProtected",false) || ent:GetNWBool("ActRingL",false)) then return false end
 						if ( !gamemode.Call( "CanProperty", ply, "stargatemodify", ent ) ) then return false end
 						return true
 
@@ -47,7 +47,7 @@ properties.Add( "Lib.Atl.RingLight.Off",
 
 	Filter		=	function( self, ent, ply )
 
-						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsStargate || ent:GetClass()!="sg_atlantis" || ent:GetNWBool("GateSpawnerProtected",false) || !ent:GetNWBool("ActRingL",false)) then return false end
+						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsStargate || ent:GetClass()!="sg_atlantis" || ent:GetNWBool("EAPGateSpawnerProtected",false) || !ent:GetNWBool("ActRingL",false)) then return false end
 						if ( !gamemode.Call( "CanProperty", ply, "stargatemodify", ent ) ) then return false end
 						return true
 
@@ -78,7 +78,7 @@ properties.Add( "Lib.Atl.AtlType.On",
 	MenuIcon	=	"icon16/plugin_disabled.png",
 
 	Filter		=	function( self, ent, ply )
-						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsStargate || ent:GetClass()!="sg_atlantis" || ent:GetNWBool("GateSpawnerProtected",false) || ent:GetNWBool("AtlType",false)) then return false end
+						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsStargate || ent:GetClass()!="sg_atlantis" || ent:GetNWBool("EAPGateSpawnerProtected",false) || ent:GetNWBool("AtlType",false)) then return false end
 						if ( !gamemode.Call( "CanProperty", ply, "stargatemodify", ent ) ) then return false end
 						return true
 
@@ -110,7 +110,7 @@ properties.Add( "Lib.Atl.AtlType.Off",
 
 	Filter		=	function( self, ent, ply )
 
-						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsStargate || ent:GetClass()!="sg_atlantis" || ent:GetNWBool("GateSpawnerProtected",false) || !ent:GetNWBool("AtlType",false)) then return false end
+						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsStargate || ent:GetClass()!="sg_atlantis" || ent:GetNWBool("EAPGateSpawnerProtected",false) || !ent:GetNWBool("AtlType",false)) then return false end
 						if ( !gamemode.Call( "CanProperty", ply, "stargatemodify", ent ) ) then return false end
 						return true
 

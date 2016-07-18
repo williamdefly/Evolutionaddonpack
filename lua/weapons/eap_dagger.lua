@@ -41,6 +41,7 @@ SWEP.Secondary.ClipSize		= -1
 SWEP.Secondary.DefaultClip	= -1
 SWEP.Secondary.Automatic   	= true
 SWEP.Secondary.Ammo         = "none"
+SWEP.Spawnable = true
 
 util.PrecacheSound("dagger/knife_deploy1.wav")
 util.PrecacheSound("dagger/knife_hitwall1.wav")

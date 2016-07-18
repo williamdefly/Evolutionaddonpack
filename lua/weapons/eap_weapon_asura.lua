@@ -31,6 +31,8 @@ SWEP.Secondary.DefaultClip = -1
 SWEP.Secondary.Automatic = false
 SWEP.Secondary.Ammo	= "none"
 
+SWEP.Spawnable = true
+
 function SWEP:Initialize()
 
 	self:SetWeaponHoldType("pistol");
@@ -111,7 +113,7 @@ function SWEP:PrimaryAttack() --###### Shoot @Ronondex, aVoN
 		if(trace.Hit) then
 			aimvector = (trace.HitPos-shootpos):GetNormalized();
 		end
-		local e = ents.Create("eap_energy_pulse")
+		local e = ents.Create("energypulse")
 		e:SetPos(shootpos)
 		e:PrepareBullet(aimvector, multiply, 8000, 1);
 		e:SetOwner(p);

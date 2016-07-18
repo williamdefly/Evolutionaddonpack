@@ -30,7 +30,7 @@ function ENT:SpawnFunction(ply, tr) --######## Pretty useless unless we can spaw
 	end
 
 	local e = ents.Create("ship_alkesh")
-	e:SetPos(ply:GetPos() + Vector(0,0,250))
+	e:SetPos(tr.HitPos + Vector(0,0,250))
 	e:SetAngles(ply:GetAngles())
 	e:Spawn()
 	e:Activate()
@@ -41,7 +41,7 @@ function ENT:SpawnFunction(ply, tr) --######## Pretty useless unless we can spaw
 end
 
 function ENT:SpawnRings()
-	local e = ents.Create("ring_base_goauld");
+	local e = ents.Create("rg_base_goauld");
 	e:SetModel(e.BaseModel);
 	e:SetPos(self:LocalToWorld(Vector(125,0,-63)));
 	e:Spawn();
@@ -54,7 +54,7 @@ function ENT:SpawnRings()
 	self.OutRing = e;
 	if CPPI and IsValid(p) and e.CPPISetOwner then e:CPPISetOwner(p) end
 
-	local e = ents.Create("ring_base_goauld");
+	local e = ents.Create("rg_base_goauld");
 	e:SetModel(e.BaseModel);
 	e:SetPos(self:LocalToWorld(Vector(125,0,-35)));
 	e:Spawn();

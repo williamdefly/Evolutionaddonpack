@@ -185,7 +185,7 @@ end
 function ENT:HaveEnergy(check,iris,first)
 	if (not self.HasRD) then return true end -- without RD always have energy
 	if(not util.tobool(GetConVar("stargate_eap_energy_dial"):GetInt()))then return true end;
-	if(self.GateSpawnerSpawned and not util.tobool(GetConVar("stargate_eap_energy_dial_spawner"):GetInt()))then return true end;
+	if(self.EAPGateSpawnerSpawned and not util.tobool(GetConVar("stargate_eap_energy_dial_spawner"):GetInt()))then return true end;
 	local energy = false;
 	local target = util.tobool(GetConVar("stargate_eap_energy_target"):GetInt());
 	if (not IsValid(self.Target) or not self.IsOpen) then target = false; end
@@ -241,7 +241,7 @@ end
 function ENT:CheckEnergy(dhd, no_consume)
 	if (not self.HasRD) then return true end -- without RD always have energy
 	if(not util.tobool(GetConVar("stargate_eap_energy_dial"):GetInt()))then return true end;
-	if(self.GateSpawnerSpawned and not util.tobool(GetConVar("stargate_eap_energy_dial_spawner"):GetInt()))then return true end;
+	if(self.EAPGateSpawnerSpawned and not util.tobool(GetConVar("stargate_eap_energy_dial_spawner"):GetInt()))then return true end;
 	local energy = false;
 	local en = self:GetResource("energy");
 	if (dhd or self.LastEnergy==0) then self.LastEnergy = en; else en = self.LastEnergy end
@@ -273,7 +273,7 @@ end
 function ENT:CheckEnergyDHD()
 	if (not self.HasRD) then return false end
 	if(not util.tobool(GetConVar("stargate_eap_energy_dial"):GetInt()))then return false end;
-	if(self.GateSpawnerSpawned and not util.tobool(GetConVar("stargate_eap_energy_dial_spawner"):GetInt()))then return false end;
+	if(self.EAPGateSpawnerSpawned and not util.tobool(GetConVar("stargate_eap_energy_dial_spawner"):GetInt()))then return false end;
 	local energy = false;
 	local en = self:GetResource("energy");
 	if(en > 0) then energy = true end;
@@ -297,7 +297,7 @@ function ENT:WireGetEnergy(addr,dist)
 	if (dist) then return distance; end
 	if (not self.HasRD) then return -1 end -- without RD always have energy
 	if(not util.tobool(GetConVar("stargate_eap_energy_dial"):GetInt()))then return -1 end;
-	if(self.GateSpawnerSpawned and not util.tobool(GetConVar("stargate_eap_energy_dial_spawner"):GetInt()))then return -1 end;
+	if(self.EAPGateSpawnerSpawned and not util.tobool(GetConVar("stargate_eap_energy_dial_spawner"):GetInt()))then return -1 end;
 	local enconsume = (self.GalaxyConsumption*isgalaxy + self.SGUConsumption*issgu + 1);
 	local energy = 0;
 	local en = self:GetResource("energy");
@@ -953,7 +953,6 @@ function ENT:GetDelay(inbound,fast,chevs,tgate,classic)
 		end
 	end
 	add = add + self:GetDelaySG1(tgate,classic);
-	--print(e.." "..tostring(add).." "..tgate)
 	return add;
 end
 
@@ -1017,11 +1016,11 @@ function ENT.DuplicatorEntityModifier(_,e,data)
 end
 duplicator.RegisterEntityModifier("StarGate",ENT.DuplicatorEntityModifier);
 
-util.AddNetworkString("RefreshGateList")
-util.AddNetworkString("RemoveGateFromList")
+util.AddNetworkString("RefreshGatesList")
+util.AddNetworkString("RemoveGatesFromList")
 
 function ENT:RefreshGateList(type,value,typ,pl)
-	net.Start( "RefreshGateList" )
+	net.Start( "RefreshGatesList" )
 	net.WriteInt(self.Entity:EntIndex(), 16)
 	net.WriteString(self.Entity:GetClass())
 	net.WriteBit(self.IsGroupStargate)
@@ -1066,7 +1065,7 @@ function ENT:SendGateInfo(pl)
 end
 
 function ENT:RemoveGateFromList()
-	net.Start( "RemoveGateFromList" )
+	net.Start( "RemoveGatesFromList" )
 		net.WriteInt(self.Entity:EntIndex(), 16)
 	net.Broadcast()
 end
@@ -1314,7 +1313,7 @@ concommand.Add("_Lib.SetValue",
 			if(c == "Address" or c == "Name" or c == "Private" or c == "Group" or c == "Locale") then
 				-- Is he allowed to change an address/name/private state?
 				if(hook.Call("Lib.Player.CanModifyGate",GAMEMODE,p,e) == false) then return end; -- On any gate?
-				if(e.GateSpawnerProtected) then -- On a protected gate?
+				if(e.EAPGateSpawnerProtected) then -- On a protected gate?
 					local allowed = hook.Call("Lib.Player.CanModifyProtectedGate",GAMEMODE,p,e);
 					if(allowed == nil) then allowed = (p:IsAdmin() or game.SinglePlayer()) end;
 					if(not allowed) then return end;

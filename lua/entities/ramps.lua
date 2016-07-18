@@ -3,7 +3,7 @@ ENT.Type = "anim"
 ENT.Base = "base_anim"
 ENT.PrintName = "Ramps"
 ENT.Author = "Llapp"
-ENT.Category = "Stargate Carter Addon Pack"
+ENT.Category = ""
 
 ENT.Spawnable = false
 ENT.AdminSpawnable = false
@@ -39,8 +39,8 @@ function ENT:SpawnFunction(p,t)   --############ @  Llapp
 	return e;
 end
 
-if (Lib and Lib.CAP_GmodDuplicator) then
-	duplicator.RegisterEntityClass( "ramps", Lib.CAP_GmodDuplicator, "Data" )
+if (Lib and Lib.EAP_GmodDuplicator) then
+	duplicator.RegisterEntityClass( "ramps", Lib.EAP_GmodDuplicator, "Data" )
 end
 
 end

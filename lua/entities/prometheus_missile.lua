@@ -23,7 +23,7 @@ if SERVER then
 
 AddCSLuaFile();
 ENT.IgnoreTouch = true;
-ENT.CAP_NotSave = true;
+ENT.EAP_NotSave = true;
 ENT.NoAutoClose = true; -- Will not cause an autoclose event on the stargates!
 ENT.CDSIgnore = true; -- CDS Immunity
 function ENT:gcbt_breakactions() end; ENT.hasdamagecase = true; -- GCombat invulnarability!
@@ -32,7 +32,7 @@ end
 
 ENT.Untouchable = true;
 ENT.Type = "anim"
-ENT.Base = "drone"
+ENT.Base = "drones"
 ENT.PrintName	 = "Missile"
 ENT.Author = "Zup,aVoN -edit RononDex"
 

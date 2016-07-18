@@ -22,16 +22,16 @@ private=false
 classname=dhd_milk
 position=11342.8408 -211.2185 145.2312
 angles=15.000 176.296 -0.000
-[ring_panel]
+[rg_panel]
 classname=rg_panel_goauld
 position=11479.9141 -212.2237 190.3653
 angles=-26.566 -89.732 -0.008
-[ring_base]
+[rg_base]
 classname=rg_base_goauld
 position=11481.6914 -308.6642 160.0313
 angles=0.000 -90.204 0.000
 address=1
-[ring_base]
+[rg_base]
 classname=rg_base_goauld
 position=7764.1421 1973.4573 200.0313
 angles=0.000 0.576 -0.000

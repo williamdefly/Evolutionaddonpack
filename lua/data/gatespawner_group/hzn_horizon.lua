@@ -85,20 +85,20 @@ destroyed=false
 classname=dhd_atl_city
 position=6434.340332 -7156.625000 384.396179
 angles=-0.021 -179.959 -0.011
-[ring_panel]
+[rg_panel]
 classname=rg_panel_ancient
 position=7352.840820 -6127.051270 526.735657
 angles=-0.000 90.000 -0.000
-[ring_panel]
+[rg_panel]
 classname=rg_panel_goauld
 position=-9379.118164 4058.774414 4610.180176
 angles=-0.000 45.000 0.000
-[ring_base]
+[rg_base]
 classname=rg_base_ancient
 position=7354.580566 -6025.642090 607.454407
 angles=-0.000 180.000 180.000
 address=41
-[ring_base]
+[rg_base]
 classname=rg_base_ancient
 position=-9309.467773 4128.424316 4572.180176
 angles=-0.000 45.000 0.000
@@ -108,14 +108,14 @@ classname=ramps
 position=-9309.467773 4128.424316 4552.180176
 angles=-0.000 45.000 -0.000
 model=models/boba_fett/ramps/ring_ramps/ring_ramp2.mdl
-[atlantis_transporter]
-classname=atlantis_transporter
+[atlantis_trans]
+classname=atlantis_trans
 position=7228.885254 -6690.394043 485.087952
 angles=0.001 90.000 0.000
 name=Horizon
 private=false
-[atlantis_transporter]
-classname=atlantis_transporter
+[atlantis_trans]
+classname=atlantis_trans
 position=-12103.484375 8300.146484 4557.000488
 angles=0.001 180.000 0.000
 name=Dustbane

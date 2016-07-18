@@ -25,7 +25,7 @@ if SERVER then
 --################# HEADER #################
 AddCSLuaFile();
 
-ENT.CAP_NotSave = true;
+ENT.EAP_NotSave = true;
 ENT.Untouchable = true;
 ENT.IgnoreTouch = true;
 ENT.NoAutoClose = true; -- Will not cause an autoclose event on the stargates!
@@ -88,8 +88,8 @@ function ENT:PhysicsUpdate(phys)
 end
 
 function ENT:CAPOnShieldTouch(shield)
-	self:Blast("energy_impact",self:GetPos(),shield,Vector(1,1,1),false,self.Damage,self.Radius);
-	if (self.Explosion) then self:Blast("energy_explosion",self:GetPos(),self,Vector(1,1,1),false,self.Damage,self.Radius); end
+	self:Blast("energy_impacts",self:GetPos(),shield,Vector(1,1,1),false,self.Damage,self.Radius);
+	if (self.Explosion) then self:Blast("energy_explosions",self:GetPos(),self,Vector(1,1,1),false,self.Damage,self.Radius); end
 	self:Destroy();
 end
 
@@ -99,7 +99,7 @@ function ENT:Think(ply)
 end
 
 function ENT:Explode()
-	self:Blast("energy_explosion",self:GetPos(),self,Vector(1,1,1),false,self.Damage,self.Radius);
+	self:Blast("energy_explosions",self:GetPos(),self,Vector(1,1,1),false,self.Damage,self.Radius);
 	self:Destroy();
 end
 
@@ -174,11 +174,11 @@ function ENT:PhysicsCollide( data, physobj )
 					phys:EnableMotion(false) -- Freezes the object in place.
 				end
 			end
-			self:Blast("energy_impact",pos,e,hitnormal,hitsmoke,0,0, data.OurOldVelocity);
+			self:Blast("energy_impacts",pos,e,hitnormal,hitsmoke,0,0, data.OurOldVelocity);
 		else
-			self:Blast("energy_impact",pos,e,hitnormal,hitsmoke,self.Damage,self.Radius, data.OurOldVelocity);
+			self:Blast("energy_impacts",pos,e,hitnormal,hitsmoke,self.Damage,self.Radius, data.OurOldVelocity);
 		end
-		if (self.Explosion) then self:Blast("energy_explosion",pos,self,Vector(1,1,1),false,self.Damage,self.Radius); end
+		if (self.Explosion) then self:Blast("energy_explosions",pos,self,Vector(1,1,1),false,self.Damage,self.Radius); end
 
 		self:Destroy();
 
@@ -221,7 +221,7 @@ function ENT:Blast(effect,pos,ent,norm,smoke,dmg,rad,old_vel)
 	Lib.BlastDamage(attacker,owner,pos,rad,dmg*i);
 	util.ScreenShake(pos,2,2.5,1,700);
 
-	if (ent:GetClass() == "shield") then -- aVoN shield!
+	if (ent:GetClass() == "shields") then -- aVoN shield!
 		ent:HitShield(ent,pos,self:GetPhysicsObject(),self:GetClass(),norm,self.FireFrequency);
 	end
 

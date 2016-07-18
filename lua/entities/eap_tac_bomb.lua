@@ -107,7 +107,7 @@ if SERVER then
 			for i=1,6 do
 				local sfx = EffectData()
 					sfx:SetOrigin(self:GetPos())
-				util.Effect("eap_tac_smoke",sfx, true, true);
+				util.Effect("tacsmoke",sfx, true, true);
 			end
 			self:ResetSwep();
 			self:Remove()
@@ -221,7 +221,7 @@ if SERVER then
 					Ent:SetNPCState( NPC_STATE_NONE )
 					Ent:SetNoDraw( true )
 					Ent:SetNotSolid( true )
-					Ent:CapabilitiesRemove( CAP_USE_WEAPONS )
+					Ent:CapabilitiesRemove( EAP_USE_WEAPONS )
 					Ent.Stunned = true
 
 					if IsValid( Weapon ) then
@@ -276,7 +276,7 @@ if SERVER then
 							Ent:SetNoDraw( false )
 							Ent:SetNotSolid( false )
 							Ent:SetPos( Ragdoll:GetPos() )
-							Ent:CapabilitiesAdd( CAP_USE_WEAPONS )
+							Ent:CapabilitiesAdd( EAP_USE_WEAPONS )
 
 							if IsValid( Weapon ) then
 								Weapon:SetNoDraw( false )

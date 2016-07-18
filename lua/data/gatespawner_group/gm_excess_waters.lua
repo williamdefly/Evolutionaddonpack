@@ -85,16 +85,16 @@ classname=dhd_atl
 position=-9062.8604 -8774.8926 1009.2313
 angles=15.000 1.180 0.000
 destroyed=false
-[ring_panel]
+[rg_panel]
 classname=rg_panel_goauld
 position=-8044.8530 847.5679 569.8984
 angles=-0.002 179.912 -0.004
-[ring_base]
+[rg_base]
 classname=rg_base_ancient
 position=2180.2173 -8966.4834 1044.7562
 angles=0.003 179.738 0.002
 address=176
-[ring_base]
+[rg_base]
 classname=rg_base_ancient
 position=-8150.8545 847.7332 524.3350
 angles=-0.004 179.912 -0.007

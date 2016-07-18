@@ -1,0 +1,112 @@
+--[[
+	Nox Hands
+	Copyright (C) 2011 Madman07
+]]--
+
+if SERVER then
+	AddCSLuaFile();
+else
+	-- Inventory Icon
+	if(file.Exists("materials/VGUI/weapons/nox_hands.vmt","GAME")) then
+		SWEP.WepSelectIcon = surface.GetTextureID("VGUI/weapons/nox_hands.vmt")
+	end
+	-- Kill Icon
+	if(file.Exists("materials/weapons/ring_killicon.vmt","GAME")) then
+		killicon.Add("rg_ring","weapons/ring_killicon",Color(255,255,255));
+		killicon.Add("rg_base","weapons/ring_killicon",Color(255,255,255));
+		killicon.Add("rg_panel","weapons/ring_killicon",Color(255,255,255));
+	end
+end
+if (Lib.Language!=nil and Lib.Language.GetMessage!=nil) then
+SWEP.PrintName = Lib.Language.GetMessage("weapon_misc_nox");
+SWEP.Category = "EAP";
+SWEP.Instructions = Lib.Language.GetMessage("weapon_misc_nox_desc")
+end
+SWEP.Category = "EAP";
+SWEP.Author = "Madman07"
+SWEP.Contact = "madman097@gmail.com"
+SWEP.Purpose = "Nox Hands"
+SWEP.Base = "weapon_base";
+SWEP.Slot = 1;
+SWEP.SlotPos = 5;
+SWEP.DrawAmmo	= false;
+SWEP.DrawCrosshair = true;
+SWEP.ViewModel = "models/weapons/c_arms_animations.mdl";
+SWEP.WorldModel = "models/weapons/w_bugbait.mdl";
+SWEP.HoldType = "normal"
+
+-- primary.
+SWEP.Primary.ClipSize = -1;
+SWEP.Primary.DefaultClip = -1;
+SWEP.Primary.Automatic = false;
+SWEP.Primary.Ammo	= "none";
+
+-- secondary
+SWEP.Secondary.ClipSize = -1;
+SWEP.Secondary.DefaultClip = -1;
+SWEP.Secondary.Automatic = true;
+SWEP.Secondary.Ammo	= "none";
+
+SWEP.Spawnable = true
+
+function SWEP:Initialize()
+	self:SetWeaponHoldType(self.HoldType)
+end
+
+--################### Open Gate dialogue and overwrite default method @Madman07
+function SWEP:PrimaryAttack()
+	if(CLIENT) then return end;
+
+	local p = self.Owner;
+	local gate = Lib.FindGate(p, 1000)
+	if not IsValid(gate) then return end;
+
+	if(hook.Call("Lib.Player.CanDialGate",GAMEMODE,p,gate) == false) then return end;
+
+	net.Start("Lib.VGUI.Menu");
+	net.WriteEntity(gate);
+	net.WriteInt(3,8);
+	net.Send(p);
+
+	self.Weapon:SetNextPrimaryFire(CurTime()+1);
+end
+
+--################### Heal @Mad
+function SWEP:SecondaryAttack()
+	if(CLIENT) then return end;
+
+	local tr = self.Owner:GetEyeTrace();
+	if (IsValid(tr.Entity) and tr.Entity:IsPlayer() and tr.HitPos:Distance(self.Owner:GetShootPos()) <= 500 and tr.Entity:Health()<150) then
+		tr.Entity:SetHealth(math.Clamp(tr.Entity:Health()+1, 0, 150));
+	end
+	self:SetNextSecondaryFire(CurTime()+0.1);
+end
+
+--################### Tell a player how to use this @aVoN
+function SWEP:DrawHUD()
+	draw.WordBox(8,ScrW()-315,ScrH()-50,"Primary: Open Stargate dial menu    Secondary: Heal friend","Default",Color(0,0,0,80),Color(255,220,0,220));
+end
+
+if SERVER then
+
+function SWEP:OnDrop()
+	self:SetNWBool("WorldNoDraw",false);
+	return true;
+end
+
+function SWEP:Equip()
+	self:SetNWBool("WorldNoDraw",true);
+	return true;
+end
+
+end
+
+if CLIENT then
+
+	function SWEP:DrawWorldModel()
+		if (not self:GetNWBool("WorldNoDraw")) then
+			self:DrawModel();
+		end
+	end
+
+end

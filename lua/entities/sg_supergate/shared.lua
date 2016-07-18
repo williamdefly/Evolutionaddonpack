@@ -2,7 +2,7 @@ ENT.Type = "anim"
 ENT.Base = "sg_base"
 ENT.PrintName = "Supergate"
 ENT.Author = "assassin21, Madman07, Iziraider, Boba Fett, AlexALX"
-ENT.Category = "Stargate Carter Addon Pack: Gates and Rings"
+ENT.Category = ""
 ENT.Spawnable = true
 
 list.Set("EAP", ENT.PrintName, ENT);

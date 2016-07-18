@@ -194,7 +194,7 @@ function ENT:ChangeSystemType(groupsystem,reload)
 	local delay = 4.0
 	if (reload) then delay = 1.5 end
 	if (groupsystem) then
-		if (self.GateSpawnerSpawned) then
+		if (self.EAPGateSpawnerSpawned) then
 			timer.Simple(delay, function()
 				if (IsValid(self)) then
 					self:GateWireInputs(groupsystem);
@@ -217,7 +217,7 @@ function ENT:ChangeSystemType(groupsystem,reload)
 		self.SymbolsLockConcept = self.SymbolsLockConceptGroup;
 		self.WireCharters = "A-Z0-9@#";
 	else
-		if (self.GateSpawnerSpawned) then
+		if (self.EAPGateSpawnerSpawned) then
 			timer.Simple(delay, function()
 				if (IsValid(self)) then
 					self:GateWireInputs(groupsystem);
@@ -282,7 +282,7 @@ function ENT:SpawnFunction(p,t)
 	e:SetAngles(ang);
 	e:SetGateGroup("M@");
 	e:SetLocale(true);
-	e:CartersRamps(t);
+	e:Ramps(t);
 	e:SetWire("Dialing Mode",-1);
 	return e;
 end
@@ -825,6 +825,6 @@ function ENT:Shutdown() -- It is called at the end of ENT:Close or ENT.Sequence:
 	end
 end
 
-if (Lib and Lib.CAP_GmodDuplicator) then
-	duplicator.RegisterEntityClass( "sg_sg1", Lib.CAP_GmodDuplicator, "Data" )
+if (Lib and Lib.EAP_GmodDuplicator) then
+	duplicator.RegisterEntityClass( "sg_sg1", Lib.EAP_GmodDuplicator, "Data" )
 end

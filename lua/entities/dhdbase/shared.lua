@@ -21,7 +21,7 @@ if (Lib!=nil and Lib.RD!=nil) then Lib.LifeSupport(ENT); end
 ENT.Type = "anim";
 ENT.PrintName = "DHD_base";
 ENT.Author = "aVoN, RononDex, AlexALX";
-ENT.Category = 	"Stargate Carter Addon Pack: Gates and Rings";
+ENT.Category = Lib.Language.GetMessage("cat_transportation");
 ENT.Spawnable = false;
 ENT.AdminSpawnable = false;
 ENT.IsDHD = true;
@@ -172,7 +172,7 @@ properties.Add( "Lib.DHD.SG1.On",
 	MenuIcon	=	"icon16/plugin_delete.png",
 
 	Filter		=	function( self, ent, ply )
-						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsDHD || !ent.IsDHDSg1 || ent:GetNWBool("GateSpawnerProtected",false) || ent:GetNWBool("DisRingRotate",false)) then return false end
+						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsDHD || !ent.IsDHDSg1 || ent:GetNWBool("EAPGateSpawnerProtected",false) || ent:GetNWBool("DisRingRotate",false)) then return false end
 						if ( !gamemode.Call( "CanProperty", ply, "dhdmodify", ent ) ) then return false end
 						return true
 
@@ -205,7 +205,7 @@ properties.Add( "Lib.DHD.SG1.Off",
 
 	Filter		=	function( self, ent, ply )
 
-						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsDHD || !ent.IsDHDSg1 || ent:GetNWBool("GateSpawnerProtected",false) || !ent:GetNWBool("DisRingRotate",false)) then return false end
+						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsDHD || !ent.IsDHDSg1 || ent:GetNWBool("EAPGateSpawnerProtected",false) || !ent:GetNWBool("DisRingRotate",false)) then return false end
 						if ( !gamemode.Call( "CanProperty", ply, "dhdmodify", ent ) ) then return false end
 						return true
 
@@ -237,7 +237,7 @@ properties.Add( "Lib.DHD.Atl.On",
 	MenuIcon	=	"icon16/plugin_add.png",
 
 	Filter		=	function( self, ent, ply )
-						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsDHD || !ent.IsDHDAtl || ent:GetNWBool("GateSpawnerProtected",false) || ent:GetNWBool("DisRingRotate",false)) then return false end
+						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsDHD || !ent.IsDHDAtl || ent:GetNWBool("EAPGateSpawnerProtected",false) || ent:GetNWBool("DisRingRotate",false)) then return false end
 						if ( !gamemode.Call( "CanProperty", ply, "dhdmodify", ent ) ) then return false end
 						return true
 
@@ -270,7 +270,7 @@ properties.Add( "Lib.DHD.Atl.Off",
 
 	Filter		=	function( self, ent, ply )
 
-						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsDHD || !ent.IsDHDAtl || ent:GetNWBool("GateSpawnerProtected",false) || !ent:GetNWBool("DisRingRotate",false)) then return false end
+						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsDHD || !ent.IsDHDAtl || ent:GetNWBool("EAPGateSpawnerProtected",false) || !ent:GetNWBool("DisRingRotate",false)) then return false end
 						if ( !gamemode.Call( "CanProperty", ply, "dhdmodify", ent ) ) then return false end
 						return true
 
@@ -302,7 +302,7 @@ properties.Add( "Lib.DHD.Glyphs.On",
 	MenuIcon	=	"icon16/plugin_add.png",
 
 	Filter		=	function( self, ent, ply )
-						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsDHD || ent:GetNWBool("GateSpawnerProtected",false) || !ent:GetNWBool("DisGlyphs",false)) then return false end
+						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsDHD || ent:GetNWBool("EAPGateSpawnerProtected",false) || !ent:GetNWBool("DisGlyphs",false)) then return false end
 						if ( !gamemode.Call( "CanProperty", ply, "dhdmodify", ent ) ) then return false end
 						return true
 
@@ -334,7 +334,7 @@ properties.Add( "Lib.DHD.Glyphs.Off",
 
 	Filter		=	function( self, ent, ply )
 
-						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsDHD || ent:GetNWBool("GateSpawnerProtected",false) || ent:GetNWBool("DisGlyphs",false)) then return false end
+						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsDHD || ent:GetNWBool("EAPGateSpawnerProtected",false) || ent:GetNWBool("DisGlyphs",false)) then return false end
 						if ( !gamemode.Call( "CanProperty", ply, "dhdmodify", ent ) ) then return false end
 						return true
 
@@ -366,7 +366,7 @@ properties.Add( "Lib.DHD.On",
 	MenuIcon	=	"icon16/plugin_add.png",
 
 	Filter		=	function( self, ent, ply )
-						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsDHD || ent:GetNWBool("GateSpawnerProtected",false) || !ent:GetNWBool("Disabled",false)) then return false end
+						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsDHD || ent:GetNWBool("EAPGateSpawnerProtected",false) || !ent:GetNWBool("Disabled",false)) then return false end
 						if ( !gamemode.Call( "CanProperty", ply, "dhdmodify", ent ) ) then return false end
 						return true
 
@@ -398,7 +398,7 @@ properties.Add( "Lib.DHD.Off",
 
 	Filter		=	function( self, ent, ply )
 
-						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsDHD || ent:GetNWBool("GateSpawnerProtected",false) || ent:GetNWBool("Disabled",false)) then return false end
+						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsDHD || ent:GetNWBool("EAPGateSpawnerProtected",false) || ent:GetNWBool("Disabled",false)) then return false end
 						if ( !gamemode.Call( "CanProperty", ply, "dhdmodify", ent ) ) then return false end
 						return true
 

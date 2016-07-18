@@ -202,9 +202,9 @@ if SERVER then
 			tbl = Data.ConTable;
 		end
 
-		if (Data and Data.GateSpawnerSpawned and Data.GateSpawnerID) then
-			ent.GateSpawnerSpawned = true;
-			ent:SetNetworkedBool("GateSpawnerSpawned",true);
+		if (Data and Data.EAPGateSpawnerSpawned and Data.GateSpawnerID) then
+			ent.EAPGateSpawnerSpawned = true;
+			ent:SetNetworkedBool("EAPGateSpawnerSpawned",true);
 			ent.GateSpawnerID = Data.GateSpawnerID;
 		end
 

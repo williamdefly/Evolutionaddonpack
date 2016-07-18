@@ -161,7 +161,7 @@ function ENT:FireBlast(target)
 		if (!tr.Entity or tr.Entity != self.Entity) then
 			self:SetWire("Shooting",1)
 			local ShootDir = (target - self:GetPos()):GetNormal();
-			local ent = ents.Create("energy_beam2");
+			local ent = ents.Create("energy_beams2");
 			ent.Owner = self.Entity;
 			ent:SetPos(FiringPos);
 			ent:Spawn();

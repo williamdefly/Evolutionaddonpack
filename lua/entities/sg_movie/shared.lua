@@ -2,7 +2,7 @@ ENT.Type = "anim"
 ENT.Base = "sg_base"
 ENT.PrintName = "Stargate (Movie)"
 ENT.Author = "aVoN, Madman07, Llapp, Boba Fett, AlexALX"
-ENT.Category = "Stargate Carter Addon Pack: Gates and Rings"
+ENT.Category = ""
 ENT.Spawnable = true
 
 list.Set("EAP", ENT.PrintName, ENT);
@@ -21,7 +21,7 @@ properties.Add( "Lib.MChevL.On",
 	MenuIcon	=	"icon16/plugin_disabled.png",
 
 	Filter		=	function( self, ent, ply )
-						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsStargate || ent:GetClass()!="sg_movie" || ent:GetNWBool("GateSpawnerProtected",false) || ent:GetNWBool("ActMChevL",false)) then return false end
+						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsStargate || ent:GetClass()!="sg_movie" || ent:GetNWBool("EAPGateSpawnerProtected",false) || ent:GetNWBool("ActMChevL",false)) then return false end
 						if ( !gamemode.Call( "CanProperty", ply, "stargatemodify", ent ) ) then return false end
 						return true
 
@@ -52,7 +52,7 @@ properties.Add( "Lib.MChevL.Off",
 	MenuIcon	=	"icon16/plugin.png",
 
 	Filter		=	function( self, ent, ply )
-						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsStargate || ent:GetClass()!="sg_movie" || ent:GetNWBool("GateSpawnerProtected",false) || !ent:GetNWBool("ActMChevL",false)) then return false end
+						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsStargate || ent:GetClass()!="sg_movie" || ent:GetNWBool("EAPGateSpawnerProtected",false) || !ent:GetNWBool("ActMChevL",false)) then return false end
 						if ( !gamemode.Call( "CanProperty", ply, "stargatemodify", ent ) ) then return false end
 						return true
 
@@ -83,7 +83,7 @@ properties.Add( "Lib.MCl.On",
 	MenuIcon	=	"icon16/plugin_disabled.png",
 
 	Filter		=	function( self, ent, ply )
-						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsStargate || ent:GetClass()!="sg_movie" || ent:GetNWBool("GateSpawnerProtected",false) || ent:GetNWBool("ActMCl",false)) then return false end
+						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsStargate || ent:GetClass()!="sg_movie" || ent:GetNWBool("EAPGateSpawnerProtected",false) || ent:GetNWBool("ActMCl",false)) then return false end
 						if ( !gamemode.Call( "CanProperty", ply, "stargatemodify", ent ) ) then return false end
 						return true
 
@@ -115,7 +115,7 @@ properties.Add( "Lib.MCl.Off",
 
 	Filter		=	function( self, ent, ply )
                         local vg = {"sg_movie","sg_sg1","sg_infinity"}
-						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsStargate || ent:GetClass()!="sg_movie" || ent:GetNWBool("GateSpawnerProtected",false) || !ent:GetNWBool("ActMCl",false)) then return false end
+						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsStargate || ent:GetClass()!="sg_movie" || ent:GetNWBool("EAPGateSpawnerProtected",false) || !ent:GetNWBool("ActMCl",false)) then return false end
 						if ( !gamemode.Call( "CanProperty", ply, "stargatemodify", ent ) ) then return false end
 						return true
 

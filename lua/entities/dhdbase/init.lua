@@ -34,7 +34,7 @@ function ENT:gcbt_breakactions() end; ENT.hasdamagecase = true; -- GCombat invul
 --################# SENT CODE #################
 ENT.Model = "models/MarkJaw/dhd_new/dhd_base.mdl"
 ENT.ModelBroken = "models/MarkJaw/dhd_new/dhd_open.mdl"
-ENT.PlorkSound = "stargate/dhd_sg1.mp3"; -- The old sound
+ENT.PlorkSound = "stargate/dhd_milk.mp3"; -- The old sound
 ENT.LockSound = "stargate/stargate/dhd/dhd_usual_dial.wav";
 ENT.SkinNumber = 0;
 ENT.Healthh = 500;
@@ -489,7 +489,7 @@ function ENT:OnTakeDamage(dmg)
 
 	if (dmg:GetDamageType() != DMG_BLAST) then return end
 
-	if(not self.GateSpawnerSpawned and not util.tobool(GetConVar("stargate_eap_dhd_protect"):GetInt()) or self.GateSpawnerSpawned and not util.tobool(GetConVar("stargate_eap_dhd_protect_spawner"):GetInt()))then
+	if(not self.EAPGateSpawnerSpawned and not util.tobool(GetConVar("stargate_eap_dhd_protect"):GetInt()) or self.EAPGateSpawnerSpawned and not util.tobool(GetConVar("stargate_eap_dhd_protect_spawner"):GetInt()))then
 		self.Healthh = self.Healthh - damage/4;
 		if (self.Healthh < 1 and class != "dhd_con" and class != "dhd_atl_city") then self.Entity:DestroyEffect() end
 	end
@@ -1044,7 +1044,7 @@ concommand.Add("_Lib.DHD.AddSymbol_Group",
 );
 
 --######################## @Alex, aVoN -- snap gates to cap ramps
-function ENT:CartersRampsDHD(t)
+function ENT:RampsDHD(t)
 	local e = t.Entity;
 	if(not IsValid(e)) then return end;
 	local RampOffset = Lib.RampOffset.DHD;

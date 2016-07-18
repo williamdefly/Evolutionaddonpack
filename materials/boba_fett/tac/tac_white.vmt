@@ -1,0 +1,24 @@
+Vertexlitgeneric
+{
+	// MAIN SETTINGS
+	$basetexture	"Boba_Fett/tac/tac_white"
+	$bumpmap	"Boba_Fett/tac/tac_normal"
+
+	// PHONG SHADING
+	$phong                      	1
+	$phongboost                	 0.86
+	$phongfresnelranges         	"[1 3 6]"
+	$phongtint                   	"[0.8 1.1 1.3]" 
+	$phongexponent  		33
+	$normalmapalphaphongmask  1
+
+	// ENVIRONMENT REFLECTION
+	$envmap                     env_cubemap
+	$envmaptint                 "[.09 .09 .12]"
+	$normalmapalphaenvmapmask   1
+
+	// RIM LIGHT
+	$rimlight                   	1
+	$rimlightexponent	64
+	$rimlightboost           1.4
+}

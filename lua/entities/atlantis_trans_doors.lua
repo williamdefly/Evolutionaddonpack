@@ -9,7 +9,7 @@ ENT.Type = "anim"
 ENT.Base = "base_anim"
 ENT.PrintName = "Atlantis Transporter Doors"
 ENT.Author = "Madman07, Cartman300, AlexALX"
-ENT.Category = "Stargate Carter Addon Pack"
+ENT.Category = ""
 
 ENT.Spawnable = false
 ENT.AdminSpawnable = false
@@ -141,8 +141,8 @@ function ENT:Toggle()
 	end
 end
 
-if (Lib and Lib.CAP_GmodDuplicator) then
-	duplicator.RegisterEntityClass( "atlantis_trans_doors", Lib.CAP_GmodDuplicator, "Data" )
+if (Lib and Lib.EAP_GmodDuplicator) then
+	duplicator.RegisterEntityClass( "atlantis_trans_doors", Lib.EAP_GmodDuplicator, "Data" )
 end
 
 end

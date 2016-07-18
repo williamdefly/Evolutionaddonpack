@@ -3,7 +3,7 @@ ENT.Base = "rg_base"
 ENT.PrintName = "Rings (Ancient)"
 ENT.Author = "Catdaemon, Madman07, Boba Fett"
 ENT.Instructions = "Place where desired, USE to set its address."
-ENT.Category = 	"Stargate Carter Addon Pack: Gates and Rings"
+ENT.Category = 	""
 ENT.Spawnable = true
 
 list.Set("EAP", ENT.PrintName, ENT);
@@ -31,12 +31,12 @@ function ENT:SpawnFunction(p,tr)
 	e:SetAngles(ang);
 	local phys = e:GetPhysicsObject()
 	if IsValid(phys) then phys:EnableMotion(false) end
-	e:CartersRampsRing(tr);
+	e:RampsRing(tr);
 	return e;
 end
 
-if (Lib and Lib.CAP_GmodDuplicator) then
-	duplicator.RegisterEntityClass( "rg_base_ancient", Lib.CAP_GmodDuplicator, "Data" )
+if (Lib and Lib.EAP_GmodDuplicator) then
+	duplicator.RegisterEntityClass( "rg_base_ancient", Lib.EAP_GmodDuplicator, "Data" )
 end
 
 end

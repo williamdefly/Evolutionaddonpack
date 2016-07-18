@@ -182,7 +182,7 @@ function ENT:SpawnHarvester()
 
 	local e = ents.Create("dart_harvest")
 	e:SetModel("models/miriam/minidrone/minidrone.mdl")
-	e:SetPos(data.Pos)
+	e:SetPos(data.Pos-Vector(0,0,3))
 	e:SetAngles(self:GetAngles()+Angle(0,0,180))
 	e:SetOwner(self)
 	e:SetParent(self)
@@ -214,7 +214,7 @@ function ENT:FireTurrets() --####### Fire!@ Madman07
 		-- fx:SetRadius(80);
 	-- util.Effect("avon_energy_muzzle",fx,true)
 
-	local e = ents.Create("eap_energy_pulse");
+	local e = ents.Create("energypulse");
 	e:PrepareBullet(self:GetForward(), 10, 16000, 10, {self.Entity});
 	e:SetPos(data.Pos-self:GetForward()*100);
 	e:SetOwner(self);
@@ -275,8 +275,8 @@ function ENT:Power(supply)
 	end*/
 end
 
-if (Lib and Lib.CAP_GmodDuplicator) then
-	duplicator.RegisterEntityClass( "ship_dart", Lib.CAP_GmodDuplicator, "Data" )
+if (Lib and Lib.EAP_GmodDuplicator) then
+	duplicator.RegisterEntityClass( "ship_dart", Lib.EAP_GmodDuplicator, "Data" )
 end
 
 end

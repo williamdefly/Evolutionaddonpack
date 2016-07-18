@@ -94,29 +94,29 @@ angles=0.000 179.421 0.000
 classname=kino_dispenser
 position=4952.7554 -4127.7158 -600.9688
 angles=0.000 90.100 -0.000
-[ring_panel]
+[rg_panel]
 classname=rg_panel_ancient
 position=2489.0723 432.3026 -108.4643
 angles=0.101 179.425 0.706
-[ring_panel]
+[rg_panel]
 classname=rg_panel_ancient
 position=-3585.9414 7695.0151 -3578.4719
 angles=0.031 -179.949 0.265
-[ring_panel]
+[rg_panel]
 classname=rg_panel_goauld
 position=9177.5605 -2081.8579 -851.4816
 angles=0.135 179.999 -0.509
-[ring_base]
+[rg_base]
 classname=rg_base_ancient
 position=2394.4927 430.3676 -19.0625
 angles=-0.000 121.760 -180.000
 address=1
-[ring_base]
+[rg_base]
 classname=rg_base_ancient
 position=9086.7080 -2080.6104 -761.0693
 angles=-0.005 -162.114 179.998
 address=2
-[ring_base]
+[rg_base]
 classname=rg_base_ancient
 position=-3678.9224 7694.4243 -3480.0725
 angles=-0.008 165.612 -179.998

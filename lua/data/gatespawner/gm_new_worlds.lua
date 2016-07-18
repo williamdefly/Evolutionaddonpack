@@ -57,21 +57,21 @@ angles=15.000 177.427 -0.000
 classname=dhd_atl
 position=-12284.7119 7260.3203 3193.5762
 angles=15.000 -19.473 0.000
-[ring_base]
+[rg_base]
 classname=rg_base_ancient
 position=-13118.1064 -12973.8965 -11984.9082
 angles=0.000 179.123 179.777
 address=1
-[ring_base]
+[rg_base]
 classname=rg_base_ancient
 position=-7286.6294 -3087.3848 80.7888
 angles=-0.002 172.337 0.014
 address=2
-[ring_panel]
+[rg_panel]
 classname=rg_panel_goauld
 position=-13223.9961 -12981.6953 -12078.5391
 angles=-0.035 0.197 0.294
-[ring_panel]
+[rg_panel]
 classname=rg_panel_goauld
 position=-7272.6333 -3192.0857 111.2655
 angles=0.032 89.973 -0.662

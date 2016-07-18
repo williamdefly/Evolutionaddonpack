@@ -161,10 +161,10 @@ function ENT:CreateDoors(ply,spawner,protect)
 	d:Activate();
 	if CPPI and IsValid(ply) and d.CPPISetOwner then d:CPPISetOwner(ply) end
 	if (spawner) then
-		d.GateSpawnerSpawned = true;
-		d:SetNetworkedBool("GateSpawnerSpawned",true);
-		d.GateSpawnerProtected = protect;
-		d:SetNetworkedBool("GateSpawnerProtected",protect);
+		d.EAPGateSpawnerSpawned = true;
+		d:SetNetworkedBool("EAPGateSpawnerSpawned",true);
+		d.EAPGateSpawnerProtected = protect;
+		d:SetNetworkedBool("EAPGateSpawnerProtected",protect);
 	end
 	d.Atlantis = true
 	d.AtlTP = self;
@@ -186,10 +186,10 @@ function ENT:CreateDoors(ply,spawner,protect)
 	d:Activate();
 	if CPPI and IsValid(ply) and d.CPPISetOwner then d:CPPISetOwner(ply) end
 	if (spawner) then
-		d.GateSpawnerSpawned = true;
-		d:SetNetworkedBool("GateSpawnerSpawned",true);
-		d.GateSpawnerProtected = protect;
-		d:SetNetworkedBool("GateSpawnerProtected",protect);
+		d.EAPGateSpawnerSpawned = true;
+		d:SetNetworkedBool("EAPGateSpawnerSpawned",true);
+		d.EAPGateSpawnerProtected = protect;
+		d:SetNetworkedBool("EAPGateSpawnerProtected",protect);
 	end
 	d.Atlantis = true
 	d.AtlTP = self;
@@ -391,7 +391,7 @@ function ENT:CAP_CanModify(ply)
 	local allowed = true;
 	if(hook.Call("Lib.Player.CanModify.AtlantisTransporter",GAMEMODE,ply,self.Entity) == false) then
 		allowed = false;
-	elseif(self.GateSpawnerProtected) then
+	elseif(self.EAPGateSpawnerProtected) then
 		allowed = hook.Call("Lib.Player.CanModifyProtected.AtlantisTransporter",GAMEMODE,ply,self.Entity);
 		if(allowed == nil) then allowed = (ply:IsAdmin() or game.SinglePlayer()) end;
 	end
@@ -502,7 +502,7 @@ end
 function ENT:CanTeleport(ent)
 	local class = ent:GetClass();
 	if((ent:GetModel() or ""):find("*")) then return false end; -- Do not cloak brushes (like athmospheres in spacebuild)
-	if not self.Disallowed[class] and not string.find(class,"sg_") and not string.find(class,"rg_") and not protected_entities[class] and ent~=game.GetWorld() and not self.Ents[ent] and not ent.NotTeleportable and not ent:GetParent():IsValid() and not ent.GateSpawnerProtected then
+	if not self.Disallowed[class] and not string.find(class,"sg_") and not string.find(class,"rg_") and not protected_entities[class] and ent~=game.GetWorld() and not self.Ents[ent] and not ent.NotTeleportable and not ent:GetParent():IsValid() and not ent.EAPGateSpawnerProtected then
 		return true;
 	end
 	return false;
@@ -769,8 +769,8 @@ function ENT:PostEntityPaste(ply, Ent, CreatedEntities)
 	Lib.RD.PostEntityPaste(self,ply,Ent,CreatedEntities)
 end
 
-if (Lib and Lib.CAP_GmodDuplicator) then
-	duplicator.RegisterEntityClass( "atlantis_trans", Lib.CAP_GmodDuplicator, "Data" )
+if (Lib and Lib.EAP_GmodDuplicator) then
+	duplicator.RegisterEntityClass( "atlantis_trans", Lib.EAP_GmodDuplicator, "Data" )
 end
 
 function ENT:WireGetAddresses()

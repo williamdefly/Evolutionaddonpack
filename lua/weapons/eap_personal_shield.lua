@@ -1,9 +1,7 @@
-
-if (Lib.Language!=nil and Lib.Language.GetMessage!=nil) then
-SWEP.PrintName = Lib.Language.GetMessage("eap_weapon_misc_shield");
-SWEP.Category = Lib.Language.GetMessage("EAP");
+if (Lib!=nil or Lib.Language!=nil and Lib.Language.GetMessage!=nil) then
+SWEP.PrintName = Lib.Language.GetMessage("weapon_misc_shield");
+SWEP.Category = "EAP";
 end
-SWEP.Category = "EAP"
 SWEP.Author = "DrFattyJr"
 SWEP.Purpose = "Shield yourself"
 SWEP.Instructions = "Press primary attack to shield yourself and secondary to unshield!"
@@ -27,6 +25,7 @@ SWEP.Secondary.DefaultClip = -1
 SWEP.Secondary.Automatic = false
 SWEP.Secondary.Ammo = "none"
 
+SWEP.Spawnable = true
 
 function SWEP:Initialize()
 	self.Weapon:SetWeaponHoldType(self.HoldType)
@@ -34,12 +33,13 @@ end
 
 if CLIENT then
 	-- Inventory Icon
-	if(file.Exists("materials/VGUI/weapons/eap_personal_shield.vmt","GAME")) then
-		SWEP.WepSelectIcon = surface.GetTextureID("VGUI/weapons/eap_personal_shield");
+	if(file.Exists("materials/VGUI/weapons/personal_shield.vmt","GAME")) then
+		SWEP.WepSelectIcon = surface.GetTextureID("VGUI/weapons/personal_shield");
 	end
 
-		local function PersonalShieldDrawHUD()
+	local function EAPPersonalShieldDrawHUD()
 		local ply = LocalPlayer()
+		
 		if not( ply:IsValid() and ply:GetNetworkedBool("Has.A.pShield", false)) then return end
 
 		local strength = math.Clamp(ply:GetNWFloat("pShieldStrength", 12), 12, 100)
@@ -48,16 +48,18 @@ if CLIENT then
 		if strength < 20 then
 			a = 112.5+math.sin(CurTime()*6)*112.5
 		end
-
 		draw.RoundedBox(8, ScrW()/8, ScrH()/2-160,20,160, Color(255,0,0,a))
 		draw.RoundedBox(8, ScrW()/8, ScrH()/2-1.6*strength,20,1.6*strength, Color(255,255,255,a*1.7))
 	end
 
-	hook.Add("HUDPaint", "PersonalShieldDrawHUD", PersonalShieldDrawHUD)
+	hook.Add("HUDPaint", "EAPPersonalShieldDrawHUD", EAPPersonalShieldDrawHUD)
 end
 
 if SERVER then
 
+if(Lib==nil)then return end
+
+AddCSLuaFile()
 
 local Sounds = {
 	Engage=Sound("shields/personal_activate.wav"),

@@ -16,9 +16,9 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 --################# Header
--- Failsafes - Sometimes, the StarGate lib is loader after the stools <=> will cause some problems
+-- Failsafes - Sometimes, the lib is loaded after the stools <=> will cause some problems
 if(Lib==nil) then include("autorun/eap_include.lua") end;
-if(Lib.Language==nil or Lib.Language.GetMessage==nil) then include("autorun/language_lib.lua") end;
+if(Lib.Language==nil or Lib.Language.GetMessage==nil) then include("eap_librairies/shared/sg_language_lib.lua") end;
 if (TOOL==nil) then return end -- wtf?
 TOOL.Tab="EAP";
 TOOL.AddToMenu = true; -- Tell gmod not to add it. We will do it manually later!

@@ -105,39 +105,39 @@ classname=dhd_infinity
 position=-256.4914 209.0311 49.2313
 angles=15.000 -7.080 -0.000
 destroyed=false
-[ring_panel]
+[rg_panel]
 classname=rg_panel_goauld
 position=13006.8066 6728.0840 42.3579
 angles=-0.888 -179.998 -0.032
-[ring_panel]
+[rg_panel]
 classname=rg_panel_goauld
 position=11702.9443 1699.4211 -865.6754
 angles=-0.004 90.150 -0.568
-[ring_panel]
+[rg_panel]
 classname=rg_panel_goauld
 position=-755.2031 6309.9644 -6763.3433
 angles=0.010 -89.475 -0.213
-[ring_base]
+[rg_base]
 classname=rg_base_ancient
 position=11677.6504 1825.5470 -918.2642
 angles=0.011 -178.324 -0.015
 address=3
-[ring_base]
+[rg_base]
 classname=rg_base_goauld
 position=12826.1563 6722.1724 2.8067
 angles=-0.000 178.335 -0.094
 address=1
-[ring_base]
+[rg_base]
 classname=rg_base_goauld
 position=13401.8643 5896.1953 247.1660
 angles=-0.021 -2.738 179.962
 address=2
-[ring_base]
+[rg_base]
 classname=rg_base_goauld
 position=1249.4520 5120.0078 -6349.9688
 angles=0.591 -142.153 -3.777
 address=4
-[ring_base]
+[rg_base]
 classname=rg_base_goauld
 position=-748.4062 6200.9424 -6685.9541
 angles=-0.061 85.783 179.984

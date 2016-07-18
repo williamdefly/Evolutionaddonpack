@@ -12,7 +12,7 @@ ENT.PrintName = "Door Controller"
 ENT.Author = "Madman07"
 ENT.Instructions= ""
 ENT.Contact = "madman097@gmail.com"
-ENT.Category = "Stargate Carter Addon Pack"
+ENT.Category = ""
 
 ENT.Spawnable		= false
 ENT.AdminSpawnable	= false
@@ -49,8 +49,8 @@ function ENT:Initialize()
 
 	if (self.Entity:GetModel() == "models/iziraider/destinybutton/destinybutton.mdl") then self.Entity.TypeS = 1;
 	elseif (self.Entity:GetModel() == "models/boba_fett/props/buttons/atlantis_button.mdl") then self.Entity.TypeS = 2;
-	elseif (self.Entity:GetModel() == "models/madman07/ring_panel/goauld_panel.mdl") then self.Entity.TypeS = 3;
-	elseif (self.Entity:GetModel() == "models/madman07/ring_panel/ancient/panel.mdl") then self.Entity.TypeS = 4;
+	elseif (self.Entity:GetModel() == "models/madman07/rg_panel/goauld_panel.mdl") then self.Entity.TypeS = 3;
+	elseif (self.Entity:GetModel() == "models/madman07/rg_panel/ancient/panel.mdl") then self.Entity.TypeS = 4;
 	else self.Entity.TypeS = 5; end
 end
 
@@ -130,8 +130,8 @@ function ENT:PostEntityPaste(ply, Ent, CreatedEntities)
 	self.Owner = ply;
 end
 
-if (Lib and Lib.CAP_GmodDuplicator) then
-	duplicator.RegisterEntityClass( "cap_doors_contr", Lib.CAP_GmodDuplicator, "Data" )
+if (Lib and Lib.EAP_GmodDuplicator) then
+	duplicator.RegisterEntityClass( "doors_contr", Lib.EAP_GmodDuplicator, "Data" )
 end
 
 end

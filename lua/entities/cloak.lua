@@ -22,7 +22,7 @@ ENT.PrintName = "Cloaking"
 ENT.Author = "aVoN"
 ENT.WireDebugName = "Cloaking"
 
-ENT.CAP_NotSave = true
+ENT.EAP_NotSave = true
 
 ENT.Spawnable = false
 ENT.AdminSpawnable = false

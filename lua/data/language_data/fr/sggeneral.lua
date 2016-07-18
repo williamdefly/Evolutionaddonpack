@@ -6,11 +6,14 @@ cat_ship = Vaisseaux
 cat_others = Divers
 cat_transportation = Teleportation
 cat_weapons = Armes
+cat_swep = Armes à Main - SWEP
 cat_props = Props
 stool_stargate = Porte des Étoiles
 stool_tech = Technologies
 stool_settings = Paramètres
 stool_general_settings = General
+stool_client = Paramètres Client
+stool_weapons = Armes
 
 // spawn menu info
 spawninfo_title = Informations
@@ -416,6 +419,7 @@ sg_sets[stargate][world_blocked] = Bloquer seulement si c'est le monde
 sg_sets[stargate][world_blocked][desc] = Bloquer seulement si c'est le monde ? (murs, sols, plafonds de la carte, et non les props/entités des joueurs)
 sg_sets[stargate][wormholejump] = Damages lors d'un saut du vortex
 sg_sets[stargate][wormholejump][desc] = Combien de Dommages doivent être subis lors d'un saut du Vortex ? 0 desactive la fonction. ( Les tirs energetiques sont environ a 70-110 Dommages )
+sg_sets[stargate][wormhole_animation] = Wormhole Animation
 sg_sets[stargate][water_noclose] = L'eau desactive la fermeture automatique
 sg_sets[stargate][water_noclose][desc] = La fermeture automatique est desactivée si la porte est sous l'eau
 sg_sets[stargate][energy_transfer] = Autoriser les transferts d'energie
@@ -495,8 +499,8 @@ sg_sets[shield][engage_energy] = Minimum d'energie
 sg_sets[shield][engage_energy][desc] = Cela represente l'énergie minimum necessaire a l'allumage du bouclier.
 sg_sets[shield][restore_multiplier] = Multiplicateur de retauration
 sg_sets[shield][restore_multiplier][desc] = Avec l'augmentation de cette valeur , le bouclier se regenerera plus vite.
-sg_sets[shield][restore_thresold] = Seuil d'activation ( % )
-sg_sets[shield][restore_thresold][desc] = Seuil minimum au dessus duquel le bouclier peut se reactiver en %.
+sg_sets[shield][restore_thresold] = Seuil d'activation ( %% )
+sg_sets[shield][restore_thresold][desc] = Seuil minimum au dessus duquel le bouclier peut se reactiver en %%.
 sg_sets[shield][consume_multiplier] = Multiplicateur de consommation
 sg_sets[shield][consume_multiplier][desc] = Le bouclier actuel utilise la formule de consommation suivante Rayon^2*4*Pi/1000000. Mettre cette valeur trop haute rendra les boucliers beaucoup trop consommateurs!
 sg_sets[shield][strength_multiplier] = Multiplicateur de force
@@ -575,7 +579,8 @@ sg_sets[naq_gen_mk1][naquadah][desc] = Combien de naquadah est contenu dans le g
 sg_sets[naq_gen_mk1][energy] = Stockage d'Energie
 sg_sets[naq_gen_mk1][energy][desc] = Combien d'energie peut être stockée ?
 sg_sets[naq_gen_mk1][generate] = Energie générée
-sg_sets[naq_gen_mk1][generate][desc] = Quel est le ratio energie/naquadah ? (+/- 5%% random)
+sg_sets[naq_gen_mk1][generate][desc] = Quel est le ratio energie/naquadah ? (+/- 5%% aleatoire)
+// double %% will be displayed like one %, one percent symbol will make lua error.
 sg_sets[naq_gen_mk1][multiplier] = Multiplicateur de conversion
 sg_sets[naq_gen_mk1][multiplier][desc] = Multiplicateur energetique de conversion (energie finale = générée*multiplicateur)
 // Naquadah generator mk2
@@ -585,7 +590,7 @@ sg_sets[naq_gen_mk2][naquadah][desc] = Combien de naquadah est contenu dans le g
 sg_sets[naq_gen_mk2][energy] = Stockage d'Energie
 sg_sets[naq_gen_mk2][energy][desc] = Combien d'energie peut être stockée ?
 sg_sets[naq_gen_mk2][generate] = Energie générée
-sg_sets[naq_gen_mk2][generate][desc] = Quel est le ratio energie/naquadah ? (+/- 5%% random)
+sg_sets[naq_gen_mk2][generate][desc] = Quel est le ratio energie/naquadah ? (+/- 5%% aleatoire)
 sg_sets[naq_gen_mk2][multiplier] = Multiplicateur de conversion
 sg_sets[naq_gen_mk2][multiplier][desc] = Multiplicateur energetique de conversion (energie finale = générée*multiplicateur)
 sg_sets[naq_gen_mk2][nuke_explode] = Explosion nucléaire
@@ -595,13 +600,13 @@ sg_sets[ring] = Anneaux
 sg_sets[ring][classnames] = Entités Interdites
 sg_sets[ring][classnames][desc] = Ces types d'entités ne sont pas teleportables
 // Ring panels
-sg_sets[ring_panel] = Panneaux d'anneaux
-sg_sets[ring_panel][menu] = Afficher Menu
-sg_sets[ring_panel][menu][desc] = Voir le menu quand on clique sur UTILISER ( par defaut E ) sur le panneau (et non sur le bouton)
+sg_sets[rg_panel] = Panneaux d'anneaux
+sg_sets[rg_panel][menu] = Afficher Menu
+sg_sets[rg_panel][menu][desc] = Voir le menu quand on clique sur UTILISER ( par defaut E ) sur le panneau (et non sur le bouton)
 // Atlantis transporter
-sg_sets[atlantis_transporter] = Teleporteur d'Atlantis
-sg_sets[atlantis_transporter][classnames] = Entités Interdites
-sg_sets[atlantis_transporter][classnames][desc] = Ces types d'entités ne sont pas teleportables
+sg_sets[atlantis_trans] = Teleporteur d'Atlantis
+sg_sets[atlantis_trans][classnames] = Entités Interdites
+sg_sets[atlantis_trans][classnames][desc] = Ces types d'entités ne sont pas teleportables
 // Stargate Overloader
 sg_sets[gate_overloader] = Syrchargeur de porte
 sg_sets[gate_overloader][energyCapacity] = Capcité Energetique
@@ -613,9 +618,9 @@ sg_sets[mcd] = ACM (Appareil de Construction Moléculaire)
 sg_sets[mcd][allow_tzmp] = Autoriser E2PZ Tempéré
 sg_sets[mcd][allow_tzmp][desc] = Autoriser le spawn d'E2PZ Tempéré ( Aleatoire )
 sg_sets[mcd][tzmp_chance] = Chance de spawn
-sg_sets[mcd][tzmp_chance][desc] = Si la chance = 1 toujours ; chance=2 50% ; chance=3 33% ; etc
+sg_sets[mcd][tzmp_chance][desc] = Si la chance = 1 toujours , chance = 2 50%% , chance = 3 33%% , etc
 sg_sets[mcd][speed] = Vitesse
-sg_sets[mcd][speed][desc] = Vitesse de creation en %
+sg_sets[mcd][speed][desc] = Vitesse de creation en %%
 sg_sets[mcd][check_rights] = Verifier droits
 sg_sets[mcd][check_rights][desc] = Verifier selon le groupe du joueur s'il a le droit de spawn cet objet.
 // TAC
@@ -689,3 +694,57 @@ sg_sets[eap_misc][allow_drop_weapons] = Autoriser à lacher les armes ?
 sg_sets[eap_misc][allow_drop_weapons][desc] = Autoriser les joueurs a lacher leurs armes ?
 sg_sets[eap_misc][ship_shield] = Autoriser les boucliers sur vaisseaux
 sg_sets[eap_misc][ship_shield][desc] = Autoriser les boucliers ( Outil ) sur les vaisseaux ?
+
+// visual settings
+vis_fps_high = Grande chute de FPS
+vis_fps_medium = Moyenne chute de FPS
+vis_fps_low = Petite Chute de FPS
+vis_misc = Divers
+vis_ships = Vaisseaux
+vis_weapons = Armes
+vis_misc_title = Afficher effets divers
+vis_ships_title = Afficher effets des vaisseaux
+vis_weapons_title = Afficher effets des armes
+vis_title_desc = Desactiver ce reglage desactivera tout les reglages de cette categorie. Si activé, les reglages de cette categorie pourront être utilisés.
+vis_dyn_light = Lumières dynamiques
+vis_ripple = Afficher les ondes sur l'horizon des evenements
+vis_kawoosh_eff = Afficher l'effet d'entrée du kawoosh lors de l'ouverture du vortex
+vis_kawoosh_mat = Utiliser le nouveau materiel du Kawoosh
+vis_kawoosh_mat_desc = Aucune retombée sur les FPS, celà change juste le materiel du kawoosh
+vis_stargate_eff = Afficher les effets d'ouverture/fermeture
+vis_stargate_eff_desc = %s, peut empecher des crash en multijoueur (pour tests)
+vis_shield_bubble = Bulle du bouclier
+vis_hit_refl = Refraction lors de la collision
+vis_hit_eff = Effet de collision
+vis_cloak_pass = Afficher un effet lors que l'on passe le champ magnetique
+vis_cloak_eff = Effet d'invisibilité
+vis_smoke = Fumée
+vis_atl_shield = Bouclier d'atlantis
+vis_refl = Refraction
+vis_refl_desc = %s, Supprime la refraction, laisse juste le materiel
+vis_hud_title = HUD
+vis_hud_energy = Afficher HUD sur les generateurs
+vis_hud_energy_desc = %s, desactive les hud pour les E2PZ, Hubs et generateurs à Naquadah.
+vis_dhd_glyphs = Afficher les lettres sur le DHD
+vis_dhd_glyphs_desc = %s, desactive les lettres au dessus des boutons des DHD.
+vis_heatwave = Vague de chaleur
+vis_sprites = Sprites
+vis_weap_title = Lance jaffa, Ronon's Gun, Lance Ori, Canons du Destiny, Canon à ion Tollan
+vis_hit_dyn_light = Lumières dynamiques lors de la collision
+vis_fly_dyn_light = Lumières dynamiques lors du vol
+vis_wall = Brulures sur les murs
+vis_diss_eff = Effet de dissolution
+vis_glow = Lueurs
+vis_sunbeams = Rayons du soleil
+vis_sunbeams_desc = %s, SM v2 est requis
+vis_part_rings = Particules sur les anneaux
+vis_shield_part = Particules dans un bouclier
+vis_shield_part_desc = %s, Empeche les particules de spawner dans le bouclier
+vis_plasma = Plasma
+vis_plasma_light = Lumières dynamiques du Plasma
+vis_plasma_desc = %s, Celui-ci est affecté par le reglage au dessus.
+vis_refl_rings = Anneaux de Refraction
+vis_sm_laser = Petits lasers
+vis_charge_up = Charger les anneaux
+vis_refl_sphere = Spheres de Refraction
+vis_stargate_wormhole = Animation Vortex

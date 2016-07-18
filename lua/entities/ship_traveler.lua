@@ -30,7 +30,7 @@ function ENT:SpawnFunction(ply, tr) --######## Pretty useless unless we can spaw
 	end
 
 	local e = ents.Create("ship_traveler")
-	e:SetPos(ply:GetPos() + Vector(0,0,250))
+	e:SetPos(tr.HitPos + Vector(0,0,250))
 	e:SetAngles(ply:GetAngles())
 	e:Spawn()
 	e:Activate()

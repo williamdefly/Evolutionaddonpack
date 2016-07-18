@@ -80,7 +80,7 @@ function ENT:CAP_CanModify(ply)
 	local allowed = true;
 	if(hook.Call("Lib.Player.CanModify.Ring",GAMEMODE,ply,self.Entity) == false) then
 		allowed = false;
-	elseif(self.GateSpawnerProtected) then
+	elseif(self.EAPGateSpawnerProtected) then
 		allowed = hook.Call("Lib.Player.CanModifyProtected.Ring",GAMEMODE,ply,self.Entity);
 		if(allowed == nil) then allowed = (ply:IsAdmin() or game.SinglePlayer()) end;
 	end
@@ -209,7 +209,7 @@ function ENT:DoTeleport()
 		-- fixed by mad
 		-- No, by AlexALX ;) xD
 		local class = ent:GetClass();
-		if not self.Disallowed[class] and not string.find(class,"sg_") and not string.find(class,"rg_") and not protected_entities[class] and ent~=game.GetWorld() and not self.Other.Ents[ent] and not self.Ents[ent] and not ent.NotTeleportable and not ent:GetParent():IsValid() and not ent.GateSpawnerProtected then
+		if not self.Disallowed[class] and not string.find(class,"sg_") and not string.find(class,"rg_") and not protected_entities[class] and ent~=game.GetWorld() and not self.Other.Ents[ent] and not self.Ents[ent] and not ent.NotTeleportable and not ent:GetParent():IsValid() and not ent.EAPGateSpawnerProtected then
 			if playersonly:GetBool() and not ent:IsPlayer() then else
 				if ent:GetPhysicsObject():IsValid() then
 					self.Ents[ent]=true
@@ -373,7 +373,7 @@ function ENT:DoRings()
 
 	for i=1,5 do
 		self.Rings[i]=ents.Create("rg_ring")
-		self.Rings[i].GateSpawnerSpawned = self.GateSpawnerSpawned
+		self.Rings[i].EAPGateSpawnerSpawned = self.EAPGateSpawnerSpawned
 		self.Rings[i]:SetModel(self.RingModel)
 		if (dir==-1) then
 			self.Rings[i]:SetPos(self.Entity:GetPos()+Vector(0,0,15))
@@ -591,7 +591,7 @@ function ENT:PostEntityPaste(ply, Ent, CreatedEntities)
 end
 
 --######################## @AlexALX, aVoN -- snap gates to cap ramps
-function ENT:CartersRampsRing(t)
+function ENT:RampsRing(t)
 	local e = t.Entity;
 	if(not IsValid(e)) then return end;
 	local RampOffset = Lib.RampOffset.Ring;

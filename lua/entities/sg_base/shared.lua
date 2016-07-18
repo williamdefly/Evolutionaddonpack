@@ -21,7 +21,7 @@ if (Lib!=nil and Lib.LifeSupport!=nil) then Lib.LifeSupport(ENT); end
 ENT.Type = "anim";
 ENT.Author = "aVoN, AlexALX";
 ENT.PrintName = "stargate_base_entity";
-ENT.Category = "Stargate Carter Addon Pack: Gates and Rings";
+ENT.Category = "";
 
 ENT.Spawnable = false;
 ENT.AdminSpawnable = false;
@@ -58,7 +58,7 @@ properties.Add( "Lib.AutoClose.On",
 	MenuIcon	=	"icon16/plugin_delete.png",
 
 	Filter		=	function( self, ent, ply )
-						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsStargate || ent.IsStargateOrlin || ent:GetNWBool("GateSpawnerProtected",false) || ent:GetNWBool("DisAutoClose",false)) then return false end
+						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsStargate || ent.IsStargateOrlin || ent:GetNWBool("EAPGateSpawnerProtected",false) || ent:GetNWBool("DisAutoClose",false)) then return false end
 						if ( !gamemode.Call( "CanProperty", ply, "stargatemodify", ent ) ) then return false end
 						return true
 
@@ -91,7 +91,7 @@ properties.Add( "Lib.AutoClose.Off",
 
 	Filter		=	function( self, ent, ply )
 
-						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsStargate || ent.IsStargateOrlin || ent:GetNWBool("GateSpawnerProtected",false) || !ent:GetNWBool("DisAutoClose",false)) then return false end
+						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsStargate || ent.IsStargateOrlin || ent:GetNWBool("EAPGateSpawnerProtected",false) || !ent:GetNWBool("DisAutoClose",false)) then return false end
 						if ( !gamemode.Call( "CanProperty", ply, "stargatemodify", ent ) ) then return false end
 						return true
 
@@ -123,7 +123,7 @@ properties.Add( "Lib.DisableMenu.On",
 	MenuIcon	=	"icon16/plugin_delete.png",
 
 	Filter		=	function( self, ent, ply )
-						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsStargate and !ent.IsDHD || ent.IsStargateOrlin || ent:GetNWBool("GateSpawnerProtected",false) || ent:GetNWBool("DisMenu",false)) then return false end
+						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsStargate and !ent.IsDHD || ent.IsStargateOrlin || ent:GetNWBool("EAPGateSpawnerProtected",false) || ent:GetNWBool("DisMenu",false)) then return false end
 						if ( !gamemode.Call( "CanProperty", ply, "stargatemodify", ent ) ) then return false end
 						return true
 
@@ -156,7 +156,7 @@ properties.Add( "Lib.DisableMenu.Off",
 
 	Filter		=	function( self, ent, ply )
 
-						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsStargate and !ent.IsDHD || ent.IsStargateOrlin || ent:GetNWBool("GateSpawnerProtected",false) || !ent:GetNWBool("DisMenu",false)) then return false end
+						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsStargate and !ent.IsDHD || ent.IsStargateOrlin || ent:GetNWBool("EAPGateSpawnerProtected",false) || !ent:GetNWBool("DisMenu",false)) then return false end
 						if ( !gamemode.Call( "CanProperty", ply, "stargatemodify", ent ) ) then return false end
 						return true
 
@@ -188,7 +188,7 @@ properties.Add( "Lib.ChevronLight.On",
 	MenuIcon	=	"icon16/plugin_disabled.png",
 
 	Filter		=	function( self, ent, ply )
-						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsStargate || ent.IsStargateOrlin || ent.IsSupergate || ent:GetNWBool("GateSpawnerProtected",false) || ent:GetNWBool("ActChevronsL",false)) then return false end
+						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsStargate || ent.IsStargateOrlin || ent.IsSupergate || ent:GetNWBool("EAPGateSpawnerProtected",false) || ent:GetNWBool("ActChevronsL",false)) then return false end
 						if ( !gamemode.Call( "CanProperty", ply, "stargatemodify", ent ) ) then return false end
 						return true
 
@@ -224,7 +224,7 @@ properties.Add( "Lib.ChevronLight.Off",
 
 	Filter		=	function( self, ent, ply )
 
-						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsStargate || ent.IsStargateOrlin || ent.IsSupergate || ent:GetNWBool("GateSpawnerProtected",false) || !ent:GetNWBool("ActChevronsL",false)) then return false end
+						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsStargate || ent.IsStargateOrlin || ent.IsSupergate || ent:GetNWBool("EAPGateSpawnerProtected",false) || !ent:GetNWBool("ActChevronsL",false)) then return false end
 						if ( !gamemode.Call( "CanProperty", ply, "stargatemodify", ent ) ) then return false end
 						return true
 
@@ -260,7 +260,7 @@ properties.Add( "Lib.RingRotate.On",
 
 	Filter		=	function( self, ent, ply )
                         local vg = {"sg_movie","sg_sg1","sg_infinity","sg_universe"}
-						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsStargate || !table.HasValue(vg,ent:GetClass()) || ent:GetNWBool("GateSpawnerProtected",false) || ent:GetNWBool("ActRotRingL",false)) then return false end
+						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsStargate || !table.HasValue(vg,ent:GetClass()) || ent:GetNWBool("EAPGateSpawnerProtected",false) || ent:GetNWBool("ActRotRingL",false)) then return false end
 						if ( !gamemode.Call( "CanProperty", ply, "stargatemodify", ent ) ) then return false end
 						return true
 
@@ -292,7 +292,7 @@ properties.Add( "Lib.RingRotate.Off",
 
 	Filter		=	function( self, ent, ply )
                         local vg = {"sg_movie","sg_sg1","sg_infinity","sg_universe"}
-						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsStargate || !table.HasValue(vg,ent:GetClass()) || ent:GetNWBool("GateSpawnerProtected",false) || !ent:GetNWBool("ActRotRingL",false)) then return false end
+						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsStargate || !table.HasValue(vg,ent:GetClass()) || ent:GetNWBool("EAPGateSpawnerProtected",false) || !ent:GetNWBool("ActRotRingL",false)) then return false end
 						if ( !gamemode.Call( "CanProperty", ply, "stargatemodify", ent ) ) then return false end
 						return true
 
@@ -324,7 +324,7 @@ properties.Add( "Lib.InfinityEH.On",
 
 	Filter		=	function( self, ent, ply )
 						local vg = {"sg_infinity"}
-						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsStargate || !table.HasValue(vg,ent:GetClass()) || ent:GetNWBool("GateSpawnerProtected",false) || ent:GetNWBool("ActInf_SG1_EH",false)) then return false end
+						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsStargate || !table.HasValue(vg,ent:GetClass()) || ent:GetNWBool("EAPGateSpawnerProtected",false) || ent:GetNWBool("ActInf_SG1_EH",false)) then return false end
 						if ( !gamemode.Call( "CanProperty", ply, "stargatemodify", ent ) ) then return false end
 						return true
 
@@ -356,7 +356,7 @@ properties.Add( "Lib.InfinityEH.Off",
 
 	Filter		=	function( self, ent, ply )
                         local vg = {"sg_infinity"}
-						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsStargate || !table.HasValue(vg,ent:GetClass()) || ent:GetNWBool("GateSpawnerProtected",false) || !ent:GetNWBool("ActInf_SG1_EH",false)) then return false end
+						if ( !IsValid( ent ) || !IsValid( ply ) || !ent.IsStargate || !table.HasValue(vg,ent:GetClass()) || ent:GetNWBool("EAPGateSpawnerProtected",false) || !ent:GetNWBool("ActInf_SG1_EH",false)) then return false end
 						if ( !gamemode.Call( "CanProperty", ply, "stargatemodify", ent ) ) then return false end
 						return true
 

@@ -46,6 +46,8 @@ SWEP.Secondary.DefaultClip = -1;
 SWEP.Secondary.Automatic = false;
 SWEP.Secondary.Ammo = "none";
 
+SWEP.Spawnable = true
+
 --################### Dummys for the client @ aVoN
 function SWEP:PrimaryAttack() return false end;
 function SWEP:SecondaryAttack() return false end;
@@ -253,7 +255,7 @@ function SWEP:PushEffect()
 				local fx = EffectData();
 				fx:SetEntity(e);
 				fx:SetOrigin(e:GetPos());
-				util.Effect("eap_hd_push",fx,true,true);
+				util.Effect("hdpush",fx,true,true);
 			end
 		end
 	);
@@ -268,7 +270,7 @@ function SWEP:KillEffect()
 	fx:SetScale(spectating);
 	fx:SetEntity(self.Owner);
 	fx:SetOrigin(self.Owner:GetShootPos());
-	util.Effect("eap_hd_kill",fx,true,true);
+	util.Effect("hdkill",fx,true,true);
 end
 
 --################### Find Closest Rings @aVoN

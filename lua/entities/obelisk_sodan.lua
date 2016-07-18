@@ -347,8 +347,8 @@ function ENT:PostEntityPaste(ply, Ent, CreatedEntities)
 
 end
 
-if (Lib and Lib.CAP_GmodDuplicator) then
-	duplicator.RegisterEntityClass( "sodan_SodanObelisk", Lib.CAP_GmodDuplicator, "Data" )
+if (Lib and Lib.EAP_GmodDuplicator) then
+	duplicator.RegisterEntityClass( "sodan_SodanObelisk", Lib.EAP_GmodDuplicator, "Data" )
 end
 
 end

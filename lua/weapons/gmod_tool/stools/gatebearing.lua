@@ -7,7 +7,7 @@ TOOL.ClientConVar["model"] = "models/Iziraider/gatebearing/bearing.mdl";
 TOOL.ClientConVar["autoweld"] = 1;
 TOOL.List = "BearingModels";
 list.Set(TOOL.List,"models/Iziraider/gatebearing/bearing.mdl",{});
-TOOL.Entity.Class = "bearing";
+TOOL.Entity.Class = "gatebearing";
 TOOL.Entity.Keys = {"model"};
 TOOL.Entity.Limit = 10;
 TOOL.Topic["name"] = Lib.Language.GetMessage("stool_bearing_spawner");

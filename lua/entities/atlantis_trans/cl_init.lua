@@ -58,7 +58,7 @@ net.Receive( "UpdateAtlTP" , function(len)
 	end
 end );
 
-net.Receive( "RemoveAtlTPList", function(len)
+net.Receive( "RemoveAtlTPsList", function(len)
 	AtlTP_GetAll = {}
 end );
 

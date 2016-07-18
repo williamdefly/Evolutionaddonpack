@@ -58,7 +58,7 @@ function ENT:Initialize()
 
 	self.Entity:SetNetworkedString("ADDRESS",string.Implode(",",self.DialAdress));
 
-	self.AllowMenu = Lib.CFG:Get("ring_panel","menu",true);
+	self.AllowMenu = Lib.CFG:Get("rg_panel","menu",true);
 
 end
 
@@ -190,7 +190,7 @@ function ENT:PostEntityPaste(ply, Ent, CreatedEntities)
 end
 
 --######################## @Alex, aVoN -- snap gates to cap ramps
-function ENT:CartersRampsRPanel(t)
+function ENT:RampsRPanel(t)
 	local e = t.Entity;
 	if(not IsValid(e)) then return end;
 	local RampOffset = Lib.RampOffset.RingP;

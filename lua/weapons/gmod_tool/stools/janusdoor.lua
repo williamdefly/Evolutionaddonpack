@@ -25,10 +25,10 @@ if (CLIENT) then
 	language.Add("Undone_fading_door", "Supprime la porte de Janus");
 
 	function TOOL:BuildCPanel()
-		self:AddControl("Header",   {Text = "Janus_door_sge", Description = "creer la porte secrete de Janus"});
-		self:AddControl("CheckBox", {Label = "Reversed (Starts invisible, becomes solid)", Command = "janus_door_reversed"});
-		self:AddControl("CheckBox", {Label = "Toggle Active", Command = "janus_door_toggle"});
-		self:AddControl("Numpad",   {Label = "Button", ButtonSize = "22", Command = "janus_door_key"});
+		self:AddControl("Header",   {Text = "janusdoor_desc", Description = "creer la porte secrete de Janus"});
+		self:AddControl("CheckBox", {Label = "Reversed (Starts invisible, becomes solid)", Command = "janusdoor_reversed"});
+		self:AddControl("CheckBox", {Label = "Toggle Active", Command = "janusdoor_toggle"});
+		self:AddControl("Numpad",   {Label = "Button", ButtonSize = "22", Command = "janusdoor_key"});
 	end
 
 	TOOL.LeftClick = checkTrace;

@@ -27,12 +27,12 @@ position=1187.8368 522.5563 39.6556
 angles=15.000 -93.456 0.000
 destroyed=false
 
-[ring_panel]
+[rg_panel]
 classname=rg_panel_goauld
 position=1029.6191 -524.8882 56.7763
 angles=0.000 -90.000 0.000
 
-[ring_base]
+[rg_base]
 classname=rg_base_ancient
 position=1029.6190 -630.8907 11.2821
 angles=0.000 0.000 0.000

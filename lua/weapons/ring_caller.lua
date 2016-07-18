@@ -26,12 +26,12 @@ else
 	-- Kill Icon
 	if(file.Exists("materials/VGUI/weapons/ring_killicon.vmt","GAME")) then
 		killicon.Add("ring_ring","VGUI/weapons/ring_killicon",Color(255,255,255));
-		killicon.Add("ring_base","VGUI/weapons/ring_killicon",Color(255,255,255));
-		killicon.Add("ring_panel","VGUI/weapons/ring_killicon",Color(255,255,255));
+		killicon.Add("rg_base","VGUI/weapons/ring_killicon",Color(255,255,255));
+		killicon.Add("rg_panel","VGUI/weapons/ring_killicon",Color(255,255,255));
 	end
 	--language.Add("ring_ring","Ring Transporter");
-	--language.Add("ring_base","Ring Transporter Platform");
-	--language.Add("ring_panel","Ring Panel"); -- Haha. how stupid. Killed by a panel
+	--language.Add("rg_base","Ring Transporter Platform");
+	--language.Add("rg_panel","Ring Panel"); -- Haha. how stupid. Killed by a panel
 	-- Shit happens aVoN;p Especialy in gmod ;p (Mad)
 end
 if (Lib.Language!=nil and Lib.Language.GetMessage!=nil) then
@@ -62,7 +62,7 @@ SWEP.Secondary.ClipSize = -1;
 SWEP.Secondary.DefaultClip = -1;
 SWEP.Secondary.Automatic = false;
 SWEP.Secondary.Ammo	= "none";
-
+SWEP.Spawnable = true
 -- spawnables.
 
 function SWEP:Initialize()
