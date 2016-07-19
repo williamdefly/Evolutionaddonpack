@@ -71,7 +71,7 @@ function ENT:LoadDrones(offset) --######### @ LightDemon,RononDex
 					local pos = self:GetPos()+self:GetForward()*-50+self:GetUp()*-55
 					local vel = self:GetVelocity()
 					--calculate the drone's position offset. Otherwise it might collide with the launcher
-					local e = ents.Create("drone")
+					local e = ents.Create("drones")
 					e.Parent = self
 					e:SetPos(offset)
 					e:SetAngles(self:GetForward():Angle()+Angle(math.random(-2,2),math.random(-2,2),math.random(-2,2)))

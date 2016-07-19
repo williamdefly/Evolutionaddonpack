@@ -22,10 +22,6 @@ MsgN("eap_librairies/shared/ship_settings.lua")
 
 function Lib.Settings.Keyboard()
 
-	Lib.Settings.KBD = nil;
-
-	Lib.Settings.KeyboardInit();
-
 	if(SERVER)then return end
 
 	local sizew,sizeh = 600,460;
