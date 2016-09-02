@@ -1,9 +1,9 @@
 --EAP Initializing System
 --Made by Elanis
 
-EAP = EAP or { } --Init Global Var !
+EAP = EAP or {} --Init Global Var !
 
-Lib = Lib or { } --Init Global Var !
+Lib = Lib or {} --Init Global Var !
 
 EAP.WebRev = "https://raw.githubusercontent.com/williamdefly/Evolutionaddonpack/master/lua/eap_revision.lua"
 EAP.LastRev = 0; --Default
@@ -81,65 +81,124 @@ function EAP.IsRDDetected()
 end
 
 function EAP.Init()
+	--Check Version
+	EAP.GetRevision()
 
-EAP.GetRevision()
+	EAP.IsUpdated()
 
-EAP.IsUpdated()
+	MsgN("=======================================================");
 
-
-MsgN("=======================================================");
-if(EAP.Revision==0) then
-MsgN("Initializing Evolution Addon Pack Revision : UNKNOWN");
-else
-MsgN("Initializing Evolution Addon Pack Revision "..EAP.Revision);
-end
-
-if(EAP.Outdated)then
-MsgN("Your Version of Evolution Addon Pack is outdated ! Please Update it.");
-else
-MsgN("Your Version of Evolution Addon Pack is up to date !");
-end
-
-MsgN("Searching Addons ...");
-
-	for _, addon in SortedPairsByMemberValue( engine.GetAddons(), "title" ) do
-	
-		if (addon.title=="EAP_Base") then EAP.Workshop = true else EAP.Workshop = false end
-
-		if (addon.title=="EAP_Ressources") then EAP.Res = true else EAP.Res = false end
-
-		if (addon.title=="EAP_ressources_2") then EAP.Res2 = true else EAP.Res2 = false end
-
-		if (addon.title=="EAP_Ressources_3") then EAP.Res3 = true else EAP.Res3 = false end
-
-		if (addon.title=="EAP_Ressources_3") then EAP.Res4 = true else EAP.Res4 = false end
-	
+	if(EAP.Revision==0) then
+	MsgN("Initializing Evolution Addon Pack Revision : UNKNOWN");
+	else
+	MsgN("Initializing Evolution Addon Pack Revision "..EAP.Revision);
 	end
 
-	if(EAP.Workshop) then 
-	
-		MsgN("Workshop Version Launch !")
-	
-		if(EAP.Res) then MsgN("EAP Ressources 1 found !") else MsgN("EAP Ressources 1 NOT found") end
-		
-		if(EAP.Res2) then MsgN("EAP Ressources 2 found !") else MsgN("EAP Ressources 2 NOT found") end
-
-		if(EAP.Res3) then MsgN("EAP Ressources 3 found !") else MsgN("EAP Ressources 3 NOT found") end
-
-		if(EAP.Res44) then MsgN("EAP Ressources 4 found !") else MsgN("EAP Ressources 4 NOT found") end
-	
+	if(EAP.Outdated)then
+	MsgN("Your Version of Evolution Addon Pack is outdated ! Please Update it.");
 	else
-	
-		MsgN("Git/SVN/Zip Version Found !")
-	
+	MsgN("Your Version of Evolution Addon Pack is up to date !");
+	end
+
+	--Check Addons
+	MsgN("Searching Addons ...");
+
+	addons = { "EAP_Base", "EAP_Models", "EAP_Sounds"}
+	local materialsNumbers = 9;
+	local errors = 0;
+	EAP.MissingAddons = {};
+	EAP.AddonsInstalled = {};
+
+	for i=1,materialsNumbers do 
+		table.insert( addons, "EAP_Materials_"..i )
+	end
+
+	for _, addon in SortedPairsByMemberValue( engine.GetAddons(), "title" ) do
+		if (addon.title==addons[1]) then EAP.AddonsInstalled[1]=true; end
+	end
+	EAP.Workshop = EAP.AddonsInstalled[1];
+
+	if(true) then
+		MsgN("Workshop Version Launch !")
+
+		for i=2,table.Count(addons) do
+			for _, addon in SortedPairsByMemberValue( engine.GetAddons(), "title" ) do	
+				if (addon.title==addons[i]) then 
+					EAP.AddonsInstalled[i] = true
+					MsgN(addons[i].." found !")
+				end
+			end
+
+			if(EAP.AddonsInstalled[i]!=true) then
+				MsgN(addons[i].." NOT found !")
+				errors=errors+1;
+				table.insert(EAP.MissingAddons,addons[i]);
+			end
+		end
+	else
+		MsgN("Git/Files Version Found !")
 	end
 
 	EAP.IsCapDetected()
 	EAP.IsWireDetected()
 	EAP.IsRDDetected()
-	
-			MsgN("Loading Librairies ...")
 
+	if(Lib.HasWire==false) then 
+		errors=errors+1;
+		table.insert(EAP.MissingAddons,"Wiremod");
+	end
+	
+	if(errors>0 && CLIENT) then
+		MsgN("ERRORS");
+		MsgN(errors);
+		hook.Add( "PlayerInitialSpawn", "InstallProblems", function()
+			MsgN("InstallProblem")
+
+			local ErrorFrame = vgui.Create("DFrame");
+			ErrorFrame:SetPos(50, 50);
+			ErrorFrame:SetSize(ScrW()-100,ScrH()-100);
+			ErrorFrame:SetTitle("Error");
+			ErrorFrame:SetVisible(true);
+			ErrorFrame:SetDraggable(false);
+			ErrorFrame:ShowCloseButton(true);
+			ErrorFrame:SetBackgroundBlur(false);
+			ErrorFrame:MakePopup();
+
+			ErrorFrame.Paint = function()
+				// Background
+				surface.SetMaterial( "pp/blurscreen" )
+				surface.SetDrawColor( 255, 255, 255, 255 )
+
+				matBlurScreen:SetFloat( "$blur", 5 )
+				render.UpdateScreenEffectTexture()
+
+				surface.DrawTexturedRect( -ScrW()/10, -ScrH()/10, ScrW(), ScrH() )
+
+				surface.SetDrawColor( 100, 100, 100, 150 )
+				surface.DrawRect( 0, 0, ScrW(), ScrH() )
+
+				// Border
+				surface.SetDrawColor( 50, 50, 50, 255 )
+				surface.DrawOutlinedRect( 0, 0, ErrorFrame:GetWide(), ErrorFrame:GetTall() )
+
+				surface.SetDrawColor( 50, 50, 50, 255 )
+				surface.DrawRect( 20, 35, ErrorFrame:GetWide() - 40, ErrorFrame:GetTall() - 55 )
+
+			end
+
+			local ErrorText = "These following addons are missing: \n"
+
+			for i=1,table.Count(EAP.MissingAddons) do
+				ErrorText = ErrorText..""..EAP.MissingAddons[i].."\n"
+			end
+
+			local DLabel = vgui.Create( "DLabel", Panel )
+			DLabel:SetPos( 40, 30 )
+			DLabel:SetText( ErrorText )
+		end);
+	end
+
+	MsgN("Loading Librairies ...")
 end
 
 ----------------------------------------Launch !!!!!!!!!!!-------------------------------------------------------
