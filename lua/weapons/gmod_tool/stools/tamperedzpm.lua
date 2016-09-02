@@ -2,24 +2,24 @@
 	Tampered ZPM
 	Copyright (C) 2010  Llapp
 */
-if (StarGate==nil or StarGate.CheckModule==nil or not StarGate.CheckModule("energy") or SGLanguage==nil or SGLanguage.GetMessage==nil) then return end
-include("weapons/gmod_tool/stargate_base_tool.lua");
+if (Lib==nil or Lib.Language==nil or Lib.Language.GetMessage==nil) then return end
+include("weapons/gmod_tool/eap_base_tool.lua");
 
 TOOL.Category="Weapons";
-TOOL.Name=SGLanguage.GetMessage("stool_tzpm");
+TOOL.Name=Lib.Language.GetMessage("stool_tzpm");
 TOOL.ClientConVar["autoweld"] = 1;
 TOOL.ClientConVar["autolink"] = 1;
 TOOL.ClientConVar["model"] = "models/pg_props/pg_zpm/pg_zpm.mdl";
-TOOL.Entity.Class = "tampered_zpm";
+TOOL.Entity.Class = "tamperedzpm";
 TOOL.Entity.Keys = {"model"};
 TOOL.Entity.Limit = 3;
-TOOL.Topic["name"] = SGLanguage.GetMessage("stool_tampered_zpm_spawner");
-TOOL.Topic["desc"] = SGLanguage.GetMessage("stool_tampered_zpm_create");
-TOOL.Topic[0] = SGLanguage.GetMessage("stool_tampered_zpm_desc");
-TOOL.Language["Undone"] = SGLanguage.GetMessage("stool_tampered_zpm_undone");
-TOOL.Language["Cleanup"] = SGLanguage.GetMessage("stool_tampered_zpm_cleanup");
-TOOL.Language["Cleaned"] = SGLanguage.GetMessage("stool_tampered_zpm_cleaned");
-TOOL.Language["SBoxLimit"] = SGLanguage.GetMessage("stool_tampered_zpm_limit");
+TOOL.Topic["name"] = Lib.Language.GetMessage("stool_tampered_zpm_spawner");
+TOOL.Topic["desc"] = Lib.Language.GetMessage("stool_tampered_zpm_create");
+TOOL.Topic[0] = Lib.Language.GetMessage("stool_tampered_zpm_desc");
+TOOL.Language["Undone"] = Lib.Language.GetMessage("stool_tampered_zpm_undone");
+TOOL.Language["Cleanup"] = Lib.Language.GetMessage("stool_tampered_zpm_cleanup");
+TOOL.Language["Cleaned"] = Lib.Language.GetMessage("stool_tampered_zpm_cleaned");
+TOOL.Language["SBoxLimit"] = Lib.Language.GetMessage("stool_tampered_zpm_limit");
 
 function TOOL:LeftClick(t)
 	if(t.Entity and t.Entity:IsPlayer()) then return false end;
@@ -46,12 +46,12 @@ function TOOL:PreEntitySpawn(p,e,model)
 end
 
 function TOOL:ControlsPanel(Panel)
-	Panel:CheckBox(SGLanguage.GetMessage("stool_autoweld"),"tampered_zpm_autoweld");
-	if(StarGate.HasResourceDistribution) then
-		Panel:CheckBox(SGLanguage.GetMessage("stool_autolink"),"tampered_zpm_autolink"):SetToolTip(SGLanguage.GetMessage("stool_autolink_desc"));
+	Panel:CheckBox(Lib.Language.GetMessage("stool_autoweld"),"tamperedzpm_autoweld");
+	if(Lib.HasResourceDistribution) then
+		Panel:CheckBox(Lib.Language.GetMessage("stool_autolink"),"tamperedzpm_autolink"):SetToolTip(Lib.Language.GetMessage("stool_autolink_desc"));
 	end
-	Panel:AddControl("Label", {Text = SGLanguage.GetMessage("stool_tampered_zpm_fulldesc"),})
-	Panel:AddControl("Label", {Text = "\n"..SGLanguage.GetMessage("stool_desc").."\n\n"..SGLanguage.GetMessage("stool_tampered_zpm_fulldesc2"),})
+	Panel:AddControl("Label", {Text = Lib.Language.GetMessage("stool_tampered_zpm_fulldesc"),})
+	Panel:AddControl("Label", {Text = "\n"..Lib.Language.GetMessage("stool_desc").."\n\n"..Lib.Language.GetMessage("stool_tampered_zpm_fulldesc2"),})
 end
 
 TOOL:Register();
