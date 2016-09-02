@@ -1,6 +1,7 @@
 /*
 	Iris Spawn Tool for GarrysMod10
 	Copyright (C) 2007  aVoN
+	Updated in 2016 by Elanis 
 
 	This program is free software: you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -19,29 +20,18 @@
 --################# Header
 include("weapons/gmod_tool/eap_base_tool.lua");
 TOOL.Category=Lib.Language.GetMessage("stool_stargate");
-TOOL.Name=Lib.Language.GetMessage("stool_iris");
+TOOL.Name=Lib.Language.GetMessage("stool_iris_atlantis");
 
---TOOL.ClientConVar["autolink"] = 1;
---TOOL.ClientConVar["autoweld"] = 1;
 TOOL.ClientConVar["toggle"] = 9;
 TOOL.ClientConVar["activate"] = 12;
 TOOL.ClientConVar["deactivate"] = 13;
 -- The default model for the GhostPreview
-TOOL.ClientConVar["model"] = "models/zup/Stargate/iris.mdl";
-TOOL.GhostExceptions = {"sg_atlantis","sg_sg1","sg_tollan","sg_infinity","sg_universe","sg_ori"}; -- Add your entity class to this, to stop drawing the GhostPreview on this
--- Holds modles for a selection in the tooltab and allows individual Angle and Position offsets {Angle=Angle(1,2,3),Position=Vector(1,2,3} for the GhostPreview
-TOOL.List = "StargateIrisModels"; -- The listname of garrys "List" Module we use for models
-list.Set(TOOL.List,"models/zup/Stargate/iris.mdl",{});
-list.Set(TOOL.List,"models/zup/Stargate/sga_shield.mdl",{}); -- I hexed the Eventhorizon model to use a new material
-if (file.Exists("models/cos/Stargate/iris.mdl","GAME")) then
-	list.Set(TOOL.List,"models/cos/Stargate/iris.mdl",{});
-end
+TOOL.ClientConVar["model"] = "models/zup/Stargate/sga_shield.mdl";
+TOOL.GhostExceptions = {"sg_atlantis","sg_sg1","sg_tollan","sg_infinity","sg_universe"}; -- Add your entity class to this, to stop drawing the GhostPreview on this
 
 -- Information about the SENT to spawn
 TOOL.Entity.Class = "sg_iris";
-TOOL.Entity.Keys = {"model","toogle","activate","deactivate","IsActivated"}; -- These keys will get saved from the duplicator
--- The default offset Angle, the sent should additional rotated - For Ghostpreview, when something looks strange
--- Optionally you can also do this for special models in TOOL.Models. E.g. ["my_model"] = {Angle=Angle(1,2,3)},
+TOOL.Entity.Keys = {"model","toggle","activate","deactivate","IsActivated"}; -- These keys will get saved from the duplicator
 TOOL.Entity.Limit = 10;
 
 -- Add the topic texts, you see in the upper left corner
@@ -78,6 +68,7 @@ function TOOL:LeftClick(t)
 	local activate = self:GetClientNumber("activate");
 	local deactivate = self:GetClientNumber("deactivate");
 	local model = self:GetClientInfo("model");
+	MsgN(model);
 	local e = self:SpawnSENT(p,t,model,toggle,activate,deactivate);
 	if (not IsValid(e)) then return end
 	if(IsValid(t.Entity) and t.Entity.IsStargate) then
@@ -101,11 +92,7 @@ function TOOL:LeftClick(t)
 		e:IrisProtection();
 	end
 	e:Toggle(true); -- Always spawn an iris/shield closed! (true means close no matter if we have not enough energy)
-	--[[
-	if(util.tobool(self:GetClientNumber("autolink"))) then
-		self:AutoLink(e,t.Entity); -- Link to that energy system, if valid
-	end
-	--]]
+
 	--######## Weld things?
 	local c = self:Weld(e,t.Entity,true);
 	--######## Cleanup and undo register
@@ -141,22 +128,16 @@ function TOOL:ControlsPanel(Panel)
 	Panel:AddControl("Numpad",{
 		ButtonSize=22,
 		Label=Lib.Language.GetMessage("stool_toggle"),
-		Command="stargateiris_toggle",
+		Command="iris_atlantis_toggle",
 	});
 	Panel:AddControl("Numpad",{
 		ButtonSize=22,
 		Label=Lib.Language.GetMessage("stool_activate"),
-		Command="stargateiris_activate",
+		Command="iris_atlantis_activate",
 		Label2=Lib.Language.GetMessage("stool_deactivate"),
-		Command2="stargateiris_deactivate",
+		Command2="iris_atlantis_deactivate",
 	});
-	Panel:AddControl("PropSelect",{Label=Lib.Language.GetMessage("stool_model"),ConVar="stargateiris_model",Category="",Models=self.Models});
-	Panel:CheckBox(Lib.Language.GetMessage("stool_autoweld"),"stargateiris_autoweld");
-	--[[
-	if(Lib.HasResourceDistribution) then
-		Panel:CheckBox(Lib.Language.GetMessage("stool_autolink"),"stargate_iris_autolink"):SetToolTip(Lib.Language.GetMessage("stool_autolink_desc"));
-	end
-	--]]
+	Panel:CheckBox(Lib.Language.GetMessage("stool_autoweld"),"iris_atlantis_autoweld");
 end
 
 --################# Numpad bindings
