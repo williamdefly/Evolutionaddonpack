@@ -5,7 +5,7 @@
 if (Lib==nil or Lib.Language==nil or Lib.Language.GetMessage==nil) then return end
 include("weapons/gmod_tool/eap_base_tool.lua");
 
-TOOL.Category="Weapons";
+TOOL.Category=Lib.Language.GetMessage("stool_weapons");
 TOOL.Name=Lib.Language.GetMessage("stool_tzpm");
 TOOL.ClientConVar["autoweld"] = 1;
 TOOL.ClientConVar["autolink"] = 1;

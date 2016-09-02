@@ -325,3 +325,82 @@ stool_jamming_cleanup = Jamming Device
 stool_jamming_cleaned = Removed all Jamming Devices
 stool_jamming_limit = Hit the Jamming Device limit
 stool_jamming_imm_desc = Note: Immunity allows you to beam even if jamming is online
+
+// Asuran ZPM Hub
+stool_asuran_hub = Asuran ZPM Hub
+stool_asuran_zpm_hub_spawner = Asuran ZPM Hub Spawner
+stool_asuran_zpm_hub_create = Creates an Asuran ZPM Hub
+stool_asuran_zpm_hub_desc = Left click to spawn an Asuran ZPM Hub
+stool_asuran_zpm_hub_undone = Asuran ZPM Hub removed
+stool_asuran_zpm_hub_cleanup = Asuran ZPM Hub
+stool_asuran_zpm_hub_cleaned = Removed all Asuran ZPM Hubs
+stool_asuran_zpm_hub_limit = Hit the Asuran ZPM Hub limit
+stool_asuran_zpm_hub_fulldesc = This is the Asuran ZPM Hub. This tool requires SpaceBuild or the Environments addon. If you don't have it, this ZPM Hub is quite useless to you.
+
+// Atlantis ZPM Hub
+stool_atlantis_hub = Atlantis ZPM Hub
+stool_atlantis_zpm_hub_spawner = Atlantis ZPM Hub Spawner
+stool_atlantis_zpm_hub_create = Creates an Atlantis ZPM Hub
+stool_atlantis_zpm_hub_desc = Left click to spawn an Atlantis ZPM Hub
+stool_atlantis_zpm_hub_undone = Atlantis ZPM Hub removed
+stool_atlantis_zpm_hub_cleanup = Atlantis ZPM Hub
+stool_atlantis_zpm_hub_cleaned = Removed all Atlantis ZPM Hubs
+stool_atlantis_zpm_hub_limit = Hit the Atlantis ZPM Hub limit
+stool_atlantis_zpm_hub_fulldesc = This is the Atlantis ZPM Hub. This tool requires SpaceBuild or the Environments addon. If you don't have it, this ZPM Hub is quite useless to you.
+
+// SGC ZPM Hub
+stool_sgc_hub = SGC ZPM Hub
+stool_sgc_zpm_hub_spawner = SGC ZPM Hub Spawner
+stool_sgc_zpm_hub_create = Creates a SGC ZPM Hub
+stool_sgc_zpm_hub_desc = Left click to spawn a SGC ZPM Hub
+stool_sgc_zpm_hub_undone = SGC ZPM Hub removed
+stool_sgc_zpm_hub_cleanup = SGC ZPM Hub
+stool_sgc_zpm_hub_cleaned = Removed all SGC ZPM Hubs
+stool_sgc_zpm_hub_limit = Hit the SGC ZPM Hub limit
+stool_sgc_zpm_hub_fulldesc = This is the Stargate Command ZPM Hub. This tool requires SpaceBuild or the Environments addon. If you don't have it, this ZPM Hub is quite useless to you.
+
+// Tampered ZPM
+stool_tzpm = Tampered ZPM Spawner
+stool_tampered_zpm_spawner = Tampered ZPM Spawner
+stool_tampered_zpm_create = Creates a Tampered ZPM
+stool_tampered_zpm_desc = Left click, to spawn a Tampered ZPM
+stool_tampered_zpm_undone = Tampered ZPM removed
+stool_tampered_zpm_cleanup = Tampered ZPM
+stool_tampered_zpm_cleaned = Removed all Tampered ZPMs
+stool_tampered_zpm_limit = Hit the Tampered ZPM limit
+stool_tampered_zpm_fulldesc = This is the Tampered Zpm, this tool requires SpaceBuild or the Environments addon. If you don't have it, this Tampered Zpm is quite useless for you.
+stool_tampered_zpm_fulldesc2 = Camulus discovered a ZPM in an Ancient outpost. Unable to use it himself, he coated it with a volatile compound that would react explosively to an electrical charge. He led the Tau'ri to it in the hopes that they would destroy themselves. Bill Lee discovered the compound by mistake when it became necessary to flood the base with gamma radiation. The estimated blast radius of the ZPM, which held a roughly 50%% charge, could have possibly encompassed the entire solar system, and at the very least would have completely destroyed Earth. (SG1: "Zero Hour") Efforts were made to remove the compound, but the first test of the ZPM destroyed it and the planet it was on.
+
+// ZPM MK III
+stool_zpm_mk3 = ZPM MK III
+stool_zpm_mk3_spawner = ZPM MK III Spawner
+stool_zpm_mk3_create = Creates a Zero Point Module
+stool_zpm_mk3_desc = Left click, to spawn a ZPM MK III
+stool_zpm_mk3_undone = Zero Point Module removed
+stool_zpm_mk3_cleanup = Zero Point Modules
+stool_zpm_mk3_cleaned = Removed all Zero Point Modules
+stool_zpm_mk3_limit = Hit the Zero Point Module limit
+stool_zpm_mk3_fulldesc = This is the Zpm MK3, this tool requires SpaceBuild or the Environments addon. If you don't have it, this Zpm MK3 is quite useless for you.
+stool_zpm_mk3_capacity = Capacity:
+
+// Naquadah Bottle
+stool_naq_bottle = Naquadah bottle
+stool_naq_bottle_spawner = Naquadah bottle Spawner
+stool_naq_bottle_create = Creates a Naquadah bottle
+stool_naq_bottle_desc = Left click, to spawn a Naquadah bottle
+stool_naq_bottle_undone = Naquadah bottle removed
+stool_naq_bottle_cleanup = Naquadah bottles
+stool_naq_bottle_cleaned = Removed all Naquadah bottles
+stool_naq_bottle_limit = Hit the Naquadah bottle limit
+stool_naq_bottle_fulldesc = This is the Naquadah bottle, this tool requires SpaceBuild or the Environments addon. If you don't have it, this Naquadah bottle is quite useless for you.
+
+// Naquadah Generator MK1/MK2
+stool_naq_gen = Naquadah Generator
+stool_naq_gen_mks_spawner = Naquadah Generator Spawner
+stool_naq_gen_mks_create = Creates a Naquadah Generator
+stool_naq_gen_mks_desc = Left click, to spawn a Naquadah Generator. Right click - refill 25%% (once in 30 seconds).
+stool_naq_gen_mks_undone = Naquadah Generator removed
+stool_naq_gen_mks_cleanup = Naquadah Generator
+stool_naq_gen_mks_cleaned = Removed all Naquadah Generators
+stool_naq_gen_mks_limit = Naquadah generator limit reached!
+stool_naq_gen_mks_fulldesc = This tool is the Naquadah Generator tool. The tool will provide you with a Mark 1 or Mark 2 Naquadah Generator, because the MK1 got less power but is more stable. This tool requires SpaceBuild or the Environments addon. If you don't have it, this generators is quite useless for you.

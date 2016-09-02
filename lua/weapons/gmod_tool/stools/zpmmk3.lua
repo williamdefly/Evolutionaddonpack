@@ -6,7 +6,7 @@
 if (Lib==nil or Lib.Language==nil or Lib.Language.GetMessage==nil) then return end
 include("weapons/gmod_tool/eap_base_tool.lua");
 
-TOOL.Category="Energy";
+TOOL.Category=Lib.Language.GetMessage("stool_energy");
 TOOL.Name=Lib.Language.GetMessage("stool_zpm_mk3");
 
 TOOL.ClientConVar["autolink"] = 1;

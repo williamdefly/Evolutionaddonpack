@@ -14,6 +14,7 @@ stool_settings = Settings
 stool_general_settings = General
 stool_client = Client Settings
 stool_weapons = Weapons
+stool_energy = Energy
 
 // spawn menu info
 spawninfo_title = Information

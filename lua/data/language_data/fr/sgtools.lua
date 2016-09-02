@@ -325,3 +325,82 @@ stool_jamming_cleanup = Brouilleur
 stool_jamming_cleaned = Tout les Brouilleurs sont supprimés
 stool_jamming_limit = Maximum de Brouilleurs atteint
 stool_jamming_imm_desc = Note: L'Immunité permet au proprietaire d'utiliser la teleportationb dans les champ du Brouilleur.
+
+// Asuran ZPM Hub
+stool_asuran_hub = HUB à E2PZ Asuran
+stool_asuran_zpm_hub_spawner = Createur de HUB à E2PZ Asuran
+stool_asuran_zpm_hub_create = Créee un HUB à E2PZ Asuran
+stool_asuran_zpm_hub_desc = Clic gauche pour spawn
+stool_asuran_zpm_hub_undone = HUB à E2PZ Asuran supprimé
+stool_asuran_zpm_hub_cleanup = HUB à E2PZ Asuran
+stool_asuran_zpm_hub_cleaned = Tout les HUB à E2PZ Asuran sont supprimés
+stool_asuran_zpm_hub_limit = Maximum de HUB à E2PZ Asuran atteint
+stool_asuran_zpm_hub_fulldesc = Ceci est un HUB à E2PZ Asuran, pour l'utiliser vous aurez besoin d'un addon energetique ( Spacebuild, Environments, Spacelife ). Si vous n'avez pas un de ces addons, cet objet vous est inutile.
+
+// Atlantis ZPM Hub
+stool_atlantis_hub = HUB à E2PZ Atlante
+stool_atlantis_zpm_hub_spawner = Createur de HUB à E2PZ Atlante
+stool_atlantis_zpm_hub_create = Créee un HUB à E2PZ Atlante
+stool_atlantis_zpm_hub_desc = Clic gauche pour spawn
+stool_atlantis_zpm_hub_undone = HUB à E2PZ Atlante supprimé
+stool_atlantis_zpm_hub_cleanup = HUB à E2PZ Atlante
+stool_atlantis_zpm_hub_cleaned = Tout les HUB à E2PZ Atlante sont supprimés
+stool_atlantis_zpm_hub_limit = Maximum de HUB à E2PZ Atlante atteint
+stool_atlantis_zpm_hub_fulldesc = Ceci est un HUB à E2PZ Atlante, pour l'utiliser vous aurez besoin d'un addon energetique ( Spacebuild, Environments, Spacelife ). Si vous n'avez pas un de ces addons, cet objet vous est inutile.
+
+// SGC ZPM Hub
+stool_sgc_hub = HUB à E2PZ du SGC
+stool_sgc_zpm_hub_spawner = Createur de HUB à E2PZ du SGC
+stool_sgc_zpm_hub_create = Créee un HUB à E2PZ du SGC
+stool_sgc_zpm_hub_desc = Clic gauche pour spawn
+stool_sgc_zpm_hub_undone = HUB à E2PZ du SGC supprimé
+stool_sgc_zpm_hub_cleanup = HUB à E2PZ du SGC
+stool_sgc_zpm_hub_cleaned = Tout les HUB à E2PZ du SGC sont supprimés
+stool_sgc_zpm_hub_limit = Maximum de HUB à E2PZ du SGC atteint
+stool_sgc_zpm_hub_fulldesc = Ceci est un HUB à E2PZ du SGC, pour l'utiliser vous aurez besoin d'un addon energetique ( Spacebuild, Environments, Spacelife ). Si vous n'avez pas un de ces addons, cet objet vous est inutile.
+
+// Tampered ZPM
+stool_tzpm = E2PZ Altéré
+stool_tampered_zpm_spawner = Créateur d'E2PZ Altéré
+stool_tampered_zpm_create = Créee un E2PZ Altéré
+stool_tampered_zpm_desc = Clic gauche pour spawn
+stool_tampered_zpm_undone = E2PZ Altéré supprimé
+stool_tampered_zpm_cleanup = E2PZ Altéré
+stool_tampered_zpm_cleaned = Tout les E2PZ Altérés sont supprimés
+stool_tampered_zpm_limit = Maximum d'E2PZ Altéré atteint
+stool_tampered_zpm_fulldesc = Ceci est un E2PZ Altéré, pour l'utiliser vous aurez besoin d'un addon energetique ( Spacebuild, Environments, Spacelife ). Si vous n'avez pas un de ces addons, cet objet vous est inutile.
+stool_tampered_zpm_fulldesc2 = Camulus a trouvé cet E2PZ dans un avant-poste ancien. Ne pouvant l'utiliser, il decida de le pieger avec une substance volatile reactive au champs electriques. Il en fit dont aux Tau'ris afin qu'ils se detruisent eux-mêmes. Bill Lee decouvra cette substance lorsqu'il fallu inonder la base de rayons gamma. L'explosion estimée de ce dispositif à 50%% de charge, aurait detruit le systeme solaire complet. (SG1: "Zero Hour") Il eut des essais pour retirer la substance dans l'E2PZ mais lors de l'essai, cela detrusit la planete sur laquelle il fut.
+
+// ZPM MK III
+stool_zpm_mk3 = E2PZ MK3
+stool_zpm_mk3_spawner = Créateur d'E2PZ MK3
+stool_zpm_mk3_create = Créee un E2PZ
+stool_zpm_mk3_desc = Clic gauche pour spawn
+stool_zpm_mk3_undone = E2PZ supprimé
+stool_zpm_mk3_cleanup = E2PZ
+stool_zpm_mk3_cleaned = Tout les E2PZ sont supprimés
+stool_zpm_mk3_limit = Maximum d'E2PZ atteint
+stool_zpm_mk3_fulldesc = Ceci est un E2PZ, pour l'utiliser vous aurez besoin d'un addon energetique ( Spacebuild, Environments, Spacelife ). Si vous n'avez pas un de ces addons, cet objet vous est inutile.
+stool_zpm_mk3_capacity = Capacité:
+
+// Naquadah Bottle
+stool_naq_bottle = Bouteille de Naquadah
+stool_naq_bottle_spawner = Créateur de Bouteille de Naquadah
+stool_naq_bottle_create = Créee une Bouteille de Naquadah
+stool_naq_bottle_desc = Clic gauche pour spawn
+stool_naq_bottle_undone = Bouteille de Naquadah
+stool_naq_bottle_cleanup = Bouteille de Naquadah supprimée
+stool_naq_bottle_cleaned = Tout les Bouteilles de Naquadah sont supprimées
+stool_naq_bottle_limit = Maximum de Bouteilles de Naquadah atteint
+stool_naq_bottle_fulldesc = Ceci est la Bouteille de Naquadah, pour l'utiliser vous aurez besoin d'un addon energetique ( Spacebuild, Environments, Spacelife ). Si vous n'avez pas un de ces addons, cet objet vous est inutile.
+
+// Naquadah Generator MK1/MK2
+stool_naq_gen = Generateur à Naquadah
+stool_naq_gen_mks_spawner = Créateur de Generateur à Naquadah
+stool_naq_gen_mks_create = Créee un Generateur à Naquadah
+stool_naq_gen_mks_desc = Clic gauche pour spawn. Clic Droit - remplit 25%% (une fois tout par tranche de 30 seconds).
+stool_naq_gen_mks_undone = Generateur à Naquadah supprimé
+stool_naq_gen_mks_cleanup = Generateur à Naquadah
+stool_naq_gen_mks_cleaned = Tout les Generateurs à Naquadah sont supprimés
+stool_naq_gen_mks_limit = Maximum de Generateurs à Naquadah atteint
+stool_naq_gen_mks_fulldesc = Ceci est l'outil de création des Generateurs à Naquadah. Cet outil permet de donner un generateur MK1 ou MK2, le MK1 produit moins d'energie mais est plus stable. Pour l'utiliser vous aurez besoin d'un addon energetique ( Spacebuild, Environments, Spacelife ). Si vous n'avez pas un de ces addons, cet objet vous est inutile.
