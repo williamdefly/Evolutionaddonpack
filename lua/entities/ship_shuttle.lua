@@ -36,7 +36,7 @@ if SERVER then
 --########Header########--
 AddCSLuaFile()
 
-ENT.Model = Model("models/Iziraider/shuttle/shuttle.mdl")
+ENT.Model = Model("models/ship/shuttle.mdl")
 ENT.Shuttle=true
 
 function ENT:SpawnFunction(ply, tr) --######## Pretty useless unless we can spawn it @RononDex
@@ -191,7 +191,7 @@ function ENT:Think()
 
 	if(self.Inflight) then
 		if((self.Pilot)and(self.Pilot:IsValid())) then
-			if(self.Pilot:KeyDown("EAP_KEYBOARD","SHIELD")) then
+			/*if(self.Pilot:KeyDown("EAP_KEYBOARD","SHIELD")) then
 				if(self.ShieldOffline) then
 					self.Pilot:ChatPrint("Shuttle is to badly Damaged!/nShield's are offline")
 				end
@@ -202,7 +202,7 @@ function ENT:Think()
 						self:ToggleShield()
 					end
 				end
-			end
+			end*/
 		end
 	end
 
@@ -505,11 +505,11 @@ function ENT:Draw()
 	self.BaseClass.Draw(self)
 
 	if(p:KeyDown("EAP_KEYBOARD","FWD")) then
-		self:Effects()
+		--self:Effects()
 	end
 
 	if(p:KeyDown("EAP_KEYBOARD","SPD")) then
-		self:BoostFX()
+		--self:BoostFX()
 	end
 end
 

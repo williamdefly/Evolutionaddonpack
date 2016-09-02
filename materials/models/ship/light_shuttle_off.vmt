@@ -1,0 +1,4 @@
+VertexLitGeneric
+{
+$basetexture "Models/ship/light_shuttle_off"
+}
