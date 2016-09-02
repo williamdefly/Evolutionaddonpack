@@ -393,10 +393,10 @@ local function SG_Settings_OpenNet()
 	local sboxlimits = {
 		{"stargate_eap_sbox_01", "animramps"},
 		{"stargate_eap_sbox_02", "ramps"},
-		--{"stargate_eap_sbox_03", "asuran_zpm_hub"},
-		--{"stargate_eap_menu_07", "ashen_defence"},
-		--{"stargate_eap_sbox_04", "zpmhub"},
-		--{"stargate_eap_sbox_05", "sgc_zpm_hub"},
+		{"stargate_eap_sbox_03", "asuran_zpm_hub"},
+		{"stargate_eap_menu_07", "ashen_defence"},
+		{"stargate_eap_sbox_04", "zpmhub"},
+		{"stargate_eap_sbox_05", "sgc_zpm_hub"},
 		{"stargate_eap_sbox_06", "gatebearing"},
 		--{"stargate_eap_sbox_07", "brazier"},
 		--{"stargate_eap_sbox_08", "doors_contr"},
@@ -409,7 +409,7 @@ local function SG_Settings_OpenNet()
 		{"stargate_eap_sbox_28", "goauld_iris"},
 		{"stargate_eap_sbox_14", "gravity_controller"},
 		{"stargate_eap_sbox_15", "jamming_device"},
-		--{"stargate_eap_sbox_16", "naq_gen_mks"},
+		{"stargate_eap_sbox_16", "naq_gen_mks"},
 		{"stargate_eap_menu_14", "naquadah_bomb"},
 		{"stargate_eap_sbox_17", "staffweapon_glider"},
 		{"stargate_eap_sbox_18", "cloaking_generator"},
@@ -420,9 +420,9 @@ local function SG_Settings_OpenNet()
 		{"stargate_eap_sbox_22", "tokraemmiter"},
 		{"stargate_eap_sbox_23", "tokrakey"},
 		{"stargate_eap_sbox_24", "tollan_weapons_disabler"},
-		--{"stargate_eap_sbox_25", "wraith_harvester"},
-		--{"stargate_eap_sbox_26", "zpm_mk3"},
-		--{"stool_naq_bottle", "naquadah_bottle"},
+		{"stargate_eap_sbox_25", "wraith_harvester"},
+		{"stargate_eap_sbox_26", "zpm_mk3"},
+		{"stool_naq_bottle", "naquadah_bottle"},
 	}
 	SetupConvars(sboxlimits,"sbox_max");
 
