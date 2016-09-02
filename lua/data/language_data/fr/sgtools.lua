@@ -20,6 +20,9 @@ wp_janus_door = Porte secrete de Janus
 
 //Iris
 stool_iris = Iris
+stool_iris_atlantis = Iris d'Atlantis
+stool_iris_sgc = Iris du SGC
+stool_iris_infinity = Iris d'infinity
 stool_stargate_iris_spawner = Iris Spawner
 stool_stargate_iris_create = Créer une iris ou une iris energetique pour une Porte des étoiles
 stool_stargate_iris_desc = Clic droit pour spawner l'Iris

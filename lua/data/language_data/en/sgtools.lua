@@ -20,6 +20,9 @@ wp_janus_door = Janus Secret Door
 
 //Iris
 stool_iris = Iris
+stool_iris_atlantis = Atlantis Iris
+stool_iris_sgc = SGC Iris
+stool_iris_infinity = Infinity Iris
 stool_stargate_iris_spawner = Iris Spawner
 stool_stargate_iris_create = Creats an Iris or Shield for a Stargate
 stool_stargate_iris_desc = Left click to spawn and Iris or Shields
