@@ -749,3 +749,15 @@ vis_sm_laser = Small lasers
 vis_charge_up = Charge up rings
 vis_refl_sphere = Refraction spheres
 vis_stargate_wormhole = Wormhole Animation
+
+// HUDs
+hud_status = Status
+hud_energy = Energy
+hud_capacity = Capacity
+hud_capacities = Capacities
+hud_naquadah = Naquadah
+hud_sts_active = Active
+hud_sts_inactive = Inactive
+hud_sts_connected = Connected
+hud_sts_disconnected = Disconnected
+hud_sts_depleted = Depleted

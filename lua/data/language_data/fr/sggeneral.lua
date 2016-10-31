@@ -749,3 +749,15 @@ vis_sm_laser = Petits lasers
 vis_charge_up = Charger les anneaux
 vis_refl_sphere = Spheres de Refraction
 vis_stargate_wormhole = Animation Vortex
+
+// HUDs
+hud_status = Statut
+hud_energy = Energie
+hud_capacity = Capacité
+hud_capacities = Capacités
+hud_naquadah = Naquadah
+hud_sts_active = Actif
+hud_sts_inactive = Inactif
+hud_sts_connected = Connecté
+hud_sts_disconnected = Déconnecté
+hud_sts_depleted = Vide
