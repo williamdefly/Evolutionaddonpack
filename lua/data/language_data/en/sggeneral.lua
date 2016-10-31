@@ -193,6 +193,8 @@ stargate_settings_04 = Changes apply after you restart map or gmod.
 stargate_settings_05 = Supported languages (code):
 stargate_settings_06 = Affects menus, entity names and some other things (if translated).
 stargate_settings_07 = Multi-language lib created by AlexALX.
+stargate_settings_08 = Graphical Settings
+stargate_settings_09 = Forum
 
 //All Settings
 stargate_menu_t1 = Convars
@@ -749,6 +751,13 @@ vis_sm_laser = Small lasers
 vis_charge_up = Charge up rings
 vis_refl_sphere = Refraction spheres
 vis_stargate_wormhole = Wormhole Animation
+
+//Client Tabs
+client_settings_ships = Ships
+client_settings_weapons = Weapons
+client_settings_stargates = Stargates
+client_settings_shields = Shields
+client_settings_others = Others
 
 // HUDs
 hud_status = Status

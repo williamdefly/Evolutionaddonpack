@@ -193,6 +193,8 @@ stargate_settings_04 = Les changements s'appliquent apres redemarrage de la map 
 stargate_settings_05 = Langues supportés:
 stargate_settings_06 = Ces changements de langue s'appliquent à toutes les parties de l'addon ( entités, armes, menu, etc )
 stargate_settings_07 = Librairie multi-language crée par AlexALX
+stargate_settings_08 = Paramètres Graphiques
+stargate_settings_09 = Forum
 
 //All Settings
 stargate_menu_t1 = Convars
@@ -749,6 +751,13 @@ vis_sm_laser = Petits lasers
 vis_charge_up = Charger les anneaux
 vis_refl_sphere = Spheres de Refraction
 vis_stargate_wormhole = Animation Vortex
+
+//Client Tabs
+client_settings_ships = Vaisseaux
+client_settings_weapons = Armes
+client_settings_stargates = Portes des étoiles
+client_settings_shields = Boucliers
+client_settings_others = Autres
 
 // HUDs
 hud_status = Statut

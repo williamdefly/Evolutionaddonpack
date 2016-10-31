@@ -257,7 +257,6 @@ function EAPTool()
 	spawnmenu.AddToolTab( "EAP", "EAP", "img/eap_logo" )
 	spawnmenu.AddToolCategory("EAP","settings",Lib.Language.GetMessage("stool_settings"));
 	spawnmenu.AddToolMenuOption("EAP","settings",Lib.Language.GetMessage("stool_settings")," "..Lib.Language.GetMessage("stool_settings"),"","",Lib.Settings.General);
-	spawnmenu.AddToolMenuOption("EAP","settings",Lib.Language.GetMessage("stool_client")," "..Lib.Language.GetMessage("stool_client"),"","",Lib.Settings.Graphic);
 end
 
 -- Hook the Tab to the Spawn Menu
@@ -379,15 +378,27 @@ function Lib.Settings.General(Panel)
 	Panel:Help(Lib.Language.GetMessage("stargate_settings_06"));
 	Panel:Help("");
 
+	--Client Settings
+	local client = vgui.Create("DButton", Panel);
+	client:SetText(Lib.Language.GetMessage("stargate_settings_08"));
+	client:SetSize(150, 25);
+	client:SetImage("icon16/wrench_orange.png");
+	client.DoClick = function ( btn )
+		concommand.Run( LocalPlayer(), "client_settings")
+	end
+	Panel:AddPanel(client);
+
+	Panel:Help("");
+
 	--Forum
 	local forum = vgui.Create("DButton", Panel);
-	forum:SetText("Forum");
+	forum:SetText(Lib.Language.GetMessage("stargate_settings_09"));
 	forum:SetSize(150, 25);
-	forum:SetImage("icon16/keyboard.png");
+	forum:SetImage("icon16/comments.png");
 	forum.DoClick = function(btn)
 		local help = vgui.Create("SHTMLHelper");
 		help:SetURL("http://sg-eap.space/");
-		help:SetText("Forum");
+		help:SetText(Lib.Language.GetMessage("stargate_settings_09"));
 		help:SetVisible(true);
 	end
 	Panel:AddPanel(forum);
