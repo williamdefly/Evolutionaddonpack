@@ -1716,8 +1716,6 @@ function ENT:DoWormHole(v,block,attached,bcfd) --Let's do travel animation ! @El
 		end
 	elseif(string.sub(v:GetClass(), 1, 5 )=="ship_")then --If it's a ship
 
-		print('it\'s a ship !')
-
 		if ((not hook_added) and (clientConvar==1)) then -- Hook if you die in the gate
 			hook.Add("PostPlayerDeath","Lib.EH.WormHole",function(v)
 				umsg.Start("Lib.EventHorizon.WormHoleStop",v:GetOwner());
@@ -1731,13 +1729,13 @@ function ENT:DoWormHole(v,block,attached,bcfd) --Let's do travel animation ! @El
 			umsg.End();
 		end
 
-		v:SetHealth(2147483648);
+		v:SetHealth(2147483648); -- Max Gmod Life
 
 		if (clientConvar==1) then
 			haveTowait = true;
 		end
 	elseif (v:GetClass()=="prop_physics") then --If it's a prop
-		v:SetHealth(2147483648);
+		v:SetHealth(2147483648); -- Max Gmod Life
 
 		haveTowait = true;
 	end
