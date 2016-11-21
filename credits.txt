@@ -15,7 +15,7 @@ Before EAP , mods/addons we have to never forgot :
 - SGMod
 - Stargate Total Conversion II
 - Mckay Addon Pack
-- Carter Addon Pack ( http://www.sg-carterpack.com/wiki/#credits )
+- Carter Addon Pack ( https://github.com/RafaelDeJongh/cap/wiki )
 
 Credits [FR]
 
@@ -34,4 +34,4 @@ Avant l'EAP , les mods/addons que nous devons jamais oublier :
 - SGMod
 - Stargate Total Conversion II
 - Mckay Addon Pack
-- Carter Addon Pack ( http://www.sg-carterpack.com/wiki/#credits )
+- Carter Addon Pack ( https://github.com/RafaelDeJongh/cap/wiki )
