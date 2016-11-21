@@ -17,7 +17,7 @@ The Team :
 - Elanis , the LUA scripter 
 
 Special Thanks To : 
-- Carter Addon Pack Team ( http://www.sg-carterpack.com/wiki/#credits ) 
+- Carter Addon Pack Team ( https://github.com/RafaelDeJongh/cap/wiki ) 
 - SGMod Team 
 - Mckay Addon Pack Team 
 - Stargate Total Conversion II 
@@ -43,7 +43,7 @@ L'equipe :
 Remerciements: 
 - L'equipe du SGMod 
 - L'equipe du Mckay Addon Pack 
-- L'equipe du Carter Addon Pack ( http://www.sg-carterpack.com/wiki/#credits ) 
+- L'equipe du Carter Addon Pack ( https://github.com/RafaelDeJongh/cap/wiki ) 
 - Stargate Total Conversion II 
 - Notre Equipe ( Voir ci-dessus )
 
