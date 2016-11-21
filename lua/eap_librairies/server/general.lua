@@ -483,6 +483,9 @@ function Lib.UpdateGateTemperatures(gate)
    end);
 end
 
+Lib.STARGATE_DEFAULT_ENERGY_CAPACITY = Lib.CFG:Get("gate_overloader","energyCapacity",580000)
+Lib.COOLING_PER_CYCLE = Lib.CFG:Get("gate_overloader","coolingPerCycle",300)
+
 function Lib.CoolGate(gate)
    if(gate == nil) then
       Msg("Gate passed to CoolGate(gate) cannot be nil.\n")
@@ -544,7 +547,7 @@ function Lib.TintGate(gate)
 
    local iris = Lib.GetIris(gate)
 
-   if(Lib.IsEntityValid(iris)) then
+   if(IsValid(iris)) then
       tintAmount = math.min(tintAmount * 2, 128)
 
       --Msg("Setting ", iris, " colour(255, ", 255 - tintAmount, ", ", 255 - tintAmount, ")\n")
@@ -663,6 +666,26 @@ function Lib.FindGate(ent, dist, super)
       end
    end
    return gate;
+end
+
+function Lib.GetIris(gate)
+   if(gate.iris) then
+      return gate.iris
+   elseif(IsValid(gate.Iris)) then
+      return gate.Iris
+   end
+
+   for _, entity in pairs(ents.FindInSphere(gate:GetPos(), 10)) do
+      if(entity.IsIris) then
+         return entity
+      end
+   end
+
+   return nil
+end
+
+function Lib.IsIrisClosed(gate)
+   return gate.irisclosed == true || (gate.IsBlocked && gate:IsBlocked(true) == true)
 end
 
 -- ramdom_names.lua

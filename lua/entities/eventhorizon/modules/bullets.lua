@@ -67,7 +67,7 @@ end
 
 --################# This makes bullets being able to shoot through the EH @aVoN
 -- Register EH SENT to the trace class
-if (Lib.Trace) then Lib.Trace:Add("event_horizon"); end
+if (Lib.Trace) then Lib.Trace:Add("eventhorizon"); end
 
 -- We need a fake entity from which we will shoot the teleportet bullet from, otherwise bullet traces looks strange
 local FakeBulletEntity = NULL;

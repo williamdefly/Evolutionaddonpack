@@ -226,6 +226,10 @@ function Lib.IsStargateOutbound(gate)
    return Lib.IsStargateOpen(gate) == true && (gate.outbound == true || gate.Outbound == true)
 end
 
+function Lib.GetRemoteStargate(localGate)
+   return localGate.other_gate || localGate.Target
+end
+
 function Lib.FindEntInsideSphere(pos, rad, class) -- Made my own because the other one can't be called client side :(
 	local ent = {}
 	for _,v in pairs(ents.FindByClass(class)) do

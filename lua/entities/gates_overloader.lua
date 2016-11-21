@@ -9,11 +9,8 @@ ENT.WireDebugName    = "Gate Overloader"
 ENT.Author           = "PyroSpirit, Madman07"
 ENT.Contact		      = "forums.facepunchstudios.com"
 ENT.Category 		 = ""
---Disable because of bugs
-ENT.AdminSpawnable   = false
-ENT.Spawnable        = false
 
---list.Set("EAP", ENT.PrintName, ENT);
+list.Set("EAP", ENT.PrintName, ENT);
 
 ENT.AutomaticFrameAdvance = true
 

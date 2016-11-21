@@ -10,11 +10,9 @@ ENT.WireDebugName    = "Gate Weapon"
 ENT.Author           = "PyroSpirit, Madman07, Boba Fett"
 ENT.Contact		      = "forums.facepunchstudios.com"
 ENT.Category 		 = ""
---Disable because of bugs
-ENT.AdminSpawnable   = false
-ENT.Spawnable        = false
 
---list.Set("EAP", ENT.PrintName, ENT);
+
+list.Set("EAP", ENT.PrintName, ENT);
 
 ENT.AutomaticFrameAdvance = true
 
@@ -279,19 +277,21 @@ function ENT:IsAimedAtGate(gate)
 			vector,
 			ignorableEntities)
 
+	-- @BUG : PROBLEM HERE WITH THE TRACE => Gate not found
+
 	local traceEnt = self.trace.Entity
 
 	-- If we had LOS on a gate, but now are hitting a player/NPC, return true so the overloader doesn't shut off
 	-- (the player/NPC will be disintegrated shortly and LOS should be restored)
 	if(IsValid(self.localGate) &&
 		IsValid(traceEnt) && (traceEnt:IsPlayer() || traceEnt:IsNPC())) then
-
 		return true
 	end
 
 	local hasTraceHitGate = IsValid(traceEnt) &&
 									(traceEnt == gate ||
 									 traceEnt == gate.EventHorizon)
+
 	return hasTraceHitGate
 end
 

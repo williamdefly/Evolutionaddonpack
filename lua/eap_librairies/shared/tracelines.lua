@@ -149,14 +149,14 @@ end
 
 --################# Start a traceline which can hit Lua Drawn BoundingBoxes @aVoN
 function Lib.Trace:New(start,dir,ignore)
-	-- Clients need to add new entities inside this function (Server uses "HookBased" with ents.Create which uses less reouces!)
-	if CLIENT then
+	-- Clients need to add new entities inside this function (Server uses "HookBased" with ents.Create which uses less resources!)
+	--if CLIENT then
 		for k,_ in pairs(self.Classes) do
 			for _,v in pairs(ents.FindByClass(k)) do
 				self:GetEntityData(v);
 			end
 		end
-	end
+	--end
 	local trace = util.QuickTrace(start,dir,ignore);
 	--This is better and faster than using table.HasValue(ignore,e) (nested for loops)
 	local quick_ignore = {};
@@ -271,6 +271,7 @@ function Lib.Trace:New(start,dir,ignore)
 			end
 		end
 	end
+	
 	-- START OF Lynix modification
 	if(#traced_entities > 0) then
 		local min = 10000000000; -- Random startvalue
