@@ -3,6 +3,7 @@ ent_goauld_ammo = Conteneur d'armes Goa'uld
 ent_goauld_sarcophage = Sarcophage Goa'uld
 ent_shield_identifier = Identificateur du Bouclier
 ent_tauri_ammo = Conteneur d'armes Tau'ri
+entity_black_hole = Trou Noir
 
 //SpaceShips
 ent_ship_alkesh = Alkesh

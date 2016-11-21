@@ -256,7 +256,7 @@ busy_time = 5
 [black_hole]
 amount = 500000
 resources = energy,oxygen,nitrogen,water,steam,heavy water,hydrogen,carbon dioxide,liquid nitrogen,hot liquid nitrogen,methane,propane,deuterium,tritium
-disallow = info_player_start,physgun_beam,predicted_viewmodel,black_hole_power,env_sprite,sg_supergate,player_manager,bodyque,ai_network,shield_core_buble,shield,ship_shield
+disallow = info_player_start,physgun_beam,predicted_viewmodel,blackhole_power,env_sprite,sg_supergate,player_manager,bodyque,ai_network,shield_core_buble,shield,ship_shield
 
 #### Naquadah generator mk1
 [naq_gen_mk1]
@@ -391,7 +391,7 @@ ship_shield = true
 # default groups: user, operator, admin, superadmin
 [ent_groups_only]
 ag_3 = admin,superadmin,add_shield
-black_hole_power = admin,superadmin,add_shield
+blackhole_power = admin,superadmin,add_shield
 dakara_building = admin,superadmin,add_shield
 horizon = admin,superadmin,add_shield
 sg_turret_destmain = admin,superadmin,add_shield

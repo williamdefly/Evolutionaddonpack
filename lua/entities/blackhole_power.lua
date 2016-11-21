@@ -69,7 +69,7 @@ function ENT:Initialize()
 		table.insert(self.Resources,v);
 	end
 
-	self.Disallow = {}
+	self.Disallow = {"blackhole_power"} //Needed for old config files
 	for _,v in pairs(Lib.CFG:Get("black_hole","disallow",""):TrimExplode(",")) do
 		table.insert(self.Disallow,v);
 	end

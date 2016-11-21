@@ -3,6 +3,7 @@ ent_goauld_ammo = Goau'ld Container
 ent_goauld_sarcophage = Goa'uld Sarcophagus
 ent_shield_identifier = Shield Identifier
 ent_tauri_ammo = Tau'ri Container
+entity_black_hole = Black Hole
 
 //SpaceShips
 ent_ship_alkesh = Alkesh
