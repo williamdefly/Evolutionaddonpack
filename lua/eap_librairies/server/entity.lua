@@ -351,7 +351,7 @@ if(meta and not meta.__SetMaterial) then
 	end
 end
 
-function CAPSpawnedEntDetect( ply, oldent ) --Because of incompatibility between CAP/EAP keyboards
+function CAPSpawnedEntDetect( ply, oldent ) -- @Elanis: Because of incompatibility between some CAP/EAP lua
 
 	local newclass="";
 	local oldclass=oldent:GetClass();
@@ -560,6 +560,6 @@ function CAPSpawnedEntDetect( ply, oldent ) --Because of incompatibility between
 	end
 end
 
-if(Lib.IsCapDetected)then
+if(Lib.IsCapDetected)then -- Use this only if CAP is installed
 	hook.Add( "PlayerSpawnedSENT", "RemoveIfCAPBlackistedSENTIsSpawn", CAPSpawnedEntDetect );
 end

@@ -17,12 +17,7 @@ ENT.Category = ""
 ENT.AdminSpawnable   = true
 ENT.Spawnable        = true
 
-if(Lib.IsCapDetected) then --Disable Entitity because of bugs
-ENT.AdminSpawnable   = false
-ENT.Spawnable        = false
-else
-	list.Set("EAP", ENT.PrintName, ENT);
-end
+list.Set("EAP", ENT.PrintName, ENT);
 
 ENT.RenderGroup = RENDERGROUP_BOTH
 ENT.AutomaticFrameAdvance = true
