@@ -390,12 +390,12 @@ ship_shield = true
 # add exclude_mod for invert - player should NOT have this group
 # default groups: user, operator, admin, superadmin
 [ent_groups_only]
-ag_3 = admin,superadmin,add_shield
+ag3 = admin,superadmin,add_shield
 blackhole_power = admin,superadmin,add_shield
-dakara_building = admin,superadmin,add_shield
-horizon = admin,superadmin,add_shield
-sg_turret_destmain = admin,superadmin,add_shield
-sg_turret_tollan = admin,superadmin,add_shield
+dakarabuilding = admin,superadmin,add_shield
+horizonm = admin,superadmin,add_shield
+turret_destmain = admin,superadmin,add_shield
+turret_tollan = admin,superadmin,add_shield
 ship_daedalus = admin,superadmin,add_shield
 sg_supergate = admin,superadmin,add_shield
 
