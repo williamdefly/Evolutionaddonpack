@@ -225,6 +225,7 @@ function ENT:OnRemove()
 	if(IsValid(parent)) then
 		parent:SetCollisionGroup(COLLISION_GROUP_NONE);
 	end
+
 	self:EndTouch()
 end
 
@@ -580,6 +581,10 @@ function ENT:Shutdown(override)
 	for k,v in pairs(self.AllBuffer) do
 		if (IsValid(v)) then
 			self:EHDissolve(v:GetPos(),5)
+			if(v:IsPlayer()) then 
+				umsg.Start("Lib.EventHorizon.WormHoleStop",k);
+				umsg.End();
+			end
 		end
 	end
 	-- Let the light fade away!
