@@ -63,7 +63,7 @@ function Lib.Settings.Client()
 	ShipSettings:SetSize( sizew-10, sizeh-10 )
 	ShipSettings:Center();
 	ShipSettings:SetBackgroundColor(Color(150,150,150,150))
-	ClientSheet:AddSheet( Lib.Language.GetMessage("client_settings_ships"), ShipSettings, "icon16/arrow_out.png" )
+	ClientSheet:AddSheet( Lib.Language.GetMessage("client_settings_ships"), ShipSettings, "icon16/world.png" )
 
 	local JumperTitle = vgui.Create("DLabel", ShipSettings)
 	JumperTitle:SetPos(10,15)
@@ -138,7 +138,7 @@ function Lib.Settings.Client()
 	WeaponsSettings:SetSize( sizew-10, sizeh-10 )
 	WeaponsSettings:Center();
 	WeaponsSettings:SetBackgroundColor(Color(150,150,150,150))
-	ClientSheet:AddSheet( Lib.Language.GetMessage("client_settings_weapons").." (1/3)", WeaponsSettings, "icon16/arrow_out.png" )
+	ClientSheet:AddSheet( Lib.Language.GetMessage("client_settings_weapons").." (1/3)", WeaponsSettings, "icon16/bomb.png" )
 
 	local Drones = vgui.Create("DLabel", WeaponsSettings)
 	Drones:SetPos(10,15)
@@ -213,7 +213,7 @@ function Lib.Settings.Client()
 	WeaponsSettings2:SetSize( sizew-10, sizeh-10 )
 	WeaponsSettings2:Center();
 	WeaponsSettings2:SetBackgroundColor(Color(150,150,150,150))
-	ClientSheet:AddSheet( Lib.Language.GetMessage("client_settings_weapons").." (2/3)", WeaponsSettings2, "icon16/arrow_out.png" )
+	ClientSheet:AddSheet( Lib.Language.GetMessage("client_settings_weapons").." (2/3)", WeaponsSettings2, "icon16/bomb.png" )
 
 	local AsuranWeapon = vgui.Create("DLabel", WeaponsSettings2)
 	AsuranWeapon:SetPos(10,15)
@@ -282,7 +282,7 @@ function Lib.Settings.Client()
 	WeaponsSettings3:SetSize( sizew-10, sizeh-10 )
 	WeaponsSettings3:Center();
 	WeaponsSettings3:SetBackgroundColor(Color(150,150,150,150))
-	ClientSheet:AddSheet( Lib.Language.GetMessage("client_settings_weapons").." (3/3)", WeaponsSettings3, "icon16/arrow_out.png" )
+	ClientSheet:AddSheet( Lib.Language.GetMessage("client_settings_weapons").." (3/3)", WeaponsSettings3, "icon16/bomb.png" )
 
 	local ZatTitle = vgui.Create("DLabel", WeaponsSettings3)
 	ZatTitle:SetPos(10,15)
@@ -312,7 +312,7 @@ function Lib.Settings.Client()
 	StargateSettings:SetSize( sizew-10, sizeh-10 )
 	StargateSettings:Center();
 	StargateSettings:SetBackgroundColor(Color(150,150,150,150))
-	ClientSheet:AddSheet( Lib.Language.GetMessage("client_settings_stargates"), StargateSettings, "icon16/arrow_out.png" )
+	ClientSheet:AddSheet( Lib.Language.GetMessage("client_settings_stargates"), StargateSettings, "img/eap_logo" )
 
 	local Stargate = vgui.Create("DLabel", StargateSettings)
 	Stargate:SetPos(10,15)
@@ -384,7 +384,7 @@ function Lib.Settings.Client()
 	ShieldSettings:SetSize( sizew-10, sizeh-10 )
 	ShieldSettings:Center();
 	ShieldSettings:SetBackgroundColor(Color(150,150,150,150))
-	ClientSheet:AddSheet( Lib.Language.GetMessage("client_settings_shields"), ShieldSettings, "icon16/arrow_out.png" )
+	ClientSheet:AddSheet( Lib.Language.GetMessage("client_settings_shields"), ShieldSettings, "icon16/shield.png" )
 
 	local Shield = vgui.Create("DLabel", ShieldSettings)
 	Shield:SetPos(10,15)
@@ -431,7 +431,7 @@ function Lib.Settings.Client()
 	OtherSettings:SetSize( sizew-10, sizeh-10 )
 	OtherSettings:Center();
 	OtherSettings:SetBackgroundColor(Color(150,150,150,150))
-	ClientSheet:AddSheet( Lib.Language.GetMessage("client_settings_others"), OtherSettings, "icon16/arrow_out.png" )
+	ClientSheet:AddSheet( Lib.Language.GetMessage("client_settings_others"), OtherSettings, "icon16/tux.png" )
 
 	local Harvester = vgui.Create("DLabel", OtherSettings)
 	Harvester:SetPos(10,15)
