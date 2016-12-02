@@ -336,6 +336,18 @@ function Lib.FindShield(ent)
    return gate;
 end
 
+function Lib.FindKino(p)
+   local number = 0;
+   local KinoEnt = {};
+   for _,v in pairs(ents.FindByClass("kinoball*")) do
+      if (v.Owner == p) then
+         table.insert(KinoEnt, v)
+         number = number + 1;
+      end
+   end
+   return number, KinoEnt;
+end
+
 util.AddNetworkString("_EAPCUSTOM_GROUPS");
 function Lib.LoadGroupConfig()
    if (not file.Exists("eap/custom_groups.txt","DATA") and file.Exists("lua/data/eap/custom_groups.lua","GAME")) then
