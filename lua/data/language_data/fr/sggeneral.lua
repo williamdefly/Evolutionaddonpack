@@ -611,7 +611,7 @@ sg_sets[atlantis_trans] = Teleporteur d'Atlantis
 sg_sets[atlantis_trans][classnames] = Entités Interdites
 sg_sets[atlantis_trans][classnames][desc] = Ces types d'entités ne sont pas teleportables
 // Stargate Overloader
-sg_sets[gate_overloader] = Syrchargeur de porte
+sg_sets[gate_overloader] = Surchargeur de porte
 sg_sets[gate_overloader][energyCapacity] = Capcité Energetique
 sg_sets[gate_overloader][energyCapacity][desc] = Valeur basse - surcharge rapide, valeur haute - surcharge lente
 sg_sets[gate_overloader][coolingPerCycle] = Refroidissement par cycle
