@@ -1,7 +1,7 @@
 global_lang_name = English
 
 //Categories
-cat_technology = Technology
+cat_stargate = Stargate
 cat_ship = Ship
 cat_others = Others
 cat_transportation = Transportation

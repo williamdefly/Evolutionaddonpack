@@ -54,7 +54,7 @@ ENT.RenderGroup = RENDERGROUP_BOTH -- This FUCKING THING avoids the clipping bug
 -- Damn u aVoN. It need to be setted to BOTH. I spend many hours on trying to fix Z-index issue. @Mad
 
 if (Lib.Language!=nil and Lib.Language.GetMessage!=nil) then
-ENT.Category = Lib.Language.GetMessage("cat_transportation");
+ENT.Category = Lib.Language.GetMessage("cat_stargate");
 ENT.PrintName = Lib.Language.GetMessage("dhd_universe");
 end
 

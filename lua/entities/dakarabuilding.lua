@@ -14,7 +14,7 @@ ENT.WireDebugName = "Dakara Weapon"
 ENT.Spawnable = false
 ENT.AdminSpawnable = false
 
---list.Set("EAP", ENT.PrintName, ENT);
+list.Set("EAP", ENT.PrintName, ENT);
 
 ENT.RenderGroup = RENDERGROUP_BOTH
 ENT.AutomaticFrameAdvance = true

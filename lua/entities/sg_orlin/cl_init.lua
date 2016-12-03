@@ -7,7 +7,7 @@ include("shared.lua");
 ENT.ChevronColor = Color(255,255,205);
 
 if (Lib.Language!=nil and Lib.Language.GetMessage!=nil) then
-ENT.Category = Lib.Language.GetMessage("cat_transportation");
+ENT.Category = Lib.Language.GetMessage("cat_stargate");
 ENT.PrintName = Lib.Language.GetMessage("stargate_orlin");
 end
 

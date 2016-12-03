@@ -1,7 +1,7 @@
 global_lang_name = Français
 
 //Categories
-cat_technology = Technologie
+cat_stargate = Porte des Etoiles
 cat_ship = Vaisseaux
 cat_others = Divers
 cat_transportation = Teleportation

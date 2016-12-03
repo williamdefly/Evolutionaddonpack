@@ -7,6 +7,6 @@ ENT.Author= "Elanis, Matspyder"
 ENT.Contact= "N/A"
 ENT.Purpose= "For a Goa\'uld long life."
 ENT.Instructions= "For a Goa\'uld long life."
-ENT.Category = Lib.Language.GetMessage("cat_technology");
+ENT.Category = Lib.Language.GetMessage("cat_others");
 
 list.Set("EAP", ENT.PrintName, ENT);

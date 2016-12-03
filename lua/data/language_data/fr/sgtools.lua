@@ -191,7 +191,7 @@ stool_stargate_cloaking_ca = Camoufler les entitiés attachées
 stool_stargate_cloaking_ca_desc = Si selectionné, toutes les props attachées seront camouflées.
 
 // Wraith Stun Bomb
-stool_wh_bomb = Bomb Wraith
+stool_wh_bomb = Bombe Wraith
 stool_wraith_bomb_spawner = Createur de bombes Wraith
 stool_wraith_bomb_create = Creer une bombe Wraith
 stool_wraith_bomb_desc = Clic gauche pour spawner la bombe
