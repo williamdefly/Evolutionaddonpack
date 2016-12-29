@@ -2,7 +2,8 @@ global_lang_name = English
 
 //Categories
 cat_stargate = Stargate
-cat_ship = Ship
+cat_small_ship = Fighter/Shuttle 
+cat_capital_ship = Capital Ship
 cat_others = Others
 cat_transportation = Transportation
 cat_weapons = Weapons

@@ -3,6 +3,8 @@ global_lang_name = Français
 //Categories
 cat_stargate = Porte des Etoiles
 cat_ship = Vaisseaux
+cat_small_ship = Chasseurs/Navettes 
+cat_capital_ship = Vaisseaux mères
 cat_others = Divers
 cat_transportation = Teleportation
 cat_weapons = Armes

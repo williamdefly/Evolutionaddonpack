@@ -180,7 +180,7 @@ end
 if CLIENT then
 
 if (Lib.Language!=nil and Lib.Language.GetMessage!=nil) then
-ENT.Category = Lib.Language.GetMessage('cat_ship');
+ENT.Category = Lib.Language.GetMessage('cat_small_ship');
 ENT.PrintName = Lib.Language.GetMessage('ent_ship_deathglider');
 end
 
