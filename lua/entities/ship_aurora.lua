@@ -60,6 +60,7 @@ function ENT:Initialize() --######## What happens when it first spawns(Set Model
 	self.CanShootBomb = true
 	self.TimeBetweenEachStuffShoot = 1
 	self.TimeBetweenEachBombShoot = 1
+	self.MissileMaxVel = 1
 
 	--######### Flight Vars
 	self.Accel = {}
