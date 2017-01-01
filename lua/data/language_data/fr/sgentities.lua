@@ -71,6 +71,7 @@ stargate_sg1 = Stargate (SG1)
 stargate_supergate = Supergate
 stargate_tollan = Stargate (Tollan)
 stargate_universe = Stargate (Universe)
+stargate_alteran = Stargate (Alteran)
 
 //Teleporteur asgard
 ent_asgart_transporter = Teleporteur Asgard

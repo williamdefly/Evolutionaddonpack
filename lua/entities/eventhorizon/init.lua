@@ -1770,9 +1770,10 @@ function ENT:MoveToTarget(k,v,block,attached,bcfd)
 		if (not IsValid(k)) then return end
 
 		local class = k:GetClass();
+		local ent;
 
 		if(string.sub(class, 1, 5 )=="ship_")then --Set entity owner as current entity
-			local ent = k;
+			ent = k;
 			k = ent:GetOwner()
 		end
 
