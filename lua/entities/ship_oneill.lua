@@ -160,7 +160,7 @@ function ENT:FireRails(target)
 			ent:SetOwner(self.Entity);
 			ent:Setup(FiringPos, ShootDir, 1200, 1.5, "Asgard");
 		//end
-		self:EmitSound(Sound("weapons/asgard_beam.wav"),100,math.random(98,102))
+		self:EmitSound(Sound("eap/ship/armes/asgardcanonbeam.mp3"),100,math.random(98,102))
 		self.CanShootRails = false
 		timer.Create("CanFire"..self:EntIndex().."Rails",self.TimeBetweenEachRails,0,function()
 			if(!self.CanShootRails)then
