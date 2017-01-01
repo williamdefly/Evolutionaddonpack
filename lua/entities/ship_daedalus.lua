@@ -156,7 +156,7 @@ function ENT:FireRails(target)
 	local tr = util.TraceLine( trace );
 	if(self.CanShootRails) then
 			local ShootDir = (target - self:GetPos()):GetNormal();
-			local ent = ents.Create("energy_beam2");
+			local ent = ents.Create("energy_beams2");
 			ent.Owner = self.Entity;
 			ent:SetPos(FiringPos);
 			ent:Spawn();
