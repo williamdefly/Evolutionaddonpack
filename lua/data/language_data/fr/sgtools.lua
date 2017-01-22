@@ -407,3 +407,65 @@ stool_naq_gen_mks_cleanup = Generateur à Naquadah
 stool_naq_gen_mks_cleaned = Tout les Generateurs à Naquadah sont supprimés
 stool_naq_gen_mks_limit = Maximum de Generateurs à Naquadah atteint
 stool_naq_gen_mks_fulldesc = Ceci est l'outil de création des Generateurs à Naquadah. Cet outil permet de donner un generateur MK1 ou MK2, le MK1 produit moins d'energie mais est plus stable. Pour l'utiliser vous aurez besoin d'un addon energetique ( Spacebuild, Environments, Spacelife ). Si vous n'avez pas un de ces addons, cet objet vous est inutile.
+
+// Braziers
+stool_braziers = Brasier
+stool_braziers_spawner = Créateur de Brasier
+stool_braziers_create = Créee un Brasier
+stool_braziers_desc = Clic gauche pour spawn.
+stool_braziers_undone = Brasier supprimé
+stool_braziers_cleanup = Brasier
+stool_braziers_cleaned = Tout les Brasiers sont supprimés
+stool_braziers_limit = Maximum de Brasiers atteint
+
+// Door Controller
+stool_door_c = Controlleur de Portes
+stool_door_contr_spawner = Créateur de Controlleur de Portes
+stool_door_contr_create = Créee un Controlleur de Portes
+stool_door_contr_desc = Clic gauche pour spawn.
+stool_door_contr_undone = Controlleur de Portes supprimé
+stool_door_contr_cleanup = Controlleur de Portes
+stool_door_contr_cleaned = Tout les Controlleur de Portes sont supprimés
+stool_door_contr_limit = Maximum de Controlleur de Portes atteint
+
+// Doors
+stool_doors = Porte
+stool_doors_spawner = Créateur de Porte
+stool_doors_create = Créee une Porte
+stool_doors_desc = Clic gauche pour spawn.
+stool_doors_undone = Porte supprimée
+stool_doors_cleanup = Porte
+stool_doors_cleaned = Toutes les Portes sont supprimées
+stool_doors_limit = Maximum de portes atteintes
+stool_doors_redt = Texture rouge sur celle d'atlantis
+
+// Console
+stool_cappanel = Console
+stool_cappanel_spawner = Créateur de Console
+stool_cappanel_create = Créee une Console
+stool_cappanel_desc = Clic gauche pour spawn.
+stool_cappanel_undone = Console supprimée
+stool_cappanel_cleanup = Consoles
+stool_cappanel_cleaned = Toutes les Consoles sont supprimées
+stool_cappanel_limit = Maximum de Consoles atteintes
+
+// Control Panel
+stool_controlpanel = Controlleurs
+stool_controlpanel_spawner = Créateur de Controlleurs
+stool_controlpanel_create = Créee un Controlleurs
+stool_controlpanel_desc = Clic gauche pour spawn.
+stool_controlpanel_undone = Controlleurs supprimée
+stool_controlpanel_cleanup = Controlleurs
+stool_controlpanel_cleaned = Tout les Controlleurs sont supprimés
+stool_controlpanel_limit = Maximum de Controlleurs atteints
+
+
+//Atlantis Light
+stool_light = Lumière d'Atlantis
+stool_atlantis_light_colour = Couleur de la lumière
+stool_atlantis_light_spawner = Créateur de lumière d'Atlantis
+stool_atlantis_light_create = Créee une lumière d'Atlantis
+stool_atlantis_light_desc = Clic gauche pour spawn.
+stool_atlantis_light_undone = Lumière d'Atlantis supprimée
+stool_atlantis_light_cleanup = Lumière d'Atlantis
+stool_atlantis_light_cleaned = Toutes les Lumière d'Atlantis sont supprimées

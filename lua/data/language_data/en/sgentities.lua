@@ -4,6 +4,14 @@ ent_goauld_sarcophage = Goa'uld Sarcophagus
 ent_shield_identifier = Shield Identifier
 ent_tauri_ammo = Tau'ri Container
 entity_black_hole = Black Hole
+entity_apple_core = Apple Core
+entity_arthurs_mantle = Arthur's Mantle
+entity_dest_bar = Destiny Bar
+entity_dest_console = Destiny Console
+entity_dest_timer = Destiny Timer 
+entity_kino_dis = Kino Dispenser
+entity_lant_holo = Lantean Hologram
+entity_telchak = Telchak Healing Device
 
 //SpaceShips
 ent_ship_alkesh = Alkesh
@@ -180,3 +188,33 @@ entity_overloader = Overloader
 entity_shiprail = Railgun
 entity_staff_weapon = Staff Weapon
 entity_stat_railgun = Stationnary Railgun
+
+// Comestone
+entity_stone = Stone
+entity_stone_tablet = Stone Tablet
+comestones_device = Stone Tablet
+comestones_opchannel = Channel
+comestones_channel = Channel
+comestones_active = Active
+
+// MCD
+entity_mcd = MCD
+entity_mcd_full = Molecular Construction Device
+mcd_title = Molecular Construction Device - Creation menu
+mcd_device = Select Device
+mcd_device_desc = Select your Entity.
+mcd_replicator = Replicator
+mcd_toggle = Set the Toggle
+mcd_toggle_desc = Set the Toggle for this device.
+mcd_color = Set the Color for Shield.
+mcd_size = Size
+mcd_size_desc = Set the Size for this device.
+mcd_strengh = Faster - Stronger
+mcd_close = Close
+mcd_create = Create
+mcd_progress = Progress
+mcd_effcolor = Effect color
+mcd_effcolor_desc = Set creation effect color.
+mcd_settings = Additional settings
+mcd_nosettings = No additional settings available.
+mcd_classname = Classname: %s

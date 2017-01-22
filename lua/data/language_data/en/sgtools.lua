@@ -407,3 +407,65 @@ stool_naq_gen_mks_cleanup = Naquadah Generator
 stool_naq_gen_mks_cleaned = Removed all Naquadah Generators
 stool_naq_gen_mks_limit = Naquadah generator limit reached!
 stool_naq_gen_mks_fulldesc = This tool is the Naquadah Generator tool. The tool will provide you with a Mark 1 or Mark 2 Naquadah Generator, because the MK1 got less power but is more stable. This tool requires SpaceBuild or the Environments addon. If you don't have it, this generators is quite useless for you.
+
+// Braziers
+stool_braziers = Braziers
+stool_braziers_spawner = Braziers Spawner
+stool_braziers_create = Creates a Brazier
+stool_braziers_desc = Left click, to spawn Brazier
+stool_braziers_undone = Brazier removed
+stool_braziers_cleanup = Braziers
+stool_braziers_cleaned = Removed all Braziers
+stool_braziers_limit = Hit the Braziers limit
+
+// Door Controller
+stool_door_c = Door Controller
+stool_door_contr_spawner = Door Controller Spawner
+stool_door_contr_create = Creates a Door Controller
+stool_door_contr_desc = Left click, to spawn Door Controller
+stool_door_contr_undone = Door Controller removed
+stool_door_contr_cleanup = Door Controllers
+stool_door_contr_cleaned = Removed all Door Controllers
+stool_door_contr_limit = Hit the Door Controllers limit
+
+// Doors
+stool_doors = Doors
+stool_doors_spawner = Doors Spawner
+stool_doors_create = Creates a Doors
+stool_doors_desc = Left click, to spawn Doors
+stool_doors_undone = Doors removed
+stool_doors_cleanup = Doors
+stool_doors_cleaned = Removed all Doors
+stool_doors_limit = Hit the Doors limit
+stool_doors_redt = Red Texture on Atlantis frame
+
+// Console
+stool_cappanel = Console
+stool_cappanel_spawner = Console Spawner
+stool_cappanel_create = Creates a Console
+stool_cappanel_desc = Left click, to spawn Console
+stool_cappanel_undone = Console removed
+stool_cappanel_cleanup = Consoles
+stool_cappanel_cleaned = Removed all Consoles
+stool_cappanel_limit = Hit the Consoles limit
+
+// Control Panel
+stool_controlpanel = Control Panel
+stool_controlpanel_spawner = Control Panel Spawner
+stool_controlpanel_create = Creates a Control Panel
+stool_controlpanel_desc = Left click, to spawn Control Panel
+stool_controlpanel_undone = Control Panel removed
+stool_controlpanel_cleanup = Control Panels
+stool_controlpanel_cleaned = Removed all Control Panels
+stool_controlpanel_limit = Hit the Control Panels limit
+
+
+//Atlantis Light
+stool_light = Atlantis Light
+stool_atlantis_light_colour = Light Colour
+stool_atlantis_light_spawner = Atlantis Light Spawner
+stool_atlantis_light_create = Spawns an Atlantis Light
+stool_atlantis_light_desc = Left click to spawn the light
+stool_atlantis_light_undone = Atlantis Light removed
+stool_atlantis_light_cleanup = Atlantis Lights
+stool_atlantis_light_cleaned = Removed all Atlantis Lights

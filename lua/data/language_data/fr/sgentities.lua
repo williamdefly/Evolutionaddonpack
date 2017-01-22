@@ -4,6 +4,14 @@ ent_goauld_sarcophage = Sarcophage Goa'uld
 ent_shield_identifier = Identificateur du Bouclier
 ent_tauri_ammo = Conteneur d'armes Tau'ri
 entity_black_hole = Trou Noir
+entity_apple_core = Coeur du Destinée
+entity_arthurs_mantle = Manteau d'Arthur
+entity_dest_bar = Bar du Destinée
+entity_dest_console = Console du Destinée
+entity_dest_timer = Timer du Destinée
+entity_kino_dis = Distributeur de Kino
+entity_lant_holo = Hologramme des anciens
+entity_telchak = Appareil de soins de Telchak
 
 //SpaceShips
 ent_ship_alkesh = Alkesh
@@ -180,3 +188,33 @@ entity_overloader = Surchargeur de portes
 entity_shiprail = Railgun
 entity_staff_weapon = Lance Jaffa
 entity_stat_railgun = Railgun Stationnaire
+
+// Comestone
+entity_stone = Pierre
+entity_stone_tablet = Tablette
+comestones_device = Tablette
+comestones_opchannel = Frequence
+comestones_channel = Frequence
+comestones_active = Actif
+
+// MCD
+entity_mcd = ACM
+entity_mcd_full = Appareil de Construction Moléculaire
+mcd_title = Appareil de Construction Moléculaire - Menu de création
+mcd_device = Choisir Appareil
+mcd_device_desc = Choisir votre entitée
+mcd_replicator = Réplicateur
+mcd_toggle = Contrôle
+mcd_toggle_desc = Choisir la touche de contrôle
+mcd_color = Choisir la couleur
+mcd_size = Taille
+mcd_size_desc = Choisir la taille
+mcd_strengh = Rapidité - Force
+mcd_close = Fermer
+mcd_create = Créer
+mcd_progress = Avancée
+mcd_effcolor = Couleur de l'effet
+mcd_effcolor_desc = Choisir la couleur de l'effet
+mcd_settings = Paramètes supplémentaires
+mcd_nosettings = Aucun paramètre disponible.
+mcd_classname = Classe: %s
