@@ -12,9 +12,10 @@ As of December 2015, the development of the popular addon Carters Addon Pack (CA
 
 
 The Team : 
-- WilliamDeFly , the Owner & Mapper of the pack
-- Lilou , the 3D Modeler 
-- Elanis , the LUA scripter 
+- williamdefly, the founder, manager & mapper of the pack
+- Elanis, the LUA scripter, 3D Modeler and texturer
+- Lilou, the 3D Modeler
+
 
 Special Thanks To : 
 - Carter Addon Pack Team ( https://github.com/RafaelDeJongh/cap/wiki ) 
@@ -36,9 +37,10 @@ Nous sommes une equipe francaise produisant cet addon depuis 2014.
 En Decembre 2015 , le develloppement du Carter Addon Pack ( CAP ) s'est arreté. Nous esperons construire un addon encore meilleur a partir du contenu du CAP. 
 
 L'equipe : 
-- WilliamDeFly , le propriétaire et le mappeur du pack
-- Lilou , le modeliseur 3D 
-- Elanis , le codeur LUA 
+- williamdefly, le fondateur, gérant et le mappeur du pack
+- Elanis, le codeur LUA, modeliseur 3D, et textureur
+- Lilou, le modeliseur 3D 
+
 
 Remerciements: 
 - L'equipe du SGMod 
