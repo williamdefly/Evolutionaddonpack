@@ -440,14 +440,14 @@ stool_doors_limit = Hit the Doors limit
 stool_doors_redt = Red Texture on Atlantis frame
 
 // Console
-stool_cappanel = Console
-stool_cappanel_spawner = Console Spawner
-stool_cappanel_create = Creates a Console
-stool_cappanel_desc = Left click, to spawn Console
-stool_cappanel_undone = Console removed
-stool_cappanel_cleanup = Consoles
-stool_cappanel_cleaned = Removed all Consoles
-stool_cappanel_limit = Hit the Consoles limit
+stool_console = Console
+stool_console_spawner = Console Spawner
+stool_console_create = Creates a Console
+stool_console_desc = Left click, to spawn Console
+stool_console_undone = Console removed
+stool_console_cleanup = Consoles
+stool_console_cleaned = Removed all Consoles
+stool_console_limit = Hit the Consoles limit
 
 // Control Panel
 stool_controlpanel = Control Panel

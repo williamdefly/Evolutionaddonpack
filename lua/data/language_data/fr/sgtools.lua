@@ -440,14 +440,14 @@ stool_doors_limit = Maximum de portes atteintes
 stool_doors_redt = Texture rouge sur celle d'atlantis
 
 // Console
-stool_cappanel = Console
-stool_cappanel_spawner = Créateur de Console
-stool_cappanel_create = Créee une Console
-stool_cappanel_desc = Clic gauche pour spawn.
-stool_cappanel_undone = Console supprimée
-stool_cappanel_cleanup = Consoles
-stool_cappanel_cleaned = Toutes les Consoles sont supprimées
-stool_cappanel_limit = Maximum de Consoles atteintes
+stool_console = Console
+stool_console_spawner = Créateur de Console
+stool_console_create = Créee une Console
+stool_console_desc = Clic gauche pour spawn.
+stool_console_undone = Console supprimée
+stool_console_cleanup = Consoles
+stool_console_cleaned = Toutes les Consoles sont supprimées
+stool_console_limit = Maximum de Consoles atteintes
 
 // Control Panel
 stool_controlpanel = Controlleurs
