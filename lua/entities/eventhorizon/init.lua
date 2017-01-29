@@ -1640,6 +1640,7 @@ function ENT:DoWormHole(v,block,attached,bcfd) --Let's do travel animation ! @El
 
 	if(v:IsPlayer() and not v:Alive()) then return end -- If the player die on enter in the gate don't do all stuff or he will be blocked !
 	if(string.sub(v:GetClass(), 1, 5 )=="ship_" and v:GetOwner():IsPlayer() and not v:GetOwner():Alive()) then return end -- Same if he die in the ship !
+	if(table.HasValue(self.NoTouchTeleport,v:GetClass())) then return end 
 
 	-- Kill if shutting down
 	if(self.ShuttingDown) then 

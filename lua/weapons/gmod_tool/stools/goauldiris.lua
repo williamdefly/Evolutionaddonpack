@@ -10,7 +10,7 @@ TOOL.ClientConVar["toggle"] = 3;
 TOOL.ClientConVar["activate"] = 12;
 TOOL.ClientConVar["deactivate"] = 13;
 
-TOOL.Entity.Class = "goauld_iris";
+TOOL.Entity.Class = "goauldiris";
 TOOL.Entity.Keys = {"toggle","activate","deactivate","IsActivated"}; -- These keys will get saved from the duplicator
 TOOL.Entity.Limit = 5;
 TOOL.Topic["name"] = Lib.Language.GetMessage("stool_goauld_iris_spawner");
