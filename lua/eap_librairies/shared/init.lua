@@ -80,6 +80,62 @@ function EAP.IsRDDetected()
 	end
 end
 
+function EAP.DrawErrors()
+	MsgN("InstallProblem")
+
+	local ErrorFrame = vgui.Create("DFrame");
+	ErrorFrame:SetPos(ScrW()/4, ScrH()/4);
+	ErrorFrame:SetSize(ScrW()/2,ScrH()/2);
+	ErrorFrame:SetTitle("Error");
+	ErrorFrame:SetVisible(true);
+	ErrorFrame:SetDraggable(false);
+	ErrorFrame:ShowCloseButton(true);
+	ErrorFrame:SetBackgroundBlur(false);
+	ErrorFrame:MakePopup();
+
+	ErrorFrame.Paint = function()
+		// Background
+		surface.SetMaterial( Material("pp/blurscreen") )
+		surface.SetDrawColor( 255, 255, 255, 255 )
+
+		render.UpdateScreenEffectTexture()
+
+		surface.DrawTexturedRect( ScrW()/4, ScrH()/4, ScrW()/2, ScrH()/2 )
+
+		surface.SetDrawColor( 100, 100, 100, 150 )
+		surface.DrawRect( ScrW()/4 +  ScrW()/10, ScrH()/4 +  ScrH()/10, ScrW()/2, ScrH()/2 )
+
+		// Border
+		surface.SetDrawColor( 50, 50, 50, 255 )
+		surface.DrawOutlinedRect( 0, 0, ErrorFrame:GetWide(), ErrorFrame:GetTall() )
+
+		surface.SetDrawColor( 50, 50, 50, 255 )
+		surface.DrawRect( 20, 35, ErrorFrame:GetWide() - 40, ErrorFrame:GetTall() - 55 )
+
+	end
+		local ErrorText = "ERROR: \n"
+	if(table.Count(EAP.MissingAddons)>0) then
+		ErrorText = ErrorText..Lib.Language.GetMessage('eap_missing_addon').."\n";
+
+		for i=1,table.Count(EAP.MissingAddons) do
+			ErrorText = ErrorText..EAP.MissingAddons[i].."\n"
+		end
+
+		ErrorText = ErrorText.."\n"..Lib.Language.GetMessage('eap_missing_collec').."\n"
+	end
+
+	if(EAP.Outdated) then
+		ErrorText = ErrorText.."\n\n"..Lib.Language.GetMessage('eap_outaded').."\n"
+	end
+
+	local DLabel = vgui.Create( "DLabel", ErrorFrame )
+	DLabel:SetPos( ScrW()/17, ScrH()/20 )
+	DLabel:SetSize( ScrW()/2, ScrH()/2 )
+	DLabel:SetFont("DermaLarge")
+	DLabel:SetText( ErrorText )
+
+end
+
 function EAP.Init()
 	--Check Version
 	EAP.GetRevision()
@@ -103,8 +159,8 @@ function EAP.Init()
 	--Check Addons
 	MsgN("Searching Addons ...");
 
-	addons = { "EAP_Base", "EAP_Models", "EAP_Sounds"}
-	local materialsNumbers = 9;
+	addons = { "EAP_Base", "EAP_Models", "EAP_Sounds", "EAP_Resource"}
+	local materialsNumbers = 14;
 	local errors = 0;
 	EAP.MissingAddons = {};
 	EAP.AddonsInstalled = {};
@@ -118,7 +174,7 @@ function EAP.Init()
 	end
 	EAP.Workshop = EAP.AddonsInstalled[1];
 
-	if(true) then
+	if(EAP.Workshop) then
 		MsgN("Workshop Version Launch !")
 
 		for i=2,table.Count(addons) do
@@ -149,53 +205,14 @@ function EAP.Init()
 	end
 	
 	if(errors>0 && CLIENT) then
-		MsgN("ERRORS");
-		MsgN(errors);
-		hook.Add( "PlayerInitialSpawn", "InstallProblems", function()
-			MsgN("InstallProblem")
+		MsgN("ERRORS : "..errors);
 
-			local ErrorFrame = vgui.Create("DFrame");
-			ErrorFrame:SetPos(50, 50);
-			ErrorFrame:SetSize(ScrW()-100,ScrH()-100);
-			ErrorFrame:SetTitle("Error");
-			ErrorFrame:SetVisible(true);
-			ErrorFrame:SetDraggable(false);
-			ErrorFrame:ShowCloseButton(true);
-			ErrorFrame:SetBackgroundBlur(false);
-			ErrorFrame:MakePopup();
-
-			ErrorFrame.Paint = function()
-				// Background
-				surface.SetMaterial( "pp/blurscreen" )
-				surface.SetDrawColor( 255, 255, 255, 255 )
-
-				matBlurScreen:SetFloat( "$blur", 5 )
-				render.UpdateScreenEffectTexture()
-
-				surface.DrawTexturedRect( -ScrW()/10, -ScrH()/10, ScrW(), ScrH() )
-
-				surface.SetDrawColor( 100, 100, 100, 150 )
-				surface.DrawRect( 0, 0, ScrW(), ScrH() )
-
-				// Border
-				surface.SetDrawColor( 50, 50, 50, 255 )
-				surface.DrawOutlinedRect( 0, 0, ErrorFrame:GetWide(), ErrorFrame:GetTall() )
-
-				surface.SetDrawColor( 50, 50, 50, 255 )
-				surface.DrawRect( 20, 35, ErrorFrame:GetWide() - 40, ErrorFrame:GetTall() - 55 )
-
-			end
-
-			local ErrorText = "These following addons are missing: \n"
-
-			for i=1,table.Count(EAP.MissingAddons) do
-				ErrorText = ErrorText..""..EAP.MissingAddons[i].."\n"
-			end
-
-			local DLabel = vgui.Create( "DLabel", Panel )
-			DLabel:SetPos( 40, 30 )
-			DLabel:SetText( ErrorText )
+		hook.Add("SpawnMenuOpen","EAP.ErrorPanel",function()
+			MsgN("InitalSpawn");
+			EAP.DrawErrors()
+			hook.Remove("SpawnMenuOpen","EAP.ErrorPanel")
 		end);
+		
 	end
 
 	MsgN("Loading Librairies ...")
