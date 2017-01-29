@@ -22,7 +22,7 @@ ENT.Type = "vehicle"
 ENT.Base = "ship_base"
 
 ENT.PrintName = "GoauldTeltak"
-ENT.Author	= "RononDex, Madman07, James, Boba Fett"
+ENT.Author	= "RononDex, Madman07, James, Boba Fett, Elanis"
 ENT.Contact	= ""
 ENT.Purpose	= ""
 ENT.Instructions= ""
@@ -137,6 +137,9 @@ function ENT:Initialize() --######## What happens when it first spawns(Set Model
 
 	self.RingBusy = false;
 
+	self.HasGhosts = false;
+	self.Ghosts = {};
+
 	self.HoverPos = self:GetPos();
 	self.HoverAlways = true;	 -- let me hover always :)
 	self:CreateWireOutputs("Health");
@@ -219,6 +222,8 @@ function ENT:OnRemove()
 	if(IsValid(self.Door2)) then self.Door2:Remove(); end
 	if(IsValid(self.Door3)) then self.Door3:Remove(); end
 	self.BaseClass.OnRemove(self)
+
+	self:RemoveGhosts();
 end
 
 function ENT:Think()
@@ -253,10 +258,10 @@ function ENT:Think()
 				self:ToggleCloak()
 			elseif(self.Pilot:KeyDown("EAP_KEYBOARD","DOOR")) then
 				self:ToggleDoors("out")
-			end
-			
+			end			
 
 			-- THIS FUNCTION DOESN'T WORK , IT'S DISABLED SINCE WE MAKE A NEW HYPERSPACE
+			-- @ADD: Remove ghosts on jump !
 
 			-- if(self.CanJump) then
 			-- 	if(self.Pilot:KeyDown("EAP_KEYBOARD","HYPERSPACE") and not self.OutRing.Laser) then
@@ -317,6 +322,16 @@ function ENT:Think()
 				
 				if(not self.CooledDown) then
 					self.Pilot:SetNWInt("BeamCooldown", timer.TimeLeft(self.BeamTimer));
+				end
+			end
+
+			if(self.Pilot:KeyDown("EAP_KEYBOARD","TRACK"))then
+				if(not self.HasGhosts) then
+					self:CallGhosts();
+					self.HasGhosts = true;
+				else
+					self:RemoveGhosts();
+					self.HasGhosts = false;
 				end
 			end
 		end
@@ -756,6 +771,42 @@ function ENT:PostEntityPaste(ply, Ent, CreatedEntities)
 
 	Lib.Wire.PostEntityPaste(self,ply,Ent,CreatedEntities)
 	Lib.RD.PostEntityPaste(self,ply,Ent,CreatedEntities)
+end
+
+-- Time the call the Ghosts !! @Elanis
+function ENT:CallGhosts()
+	local right = -1500;
+	local angle = self:GetAngles()
+	angle.p = 0;
+
+	for i=0,2 do
+		MsgN("Spawning Alkesh nb."..i)
+		--self.Ghosts[i]:SetPos(self:GetPos() + self:LocalToWorld(Vector(1000,1000,1000)))
+		local e = ents.Create("prop_physics");
+		e:SetModel("models/ship/alkesh.mdl");
+		e:SetPos(self:GetPos() + self:GetForward()*-1500 + self:GetRight()*right + self:GetUp()*800);
+		e:SetAngles(angle);
+		e:Spawn();
+		e:Activate();
+		e:GetPhysicsObject():EnableMotion(false);
+		e:SetCollisionGroup(COLLISION_GROUP_DEBRIS);
+
+		constraint.NoCollide(self,e,0,0)
+
+		self.Ghosts[i] = e;
+
+		right= right+1500;
+	end
+end
+
+function ENT:RemoveGhosts()
+	for i=0,2 do
+		MsgN("Removing Alkesh nb."..i)
+		if(IsValid(self.Ghosts[i])) then
+			self.Ghosts[i]:Remove();
+			self.Ghosts[i] = nil
+		end
+	end
 end
 
 if (Lib and Lib.EAP_GmodDuplicator) then
