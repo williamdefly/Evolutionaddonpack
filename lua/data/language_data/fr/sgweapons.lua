@@ -43,3 +43,4 @@ weapon_misc_nox = Main Nox
 weapon_misc_shield = Bouclier Personnel
 weapon_misc_virus = Virus Ashen
 wp_minidrone = Clé Minidrone
+weapon_misc_kino = Télécommande des Kino
