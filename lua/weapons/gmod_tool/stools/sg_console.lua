@@ -13,6 +13,7 @@ TOOL.ClientConVar["model"] = "models/MarkJaw/atlantis_console/console.mdl";
 TOOL.List = "ConsoleModels";
 list.Set(TOOL.List,"models/MarkJaw/atlantis_console/console.mdl",{});
 list.Set(TOOL.List,"models/ZsDaniel/atlantis_console/console.mdl",{});
+list.Set(TOOL.List,"models/destbar.mdl",{});
 
 TOOL.Entity.Class = "sg_console";
 TOOL.Entity.Keys = {"model"}; -- These keys will get saved from the duplicator
