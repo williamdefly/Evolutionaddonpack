@@ -780,11 +780,9 @@ function ENT:CallGhosts()
 	angle.p = 0;
 
 	for i=0,2 do
-		MsgN("Spawning Alkesh nb."..i)
-		--self.Ghosts[i]:SetPos(self:GetPos() + self:LocalToWorld(Vector(1000,1000,1000)))
 		local e = ents.Create("prop_physics");
 		e:SetModel("models/ship/alkesh.mdl");
-		e:SetPos(self:GetPos() + self:GetForward()*-1500 + self:GetRight()*right + self:GetUp()*800);
+		e:SetPos(self:GetPos() + self:GetForward()*-1500 + self:GetRight()*right + self:GetUp()*800 + self:GetUp()*200*math.pow(-1,i));
 		e:SetAngles(angle);
 		e:Spawn();
 		e:Activate();
@@ -801,7 +799,6 @@ end
 
 function ENT:RemoveGhosts()
 	for i=0,2 do
-		MsgN("Removing Alkesh nb."..i)
 		if(IsValid(self.Ghosts[i])) then
 			self.Ghosts[i]:Remove();
 			self.Ghosts[i] = nil
