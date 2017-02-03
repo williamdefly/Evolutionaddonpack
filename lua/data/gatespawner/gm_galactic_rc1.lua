@@ -86,22 +86,22 @@ angles=15.000 18.415 0.000
 classname=dhd_con
 position=5732.0244 11589.7871 -7149.3867
 angles=20.256 -90.006 0.000
-[ramps]
+[ramp]
 classname=ramps
 position=5472.4116 11344.5117 -7166.6821
 angles=0.000 3.499 -0.000
 model=models/boba_fett/ramps/ramps12.mdl
-[ramps]
+[ramp]
 classname=ramps
 position=-6615.0010 2479.6118 7672.6543
 angles=0.012 2.313 -0.013
 model=models/iziraider/ramps3/ramps3.mdl
-[ramps]
+[ramp]
 classname=ramps
 position=-8720.2031 10375.9014 840.2754
 angles=-0.000 179.783 0.000
 model=models/zsdaniel/ramps/ramps.mdl
-[ramps]
+[ramp]
 classname=future_ramps
 position=-9330.6992 -6297.2632 -5566.9688
 angles=0.000 -89.580 0.000

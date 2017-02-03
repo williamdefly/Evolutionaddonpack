@@ -9,7 +9,7 @@ angles=0.000 -90.044 -0.011
 address=TARON1
 name=Taron (spawn)
 private=false
-[ramps]
+[ramp]
 classname=ramps
 position=-7807.1504 -7595.6421 147.6478
 angles=0.000 -90.044 -0.011

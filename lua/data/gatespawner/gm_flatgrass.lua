@@ -31,12 +31,12 @@ classname=rg_base_ancient
 position=-1149.5907 -37.1472 -12787.5313
 angles=0.000 179.998 0.000
 address=1
-[ramps]
+[ramp]
 classname=ramps
 position=38.5912 917.4717 -12245.7627
 angles=0.000 -90.000 0.000
 model=models/boba_fett/ramps/ramps7.mdl
-[ramps]
+[ramp]
 classname=ramps
 position=-1141.5906 -37.1476 -12799.5313
 angles=0.000 179.998 0.000

@@ -86,27 +86,27 @@ classname=dhd_atl
 position=6765.8691 -7907.1719 1201.2312
 angles=15.000 103.075 0.000
 destroyed=false
-[ramps]
+[ramp]
 classname=ramps
 position=-10.3487 -46.1335 2782.5662
 angles=0.000 89.839 -0.000
 model=models/iziraider/ramps4/ramps4.mdl
-[ramps]
+[ramp]
 classname=ramps
 position=-11593.0713 11612.6689 2560.2981
 angles=0.000 -43.981 0.000
 model=models/boba_fett/ramps/ramps9.mdl
-[ramps]
+[ramp]
 classname=ramps
 position=6912.0273 -8127.6147 1216.3842
 angles=0.000 90.315 -0.000
 model=models/boba_fett/ramps/ramps6.mdl
-[ramps]
+[ramp]
 classname=ramps_2
 position=-4.9971 -1839.5363 10235.0313
 angles=0.000 89.919 -0.000
 model=models/iziraider/ramps2/ramps2.mdl
-[ramps]
+[ramp]
 classname=future_ramps
 position=-44.5322 -9598.9600 2705.0313
 angles=0.000 90.439 -0.000

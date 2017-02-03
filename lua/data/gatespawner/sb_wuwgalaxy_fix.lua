@@ -92,22 +92,22 @@ angles=15.000 264.168 0.000
 classname=dhd_atl
 position=-9478.5068 -6819.6387 205.2000
 angles=15.000 271.796 0.000
-[ramps]
+[ramp]
 classname=ramps
 position=2956.9243 7746.8740 -10011.6699
 angles=-0.327 -178.703 0.043
 model=models/zup/ramps/brick_01.mdl
-[ramps]
+[ramp]
 classname=ramps
 position=-8763.0693 -3078.1055 10006.1416
 angles=-0.000 -9.765 0.000
 model=models/zup/ramps/brick_01.mdl
-[ramps]
+[ramp]
 classname=ramps
 position=-9318.6211 -6650.9849 220.2500
 angles=-0.000 -85.392 0.000
 model=models/boba_fett/ramps/ramps3.mdl
-[ramps]
+[ramp]
 classname=sgu_ramps
 position=10267.7500 -12065.6357 -10084.0000
 angles=0.000 90.863 -0.000

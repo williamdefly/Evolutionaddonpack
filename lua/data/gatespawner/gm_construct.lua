@@ -74,7 +74,7 @@ classname=rg_base_ancient
 position=-5048.9189 5357.4272 -95.5047
 angles=0.001 -179.992 -0.003
 address=4
-[ramps]
+[ramp]
 classname=ramps
 position=1187.3163 6297.3237 -31.7246
 angles=0.000 -90.500 0.000

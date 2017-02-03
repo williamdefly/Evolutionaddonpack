@@ -30,7 +30,7 @@ angles=-0.000 89.132 -0.000
 address=SPAWNG
 name=Spawn Gate
 private=false
-[ramps]
+[ramp]
 classname=ramps
 position=-124.4402 -1773.9709 -10975.6094
 angles=-0.000 89.132 0.000
@@ -56,7 +56,7 @@ angles=0.029 179.993 0.015
 address=SANDYT
 name=Sandy Tiles
 private=false
-[ramps]
+[ramp]
 classname=ramps
 position=-7944.2842 148.0779 -10975.6406
 angles=0.029 179.993 0.015
@@ -103,7 +103,7 @@ angles=0.005 -0.732 0.007
 address=SGCOMA
 name=Stargate Command
 private=false
-[ramps]
+[ramp]
 classname=ramps
 position=-2173.9253 -13028.8506 -10989.3525
 angles=0.005 -0.732 0.007

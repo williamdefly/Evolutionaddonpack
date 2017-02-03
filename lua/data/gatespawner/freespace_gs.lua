@@ -138,42 +138,42 @@ angles=0.000 88.556 -0.000
 classname=kino_dispenser
 position=-13991.9219 11830.4590 -15448.2236
 angles=0.000 -90.964 0.000
-[ramps]
+[ramp]
 classname=ramps
 position=157.0093 -164.0477 -4221.4341
 angles=0.000 90.060 -0.000
 model=models/iziraider/ramps4/ramps4.mdl
-[ramps]
+[ramp]
 classname=ramps
 position=11432.2266 -11804.9561 -3646.6025
 angles=-1.100 -178.368 -1.071
 model=models/boba_fett/ramps/ramps7.mdl
-[ramps]
+[ramp]
 classname=ramps
 position=-11252.8730 2702.1021 -4143.7021
 angles=0.000 90.201 -0.000
 model=models/boba_fett/ramps/ramps9.mdl
-[ramps]
+[ramp]
 classname=ramps
 position=-6970.1030 -9720.2334 -4347.0020
 angles=-1.382 139.688 1.171
 model=models/zsdaniel/ramps/ramps.mdl
-[ramps]
+[ramp]
 classname=ramps
 position=2706.5381 -327.7559 -4239.6821
 angles=0.000 89.860 -0.000
 model=models/boba_fett/ramps/ramps12.mdl
-[ramps]
+[ramp]
 classname=ramps
 position=1450.2042 -1607.4362 -1175.6824
 angles=0.000 0.339 -0.000
 model=models/boba_fett/ramps/ramps12.mdl
-[ramps]
+[ramp]
 classname=sgu_ramps
 position=-14243.1670 11864.7168 -15298.2197
 angles=0.000 -90.547 0.000
 model=models/markjaw/sgu_ramps.mdl
-[ramps]
+[ramp]
 classname=future_ramps
 position=-4441.7910 10771.1406 -4239.0000
 angles=0.000 91.556 -0.000

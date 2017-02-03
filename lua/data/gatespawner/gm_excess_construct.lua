@@ -9,7 +9,7 @@ angles=0.000 -90.000 0.000
 address=CENTR1
 name=Central Park
 private=false
-[ramps]
+[ramp]
 classname=ramps
 position=3231.7661 -968.1164 288.3531
 angles=0.000 -90.000 0.000
@@ -28,7 +28,7 @@ angles=-0.000 -45.000 0.000
 address=DESRT1
 name=Desert Storm
 private=false
-[ramps]
+[ramp]
 classname=ramps
 position=-12858.6826 -6311.3481 590.7859
 angles=-0.000 -45.000 0.000
@@ -40,7 +40,7 @@ angles=-0.000 90.000 0.000
 address=CITYLB
 name=Liberty City
 private=false
-[ramps]
+[ramp]
 classname=ramps
 position=-4187.8594 -6842.1792 556.7659
 angles=-0.000 90.000 0.000

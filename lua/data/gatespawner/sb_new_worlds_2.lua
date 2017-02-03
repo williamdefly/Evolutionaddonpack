@@ -132,7 +132,7 @@ angles=15.000 8.100 0.000
 classname=dhd_atl
 position=-12831.9482 8809.3750 3123.1775
 angles=15.000 -51.906 0.000
-[ramps]
+[ramp]
 classname=ramps
 position=-7668.6968 -4032.7986 192.2920
 angles=0.002 0.400 -0.000

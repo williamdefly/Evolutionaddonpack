@@ -124,37 +124,37 @@ classname=rg_base_ancient
 position=-8206.5898 -10519.3281 246.2088
 angles=0.076 -6.789 0.006
 address=LakeGate
-[ramps]
+[ramp]
 classname=ramps
 position=-6923.4917 6127.8096 -3060.0505
 angles=0.000 0.907 -0.000
 model=models/boba_fett/ramps/ramps10.mdl
-[ramps]
+[ramp]
 classname=ramps
 position=-5098.3774 6021.5054 -3066.9688
 angles=-0.000 177.647 0.000
 model=models/boba_fett/ramps/ring_rampss/ring_ramps3.mdl
-[ramps]
+[ramp]
 classname=ramps
 position=-173.5377 1446.0162 530.3842
 angles=-0.000 135.081 0.000
 model=models/boba_fett/ramps/ramps6.mdl
-[ramps]
+[ramp]
 classname=ramps
 position=814.4599 9528.2578 185.4786
 angles=3.245 89.545 0.074
 model=models/zsdaniel/ramps/ramps.mdl
-[ramps]
+[ramp]
 classname=ramps
 position=-8474.8428 -10487.3789 134.0663
 angles=0.076 -6.789 0.006
 model=models/boba_fett/catwalk_build/hover_ramps.mdl
-[ramps]
+[ramp]
 classname=ramps
 position=-4269.9771 -6510.4771 153.4917
 angles=0.311 75.927 0.115
 model=models/zsdaniel/ramps/ramps.mdl
-[ramps]
+[ramp]
 classname=ramps
 position=10424.2510 -11846.9824 153.7344
 angles=0.483 -176.279 -0.746

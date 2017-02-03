@@ -9,7 +9,7 @@ angles=0.003 38.021 0.001
 address=AERIN1
 name=Aerinn
 private=false
-[ramps]
+[ramp]
 classname=ramps
 position=-10372.9268 -8744.8516 161.2887
 angles=0.003 38.021 0.001
@@ -49,7 +49,7 @@ angles=0.801 145.457 0.500
 address=KARITH
 name=Karith, Moon of Laruush
 private=false
-[ramps]
+[ramp]
 classname=ramps
 position=-469.3004 11342.9023 10099.1309
 angles=0.801 145.457 0.500
