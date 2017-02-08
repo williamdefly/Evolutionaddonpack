@@ -157,6 +157,10 @@ function Lib.Settings.Keyboard()
 	WPods:SetData("EAP_KEYBOARD",Lib.Language.GetMessage("key_combat_weaponpods"),"WEPPODS")
 	WPods:SetPos(10,165)
 
+	local Shield = vgui.Create("SetKeyboardKey",KeyboardCombat)
+	Shield:SetData("EAP_KEYBOARD",Lib.Language.GetMessage("key_combat_cloak"),"CLOAK")
+	Shield:SetPos(10,195)
+
 	--Viewing
 	local KeyboardView = vgui.Create("DPanel", KeyboardSheet)
 	KeyboardView:SetSize( sizew-10, sizew-10 )

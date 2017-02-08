@@ -50,6 +50,7 @@ key_combat_secondary = Secondary Weapon or Track Target ( Drone / Missile )
 key_combat_toggle = Switch Weapons
 key_combat_weaponpods = Weapons Pods ( Jumper )
 key_combat_shield = Shield
+key_combat_cloak = Cloak
 key_combat_selfdestruct = SelfDestruct
 key_track_drones = Track Target
 key_track_missiles = Track Target

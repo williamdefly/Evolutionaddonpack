@@ -61,7 +61,7 @@ end
 function ENT:Status(b,nosound)
 	if(b) then
 		if(not(self:Enabled())) then
-			local e = ents.Create("eap_cloaking")
+			local e = ents.Create("cloak")
 			e.Size = 80
 			e:SetPos(self:GetPos()+self:GetForward()*-100)
 			e:SetAngles(self:GetAngles())

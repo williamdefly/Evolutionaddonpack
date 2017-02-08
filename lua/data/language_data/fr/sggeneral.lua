@@ -51,6 +51,7 @@ key_combat_secondary = Armes secondaires ou suivre cible ( drone / missile )
 key_combat_toggle = Changer d'armes
 key_combat_weaponpods = Nacelles d'armes ( Jumper )
 key_combat_shield = Bouclier
+key_combat_cloak = Occulteur
 key_combat_selfdestruct = Autodestruction
 key_track_drones = Suivre la cible
 key_track_missiles = Suivre la cible
