@@ -325,7 +325,7 @@ function Lib.RD.GetNetworkCapacity(self,resource,default)
 end
 
 -- Added by AlexALX for zpm hubs etc
-function Lib.GetEntListTable(ent)
+function Lib.RD.GetEntListTable(ent)
 	if (not IsValid(ent)) then return {}; end
 	if (Lib.HasResourceDistribution) then
 		if(Lib.RDThree()) then
