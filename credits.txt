@@ -3,7 +3,7 @@ Credits [EN]
 Active Contributors :
 - williamdefly, the founder, manager & mapper of the pack, basic knownledges in LUA & Texturer
 - Lilou905 : 3D Modeler & Texturer
-- Elanis, the LUA scripter, 3D Modeler and texturer
+- Elanis, the LUA scripter, 3D Modeler and texturer and manager
 - Physics : Texturer
 - Damlanil : Texturer & Lua scripter
 
@@ -22,7 +22,7 @@ Credits [FR]
 Contributeurs Actuels :
 - Williamdefly : Gerant & Mappeur du pack , connaissances basiques en LUA et textureur
 - Lilou905 : Modeliseur 3D et textureur
-- Elanis, le codeur LUA, modeliseur 3D, et textureur
+- Elanis, le codeur LUA, modeliseur 3D, et textureur et gerant
 - Physics : Textureur
 - Damlanil : Textureur et codeur LUA
 
