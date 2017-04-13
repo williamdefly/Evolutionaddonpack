@@ -13,7 +13,7 @@ As of December 2015, the development of the popular addon Carters Addon Pack (CA
 
 The Team : 
 - williamdefly, the founder, manager & mapper of the pack
-- Elanis, the LUA scripter, 3D Modeler and texturer
+- Elanis, the LUA scripter, 3D Modeler and texture and manager
 - Lilou, the 3D Modeler
 
 
@@ -38,7 +38,7 @@ En Decembre 2015 , le develloppement du Carter Addon Pack ( CAP ) s'est arreté.
 
 L'equipe : 
 - williamdefly, le fondateur, gérant et le mappeur du pack
-- Elanis, le codeur LUA, modeliseur 3D, et textureur
+- Elanis, le codeur LUA, modeliseur 3D, et textureur et gérant
 - Lilou, le modeliseur 3D 
 
 
