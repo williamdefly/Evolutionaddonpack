@@ -5,6 +5,8 @@ ENT.PrintName        = "Energy Beam"
 ENT.Author           = "PyroSpirit"
 ENT.Contact		      = "forums.facepunchstudios.com"
 
+ENT.DoNotDuplicate = true 
+
 if SERVER then
 
 AddCSLuaFile()

@@ -7,6 +7,7 @@ if SERVER then
 AddCSLuaFile()
 
 ENT.EAP_NotSave = true
+ENT.DoNotDuplicate = true 
 
 function ENT:Initialize()
 
