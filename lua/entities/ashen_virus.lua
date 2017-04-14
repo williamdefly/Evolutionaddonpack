@@ -9,7 +9,7 @@ if (Lib!=nil and Lib.RD!=nil) then Lib.LifeSupport(ENT); end
 ENT.Type 			= "anim"
 ENT.Base 			= "base_gmodentity"
 ENT.PrintName		= "Virus"
-ENT.Author			= "Llapp, Boba Fett, Assassin21"
+ENT.Author			= "Llapp, Rafael De Jongh, Assassin21"
 ENT.Contact			= ""
 ENT.Purpose			= ""
 ENT.Instructions	= ""

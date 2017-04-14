@@ -9,7 +9,7 @@ if (Lib!=nil and Lib.RD!=nil) then Lib.LifeSupport(ENT); end
 ENT.Type = "anim"
 ENT.Base = "base_anim" --gmodentity
 ENT.PrintName = "Zero Point Module"
-ENT.Author = "Llapp, Boba Fett, Progsys"
+ENT.Author = "Llapp, Rafael De Jongh, Progsys"
 ENT.WireDebugName = "ZPM MK III"
 ENT.Category = "Stargate Carter Addon Pack"
 

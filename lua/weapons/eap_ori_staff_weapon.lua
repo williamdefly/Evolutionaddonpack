@@ -4,7 +4,7 @@ SWEP.PrintName = Lib.Language.GetMessage("eap_weapon_ori_staff");
 SWEP.Category = Lib.Language.GetMessage("EAP");
 end
 SWEP.Category = "EAP"
-SWEP.Author = "RononDex, Boba Fett"
+SWEP.Author = "RononDex, Rafael De Jongh"
 SWEP.Purpose = "Kill the non believers"
 SWEP.Instructions = "Shoot the Non Believers"
 -- Add weapon for NPCs

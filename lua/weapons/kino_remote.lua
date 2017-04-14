@@ -2,7 +2,7 @@
 	KINO Remote for Garry's Mod 11
 	Scripted by Sutich and Madman07; Sources from aVoN's Stargate Mod
 	Kino Remote Model by Iziraider
-	Textures by Boba Fett
+	Textures by Rafael De Jongh
 	Copyright (C) 2010
 
 	This program is free software: you can redistribute it and/or modify
@@ -22,7 +22,7 @@
 if (Lib.Language!=nil and Lib.Language.GetMessage!=nil) then
 SWEP.PrintName = Lib.Language.GetMessage("weapon_misc_kino");
 end
-SWEP.Author = "Suitch, Boba Fett, Iziraider";
+SWEP.Author = "Suitch, Rafael De Jongh, Iziraider";
 SWEP.Contact = "";
 SWEP.Purpose = "";
 SWEP.Instructions = "Left Click = Open Current Mode \nRight Click = Change Mode";

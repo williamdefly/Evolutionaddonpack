@@ -72,7 +72,7 @@ end
 SWEP.DrawWeaponInfoBox  	= true					-- Draw Weapon Info HUD
 
 SWEP.Category			= "EAP"
-SWEP.Author 			= "The Art of War, Boba Fett, Gmod4phun"
+SWEP.Author 			= "The Art of War, Rafael De Jongh, Gmod4phun"
 SWEP.Contact 			= "info@sg-eap.space"
 SWEP.Purpose 			= "Shoot them aliens up."
 

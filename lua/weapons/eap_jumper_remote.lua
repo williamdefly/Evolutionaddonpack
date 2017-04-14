@@ -2,7 +2,7 @@ if (Lib.Language!=nil and Lib.Language!=nil) then
 SWEP.PrintName = Lib.Language.GetMessage("eap_misc_jumper");
 SWEP.Category = "EAP"
 end
-SWEP.Author = "RononDex, Boba Fett"
+SWEP.Author = "RononDex, Rafael De Jongh"
 SWEP.Purpose = "Use features of Jumper"
 SWEP.Instructions = "Primary: Cloak \n Secondary: Door \n Reload: Selfdestruct"
 SWEP.Base = "weapon_base"

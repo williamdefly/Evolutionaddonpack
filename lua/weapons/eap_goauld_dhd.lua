@@ -6,7 +6,7 @@ if (Lib.Language!=nil and Lib.Language.GetMessage!=nil) then
 SWEP.PrintName = Lib.Language.GetMessage("weapon_misc_gdhd");
 SWEP.Category = "EAP"
 end
-SWEP.Author = "Madman07, Boba Fett";
+SWEP.Author = "Madman07, Rafael De Jongh";
 SWEP.Contact = "";
 SWEP.Purpose = "";
 SWEP.Instructions = "Left Click = Open dial menu and plant the DHD.";

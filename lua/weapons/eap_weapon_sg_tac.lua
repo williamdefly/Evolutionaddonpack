@@ -4,7 +4,7 @@ if (Lib.Language!=nil and Lib.Language.GetMessage!=nil) then
 	SWEP.Category = Lib.Language.GetMessage("EAP");
 end
 SWEP.Category = "EAP"
-SWEP.Author = "Ronon Dex, Boba Fett, AlexALX";
+SWEP.Author = "Ronon Dex, Rafael De Jongh, AlexALX";
 SWEP.Contact = "";
 SWEP.Purpose = "";
 SWEP.Instructions = "Throw with Left Click, Change Mode with Right Click";

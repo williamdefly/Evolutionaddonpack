@@ -8,7 +8,7 @@ if (Lib!=nil and Lib.RD!=nil) then Lib.LifeSupport(ENT); end
 ENT.Type = "anim"
 ENT.Base = "base_anim"
 ENT.PrintName = "Tampered ZPM"
-ENT.Author = "Llapp, Boba Fett, Progsys"
+ENT.Author = "Llapp, Rafael De Jongh, Progsys"
 ENT.WireDebugName = "Tampered ZPM"
 ENT.Category = "Stargate Carter Addon Pack"
 
