@@ -44,3 +44,5 @@ weapon_misc_shield = Bouclier Personnel
 weapon_misc_virus = Virus Ashen
 wp_minidrone = Clé Minidrone
 weapon_misc_kino = Télécommande des Kino
+weapon_misc_lucian_door_opener = Deblockeur de porte lucien
+weapon_misc_lucian_door_opener_desc = Ouvre les portes du destinée\n\nClic Gauche pour le placer
