@@ -125,6 +125,7 @@ function ENT:AddGate(p)  --############ @  Llapp
 	--l:SetGateAddress("ASUR4N");
 	l:SetLocale(true);
 	l:SetGateGroup("P@");
+	hook.Call("PlayerSpawnedSENT",false,p,l,0,0,1)
 	self.Gate = l;
 	Lib.RandomGatesName(p,l,0,false,1);
 	local physic = self.Gate:GetPhysicsObject()
