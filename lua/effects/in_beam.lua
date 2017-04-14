@@ -23,6 +23,7 @@ function EFFECT:Init(data)
 	self.Emit	= ParticleEmitter(self.StartPos or Vector(0,0,0))
 	self.GlowSize = 40;
 
+	self.Entity:SetRenderBounds(-1*Vector(1,1,1)*10000000,Vector(1,1,1)*10000000);
 end
 
 function EFFECT:Think()
@@ -81,7 +82,7 @@ function EFFECT:Render()
 	local sRefr = Lib.VisualsWeapons("cl_overloader_refract")
 
 	if (self.EntityO and IsValid(self.EntityO)) then
-		self:SetRenderBoundsWS(self.EntityO:GetPos(), self.EndPos)
+		--self:SetRenderBoundsWS(self.EntityO:GetPos(), self.EndPos)
 	end
 
 	-- The starting Effect
