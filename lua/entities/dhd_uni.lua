@@ -9,6 +9,7 @@ ENT.PrintName = "DHD (Universe)"
 ENT.Author = "aVoN, Madman07, Llapp, Rafael De Jongh, MarkJaw, AlexALX"
 ENT.Category = 	""
 ENT.Spawnable = true
+ENT.SkinBase = 2;
 
 list.Set("EAP", ENT.PrintName, ENT);
 
@@ -37,7 +38,6 @@ function ENT:SpawnFunction(p,tr)
 	e:Activate();
 	local ang = p:GetAimVector():Angle(); ang.p = 15; ang.r = 0; ang.y = (ang.y+180) % 360
 	e:SetAngles(ang);
-	e:Fire("skin",2);
 	e:RampsDHD(tr);
 	return e;
 end

@@ -6,9 +6,9 @@ include("weapons/gmod_tool/eap_base_tool.lua");
 
 TOOL.Category=Lib.Language.GetMessage("stool_stargate");
 TOOL.Name=Lib.Language.GetMessage("stool_giris");
-TOOL.ClientConVar["toggle"] = 3;
-TOOL.ClientConVar["activate"] = 12;
-TOOL.ClientConVar["deactivate"] = 13;
+TOOL.ClientConVar["toggle"] = KEY_PAD_2;
+TOOL.ClientConVar["activate"] = KEY_B;
+TOOL.ClientConVar["deactivate"] = KEY_C;
 
 TOOL.Entity.Class = "goauldiris";
 TOOL.Entity.Keys = {"toggle","activate","deactivate","IsActivated"}; -- These keys will get saved from the duplicator

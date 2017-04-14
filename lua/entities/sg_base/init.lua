@@ -571,7 +571,7 @@ function ENT:TriggerInputDefault(k,v,mobile,mdhd)
 			if (self:GetLocale()==true or self.Entity:GetClass()=="sg_supergate") then candialg = 0 end
 			local char = string.char(v):upper();
 			local a = self.DialledAddress;
-			if(v == 13 and (#a >= 6 and #a <= 9 and candialg==1 or #a == 6 or #a == 7 and a[7] == "#")) then -- Enter Key
+			if(v==Lib.Keyboard.Constants[ENTER] and (#a >= 6 and #a <= 9 and candialg==1 or #a == 6 or #a == 7 and a[7] == "#")) then -- Enter Key
 				if(#a == 6 or #a == 7 and a[7] != "#") then
 					table.insert(self.DialledAddress,"#");
 				end
@@ -591,13 +591,13 @@ function ENT:TriggerInputDefault(k,v,mobile,mdhd)
 						self:StartDialling();
 					end
 				end
-			elseif(v == 127) then -- Backspace key
+			elseif(v == Lib.Keyboard.Constants[BACKSPACE]) then -- Backspace key
 				table.remove(self.DialledAddress);
 			elseif(char:find("["..self.WireCharters.."]")) then -- Only alphanumerical and the @, #
 				if(#self.DialledAddress < 9 and not table.HasValue(self.DialledAddress,char)) then
 					table.insert(self.DialledAddress,char);
 				end
-			elseif ((v == 13 or v == 127) and self.Active and not self:IsShutdown()) then
+			elseif ((v == Lib.Keyboard.Constants[ENTER] or v == Lib.Keyboard.Constants[BACKSPACE]) and self.Active and not self:IsShutdown()) then
 				self:AbortDialling();
 			end
 		end

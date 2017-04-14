@@ -22,9 +22,9 @@ include("weapons/gmod_tool/eap_base_tool.lua");
 TOOL.Category=Lib.Language.GetMessage("stool_stargate");
 TOOL.Name=Lib.Language.GetMessage("stool_iris_atlantis");
 
-TOOL.ClientConVar["toggle"] = 9;
-TOOL.ClientConVar["activate"] = 12;
-TOOL.ClientConVar["deactivate"] = 13;
+TOOL.ClientConVar["toggle"] = KEY_PAD_2;
+TOOL.ClientConVar["activate"] = KEY_B;
+TOOL.ClientConVar["deactivate"] = KEY_C;
 -- The default model for the GhostPreview
 TOOL.ClientConVar["model"] = "models/zup/Stargate/sga_shield.mdl";
 TOOL.GhostExceptions = {"sg_atlantis","sg_sg1","sg_tollan","sg_infinity","sg_universe"}; -- Add your entity class to this, to stop drawing the GhostPreview on this

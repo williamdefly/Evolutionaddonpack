@@ -168,11 +168,11 @@ function ENT:Initialize()
 	end
 	self:CreateWireOutputs("Pressed Buttons [STRING]");
 	local dhd = {"dhd_atl","dhd_uni","dhd_inf"}
-	for i=1,3 do
-	    if(self.Entity:GetClass()==dhd[i])then
-	        self.Entity:Fire("skin",i);
-	    end
+	-- Adapt skin on settings
+	if(self.SkinBase==nil) then
+		self.SkinBase=0;
 	end
+	self.Entity:Fire("skin",self.SkinBase);
 	self.Range = Lib.CFG:Get("dhd","range",1000);
 	local phys = self.Entity:GetPhysicsObject();
 	if(phys:IsValid()) then
@@ -299,11 +299,11 @@ function ENT:TriggerInput(k,v)
 				symbols = "A-Z0-9@#*";
 			end
 			local char = string.char(v):upper();
-			if (v>=128 and v<=137) then char = string.char(v-80):upper(); -- numpad 0-9
-			elseif (v==139) then char = string.char(42):upper(); end -- numpad *
-			if(v == 13) then -- Enter Key
+			if (v>=Lib.Keyboard.Constants[NUM_0] and v<=Lib.Keyboard.Constants[NUM_9]) then char = string.char(v-80):upper(); -- numpad 0-9
+			elseif (v==Lib.Keyboard.Constants[NUM_MUL]) then char = string.char(42):upper(); end -- numpad *
+			if(v==Lib.Keyboard.Constants[ENTER]) then -- Enter Key
 				self:PressButton("DIAL",nil,true);
-			elseif(v == 127) then -- Backspace key
+			elseif(v == Lib.Keyboard.Constants[BACKSPACE]) then -- Backspace key
 				local e = self:FindGate();
 				if not IsValid(e) then return end
 				if (GetConVar("stargate_eap_dhd_close_incoming"):GetInt()==0 and e.IsOpen and not e.Outbound) then return end -- if incoming, then we can do nothign
