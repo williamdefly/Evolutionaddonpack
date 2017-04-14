@@ -208,24 +208,27 @@ if CLIENT then
 
 	    local ToggleActive = vgui.Create("DButton" , DermaPanel )
 		ToggleActive:SetParent( DermaPanel )
-		-- ToggleActive:SetText(Lib.Language.GetMessage("shieldid_toggle"))
-		ToggleActive:SetText("Toggle")
-	    ToggleActive:SetPos(110, 100)
-	    ToggleActive:SetSize(100, 25)
+		ToggleActive:SetText(Lib.Language.GetMessage("shieldid_"..(active and "off" or "on")))
+	    ToggleActive:SetPos(30, 100)
+		if (active) then
+			ToggleActive:SetImage("icon16/lightbulb.png")		
+		else
+			ToggleActive:SetImage("icon16/lightbulb_off.png")
+		end
+	    ToggleActive:SetSize(120, 25)
 		ToggleActive.DoClick = function ( btn5 )
 			net.Start("shieldid_sendinfo")
 			net.WriteEntity(ent)
 			net.WriteBit(true)
 			net.SendToServer()
-	    end
-
-	    local cancelButton = vgui.Create("DButton" , DermaPanel )
-	    cancelButton:SetParent( DermaPanel )
-	    cancelButton:SetText(Lib.Language.GetMessage("iriscomp_cancel"))
-	    cancelButton:SetPos(10, 100)
-	    cancelButton:SetSize(80, 25)
-		cancelButton.DoClick = function ( btn4 )
-			DermaPanel:Close()
+			active = !(active)
+			if (active) then
+				ToggleActive:SetImage("icon16/lightbulb.png")	
+				ToggleActive:SetText(Lib.Language.GetMessage("shieldid_off"))					
+			else
+				ToggleActive:SetImage("icon16/lightbulb_off.png")
+				ToggleActive:SetText(Lib.Language.GetMessage("shieldid_on"))	
+			end
 	    end
 	end
 

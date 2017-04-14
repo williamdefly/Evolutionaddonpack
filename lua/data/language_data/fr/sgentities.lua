@@ -1,7 +1,6 @@
 //General entities
 ent_goauld_ammo = Conteneur d'armes Goa'uld
 ent_goauld_sarcophage = Sarcophage Goa'uld
-ent_shield_identifier = Identificateur du Bouclier
 ent_tauri_ammo = Conteneur d'armes Tau'ri
 entity_black_hole = Trou Noir
 entity_apple_core = Coeur du Destinée
@@ -226,3 +225,8 @@ mcd_effcolor_desc = Choisir la couleur de l'effet
 mcd_settings = Paramètes supplémentaires
 mcd_nosettings = Aucun paramètre disponible.
 mcd_classname = Classe: %s
+
+//Shield identifier
+ent_shield_identifier = Shield Identifier
+shieldid_off = Desactiver
+shieldid_on = Activer

@@ -1,7 +1,6 @@
 //General entities
 ent_goauld_ammo = Goau'ld Container
 ent_goauld_sarcophage = Goa'uld Sarcophagus
-ent_shield_identifier = Shield Identifier
 ent_tauri_ammo = Tau'ri Container
 entity_black_hole = Black Hole
 entity_apple_core = Apple Core
@@ -226,3 +225,8 @@ mcd_effcolor_desc = Set creation effect color.
 mcd_settings = Additional settings
 mcd_nosettings = No additional settings available.
 mcd_classname = Classname: %s
+
+//Shield identifier
+ent_shield_identifier = Shield Identifier
+shieldid_off = Disable
+shieldid_on = Enable
