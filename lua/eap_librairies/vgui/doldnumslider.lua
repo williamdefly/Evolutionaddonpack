@@ -44,11 +44,35 @@ function PANEL:Init()
 
 end
 
+function PANEL:UpdateNotches()
+	local range = self:GetRange()
+	self.Slider:SetNotches( nil )
+
+	if ( range < self:GetWide() / 4 ) then
+		return self.Slider:SetNotches( range )
+	else
+ 		self.Slider:SetNotches( self:GetWide() / 4 )
+	end	
+end
+
+function PANEL:GetRange()
+	return self:GetMax() - self:GetMin()
+end
+
+function PANEL:GetMin()
+	return self.Wang:GetMin()
+end
+
+function PANEL:GetMax()
+	return self.Wang:GetMax()
+end
+
 /*---------------------------------------------------------
 	SetMinMax
 ---------------------------------------------------------*/
 function PANEL:SetMinMax( min, max )
 	self.Wang:SetMinMax( min, max )
+	self:UpdateNotches()
 end
 
 /*---------------------------------------------------------
@@ -56,6 +80,7 @@ end
 ---------------------------------------------------------*/
 function PANEL:SetMin( min )
 	self.Wang:SetMin( min )
+	self:UpdateNotches()
 end
 
 /*---------------------------------------------------------
@@ -63,6 +88,7 @@ end
 ---------------------------------------------------------*/
 function PANEL:SetMax( max )
 	self.Wang:SetMax( max )
+	self:UpdateNotches()
 end
 
 /*---------------------------------------------------------
