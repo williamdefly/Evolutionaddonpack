@@ -149,9 +149,10 @@ end
 end
 
 if CLIENT then
+ENT.RenderGroup = RENDERGROUP_BOTH
 
 if (Lib.Language!=nil and Lib.Language.GetMessage!=nil) then
-language.Add("ramp",Lib.Language.GetMessage("ramp_kill"));
+language.Add("sgcramp",Lib.Language.GetMessage("ramp_kill"));
 end
 
 function ENT:Initialize()

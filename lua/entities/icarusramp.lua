@@ -284,11 +284,11 @@ end
 end
 
 if CLIENT then
+ENT.RenderGroup = RENDERGROUP_BOTH
 
 /* Smoke code from SGC Ramp by Llapp */
-
 if (Lib.Language!=nil and Lib.Language.GetMessage!=nil) then
-language.Add("ramp",Lib.Language.GetMessage("ramp_kill"));
+language.Add("icarusramp",Lib.Language.GetMessage("ramp_kill"));
 end
 
 function ENT:Initialize()

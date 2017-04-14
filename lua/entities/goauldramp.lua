@@ -122,7 +122,17 @@ function ENT:PostEntityPaste(ply, Ent, CreatedEntities)
 end
 
 if (Lib and Lib.EAP_GmodDuplicator) then
-	duplicator.RegisterEntityClass( "goauld_ramp", Lib.EAP_GmodDuplicator, "Data" )
+	duplicator.RegisterEntityClass( "goauldramp", Lib.EAP_GmodDuplicator, "Data" )
+end
+
+end
+
+if CLIENT then
+
+ENT.RenderGroup = RENDERGROUP_BOTH
+
+if (Lib.Language!=nil and Lib.Language.GetMessage!=nil) then
+language.Add("goauldramp",Lib.Language.GetMessage("ramp_kill"));
 end
 
 end
