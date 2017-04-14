@@ -189,6 +189,8 @@ function ENT:Exit(kill) --####### Get out @RononDex
 	self.Accel.UP = 0;
 	table.Empty(self.WeaponsTable); --Get rid of our old weapons
 	self.HoverPos = self:GetPos();
+	-- Stop moving while exiting ship
+	self:GetPhysicsObject():EnableMotion(false)
 end
 
 function ENT:Use(p) --####### When you press E on it @RononDex
