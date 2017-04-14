@@ -330,6 +330,7 @@ function Lib.GateSpawner.Spawn(v,protect,k,k2)
 							local const=constraint.Weld(e, sg, 0, 0, 0, false)
 							local nocollide=constraint.NoCollide( e, sg, 0, 0)
 							-- fix by AlexALX
+							e:SetParent(sg)
 							sg.GateSpawnerGrav = sg.GateSpawnerGrav or {};
 							table.insert(sg.GateSpawnerGrav,e);
 							if (table.Count(sg.GateSpawnerGrav)==3) then
@@ -459,7 +460,7 @@ function Lib.GateSpawner.InitialSpawn(reload)
 			ents.FindByClass("goauldiris"),
 			ents.FindByClass("dhd_*"),
 			ents.FindByClass("mobiledhd"),
-			ents.FindByClass("ring_*"),
+			ents.FindByClass("rg_*"),
 			ents.FindByClass("gatebearing"),
 			ents.FindByClass("brazier"),
 			ents.FindByClass("floor_chevron"),
@@ -833,7 +834,7 @@ function Lib.GateSpawner.Restored()
 			ents.FindByClass("goauld_iris"),
 			ents.FindByClass("dhd_*"),
 			ents.FindByClass("mobiledhd"),
-			ents.FindByClass("ring_*"),
+			ents.FindByClass("rg_*"),
 			ents.FindByClass("gatebearing"),
 			ents.FindByClass("brazier"),
 			ents.FindByClass("floor_chevron"),
