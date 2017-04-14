@@ -38,6 +38,7 @@ ENT.IgnoreTouch = true; -- This tells the physical objects like drones or staff 
 ENT.CDSIgnore = true; -- Fixes Combat Damage System destroying this entity
 ENT.DrawEnterEffectTime = 0;
 ENT.EAP_NotSave = true;
+ENT.DoNotDuplicate = true 
 
 ENT.Model = Model("models/zup/stargate/stargate_horizon.mdl");
 ENT.Sounds = {

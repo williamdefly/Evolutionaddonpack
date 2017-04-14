@@ -29,9 +29,10 @@ function ENT:Initialize()
 	self.Ang=self.Entity:GetAngles()
 	self.Entity:StartMotionController()
 	self.Dir = self.Dir or 1;
+	self.StartPos = self:GetPos()
 
 	self.Entity:SetTrigger(true)
-
+	self.Entity:SetRenderMode(RENDERMODE_TRANSALPHA)
 end
 
 function ENT:PhysicsSimulate( phys, deltatime )
@@ -39,15 +40,11 @@ function ENT:PhysicsSimulate( phys, deltatime )
 		phys:Wake()
 		local pr={}
 			pr.secondstoarrive	= 1
-			local pos=self.Parent:LocalToWorld(self.DesiredPos)
-			pr.pos			= pos
-				if self.Return then
-					if (self.Dir==-1) then
-						pr.pos 	= self.Parent:GetPos()+Vector(0,0,15)
-					else
-						pr.pos 	= self.Parent:GetPos()
-					end
-				end
+			if (self.Return) then
+				pr.pos = self.StartPos
+			else
+				pr.pos = self.Parent:LocalToWorld(self.DesiredPos)
+			end
 			pr.maxangular		= 5000
 			pr.maxangulardamp	= 10000
 			pr.maxspeed			= 10000
@@ -115,6 +112,7 @@ end
 end
 
 if CLIENT then
+ENT.RenderGroup = RENDERGROUP_BOTH
 
 function ENT:Draw()
 	self.Entity:DrawModel()

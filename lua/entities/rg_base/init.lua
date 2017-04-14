@@ -376,9 +376,9 @@ function ENT:DoRings()
 		self.Rings[i].EAPGateSpawnerSpawned = self.EAPGateSpawnerSpawned
 		self.Rings[i]:SetModel(self.RingModel)
 		if (dir==-1) then
-			self.Rings[i]:SetPos(self.Entity:GetPos()+Vector(0,0,15))
+			self.Rings[i]:SetPos(self.Entity:GetPos()-self:GetUp()*15)
 		else
-			self.Rings[i]:SetPos(self.Entity:GetPos()+Vector(0,0,-5))
+			self.Rings[i]:SetPos(self.Entity:GetPos())
 		end
 		self.Rings[i].Dir = dir;
 		self.Rings[i]:SetAngles(self.Entity:GetAngles())
@@ -570,7 +570,7 @@ function ENT.DuplicatorEntityModifier(_,e,data)
 		for k,v in pairs(data) do
 			if(k == "Address") then
 				local allow = true;
-				for _,ring in pairs(ents.FindByClass("rg_base")) do
+				for _,ring in pairs(ents.FindByClass("rg_base_*")) do
 					if(ring.Address == v) then allow = false break end;
 				end
 				if(allow) then
