@@ -12,6 +12,7 @@ entity_dest_timer = Timer du Destinée
 entity_kino_dis = Distributeur de Kino
 entity_lant_holo = Hologramme des anciens
 entity_telchak = Appareil de soins de Telchak
+entity_hangar = Hangar
 
 //SpaceShips
 ent_ship_alkesh = Alkesh
