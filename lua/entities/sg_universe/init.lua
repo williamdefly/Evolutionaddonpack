@@ -139,7 +139,7 @@ function ENT:Initialize()
 	self.Entity:SetMoveType(MOVETYPE_VPHYSICS);
 	self.Entity:SetSolid(SOLID_VPHYSICS);
 	self.Entity:SetRenderMode(RENDERMODE_TRANSALPHA);
-	self.Entity:SetColor(Color(0,0,0,1)); --this make the entity invisible but alpha must be 1 for dynamic lights!
+	--self.Entity:SetColor(Color(0,0,0,1)); --this make the entity invisible but alpha must be 1 for dynamic lights!
 	self.BaseClass.Initialize(self); -- BaseClass Initialize call
 	self:AddModels();
 	self.DeriveIgnoreParent = true

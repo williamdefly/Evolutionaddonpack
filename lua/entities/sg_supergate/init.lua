@@ -50,7 +50,7 @@ function ENT:Initialize()
 	self.Entity:PhysicsInit(SOLID_VPHYSICS);
 	self.Entity:SetMoveType(MOVETYPE_VPHYSICS);
 	self.Entity:SetSolid(SOLID_VPHYSICS);
-	self.Entity:SetColor(Color(0,0,0,0));
+	--self.Entity:SetColor(Color(0,0,0,0));
 	self.DeriveIgnoreParent = true
 	self.Entity:SetRenderMode(RENDERMODE_TRANSALPHA);
 	self.Segments = {};
