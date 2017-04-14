@@ -99,7 +99,7 @@ end
 function ENT:Think()
 
 	self.BaseClass.Think(self);
-	self.ExitPos = self:GetPos()+self:GetForward()*175;
+	self.ExitPos = self:GetPos()+self:GetForward()*2000-self:GetUp()*750;
 	self:SetWire("Can Shoot",self.CanShoot)
 
 	if(self.EntHealth <= 500)then

@@ -148,7 +148,7 @@ end
 function ENT:Think()
 
 	self.BaseClass.Think(self);
-	self.ExitPos = self:GetPos()+self:GetForward()*75;
+	self.ExitPos = self:GetPos()-self:GetRight()*400;
 
 	if(IsValid(self.Pilot)) then
 

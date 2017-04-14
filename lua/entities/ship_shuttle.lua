@@ -206,7 +206,7 @@ function ENT:Think()
 		end
 	end
 
-	self.ExitPos=self:GetPos()+self:GetForward()*100
+	self.ExitPos=self:GetPos()-self:GetForward()*500-self:GetUp()*100;
 
 	if(self.Shields.Depleted) then
 		self:SetWire("Shield Enabled",-1);

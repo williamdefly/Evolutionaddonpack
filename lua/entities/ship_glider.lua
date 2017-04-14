@@ -1,34 +1,13 @@
---[[
-	DeathGlider for GarrysMod 10
-	Copyright (C) 2009 RononDex
-
-	This program is free software: you can redistribute it and/or modify
-	it under the terms of the GNU General Public License as published by
-	the Free Software Foundation, either version 3 of the License, or
-	(at your option) any later version.
-
-	This program is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	GNU General Public License for more details.
-
-	You should have received a copy of the GNU General Public License
-	along with this program.  If not, see <http://www.gnu.org/licenses/>.
-]]--
-
-ENT.RenderGroup = RENDERGROUP_BOTH
-
-ENT.Type = "vehicle"
 ENT.Base = "ship_base"
-
-ENT.PrintName = "Death Glider"
-ENT.Author	= "RononDex, Iziraider, Rafael De Jongh"
-ENT.Contact	= ""
-ENT.Purpose	= ""
-ENT.Instructions= ""
+ENT.Type = "vehicle"
 ENT.Spawnable = true
 
+ENT.PrintName = Lib.Language.GetMessage("ent_ship_wraithcruiser");
+ENT.Author = "RononDex, Iziraider, Rafael De Jongh, Elanis"
+
 list.Set("EAP", ENT.PrintName, ENT);
+
+--ENT.IsSGVehicleCustomView = true
 
 if SERVER then
 
@@ -51,7 +30,8 @@ function ENT:SpawnFunction(ply, tr) --######## Pretty useless unless we can spaw
 	end
 
 	local e = ents.Create("ship_glider")
-	e:SetPos(tr.HitPos + Vector(0,0,90))
+	e:SetPos(tr.HitPos)
+	e:SetAngles(ply:GetAngles())
 	e:Spawn()
 	e:Activate()
 	e:SetWire("Health",e:GetNetworkedInt("health"));
@@ -60,55 +40,88 @@ function ENT:SpawnFunction(ply, tr) --######## Pretty useless unless we can spaw
 end
 
 function ENT:Initialize() --######## What happens when it first spawns(Set Model, Physics etc.) @RononDex
-
+	self.BaseClass.Initialize(self);
+	self.Vehicle = "DeathGlider"
 	self:SetModel(self.Model)
 	self:PhysicsInit(SOLID_VPHYSICS)
 	self:SetMoveType(MOVETYPE_VPHYSICS)
 	self:SetSolid(SOLID_VPHYSICS)
+	self.EntHealth = 300
+	self:SetNetworkedInt("health",self.EntHealth)
+	self:SetNWInt("maxEntHealth",self.EntHealth)
+	self:SetNWInt("CanFire",1)
 	self:SetUseType(SIMPLE_USE)
 	self:StartMotionController()
 
-	self.Vehicle = "DeathGlider";
-	--self.BaseClass.Initialize(self,self.Vehicle,self.FlightVars,self.FlightPhys,self.Accel)
-	self.EntHealth = 300
+	--####### Attack vars
 	self.BlastMaxVel = 10000000;
 	self.Blasts = {};
 	self.BlastCount = 0;
 	self.MaxBlasts = (4);
 	self.BlastsFired = 0;
-	self:SetNetworkedInt("health",self.EntHealth);
-	self.Delay = 10;
+	self.Delay=10
 
 	--######### Flight Vars
-	self.Accel = {};
-	self.Accel.FWD = 0;
-	self.Accel.RIGHT = 0;
-	self.Accel.UP = 0;
-	self.ForwardSpeed = 2000;
-	self.BackwardSpeed = 0;
-	self.UpSpeed = 0;
-	self.MaxSpeed = 2750;
-	self.RightSpeed = 0;
-	self.Accel.SpeedForward = 20;
-	self.Accel.SpeedRight = 0;
-	self.Accel.SpeedUp = 0;
-	self.RollSpeed = 5;
-	self.num = 0;
-	self.num2 = 0;
-	self.num3 = 0
-	self.Roll = 0;
-	self.Hover = false;
-	self.GoesRight = false;
-	self.GoesUp = false;
-	self.CanRoll = true;
+	self.Accel = {}
+	self.Accel.FWD = 0
+	self.Accel.RIGHT = 0
+	self.Accel.UP = 0
+	self.ForwardSpeed = 1500
+	self.BackwardSpeed = -750
+	self.UpSpeed=600
+	self.MaxSpeed = 2000
+	self.RightSpeed = 750
+	self.Accel.SpeedForward = 10
+	self.Accel.SpeedRight = 7
+	self.Accel.SpeedUp = 7
+	self.RollSpeed = 5
+	self.num = 0
+	self.num2 = 0
+	self.num3 =0
+	self.Roll=0
+	self.Hover=true
+	self.GoesRight=true
+	self.GoesUp=true
+	self.CanRoll=true
 	self:CreateWireOutputs("Health");
 
 	local phys = self:GetPhysicsObject()
+	self:GetPhysicsObject():EnableMotion(false)
+
 	if(phys:IsValid()) then
 		phys:Wake()
 		phys:SetMass(10000)
 	end
 end
+
+function ENT:Think()
+	self.BaseClass.Think(self);
+	self.ExitPos = self:GetPos()+self:GetForward()*200;
+	
+
+	if(self.StartDelay) then
+		self.Delay = math.Approach(self.Delay,10,3);
+	end
+
+	if(self.Delay>=10) then
+		self.StartDelay = false;
+	end
+
+	if(IsValid(self.Pilot)) then
+		if(self.Pilot:KeyDown("EAP_KEYBOARD","FIRE")) then
+			if(self.Delay>=0) then
+				self:FireBlast(self:GetRight()*80);
+				self:FireBlast(self:GetRight()*-80);
+				self.Delay = 10;
+			end
+			self.StartDelay = true;
+		end
+	else
+		self.StartDelay = false;
+	end
+end
+
+function ENT:OnRemove()	self.BaseClass.OnRemove(self) end
 
 function ENT:OnTakeDamage(dmg) --########## Gliders aren't invincible are they? @RononDex
 
@@ -119,42 +132,6 @@ function ENT:OnTakeDamage(dmg) --########## Gliders aren't invincible are they? 
 	if((health-dmg:GetDamage())<=0) then
 		self:Bang() -- Go boom
 	end
-end
-
-function ENT:OnRemove()
-
-	self.BaseClass.OnRemove(self)
-
-end
-
-function ENT:Think()
-
-	self.BaseClass.Think(self)
-
-	if(self.StartDelay) then
-		self.Delay=math.Approach(self.Delay,10,3)
-	end
-
-	if(self.Delay>=10) then
-		self.StartDelay=false
-	end
-
-	if(IsValid(self.Pilot)) then
-		if((self.Pilot:KeyDown("EAP_KEYBOARD","FIRE"))) then
-			if(self.Delay>=10) then
-				self:FireBlast(self:GetRight()*-130)
-				self:FireBlast(self:GetRight()*130)
-				self.Delay=0
-			end
-			self.StartDelay=true
-		end
-	end
-end
-
-function ENT:Exit(kill)
-
-	self.BaseClass.Exit(self,kill)
-	self.ExitPos = self:GetPos()+Vector(0,0,100);
 end
 
 function ENT:FireBlast(diff)
@@ -183,20 +160,21 @@ if (Lib.Language!=nil and Lib.Language.GetMessage!=nil) then
 ENT.Category = Lib.Language.GetMessage('cat_small_ship');
 ENT.PrintName = Lib.Language.GetMessage('ent_ship_deathglider');
 end
+ENT.RenderGroup = RENDERGROUP_BOTH
 
 ENT.Sounds = {
 	Engine=Sound("glider/deathglideridleoutside.wav"),
 }
 
-function ENT:Initialize()
+function ENT:Initialize( )
+	self.BaseClass.Initialize(self)
 	self.Dist=-850
 	self.UDist=250
+	self.KBD = self.KBD or Lib.Settings.KBD:CreateInstance(self)
 	self.FirstPerson=false
 	self.lastswitch = CurTime();
 	self.on1=0;
-	self.KBD = self.KBD or Lib.Settings.KBD:CreateInstance(self)
-	self.BaseClass.Initialize(self)
-	self.Vehicle = "DeathGlider";
+	self.Vehicle = "DeathGlider"
 end
 
 --######## Mainly Keyboard stuff @RononDex
