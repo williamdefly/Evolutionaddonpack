@@ -3,7 +3,7 @@ ENT.Type = "vehicle"
 ENT.Spawnable = true
 
 ENT.PrintName = Lib.Language.GetMessage("ent_ship_destiny");
-ENT.Author = ""
+ENT.Author = "Elanis, Lilou"
 list.Set("EAP", ENT.PrintName, ENT);
 
 --ENT.IsSGVehicleCustomView = true
@@ -54,6 +54,9 @@ function ENT:Initialize() --######## What happens when it first spawns(Set Model
 	self:SetNWInt("CanFire",1)
 	self:SetUseType(SIMPLE_USE)
 	self:StartMotionController()
+	--self:SpawnShield()
+	self:CreateWireInputs("Shield")
+	self:CreateWireOutputs("Health","Shield Strength","Shield Enabled")
 
 	--####### Attack vars
 	self.LastBlast=0
@@ -64,6 +67,7 @@ function ENT:Initialize() --######## What happens when it first spawns(Set Model
 
 	self.Shield = NULL;
 	self.Shielded = false;
+	self.CanShield = true;
 
 	self.Destination = Vector(200000,0,0)
 
@@ -131,7 +135,7 @@ function ENT:Think()
 end
 
 function ENT:SpawnShield()
-	local ent = ents.Create("ship_shield_generator");
+	local ent = ents.Create("shield_ship_generator");
 	ent:SetPos(self:GetPos());
 	ent:SetAngles(self:GetAngles());
 	ent:SetParent(self);
@@ -141,18 +145,20 @@ function ENT:SpawnShield()
 	ent:SetSolid(SOLID_NONE)
 	ent:SetColor(Color(255,255,255,0))
 	ent:SetRenderMode( RENDERMODE_TRANSALPHA );
+	ent.StrengthMultiplier={0.1,0.5,-5}
+	ent:SetShieldColor(1,0.98,0.94)
 	self.Shield = ent;
-	e.StrengthMultiplier={0.1,0.5,-5}
-	e:SetShieldColor(1,0.98,0.94)
 end
 
 function ENT:ToggleShield()
-	if IsValid(self) then
+	if IsValid(self) and IsValid(self.Shield) then
 		if self.CanShield then
 			if self.Shielded then
+				MsgN("NOT ACTIVE !")
 				self.Shield:Status(false);
 				self.Shielded = false;
 			else
+				MsgN("ACTIVE !")
 				self.Shield:Status(true);
 				self.Shielded = true;
 			end

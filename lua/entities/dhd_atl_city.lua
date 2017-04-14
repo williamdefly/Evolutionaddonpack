@@ -10,7 +10,7 @@ if (Lib!=nil and Lib.RD!=nil) then Lib.LifeSupport(ENT); end
 ENT.Type = "anim"
 ENT.Base = "dhdbase"
 ENT.PrintName = "DHD (City)"
-ENT.Author = "aVoN, Madman07, ZsDaniel, Boba Fett, AlexALX"
+ENT.Author = "aVoN, Madman07, ZsDaniel, Rafael De Jongh, AlexALX"
 ENT.Category = ""
 ENT.WireDebugName = "DHD (City)"
 ENT.Spawnable = true

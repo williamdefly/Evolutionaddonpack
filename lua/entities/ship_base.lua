@@ -29,8 +29,8 @@ if (Lib!=nil and Lib.Wire!=nil) then Lib.Wiremod(ENT); end
 if (Lib!=nil and Lib.RD!=nil) then Lib.LifeSupport(ENT); end
 
 
-ENT.PrintName = "Stargate Vehicle Base"
-ENT.Author = "RononDex"
+ENT.PrintName = "Spaceship Base"
+ENT.Author = "RononDex, Elanis"
 ENT.Base = "base_anim"
 ENT.Type = "vehicle"
 ENT.Category = Lib.Language.GetMessage("cat_ship");

@@ -8,7 +8,7 @@ if (Lib!=nil and Lib.RD!=nil) then Lib.LifeSupport(ENT); end
 ENT.Type = "anim"
 ENT.Base = "base_anim"
 ENT.PrintName = "Dakara Weapon"
-ENT.Author = "Madman07, Boba Fett, Iziraider"
+ENT.Author = "Madman07, Rafael De Jongh, Iziraider"
 ENT.Category = Lib.Language.GetMessage("cat_weapons");
 ENT.WireDebugName = "Dakara Weapon"
 ENT.Spawnable = false

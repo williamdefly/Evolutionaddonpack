@@ -3,7 +3,7 @@ ENT.Type = "vehicle"
 ENT.Spawnable = true
 
 ENT.PrintName = Lib.Language.GetMessage('ent_ship_orims');
-ENT.Author = ""
+ENT.Author = "Elanis, Lilou"
 list.Set("EAP", ENT.PrintName, ENT);
 
 --ENT.IsSGVehicleCustomView = true

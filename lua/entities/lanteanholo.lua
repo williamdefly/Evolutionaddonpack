@@ -9,7 +9,7 @@ if (Lib!=nil and Lib.RD!=nil) then Lib.LifeSupport(ENT); end
 ENT.Type 			= "anim"
 ENT.Base 			= "base_anim"
 ENT.PrintName		= "Lantean Holo"
-ENT.Author			= "Madman07, MarkJaw, Iziraider, Boba Fett"
+ENT.Author			= "Madman07, MarkJaw, Iziraider, Rafael De Jongh"
 
 list.Set("EAP", ENT.PrintName, ENT);
 

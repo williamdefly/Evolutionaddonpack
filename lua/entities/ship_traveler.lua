@@ -3,7 +3,7 @@ ENT.Type = "vehicle"
 ENT.Spawnable = true
 
 ENT.PrintName = Lib.Language.GetMessage("ent_ship_traveler");
-ENT.Author = ""
+ENT.Author = "Elanis, Lilou"
 ENT.WireDebugName = Lib.Language.GetMessage("ent_ship_traveler");
 list.Set("EAP", ENT.PrintName, ENT);
 

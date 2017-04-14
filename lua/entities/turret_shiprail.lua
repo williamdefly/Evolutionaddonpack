@@ -9,7 +9,7 @@ if (Lib!=nil and Lib.RD!=nil) then Lib.LifeSupport(ENT); end
 ENT.Type = "anim"
 ENT.Base = "turret_base"
 ENT.PrintName = "Ship Railgun"
-ENT.Author = "Madman07, Boba Fett"
+ENT.Author = "Madman07, Rafael De Jongh"
 ENT.Instructions= ""
 ENT.Contact = "madman097@gmail.com"
 ENT.Category = Lib.Language.GetMessage("cat_weapons");

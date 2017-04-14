@@ -1,7 +1,7 @@
 ENT.Type = "anim";
 ENT.Base = "sg_base";
 ENT.PrintName = "Stargate (Atlantis)";
-ENT.Author = "aVoN, Madman07, Llapp, Boba Fett, AlexALX";
+ENT.Author = "aVoN, Madman07, Llapp, Rafael De Jongh, AlexALX";
 ENT.Category = ""
 ENT.Spawnable = true
 

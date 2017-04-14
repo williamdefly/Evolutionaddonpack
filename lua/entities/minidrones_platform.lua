@@ -8,7 +8,7 @@ if (Lib!=nil and Lib.RD!=nil) then Lib.LifeSupport(ENT); end
 ENT.Type = "anim"
 ENT.Base = "base_anim"
 ENT.PrintName = "Minidrone Platform"
-ENT.Author = "aVoN, RononDex, Madman07, Boba Fett"
+ENT.Author = "aVoN, RononDex, Madman07, Rafael De Jongh"
 ENT.Category = ""
 ENT.WireDebugName = "Minidrone Platform"
 ENT.Spawnable = true

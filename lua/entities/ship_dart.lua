@@ -19,7 +19,7 @@
 ENT.Type = "anim"
 ENT.Base = "ship_base"
 ENT.PrintName = "Wraith Dart"
-ENT.Author	= "RononDex"
+ENT.Author	= "RononDex, Elanis"
 ENT.Contact	= ""
 ENT.Purpose	= ""
 ENT.Instructions= ""

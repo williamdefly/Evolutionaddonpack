@@ -7,7 +7,7 @@ ENT.Base = "base_anim"
 ENT.Type = "vehicle"
 
 ENT.PrintName = Lib.Language.GetMessage('ent_ship_jumper');
-ENT.Author = "RononDex, Iziraider, Boba Fett"
+ENT.Author = "RononDex, Iziraider, Rafael De Jongh"
 ENT.Category = Lib.Language.GetMessage("cat_ship");
 ENT.AutomaticFrameAdvance = true
 ENT.Spawnable = true

@@ -11,7 +11,7 @@ ENT.Type = "anim"
 ENT.Base = "base_anim"
 ENT.PrintName = "Arthurs Mantle"
 ENT.WireDebugName = "Arthurs Mantle"
-ENT.Author = "Madman07, Boba Fett"
+ENT.Author = "Madman07, Rafael De Jongh"
 ENT.Instructions= ""
 ENT.Contact = "madman097@gmail.com"
 

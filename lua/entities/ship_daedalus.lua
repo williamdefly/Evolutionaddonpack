@@ -5,7 +5,7 @@ ENT.Type = "vehicle"
 ENT.Spawnable = true
 
 ENT.PrintName = Lib.Language.GetMessage("ent_ship_daedalus");
-ENT.Author = ""
+ENT.Author = "Elanis, Madman07, Lilou"
 list.Set("EAP", ENT.PrintName, ENT);
 
 --ENT.IsSGVehicleCustomView = true

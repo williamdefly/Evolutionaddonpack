@@ -3,7 +3,7 @@ ENT.Type = "vehicle"
 ENT.Spawnable = true
 
 ENT.PrintName = "Gate Glider"
-ENT.Author = "RononDex, Iziraider, Boba Fett"
+ENT.Author = "RononDex, Iziraider, Rafael De Jongh"
 list.Set("EAP", ENT.PrintName, ENT);
 
 --ENT.IsSGVehicleCustomView = true

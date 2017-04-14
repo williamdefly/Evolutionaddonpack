@@ -8,7 +8,7 @@ ENT.Base="base_anim"
 if (Lib!=nil and Lib.Wire!=nil) then Lib.Wiremod(ENT); end
 if (Lib!=nil and Lib.RD!=nil) then Lib.LifeSupport(ENT); end
 ENT.PrintName = Lib.Language.GetMessage("obelisk_ancient");
-ENT.Author = "Madman07, Boba Fett"
+ENT.Author = "Madman07, Rafael De Jongh"
 ENT.Category = Lib.Language.GetMessage("cat_transportation");
 ENT.Spawnable = true
 

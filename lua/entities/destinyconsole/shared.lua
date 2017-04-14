@@ -4,7 +4,7 @@ if (Lib!=nil and Lib.RD!=nil) then Lib.LifeSupport(ENT); end
 ENT.Type = "anim"
 ENT.Base = "base_anim"
 ENT.PrintName = "Destiny Console"
-ENT.Author = "assassin21, aVoN, Madman07, Boba Fett"
+ENT.Author = "assassin21, aVoN, Madman07, Rafael De Jongh"
 ENT.WireDebugName = "Destiny Console"
 
 list.Set("EAP", ENT.PrintName, ENT);

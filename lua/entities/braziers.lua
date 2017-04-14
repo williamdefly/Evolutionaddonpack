@@ -8,7 +8,7 @@ ENT.Base = "base_anim"
 if (Lib!=nil and Lib.Wire!=nil) then Lib.Wiremod(ENT); end
 if (Lib!=nil and Lib.RD!=nil) then Lib.LifeSupport(ENT); end
 ENT.PrintName = "Braziers"
-ENT.Author = "Madman07, Boba Fett"
+ENT.Author = "Madman07, Rafael De Jongh"
 
 ENT.Spawnable = false
 ENT.AdminSpawnable = false

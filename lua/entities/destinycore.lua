@@ -9,7 +9,7 @@ if (Lib!=nil and Lib.RD!=nil) then Lib.LifeSupport(ENT); end
 ENT.Type = "anim"
 ENT.Base = "base_anim"
 ENT.PrintName = "Apple Core"
-ENT.Author = "assassin21, Boba Fett, Madman07"
+ENT.Author = "assassin21, Rafael De Jongh, Madman07"
 ENT.WireDebugName = "Apple Core"
 
 list.Set("EAP", ENT.PrintName, ENT);

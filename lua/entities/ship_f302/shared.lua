@@ -2,7 +2,7 @@ ENT.Type = "vehicle"
 ENT.Base = "ship_base"
 
 ENT.PrintName = Lib.Language.GetMessage('ent_ship_f302');
-ENT.Author	= "RononDex, Madman, Boba Fett"
+ENT.Author	= "RononDex, Madman, Rafael De Jongh"
 ENT.Contact	= ""
 ENT.Purpose	= ""
 ENT.Instructions= ""

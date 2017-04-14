@@ -6,7 +6,7 @@
 ENT.Type = "anim"
 ENT.Base = "dhdbase"
 ENT.PrintName = "DHD (SG1)"
-ENT.Author = "aVoN, Madman07, Llapp, Boba Fett, MarkJaw, AlexALX"
+ENT.Author = "aVoN, Madman07, Llapp, Rafael De Jongh, MarkJaw, AlexALX"
 ENT.Category = 	""
 ENT.Spawnable = true
 

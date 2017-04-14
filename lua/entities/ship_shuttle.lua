@@ -22,7 +22,7 @@ ENT.Type = "vehicle"
 ENT.Base = "ship_base"
 
 ENT.PrintName = "Destiny Shuttle"
-ENT.Author	= "RononDex, Iziraider, Madman, Boba Fett"
+ENT.Author	= "RononDex, Iziraider, Madman, Lilou"
 ENT.Contact	= ""
 ENT.Purpose	= ""
 ENT.Instructions= ""
@@ -373,8 +373,10 @@ function ENT:TriggerInput(k,v) --######### Wire Inputs @ RononDex
 	if(k=="Shield") then
 		if((v or 0) >= 1) then
 			if(not(self.Shielded)) then
+				MsgN("Active !")
 				self.Shields:Status(true)
 			else
+				MsgN("Unactive ;(")
 				self.Shields:Status(false)
 			end
 		end

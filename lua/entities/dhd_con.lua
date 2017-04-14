@@ -8,7 +8,7 @@ if (Lib!=nil and Lib.RD!=nil) then Lib.LifeSupport(ENT); end
 ENT.Type = "anim"
 ENT.Base = "dhdbase"
 ENT.PrintName = "DHD (Concept)"
-ENT.Author = "aVoN, Madman07, Boba Fett, MarkJaw, AlexALX"
+ENT.Author = "aVoN, Madman07, Rafael De Jongh, MarkJaw, AlexALX"
 list.Set("EAP", ENT.PrintName, ENT);
 ENT.Category = ""
 ENT.IsDHD = true;

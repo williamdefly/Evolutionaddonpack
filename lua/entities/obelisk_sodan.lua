@@ -6,7 +6,7 @@
 ENT.Type="anim"
 ENT.Base="base_anim"
 ENT.PrintName = Lib.Language.GetMessage("obelisk_sodan");
-ENT.Author = "RononDex, Madman07, Boba Fett"
+ENT.Author = "RononDex, Madman07, Rafael De Jongh"
 ENT.Category = Lib.Language.GetMessage("cat_transportation");
 ENT.Spawnable = true
 list.Set("EAP", ENT.PrintName, ENT);

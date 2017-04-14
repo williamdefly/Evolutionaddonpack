@@ -22,7 +22,7 @@ ENT.Type = "vehicle"
 ENT.Base = "ship_base"
 
 ENT.PrintName = "GoauldTeltak"
-ENT.Author	= "RononDex, Madman07, James, Boba Fett, Elanis"
+ENT.Author	= "RononDex, Madman07, James, Rafael De Jongh, Elanis"
 ENT.Contact	= ""
 ENT.Purpose	= ""
 ENT.Instructions= ""
