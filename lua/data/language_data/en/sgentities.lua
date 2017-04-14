@@ -82,6 +82,13 @@ stargate_tollan = Stargate (Tollan)
 stargate_universe = Stargate (Universe)
 stargate_alteran = Stargate (Alteran)
 
+stargate_c_tool_21 = Eventhorizon skin
+stargate_c_tool_21_sg1 = SG1
+stargate_c_tool_21_infinity = Infinity
+stargate_c_tool_21_universe = Universe
+stargate_c_tool_21_atl = Atlantis
+stargate_c_tool_23 = Eventhorizon color
+
 //Asgard Transporter
 ent_asgart_transporter = Asgard Transporter
 asgardtp_title = Asgard transporter

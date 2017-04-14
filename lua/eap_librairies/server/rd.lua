@@ -187,7 +187,9 @@ end
 function Lib.RD.AddResource(self,resource,maximum,default)
 	if(self.HasRD) then
 		if(Lib.RDThree()) then
-			RD.AddResource(self.Entity,resource,maximum or 0,default or 0);
+			if(RD)then
+				RD.AddResource(self.Entity,resource,maximum or 0,default or 0);
+			end
 			--FIXME: Add LS3 registering here.
 		elseif(Lib.RDEnv()) then
 			if not self.maxresources then self.maxresources = {} end

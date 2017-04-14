@@ -74,13 +74,20 @@ stargate_name = Nom
 
 stargate_atlantis = Stargate (Atlantis)
 stargate_infinity = Stargate (Infinity)
-stargate_movie = Stargate (Movie)
+stargate_movie = Stargate (Film)
 stargate_orlin = Stargate (Orlin)
 stargate_sg1 = Stargate (SG1)
-stargate_supergate = Supergate
+stargate_supergate = Superporte
 stargate_tollan = Stargate (Tollan)
 stargate_universe = Stargate (Universe)
 stargate_alteran = Stargate (Alteran)
+
+stargate_c_tool_21 = Materiau Horizon des evenements
+stargate_c_tool_21_sg1 = SG1
+stargate_c_tool_21_infinity = Infinity
+stargate_c_tool_21_universe = Universe
+stargate_c_tool_21_atl = Atlantis
+stargate_c_tool_23 = Couleur de l'horizon des evenements
 
 //Teleporteur asgard
 ent_asgart_transporter = Teleporteur Asgard

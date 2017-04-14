@@ -187,6 +187,7 @@ function ENT:Initialize()
 	self:AddChevron();
 	self.IsConcept = false;
 	self.RingInbound = false;
+	hook.Add("Tick", self, self.RingTickalt);
 end
 
 --#################  Called when stargate_group_system changed
@@ -444,8 +445,8 @@ function ENT:StopFormula(y,x,n,n2)
 end
 
 --################# Think function added by AlexALX
-function RingTickalt()
-	for k,self in pairs(ents.FindByClass("sg_alteran")) do
+function ENT:RingTickalt()
+	--for k,self in pairs(ents.FindByClass("sg_alteran")) do
 		if (IsValid(self.Ring)) then
 			if (self.Outbound and self.Ring.Moving and self.DiallingSymbol != "") then
 				local angle = tonumber(math.NormalizeAngle(self.Ring.Entity:GetLocalAngles().r))+3;
@@ -546,9 +547,9 @@ function RingTickalt()
 				end
 			end
 		end
-	end
+	--end
 end
-hook.Add("Tick", "RingTick alt", RingTickalt);
+--hook.Add("Tick", "RingTick alt", RingTickalt);
 
 function ENT:SetDiallingSymbol(symbol)
 	if (symbol) then

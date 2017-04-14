@@ -119,26 +119,26 @@ hook.Add( "PlayerSilentDeath", "Lib.KeyBoard.Death", playerDies)
 --######################################
 --############# Keyboard Keys Constants
 --######################################
-Lib.Keyboard.Constants = Lib.Keyboard.Constants or {
-	[ENTER] = 10,
-	[BACKSPACE] = 127,
-	[NUM_0] = 128,
-	[NUM_1] = 129,
-	[NUM_2] = 130,
-	[NUM_3] = 131,
-	[NUM_4] = 132,
-	[NUM_5] = 133,
-	[NUM_6] = 134,
-	[NUM_7] = 135,
-	[NUM_8] = 136,
-	[NUM_9] = 137,
-	[NUM_MUL] = 139
-];
+Lib.KeyBoard.Constants = Lib.KeyBoard.Constants or {
+	["ENTER"] = 10,
+	["BACKSPACE"] = 127,
+	["NUM_0"] = 128,
+	["NUM_1"] = 129,
+	["NUM_2"] = 130,
+	["NUM_3"] = 131,
+	["NUM_4"] = 132,
+	["NUM_5"] = 133,
+	["NUM_6"] = 134,
+	["NUM_7"] = 135,
+	["NUM_8"] = 136,
+	["NUM_9"] = 137,
+	["NUM_MUL"] = 139
+};
 
 -- Damn wire 10/2016 update ...
 hook.Add( "Initialize", "Lib.Wire.KeysOverwrite", function()
 	if (Wire_Keyboard_Remap and Wire_Keyboard_Remap.American and Wire_Keyboard_Remap.American.normal) then
-		Lib.Keyboard.Constants[ENTER] = Wire_Keyboard_Remap.American.normal[KEY_ENTER]
-		Lib.Keyboard.Constants[BACKSPACE] = Wire_Keyboard_Remap.American.normal[KEY_BACKSPACE]
+		Lib.KeyBoard.Constants["ENTER"] = Wire_Keyboard_Remap.American.normal[KEY_ENTER]
+		Lib.KeyBoard.Constants["BACKSPACE"] = Wire_Keyboard_Remap.American.normal[KEY_BACKSPACE]
 	end	
 end);

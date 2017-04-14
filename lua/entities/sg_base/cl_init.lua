@@ -176,11 +176,12 @@ function ENT:Draw()
 end
 
 -- And for some obvious reasons, the hooks "Pre/PostDrawOpaque/Translucent" do not work anymore.
--- SO: FUCK OFF SPRITES - We have to life without them
+-- SO: FUCK OFF SPRITES - We have to live without them
 
 local stargates = {};
 function ENT:Initialize()
 	table.insert(stargates,self.Entity);
+	self.EventHorizonLightColor = self.EventHorizonData.LightColor or self.EventHorizonData.BaseClass.LightColor
 end
 
 --################# Think function, to set the gates address @aVoN

@@ -1,12 +1,34 @@
 ENT.Type = "anim"
 ENT.Base = "sg_base"
 ENT.PrintName = "Stargate (Movie)"
-ENT.Author = "aVoN, Madman07, Llapp, Boba Fett, AlexALX"
+ENT.Author = "aVoN, Madman07, Llapp, Rafael De Jongh, AlexALX"
 ENT.Category = ""
 ENT.Spawnable = true
 
 list.Set("EAP", ENT.PrintName, ENT);
 ENT.WireDebugName = "Stargate Movie"
+
+ENT.IsNewSlowDial = true; // this gate use new slow dial (with chevron lock on symbol)
+
+ENT.EventHorizonDataBak = {
+	OpeningDelay = 0.8,
+	OpenTime = 2.5,
+	NNFix = 0,
+	Kawoosh = "movie",
+}
+
+ENT.EventHorizonDataClassic = {
+	OpeningDelay = 1.5,
+	OpenTime = 2.2,
+	NNFix = 1,
+}
+
+ENT.DialSlowDelay = 2.0
+ENT.EventHorizonData = ENT.EventHorizonDataBak
+
+ENT.StargateRingRotate = true
+ENT.StargateHasSGCType = true
+ENT.StargateTwoPoO = true
 
 function ENT:GetRingAng()
 	if not IsValid(self.EntRing) then self.EntRing=self:GetNWEntity("EntRing") if not IsValid(self.EntRing) then return end end   -- Use this trick beacause NWVars hooks not works yet...

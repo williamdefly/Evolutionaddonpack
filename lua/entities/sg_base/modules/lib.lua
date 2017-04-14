@@ -101,7 +101,7 @@ function ENT:PauseActions(unpause, target)
 			end
 		end
 	else
-		timer.Simple(2.0,function()
+		timer.Simple(0.5,function()
 			if (IsValid(self) and IsValid(self.Target) and IsValid(self.Target.Target) and self.Target.Target == self.Entity) then
 				for k=1,(self.Actions or 0) do
 					timer.Pause(s..k);
@@ -913,66 +913,50 @@ function ENT:FindGateGalaxy(no_target,addr)
 end
 
 -- Set the Dial Delay @Llapp, recode by AlexALX
-function ENT:GetDelay(inbound,fast,chevs,tgate,classic)
-	local e = self.Entity:GetClass();
-	local g = "sg_";
-	local add = 0;
-	if(inbound and not fast)then
-	    add = 29.5;
-		if(tgate == g.."sg1"||tgate == g.."infinity"||tgate == g.."movie"||tgate == g.."universe")then
-			if(e == g.."universe")then
-				add = 2.2;
-			else
-				add = 2.4;
-			end
-		end
-	    if (chevs == 7) then
-			if(tgate == g.."atlantis")then
-				add = 14.33;
-			end
-	    elseif (chevs == 8) then
-			if(tgate == g.."tollan") then
-				add = add+6.5;
-			elseif(tgate == g.."atlantis")then
-				add = 20.15;
-			end
-	    elseif (chevs == 9) then
-			if(e == g.."universe")then
-				if(tgate == g.."tollan") then
-					add = add+12.6;
-				elseif(tgate == g.."atlantis")then
-					add = 23.75;
-				end
-			end
-	    end
-	elseif(fast)then
-	    if(e != g.."universe"&&tgate == g.."universe")then
-		    add = 0.4;
-		elseif(inbound && (tgate == g.."sg1"||tgate == g.."infinity"||tgate == g.."movie") && e == g.."universe")then
-		    add = 0.3;
-		end
-	end
-	add = add + self:GetDelaySG1(tgate,classic);
-	return add;
-end
-
-function ENT:GetDelaySG1(tgate,classic)
-	local e = self.Entity:GetClass();
-	local g = "sg_";
-
-	-- if movie has classic mode, then eh work like on sg1 gate.
-	if (e == g.."movie" and self.Entity.Classic) then
-		e = g.."sg1";
-	end
-	if (tgate == g.."movie" and classic) then
-		tgate = g.."sg1";
-	end
-
-	if ((tgate == g.."sg1"||tgate == g.."infinity"||tgate == g.."tollan") and e != g.."sg1" and e != g.."infinity" and e != g.."tollan") then
-		return 0.65;
+function ENT:GetDelayNN(tgate)
+	if (tgate.EventHorizonData.OpeningDelay>self.EventHorizonData.OpeningDelay) then
+		return tgate.EventHorizonData.OpeningDelay-self.EventHorizonData.OpeningDelay;
 	end
 	return 0;
 end
+
+function ENT:CalcDelaySlow(target,inbound)
+	local t_dly = target.DialSlowDelay
+	local teh_dly = target.EventHorizonData.OpeningDelay 
+	local dly = self.DialSlowDelay 
+	local eh_dly = self.EventHorizonData.OpeningDelay
+	if (inbound) then
+		if (dly<t_dly) then dly = t_dly end
+		if (eh_dly<teh_dly) then dly = dly+(teh_dly-eh_dly) end
+		dly = dly - 0.2
+	else 
+		if (t_dly>dly) then dly = t_dly end
+		if (teh_dly>eh_dly) then dly = dly+(teh_dly-eh_dly) end
+		--dly = dly - 0.1
+	end
+	return dly
+end
+
+function ENT:CalcDelayFast(target,inbound)
+	local t_dly = target.DialFastTime
+	local teh_dly = target.EventHorizonData.OpeningDelay 
+	local dly = self.DialFastTime 
+	local eh_dly = self.EventHorizonData.OpeningDelay
+	if (inbound) then
+		if (dly<t_dly) then dly = t_dly end
+		if (eh_dly<teh_dly) then dly = dly+(teh_dly-eh_dly) end
+	else 
+		if (t_dly>dly) then dly = t_dly end
+		if (teh_dly>eh_dly) then dly = dly+(teh_dly-eh_dly) end
+	end
+	if (dly>self.DialFastTime) then dly = dly-self.DialFastTime;
+	else dly = 0 end
+	return dly
+end
+
+function ENT:DialSlowTime(chevs,caller)
+	return 0
+end 
 
 --##################################
 --#### Duplicator Entity Modifiers (for the gates)
@@ -1020,6 +1004,7 @@ util.AddNetworkString("RefreshGatesList")
 util.AddNetworkString("RemoveGatesFromList")
 
 function ENT:RefreshGateList(type,value,typ,pl)
+	if not IsValid(self.Entity) then return end
 	net.Start( "RefreshGatesList" )
 	net.WriteInt(self.Entity:EntIndex(), 16)
 	net.WriteString(self.Entity:GetClass())
@@ -1536,21 +1521,6 @@ function ENT:AbortDialling()
 		action = action + self.Sequence:DialFail(nil,true);
 		self:RunActions(action);
 	end
-end
-
---################# New slow dial functions by AlexALX
-function ENT:IsNewDial(class)
-	if (class == "sg_sg1"||class == "sg_infinity"||class == "sg_movie"||class == "sg_universe") then
-		return true;
-	end
-	return false
-end
-
-function ENT:GetDelaySlow(class)
-	if (class == "sg_universe") then
-		return 0.7;
-	end
-	return 1.8;
 end
 
 --################# Wire output with chevrons by AlexALX

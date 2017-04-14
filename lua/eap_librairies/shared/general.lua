@@ -259,6 +259,10 @@ function Lib.LOSVector(startpos, endpos, filter, radius)
 end
 
 --Stargates 
+Lib.EventHorizonTypes = Lib.EventHorizonTypes or {}
+function Lib.RegisterEventHorizon(type,data)
+   Lib.EventHorizonTypes[type] = data
+end 
 
 function Lib.IsIrisClosed(gate)
    return gate.irisclosed == true || (gate.Iris ~= nil && gate.Iris.IsActivated == true)

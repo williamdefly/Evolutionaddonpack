@@ -2,7 +2,7 @@ include("shared.lua");
 include("modules/bullets.lua");
 include("modules/collision.lua");
 
-ENT.RenderGroup = RENDERGROUP_OPAQUE -- This FUCKING THING avoids the clipping bug I have had for ages since stargate BETA 1.0. DAMN!
+ENT.RenderGroup = RENDERGROUP_BOTH -- This FUCKING THING avoids the clipping bug I have had for ages since stargate BETA 1.0. DAMN!
 if (Lib.Language and Lib.Language.GetMessage) then
 	ENT.PrintName = Lib.Language.GetMessage("event_horizon");
 	language.Add("eventhorizon",Lib.Language.GetMessage("event_horizon"))
@@ -25,12 +25,18 @@ function ENT:Think()
 		local dlight = DynamicLight(self:EntIndex());
 		if(dlight) then
 			dlight.Pos = self.Entity:GetPos()+self.Entity:GetForward()*50;
-			if (self.Entity:GetNWBool("universe",false)) then
-				local rand = math.random(200,230);
-				dlight.r = rand;
-				dlight.g = rand;
-				dlight.b = rand;
-			else
+			if (self.Entity:GetNWBool("LightCustom",false)) then
+				local col = self.Entity:GetColor() --GetNWVector("LightColor")
+				dlight.r = col.r*0.3
+				dlight.g = col.g*0.3
+				dlight.b = col.b*0.3
+			elseif (self.Entity:GetNWBool("LightSync",false)) then
+				local r = self.Entity:GetNWVector("LightColR")
+				local rand = math.random(r[1],r[2]);
+  				dlight.r = rand;
+  				dlight.g = rand;
+  				dlight.b = rand;
+  			else
 				dlight.r = math.random(20,40);
 				dlight.g = math.random(60,80);
 				dlight.b = math.random(150,230);
@@ -55,31 +61,28 @@ function ENT:Draw()
 		alpha = 255;
 	end
 	self.MaxAlpha = alpha;
+	local color = self.Entity:GetColor()
 	-- Just set the alpha if we aren't initializing it, or it will look ugly from behind
 	if (not self.AllowBacksideDrawing) then
 		if (self:GetNWBool("AllowBacksideDrawing",false)) then
-			self.Entity:SetColor(Color(255,255,255,255)); -- fix for invisible eh
+			color.a = 255
+			self.Entity:SetColor(color); -- fix for invisible eh
 		end
 		self.AllowBacksideDrawing = self:GetNWBool("AllowBacksideDrawing",false);
 	end
 	if(self.AllowBacksideDrawing) then -- This is getting set by the "eventhorizon_stabilize" effect
-		-- ugly workaround fix, damn you garry.
-		local flicker = self:GetNWBool("Flicker",false); -- fix for infinity gate flicker
-		if ((alpha == 150 or flicker) and self.RenderGroup != RENDERGROUP_BOTH) then
-			self.RenderGroup = RENDERGROUP_BOTH
-		elseif (alpha != 150 and self.RenderGroup != RENDERGROUP_OPAQUE and not flicker) then
-			self.RenderGroup = RENDERGROUP_OPAQUE
-		end
-		self.Entity:SetColor(Color(255,255,255,alpha));
-	end
+		color.a = alpha --math.Clamp(alpha,0,color.a)
+		self.Entity:SetColor(color);
+  	end
 end
 
 --################# Sets the alpha of the gate and  @aVoN
 function ENT:SetAlpha(alpha,min)
+	local col = self:GetColor()
 	if(min) then
-		self.Entity:SetColor(Color(255,255,255,math.Clamp(alpha or 1,self.MaxAlpha or 1,255)));
+		self.Entity:SetColor(Color(col.r,col.g,col.b,math.Clamp(alpha or 1,self.MaxAlpha or 1,255)));
 	else
-		self.Entity:SetColor(Color(255,255,255,math.Clamp(alpha or 1,1,self.MaxAlpha or 255)));
+		self.Entity:SetColor(Color(col.r,col.g,col.b,math.Clamp(alpha or 1,1,self.MaxAlpha or 255)));
 	end
 end
 

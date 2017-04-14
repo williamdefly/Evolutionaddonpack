@@ -455,7 +455,7 @@ function ENT:OnButtActivateStargate(inbound)
 						fail = true;
 					end
 					if(not DEBUG and not fail) then -- No debug, no instant open
-						local dly = 0.5 + self:GetDelaySG1(self.Target:GetClass(),self.Target.Classic);
+						local dly = 0.5 + self:GetDelayNN(self.Target:GetClass(),self.Target.Classic);
 						if (self.OnButtLock) then
 							local act = action;
 							action = self.Sequence:New();

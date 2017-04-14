@@ -76,7 +76,12 @@ function TOOL:Register()
 	-- Add the SG Spawner code to the ToolObject
 	if SERVER then
 		if(class) then
-			CreateConVar("sbox_max"..class,self.Entity.Limit);
+ 			CreateConVar("sbox_max"..class,self.Entity.Limit);
+			if (self.Entity.Limits) then
+				for k,v in pairs(self.Entity.Limits) do
+					CreateConVar("sbox_max"..k,v);
+				end
+			end
 			-- First, we register the SENT to the stargate spawning code
 			if (Lib.TOOL and not self.CustomSpawnCode) then Lib.TOOL.CreateSpawner(class,unpack(self.Entity.Keys or {})); end -- Creates the spawner
 			self.SpawnSENT = function(self,p,trace,...)
