@@ -537,7 +537,8 @@ function Lib.TintGate(gate)
    local tintAmount = 255 * (gate.excessPower / gate.excessPowerLimit)
 
    -- fix for universe stargate by AlexALX
-   if (gate:GetClass()=="sg_universe" and IsValid(gate.Gate) and IsValid(gate.Chevron)) then
+   -- new fix much better now in meta/universe code
+   /*if (gate:GetClass()=="sg_universe" and IsValid(gate.Gate) and IsValid(gate.Chevron)) then
 		gate.Gate:SetColor(Color(255, 255 - tintAmount, 255 - tintAmount, 255))
 		gate.Chevron:SetColor(Color(255, 255 - tintAmount, 255 - tintAmount, 255))
 	    for i=1,45 do
@@ -551,11 +552,13 @@ function Lib.TintGate(gate)
 		end
    elseif (gate:GetClass()!="sg_universe") then
       gate:SetColor(Color(255, 255 - tintAmount, 255 - tintAmount, 255))
-   end
+   end*/
+   gate:SetColor(Color(math.Clamp(col.r + tintAmount,0,255), math.Clamp(col.g - tintAmount,0,255), math.Clamp(col.b - tintAmount,0,255), col.a))
 
-   if(gate.chevron7) then
+   -- also custom color support
+   /*if(gate.chevron7) then
       gate.chevron7:SetColor(Color(255, 255 - tintAmount, 255 - tintAmount, 255))
-   end
+   end*/
 
    local iris = Lib.GetIris(gate)
 
@@ -563,8 +566,12 @@ function Lib.TintGate(gate)
       tintAmount = math.min(tintAmount * 2, 128)
 
       --Msg("Setting ", iris, " colour(255, ", 255 - tintAmount, ", ", 255 - tintAmount, ")\n")
-      iris:SetColor(Color(255, 255 - tintAmount, 255 - tintAmount, 255))
+      --iris:SetColor(Color(255, 255 - tintAmount, 255 - tintAmount, 255))
+      iris:SetColor(Color(math.Clamp(col.r + tintAmount,0,255), math.Clamp(col.g - tintAmount,0,255), math.Clamp(col.b - tintAmount,0,255), col.a))
+      iris.OrigColor = col
    end
+
+   gate.OrigColor = col
 end
 
 function Lib.EmitHeat(pos, damage, radius, inflictor)
