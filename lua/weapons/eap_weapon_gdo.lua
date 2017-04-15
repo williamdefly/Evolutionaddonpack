@@ -108,6 +108,8 @@ local function SendCode(EntTable)
 						end
 						timer.Remove("GDOTimer"..id);
 						timer.Simple(5, function() if (IsValid(ent)) then ent.Stand = false; ent:SetNWString("gdo_textdisplay", "GDO") end end);
+					elseif (iris_comp.GDOText and iris_comp.GDOText!="") then
+						EntTable:SetNWString("gdo_textdisplay", iris_comp.GDOText);
 					end
 				else
 					ent:SetNWString("gdo_textdisplay", "GDO");
@@ -115,7 +117,7 @@ local function SendCode(EntTable)
 					timer.Remove("GDOTimer"..id);
 				end
 				if (IsValid(ent) and IsValid(ent.Owner) and ent.Stand and IsValid(ent.gate) and IsValid(ent.gate.Target) and ent.gate.IsOpen) then
-					if (not ent.gate.Target:IsBlocked(1,1)) then
+					if (not ent.gate.Target:IsBlocked(1,1) and answer!=3) then
 						if (IsValid(iris_comp) and iris_comp.GDOText and iris_comp.GDOText!="") then
 							ent:SetNWString("gdo_textdisplay", iris_comp.GDOText);
 						else

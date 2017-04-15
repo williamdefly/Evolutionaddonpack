@@ -753,6 +753,7 @@ vis_sm_laser = Small lasers
 vis_charge_up = Charge up rings
 vis_refl_sphere = Refraction spheres
 vis_stargate_wormhole = Wormhole Animation
+vis_menu_reset = Reset menus positions/size
 
 //Client Tabs
 client_settings_ships = Ships

@@ -754,6 +754,7 @@ vis_sm_laser = Petits lasers
 vis_charge_up = Charger les anneaux
 vis_refl_sphere = Spheres de Refraction
 vis_stargate_wormhole = Animation Vortex
+vis_menu_reset = Remettre Taille et position des fenetres par defaut
 
 //Client Tabs
 client_settings_ships = Vaisseaux

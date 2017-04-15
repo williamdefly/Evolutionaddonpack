@@ -494,5 +494,13 @@ function Lib.Settings.Client()
 	HUDDHDGlyph:SetText(Lib.Language.GetMessage("vis_dhd_glyphs"))
 	HUDDHDGlyph:SetConVar("cl_dhd_letters")
 	HUDDHDGlyph:SetValue(GetConVar("cl_dhd_letters"):GetInt())
+
+	local MenuReset = vgui.Create( "DButton", OtherSettings)
+	MenuReset:SetText(" "..Lib.Language.GetMessage("vis_menu_reset").." ");
+	MenuReset:SetSize( sizew-40, 32 )
+	MenuReset:SetPos(10,345)
+	MenuReset.DoClick = function() 
+		LocalPlayer():ConCommand("eap_reset_menu")
+	end
 end
 concommand.Add("client_settings",Lib.Settings.Client)

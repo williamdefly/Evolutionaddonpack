@@ -116,7 +116,7 @@ net.Receive("Lib.VGUI.Menu",function(len)
 end)
 
 -- ################# Reset vgui settings @ AlexALX
-concommand.Add("stargate_reset_menu",function(ply)
+concommand.Add("eap_reset_menu",function(ply)
 	local RVGUI = vgui.Create("Panel");
 	RVGUI:SetCookieName("Lib.SControlerPanel");
 	RVGUI:SetCookie("SG.Size.W",nil);
@@ -2496,7 +2496,7 @@ function PANEL:AddGatesToList(s)
 			end
 		end
 	end
-	self:SortByColumn();
+	self:SortColumns();
 end
 
 function PANEL:SortColumns()
