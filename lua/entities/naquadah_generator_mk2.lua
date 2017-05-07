@@ -207,7 +207,7 @@ end
 
 function ENT:Bang()
 	if (self.AllowNuke and not self.depleted) then
-		local e = ents.Create("sat_blast_wave")
+		local e = ents.Create("sat_blastwave")
 		e:SetPos(self:GetPos()+self:GetUp()*15)
 		e:Spawn()
 		e:Activate()
