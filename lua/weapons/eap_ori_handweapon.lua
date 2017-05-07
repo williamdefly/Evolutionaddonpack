@@ -138,7 +138,7 @@ function SWEP:PrimaryAttack() --###### Shoot @Ronondex, aVoN
 		if(trace.Hit) then
 			aimvector = (trace.HitPos-shootpos):GetNormalized();
 		end
-		local e = ents.Create("energy_pulse")
+		local e = ents.Create("energypulse")
 		e:SetPos(shootpos + p:GetForward()*94 + p:GetRight()*-15 + p:GetUp()*5)
 		e:PrepareBullet(aimvector, multiply, 8000, 2);
 		e:SetOwner(p);
