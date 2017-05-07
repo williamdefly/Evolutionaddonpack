@@ -18,6 +18,9 @@ IncludeCS('eap_librairies/shared/general.lua');
 IncludeCS('weapons/gmod_tool/eap_base_tool.lua');
 
 if(SERVER)then
+--CAP Reverse compatibility
+include('eap_librairies/server/cap_reversecompatibility.lua')
+
 -- Wiremod
 include('eap_librairies/server/wire.lua');
 
