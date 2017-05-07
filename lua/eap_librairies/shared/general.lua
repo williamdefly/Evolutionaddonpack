@@ -268,6 +268,10 @@ function Lib.IsIrisClosed(gate)
    return gate.irisclosed == true || (gate.Iris ~= nil && gate.Iris.IsActivated == true)
 end
 
+function StarGate.IsStargateDialling(gate)
+   return gate.inuse == true || gate.Dialling == true
+end
+
 --#########################################
 --						Config Part
 --#########################################
