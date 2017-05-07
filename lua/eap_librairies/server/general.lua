@@ -20,7 +20,7 @@ if(ConVarExists("mp_forcecamera"))then
    if(GetConVarNumber("mp_forcecamera")==1) then
       RunConsoleCommand("mp_forcecamera","0")
 
-      print('mp_forcecamera was set to 0 ! Please modify this in server.cfg to hide this line in future launch.')
+      print('mp_forcecamera was set to 0 ! Please modify this in server.cfg to hide this line in future start.')
    end
 end
 
