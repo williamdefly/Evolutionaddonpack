@@ -128,6 +128,10 @@ function EAP.DrawErrors()
 		ErrorText = ErrorText.."\n\n"..Lib.Language.GetMessage('eap_outaded').."\n"
 	end
 
+	if(EAP.GameBeta)
+		ErrorText = ErrorText.."\n\nSorry but we don't support Garry's Mod Beta\n"
+	end
+
 	local DLabel = vgui.Create( "DLabel", ErrorFrame )
 	DLabel:SetPos( ScrW()/17, ScrH()/20 )
 	DLabel:SetSize( ScrW()/2, ScrH()/2 )
@@ -202,6 +206,11 @@ function EAP.Init()
 	if(Lib.HasWire==false) then 
 		errors=errors+1;
 		table.insert(EAP.MissingAddons,"Wiremod");
+	end
+
+	if (string.find(util.RelativePathToFull("gameinfo.txt"),"garrysmodbeta")) then
+		errors=errors+1;
+		EAP.GameBeta = true;
 	end
 	
 	if(errors>0 && CLIENT) then
