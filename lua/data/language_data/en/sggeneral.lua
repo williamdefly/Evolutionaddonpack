@@ -22,12 +22,6 @@ spawninfo_title = Information
 spawninfo_load = Loading...
 spawninfo_news = News
 spawninfo_wiki = Wiki
-spawninfo_forum = Support Forum
-spawninfo_multi = Multi-language support
-// you can create own language support thread in this forum and replace url with your link
-spawninfo_multi_url = http://forum.sg-eap.space/
-// if you changed link, then also change "spawninfo_multi" to "Your_Language Support" written in your language.
-spawninfo_fp = Facepunch Thread
 spawninfo_donate = Donate
 
 //Ship Settings
@@ -196,7 +190,7 @@ stargate_settings_05 = Supported languages (code):
 stargate_settings_06 = Affects menus, entity names and some other things (if translated).
 stargate_settings_07 = Multi-language lib created by AlexALX.
 stargate_settings_08 = Graphical Settings
-stargate_settings_09 = Forum
+stargate_settings_09 = Wiki
 
 //All Settings
 stargate_menu_t1 = Convars

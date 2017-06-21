@@ -5,14 +5,9 @@ end
 MsgN("eap_librairies/client/general.lua")
 
 Lib.HTTP = {
-	FORUM = "http://www.stargate-evolutionaddonpack.com/forum",
-	SITE = "http://www.stargate-evolutionaddonpack.com/",
-	NEWS = "http://www.stargate-evolutionaddonpack.com/",
-	WIKI = "", --No wiki yet
-	MULTI = "",
-	FACEPUNCH = "",
-	CREDITS = "https://github.com/williamdefly/Evolutionaddonpack/blob/master/credits.txt",
-	DONATE = "https://www.paypal.com/fr/cgi-bin/webscr?cmd=_flow&SESSION=0XQRvDFmvStncmnKSn6J8NbwuSV8DiuYGX_Ce2heEJmS-576wKb1EM-GLH0&dispatch=5885d80a13c0db1f8e263663d3faee8d6625bf1e8bd269586d425cc639e26c6a"
+	NEWS = "https://github.com/williamdefly/Evolutionaddonpack/milestones",
+	WIKI = "https://github.com/williamdefly/Evolutionaddonpack/wiki",
+	DONATE = ""
 };
 
 --#########################################

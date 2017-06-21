@@ -2,7 +2,6 @@ global_lang_name = Français
 
 //Categories
 cat_stargate = Porte des Etoiles
-cat_ship = Vaisseaux
 cat_small_ship = Chasseurs/Navettes 
 cat_capital_ship = Vaisseaux mères
 cat_others = Divers
@@ -23,12 +22,6 @@ spawninfo_title = Informations
 spawninfo_load = Chargement ...
 spawninfo_news = News
 spawninfo_wiki = Wiki
-spawninfo_forum = Forum
-spawninfo_multi =  Support Multi-language
-// you can create own language support thread in this forum and replace url with your link
-spawninfo_multi_url = www.sg-eap.space/forum/index.php
-// if you changed link, then also change "spawninfo_multi" to "Your_Language Support" written in your language.
-spawninfo_fp = Sujet Facepunch
 spawninfo_donate = Dons
 
 //Ship Settings
@@ -197,7 +190,7 @@ stargate_settings_05 = Langues supportés:
 stargate_settings_06 = Ces changements de langue s'appliquent à toutes les parties de l'addon ( entités, armes, menu, etc )
 stargate_settings_07 = Librairie multi-language crée par AlexALX
 stargate_settings_08 = Paramètres Graphiques
-stargate_settings_09 = Forum
+stargate_settings_09 = Wiki
 
 //All Settings
 stargate_menu_t1 = Convars

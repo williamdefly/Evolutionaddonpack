@@ -376,17 +376,17 @@ local function SG_Settings_OpenNet()
 		{"stargate_eap_menu_18", "horizon"},
 		{"stargate_eap_menu_19", "ori"},
 		{"stargate_eap_menu_20", "staffstat"},
-		--{"stargate_eap_menu_21", "dispenser"},
+		{"stargate_eap_menu_21", "dispenser"},
 		{"stargate_eap_menu_22", "destcon"},
-		--{"stargate_eap_menu_23", "applecore"},
+		{"stargate_eap_menu_23", "applecore"},
 		--{"stargate_eap_menu_24", "lantholo"},
 		--{"stargate_eap_menu_25", "shieldcore"},
 		{"stargate_eap_menu_26", "obelisk_sodan"},
 		{"stargate_eap_menu_27", "obelisk_ancient"},
-		--{"entity_mcd", "mcd"},
+		{"entity_mcd", "mcd"},
 		{"stargate_eap_menu_39", "ships"},
 		{"stargate_eap_menu_40", "iris_comp"},
-		--{"weapon_misc_virus", "agv"},
+		{"weapon_misc_virus", "agv"},
 	}
 	SetupConvars(limits,"EAP_","_max");
 
@@ -398,11 +398,11 @@ local function SG_Settings_OpenNet()
 		{"stargate_eap_sbox_04", "zpmhub"},
 		{"stargate_eap_sbox_05", "sgc_zpm_hub"},
 		{"stargate_eap_sbox_06", "gatebearing"},
-		--{"stargate_eap_sbox_07", "brazier"},
-		--{"stargate_eap_sbox_08", "doors_contr"},
-		--{"stargate_eap_sbox_09", "eap_doors_frame"},
-		--{"stargate_eap_sbox_10", "eap_console"},
-		--{"stool_controlpanel", "control_panel"},
+		{"stargate_eap_sbox_07", "brazier"},
+		{"stargate_eap_sbox_08", "doors_contr"},
+		{"stargate_eap_sbox_09", "eap_doors_frame"},
+		{"stargate_eap_sbox_10", "eap_console"},
+		{"stool_controlpanel", "control_panel"},
 		{"stargate_eap_sbox_11", "drone_launcher"},
 		{"stargate_eap_sbox_12", "floor_chevron"},
 		{"stargate_eap_sbox_13", "sg_iris"},
@@ -423,6 +423,8 @@ local function SG_Settings_OpenNet()
 		{"stargate_eap_sbox_25", "wraith_harvester"},
 		{"stargate_eap_sbox_26", "zpm_mk3"},
 		{"stool_naq_bottle", "naquadah_bottle"},
+		{"stool_sgcmonitor", "sgc_monitors"},
+		{"stool_sgcmonitor_srv", "sgc_servers"},
 	}
 	SetupConvars(sboxlimits,"sbox_max");
 

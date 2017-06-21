@@ -198,16 +198,9 @@ hook.Add( "EAPTab", "AddEAPEntity", function( pnlContent, tree, node )
 	end
 	local node = tree:AddNode( Lib.Language.GetMessage("spawninfo_title"), "icon16/information.png", true );
 
-	local multi_url = Lib.Language.GetMessage("spawninfo_multi_url");
-	if (not Lib.Language.ValidMessage("spawninfo_multi_url")) then
-		multi_url = Lib.HTTP.MULTI;
-	end
 	local cats = {
 		{Lib.Language.GetMessage("spawninfo_news"),Lib.HTTP.NEWS,"icon16/newspaper.png"},
-		--{Lib.Language.GetMessage("spawninfo_wiki"),Lib.HTTP.WIKI,"icon16/page_white_text.png"},
-		{Lib.Language.GetMessage("spawninfo_forum"),Lib.HTTP.FORUM,"icon16/group.png"},
-		--{Lib.Language.GetMessage("spawninfo_multi"),multi_url,"icon16/user_go.png"},
-		--{Lib.Language.GetMessage("spawninfo_fp"),Lib.HTTP.FACEPUNCH,"icon16/transmit_blue.png"},
+		{Lib.Language.GetMessage("spawninfo_wiki"),Lib.HTTP.WIKI,"icon16/page_white_text.png"},
 		--{Lib.Language.GetMessage("spawninfo_donate"),Lib.HTTP.DONATE,"icon16/money_add.png"},
 	}
 
@@ -397,7 +390,7 @@ function Lib.Settings.General(Panel)
 	forum:SetImage("icon16/comments.png");
 	forum.DoClick = function(btn)
 		local help = vgui.Create("SHTMLHelper");
-		help:SetURL("http://sg-eap.space/");
+		help:SetURL(Lib.HTTP.WIKI);
 		help:SetText(Lib.Language.GetMessage("stargate_settings_09"));
 		help:SetVisible(true);
 	end

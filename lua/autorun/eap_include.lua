@@ -59,6 +59,9 @@ IncludeCS('eap_librairies/client/keyboard.lua');
 
 IncludeCS('eap_librairies/shared/keyboard.lua');
 
+-- RT Manager
+IncludeCS('eap_librairies/client/rt_mgr.lua');
+
 --Settings
 IncludeCS("eap_librairies/shared/general_settings.lua")
 IncludeCS('eap_librairies/shared/ships_settings.lua');
