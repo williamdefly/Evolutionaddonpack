@@ -228,7 +228,7 @@ function ENT:ToggleCloak() --############# Toggle Cloak @ RononDex
 						fx:SetStart(pos);
 						fx:SetEntity(self);
 						fx:SetScale(-2);
-					util.Effect("cloaking",fx,true,true);
+					util.Effect("cloak",fx,true,true);
 				end
 				
 				if(self.Inflight)then
@@ -260,7 +260,7 @@ function ENT:ToggleCloak() --############# Toggle Cloak @ RononDex
 					fx:SetStart(pos);
 					fx:SetEntity(self);
 					fx:SetScale(2);
-					util.Effect("cloaking",fx,true,true);
+					util.Effect("cloak",fx,true,true);
 				end
 
 				if IsValid(self.Pilot) then self.Pilot:SetNoTarget(true); end
