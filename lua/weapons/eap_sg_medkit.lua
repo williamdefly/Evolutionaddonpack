@@ -171,7 +171,7 @@ function SWEP:SecondaryAttack()
 			if (IsValid(self) and IsValid(self.Owner)) then
 				local ply = self.Owner;
 				local tr = ply:GetEyeTraceNoCursor();
-	   			local ent = ents.Create("sg_adrenaline_thrown");
+	   			local ent = ents.Create("sg_adrenalineThrown");
 		   		ent:SetPos(tr.StartPos+ply:GetAimVector()-Vector(0,0,15))
 		   		ent:SetAngles(Angle(0,ply:EyeAngles().y,0))
 		   		ent:Spawn()
