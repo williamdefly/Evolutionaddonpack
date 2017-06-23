@@ -85,13 +85,6 @@ function TOOL:Register()
 			-- First, we register the SENT to the stargate spawning code
 			if (Lib.TOOL and not self.CustomSpawnCode) then Lib.TOOL.CreateSpawner(class,unpack(self.Entity.Keys or {})); end -- Creates the spawner
 			self.SpawnSENT = function(self,p,trace,...)
-				-- if (StarGate_Group and StarGate_Group.Error == true) then Lib.ShowError(p); return
-				-- elseif (StarGate_Group==nil or StarGate_Group.Error==nil) then
-				-- 	Msg("Evolution Addon Pack - Unknown Error\n");
-				-- 	p:SendLua("Msg(\"Evolution Addon Pack - Unknown Error\\n\")");
-				-- 	p:SendLua("GAMEMODE:AddNotify(\"Evolution Addon Pack: Unknown Error\", NOTIFY_ERROR, 5); surface.PlaySound( \"buttons/button2.wav\" )");
-				-- 	return;
-				-- end
 				if (Lib.NotSpawnable(self.Mode,p,"tool") ) then return end
 				-- Now, spawn the SENT
 				if (Lib.TOOL) then
@@ -109,14 +102,6 @@ function TOOL:Register()
 			-- We have a PreEntitySpawn function - Register it to the StarGate SentSpawn class
 			if(self.PreEntitySpawn and Lib.TOOL) then
 				Lib.TOOL.Entities[class].PreEntitySpawn = function(p,e,...)
-					-- if (StarGate_Group and StarGate_Group.Error == true) then StarGate_Group.ShowError(p); return
-					-- elseif (StarGate_Group==nil or StarGate_Group.Error==nil) then
-					-- 	Msg("Evolution Addon Pack - Unknown Error\n");
-					-- 	p:SendLua("Msg(\"Evolution Addon Pack - Unknown Error\\n\")");
-					-- 	p:SendLua("GAMEMODE:AddNotify(\"Evolution Addon Pack: Unknown Error\", NOTIFY_ERROR, 5); surface.PlaySound( \"buttons/button2.wav\" )");
-					-- 	e:Remove();
-					-- 	return;
-					-- end
 					if (Lib.NotSpawnable(self.Mode,p,"tool") ) then e:Remove(); return end
 					self.PreEntitySpawn(self,p,e,...);
 				end

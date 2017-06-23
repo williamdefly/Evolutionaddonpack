@@ -172,13 +172,6 @@ if SERVER then
 			ply = player.GetByID(1);
 		end
 		if (IsValid(ply)) then
-			if (StarGate_Group and StarGate_Group.Error == true) then StarGate_Group.ShowError(ply); return
-			elseif (StarGate_Group==nil or StarGate_Group.Error==nil) then
-				Msg("Carter Addon Pack - Unknown Error\n");
-				ply:SendLua("Msg(\"Carter Addon Pack - Unknown Error\\n\")");
-				ply:SendLua("GAMEMODE:AddNotify(\"Carter Addon Pack: Unknown Error\", NOTIFY_ERROR, 5); surface.PlaySound( \"buttons/button2.wav\" )");
-				return;
-			end
 			if (Lib.NotSpawnable("gravity_controller",ply,"tool")) then return end
 
 			local PropLimit = GetConVar("sbox_maxgravity_controller"):GetInt()
