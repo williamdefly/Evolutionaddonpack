@@ -560,7 +560,7 @@ function Lib.ColorMenu(prop,ent)
 	local image = vgui.Create("DImage" , Frame);
     image:SetSize(16, 16);
     image:SetPos(5, 5);
-    image:SetImage("gui/eap_logo");
+    image:SetImage("img/eap_logo");
 	
 	local Mixer = vgui.Create( "DColorMixer", Frame )
 	Mixer:SetAlphaBar( false ) 	

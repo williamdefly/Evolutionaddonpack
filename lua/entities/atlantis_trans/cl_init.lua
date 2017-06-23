@@ -72,7 +72,7 @@ function PANEL:Init()
 	self:SetTitle("")
 	self.Logo = vgui.Create("DImage",self);
 	self.Logo:SetPos(8,10);
-	self.Logo:SetImage("gui/cap_logo");
+	self.Logo:SetImage("img/eap_logo");
 	self.Logo:SetSize(16,16);
  	self.TextEntry = vgui.Create( "DTextEntry", self )
  	self.TextEntry:SetText("")
