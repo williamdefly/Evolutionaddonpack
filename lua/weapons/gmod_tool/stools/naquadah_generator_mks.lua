@@ -16,13 +16,13 @@ local entityName = "naquadah_generator_mks"
 TOOL.Entity.Class = "naquadah_generator_mks";
 TOOL.Entity.Limit = 10;
 
-TOOL.Topic["name"] = Lib.Language.GetMessage("stool_naquadah_generator_mks_spawner");
-TOOL.Topic["desc"] = Lib.Language.GetMessage("stool_naquadah_generator_mks_create");
-TOOL.Topic[0] = Lib.Language.GetMessage("stool_naquadah_generator_mks_desc");
-TOOL.Language["Undone"] = Lib.Language.GetMessage("stool_naquadah_generator_mks_undone");
-TOOL.Language["Cleanup"] = Lib.Language.GetMessage("stool_naquadah_generator_mks_cleanup");
-TOOL.Language["Cleaned"] = Lib.Language.GetMessage("stool_naquadah_generator_mks_cleaned");
-TOOL.Language["SBoxLimit"] = Lib.Language.GetMessage("stool_naquadah_generator_mks_limit");
+TOOL.Topic["name"] = Lib.Language.GetMessage("stool_naq_gen_mks_spawner");
+TOOL.Topic["desc"] = Lib.Language.GetMessage("stool_naq_gen_mks_create");
+TOOL.Topic[0] = Lib.Language.GetMessage("stool_naq_gen_mks_desc");
+TOOL.Language["Undone"] = Lib.Language.GetMessage("stool_naq_gen_mks_undone");
+TOOL.Language["Cleanup"] = Lib.Language.GetMessage("stool_naq_gen_mks_cleanup");
+TOOL.Language["Cleaned"] = Lib.Language.GetMessage("stool_naq_gen_mks_cleaned");
+TOOL.Language["SBoxLimit"] = Lib.Language.GetMessage("stool_naq_gen_mks_limit");
 
 function TOOL:LeftClick(t)
 	if(t.Entity and t.Entity:IsPlayer()) then return false end;
@@ -30,7 +30,7 @@ function TOOL:LeftClick(t)
 	if(CLIENT) then return true end;
 	local p = self:GetOwner();
 	if(p:GetCount("naquadah_generator_mks")>=GetConVar("sbox_maxnaquadah_generator_mks"):GetInt()) then
-		p:SendLua("GAMEMODE:AddNotify(Lib.Language.GetMessage(\"stool_naquadah_generator_mks_limit\"), NOTIFY_ERROR, 5); surface.PlaySound( \"buttons/button2.wav\" )");
+		p:SendLua("GAMEMODE:AddNotify(Lib.Language.GetMessage(\"stool_naq_gen_mks_limit\"), NOTIFY_ERROR, 5); surface.PlaySound( \"buttons/button2.wav\" )");
 		return false;
 	end
 	local ang = p:GetAimVector():Angle(); ang.p = 0; ang.r = 0; ang.y = (ang.y+180) % 360
@@ -133,7 +133,7 @@ function TOOL.BuildCPanel(panel)
 		Models = list.Get(entityName.."Models")
    })
 
-   panel:AddControl("Label", {Text = Lib.Language.GetMessage("stool_naquadah_generator_mks_fulldesc"),})
+   panel:AddControl("Label", {Text = Lib.Language.GetMessage("stool_naq_gen_mks_fulldesc"),})
 end
 --[[
 function TOOL:ControlsPanel(Panel)

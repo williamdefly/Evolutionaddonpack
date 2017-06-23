@@ -6,6 +6,7 @@ cat_small_ship = Chasseurs/Navettes
 cat_capital_ship = Vaisseaux mères
 cat_others = Divers
 cat_transportation = Teleportation
+cat_decoration = Decoration
 cat_weapons = Armes
 cat_swep = Armes à Main - SWEP
 cat_props = Props

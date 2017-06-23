@@ -203,6 +203,18 @@ stool_wraithbomb_yield = Yield
 stool_wraithbomb_timer = Timer
 stool_wraithbomb_power = Power
 
+// Harvester
+stool_wraith_harvest_spawner = Wraith Harvester
+stool_wraith_harvest_create = Spawns a harvester which can suck up people
+stool_wraith_harvest_desc = Left click, to spawn or update a harvester
+stool_wraith_harvest_undone = Wraith Harvester removed
+stool_wraith_harvest_cleanup = Wraith Harvesters
+stool_wraith_harvest_cleaned = Removed all Wraith Harvesters
+stool_wraith_harvest_limit = Hit the Wraith Harvesters limit
+stool_wraith_harvest_suck = Suck:
+stool_wraith_harvest_spit = Spit:
+stool_wraith_harvest_beam = Beam Always Straigth Down
+
 // Naquadah Bomb
 stool_naq_bomb = Naquadah Bomb
 stool_naqbomb_spawner = Naquadah Bomb Spawner

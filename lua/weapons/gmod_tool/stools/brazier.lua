@@ -6,7 +6,7 @@ if (Lib==nil or Lib.Language==nil or Lib.Language.GetMessage==nil) then return e
 include("weapons/gmod_tool/eap_base_tool.lua");
 
 TOOL.Category=Lib.Language.GetMessage("cat_decoration");
-TOOL.Name=Lib.Language.GetMessage("stool_brazier");
+TOOL.Name=Lib.Language.GetMessage("stool_braziers");
 TOOL.ClientConVar["autoweld"] = 1;
 
 TOOL.ClientConVar["model"] = "models/Boba_Fett/props/brazier.mdl";

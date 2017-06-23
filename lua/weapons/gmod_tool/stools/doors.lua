@@ -6,7 +6,7 @@ if (Lib==nil or Lib.Language==nil or Lib.Language.GetMessage==nil) then return e
 include("weapons/gmod_tool/eap_base_tool.lua");
 
 TOOL.Category=Lib.Language.GetMessage("cat_decoration");
-TOOL.Name=Lib.Language.GetMessage("stool_door");
+TOOL.Name=Lib.Language.GetMessage("stool_doors");
 TOOL.ClientConVar["autoweld"] = 1;
 TOOL.ClientConVar["toggle"] = KEY_PAD_2;
 TOOL.ClientConVar["diff_text"] = 0;
@@ -82,7 +82,7 @@ function TOOL:ControlsPanel(Panel)
 		Label=Lib.Language.GetMessage("stool_toggle"),
 		Command="doors_toggle",
 	});
-	Panel:CheckBox(Lib.Language.GetMessage("stool_cap_doors_redt"),"doors_diff_text");
+	Panel:CheckBox(Lib.Language.GetMessage("stool_doors_redt"),"doors_diff_text");
 	Panel:CheckBox(Lib.Language.GetMessage("stool_autoweld"),"doors_autoweld");
 end
 

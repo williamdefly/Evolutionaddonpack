@@ -9,19 +9,19 @@ TOOL.Name=Lib.Language.GetMessage("stool_wh_bomb");
 TOOL.ClientConVar["power"] = 5;
 TOOL.ClientConVar["yield"] = 500;
 TOOL.ClientConVar["timer"] = 5;
-TOOL.ClientConVar["model"] = "models/Assassin21/wraith_bomb/stunner_bomb.mdl";
+TOOL.ClientConVar["model"] = "models/Assassin21/wraithbomb/stunner_bomb.mdl";
 TOOL.ClientConVar["autoweld"] = 0;
 
 TOOL.Entity.Class = "wraithbomb";
 TOOL.Entity.Keys = {"model","power","yield", "timer","autoweld"}; -- These keys will get saved from the duplicator
 TOOL.Entity.Limit = 1;
-TOOL.Topic["name"] = Lib.Language.GetMessage("stool_wraith_bomb_spawner");
-TOOL.Topic["desc"] = Lib.Language.GetMessage("stool_wraith_bomb_create");
-TOOL.Topic[0] = Lib.Language.GetMessage("stool_wraith_bomb_desc");
-TOOL.Language["Undone"] = Lib.Language.GetMessage("stool_wraith_bomb_undone");
-TOOL.Language["Cleanup"] = Lib.Language.GetMessage("stool_wraith_bomb_cleanup");
-TOOL.Language["Cleaned"] = Lib.Language.GetMessage("stool_wraith_bomb_cleaned");
-TOOL.Language["SBoxLimit"] = Lib.Language.GetMessage("stool_wraith_bomb_limit");
+TOOL.Topic["name"] = Lib.Language.GetMessage("stool_wraithbomb_spawner");
+TOOL.Topic["desc"] = Lib.Language.GetMessage("stool_wraithbomb_create");
+TOOL.Topic[0] = Lib.Language.GetMessage("stool_wraithbomb_desc");
+TOOL.Language["Undone"] = Lib.Language.GetMessage("stool_wraithbomb_undone");
+TOOL.Language["Cleanup"] = Lib.Language.GetMessage("stool_wraithbomb_cleanup");
+TOOL.Language["Cleaned"] = Lib.Language.GetMessage("stool_wraithbomb_cleaned");
+TOOL.Language["SBoxLimit"] = Lib.Language.GetMessage("stool_wraithbomb_limit");
 
 function TOOL:LeftClick(t)
 	if(t.Entity and t.Entity:IsPlayer()) then return false end;
@@ -66,10 +66,10 @@ function TOOL:PostEntitySpawn(p,e,model,power,time,yield,autoweld)
 end
 
 function TOOL:ControlsPanel(Panel)
-	Panel:NumSlider(Lib.Language.GetMessage("stool_wraithbomb_yield"),"wraith_bomb_yield",100,1000,0);
-	Panel:NumSlider(Lib.Language.GetMessage("stool_wraithbomb_timer"),"wraith_bomb_timer",5,60,0);
-	Panel:NumSlider(Lib.Language.GetMessage("stool_wraithbomb_power"),"wraith_bomb_power",5,30,0);
-	Panel:CheckBox(Lib.Language.GetMessage("stool_autoweld"),"wraith_bomb_autoweld"):SetToolTip("Autoweld");
+	Panel:NumSlider(Lib.Language.GetMessage("stool_wraithbomb_yield"),"wraithbomb_yield",100,1000,0);
+	Panel:NumSlider(Lib.Language.GetMessage("stool_wraithbomb_timer"),"wraithbomb_timer",5,60,0);
+	Panel:NumSlider(Lib.Language.GetMessage("stool_wraithbomb_power"),"wraithbomb_power",5,30,0);
+	Panel:CheckBox(Lib.Language.GetMessage("stool_autoweld"),"wraithbomb_autoweld"):SetToolTip("Autoweld");
 end
 
 TOOL:Register();

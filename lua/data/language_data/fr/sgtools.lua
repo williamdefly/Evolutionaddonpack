@@ -5,10 +5,10 @@ stool_autolink_desc = Relier automatiquement l'entité au ressource nodes ?
 stool_disabled_ship = Ce vaisseau est désactivé sur ce serveur!
 stool_disabled_tool = Cet Outils est désactivé sur ce serveur!
 stool_disabled_ent = Cette entité est désactivée sur ce serveur!
-stool_model = Model:
+stool_model = Modèle:
 stool_size = Taille:
 stool_brightness = Luminosité:
-stool_toggle = Toggle:
+stool_toggle = Bascule:
 stool_desc = Description:
 stool_activate = Activer:
 stool_deactivate = Desactiver:
@@ -192,9 +192,9 @@ stool_stargate_cloaking_ca_desc = Si selectionné, toutes les props attachées s
 
 // Wraith Stun Bomb
 stool_wh_bomb = Bombe Wraith
-stool_wraith_bomb_spawner = Createur de bombes Wraith
-stool_wraith_bomb_create = Creer une bombe Wraith
-stool_wraith_bomb_desc = Clic gauche pour spawner la bombe
+stool_wraithbomb_spawner = Createur de bombes Wraith
+stool_wraithbomb_create = Creer une bombe Wraith
+stool_wraithbomb_desc = Clic gauche pour spawner la bombe
 stool_wraithbomb_undone = Bombe Wraith supprimée
 stool_wraithbomb_cleanup = Bombe Wraith
 stool_wraithbomb_cleaned = Toutes les bombes Wraith sont supprimée
@@ -202,6 +202,18 @@ stool_wraithbomb_limit = Maximum de bombes existantes
 stool_wraithbomb_yield = Rayon
 stool_wraithbomb_timer = Temps
 stool_wraithbomb_power = Puissance
+
+// Harvester
+stool_wraith_harvest_spawner = Créateur de Téléporteur Wraith
+stool_wraith_harvest_create = Créer un Téléporteur Wraith qui stocke les personnes
+stool_wraith_harvest_desc = Clique gauche pour créer ou mettre à jour un Téléporteur Wraith
+stool_wraith_harvest_undone = Téléporteur Wraith supprimé
+stool_wraith_harvest_cleanup = Téléporteur Wraith
+stool_wraith_harvest_cleaned = Tous les Téléporteurs Wraith sont supprimés
+stool_wraith_harvest_limit = Limite de Téléporteurs Wraith atteinte
+stool_wraith_harvest_suck = Stocker:
+stool_wraith_harvest_spit = Rematérialiser:
+stool_wraith_harvest_beam = Rayon toujours dirigé vers le bas
 
 // Naquadah Bomb
 stool_naq_bomb = Bombe au Naquadah
@@ -372,7 +384,7 @@ stool_tampered_zpm_cleanup = E2PZ Altéré
 stool_tampered_zpm_cleaned = Tout les E2PZ Altérés sont supprimés
 stool_tampered_zpm_limit = Maximum d'E2PZ Altéré atteint
 stool_tampered_zpm_fulldesc = Ceci est un E2PZ Altéré, pour l'utiliser vous aurez besoin d'un addon energetique ( Spacebuild, Environments, Spacelife ). Si vous n'avez pas un de ces addons, cet objet vous est inutile.
-stool_tampered_zpm_fulldesc2 = Camulus a trouvé cet E2PZ dans un avant-poste ancien. Ne pouvant l'utiliser, il decida de le pieger avec une substance volatile reactive au champs electriques. Il en fit dont aux Tau'ris afin qu'ils se detruisent eux-mêmes. Bill Lee decouvra cette substance lorsqu'il fallu inonder la base de rayons gamma. L'explosion estimée de ce dispositif à 50%% de charge, aurait detruit le systeme solaire complet. (SG1: "Zero Hour") Il eut des essais pour retirer la substance dans l'E2PZ mais lors de l'essai, cela detrusit la planete sur laquelle il fut.
+stool_tampered_zpm_fulldesc2 = Camulus a trouvé cet E2PZ dans un avant-poste ancien. Ne pouvant l'utiliser, il decida de le pieger avec une substance volatile reactive au champs electriques. Il en fit dont aux Tau'ris afin qu'ils se detruisent eux-mêmes. Bill Lee decouvra cette substance lorsqu'il fallu inonder la base de rayons gamma. L'explosion estimée de ce dispositif à 50%% de charge, aurait detruit le systeme solaire complet. (SG1: "Zero Hour") Il eut des essais pour retirer la substance dans l'E2PZ mais lors de l'essai, cela detruisit la planete sur laquelle il fut.
 
 // ZPM MK III
 stool_zpm_mk3 = E2PZ MK3

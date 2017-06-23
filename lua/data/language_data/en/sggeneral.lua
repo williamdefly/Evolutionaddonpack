@@ -6,6 +6,7 @@ cat_small_ship = Fighter/Shuttle
 cat_capital_ship = Capital Ship
 cat_others = Others
 cat_transportation = Transportation
+cat_decoration = Embellishment
 cat_weapons = Weapons
 cat_swep = Hand Weapons - SWEP
 cat_props = Props
