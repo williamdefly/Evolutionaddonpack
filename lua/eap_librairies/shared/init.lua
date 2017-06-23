@@ -128,7 +128,7 @@ function EAP.DrawErrors()
 		ErrorText = ErrorText.."\n\n"..Lib.Language.GetMessage('eap_outaded').."\n"
 	end
 
-	if(EAP.GameBeta)
+	if(EAP.GameBeta) then
 		ErrorText = ErrorText.."\n\nSorry but we don't support Garry's Mod Beta\n"
 	end
 
