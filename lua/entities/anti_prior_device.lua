@@ -13,7 +13,7 @@ ENT.WireDebugName = "Anti Prior Device"
 ENT.Author = "assassin21, Rafael De Jongh"
 ENT.Instructions= ""
 ENT.Contact = "zoellner21@gmail.com"
-ENT.Spawnable = true
+list.Set("EAP", ENT.PrintName, ENT);
 
 ENT.RenderGroup = RENDERGROUP_BOTH
 ENT.AutomaticFrameAdvance = true

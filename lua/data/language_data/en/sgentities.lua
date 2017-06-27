@@ -236,3 +236,7 @@ anti_prior_c_t = Immunity Mode
 anti_prior_c_1 = Owner and friends
 anti_prior_c_2 = Only for owner
 anti_prior_c_3 = No one
+
+// MALP
+malp = MALP
+weapon_malp_remote = MALP Remote
