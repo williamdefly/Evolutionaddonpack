@@ -234,7 +234,7 @@ function Lib.Settings.Client()
 
 	local Dakara = vgui.Create("DLabel", WeaponsSettings2)
 	Dakara:SetPos(10,105)
-	Dakara:SetText(Lib.Language.GetMessage("entity_dakara"))
+	Dakara:SetText(Lib.Language.GetMessage("dakara"))
 	Dakara:SizeToContents()
 
 	local DakaraChargeUp = vgui.Create("DCheckBoxLabel",WeaponsSettings2)

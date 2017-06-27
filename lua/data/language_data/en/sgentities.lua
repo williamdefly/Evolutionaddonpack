@@ -89,8 +89,7 @@ stargate_c_tool_21_atl = Atlantis
 stargate_c_tool_23 = Eventhorizon color
 
 //Asgard Transporter
-ent_asgart_transporter = Asgard Transporter
-asgardtp_title = Asgard transporter
+asgardtp = Asgard Transporter
 asgardtp_target = Target
 asgardtp_target_desc = Choose target what you want to teleport
 asgardtp_dest = Destination
@@ -117,7 +116,7 @@ asgardtp_jamming = Can't teleport by this coordinates - jamming device online.
 asgardtp_succ = Successful teleportation.
 
 //Atlantis Transporter
-ent_atlantis_trans = Atlantis Transporter
+atl_tp = Atlantis Transporter
 atl_tp_01 = Atlantis Transporter Settings
 atl_tp_02 = Destination transporter name:
 atl_tp_03 = Save
@@ -137,7 +136,7 @@ sodan_obelisk_menu = Set obelisk password (only numbers from 1 to 6!):
 obelisk_ancient = Ancient Obelisk
 
 //Iris Computer
-ent_iris_computer = Iris Computer
+iriscomp = Iris Computer
 iriscomp_title = Iris Computer Menu
 iriscomp_code = Iris Code
 iriscomp_desc = Description
@@ -152,8 +151,7 @@ iriscomp_toggle = Toggle Iris
 iriscomp_ok = Save
 
 // Dakara
-entity_dakara = Dakara Weapon
-ancient_control_panel = Ancient Control Panel
+dakara = Dakara Weapon
 dakara_energy_kill = Dakara Energy Wave
 dakara_panel = Dakara Device Control Panel
 dakara_power = Set the Power of Device, which affect on radius and time of charging.
@@ -170,9 +168,10 @@ dakara_menu_09 = Desintegrate NPCs
 dakara_menu_10 = Set for desintegrate NPCs.
 dakara_menu_11 = Close
 dakara_menu_12 = Launch
+ancient_control_panel = Ancient Control Panel
 
 // Shaped Charge
-entity_directional_nuke = Shaped Charge
+directional_nuke = Shaped Charge
 directional_nuke_menu_t = Shaped Charge Timer
 directional_nuke_menu_d = Seconds to explosion:
 directional_nuke_menu_c = Cancel
@@ -230,3 +229,10 @@ mcd_classname = Classname: %s
 ent_shield_identifier = Shield Identifier
 shieldid_off = Disable
 shieldid_on = Enable
+
+// Anti Prior
+anti_prior = Anti-Prior Device
+anti_prior_c_t = Immunity Mode
+anti_prior_c_1 = Owner and friends
+anti_prior_c_2 = Only for owner
+anti_prior_c_3 = No one

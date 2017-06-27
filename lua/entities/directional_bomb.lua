@@ -154,7 +154,7 @@ if CLIENT then
 
 if (Lib.Language!=nil and Lib.Language.GetMessage!=nil) then
 	ENT.Category = Lib.Language.GetMessage("cat_weapons");
-	ENT.PrintName = Lib.Language.GetMessage("entity_directional_nuke");
+	ENT.PrintName = Lib.Language.GetMessage("directional_nuke");
 end
 
 local font = {

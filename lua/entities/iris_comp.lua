@@ -457,7 +457,7 @@ if CLIENT then
 
 if (Lib.Language!=nil and Lib.Language.GetMessage!=nil) then
 ENT.Category = Lib.Language.GetMessage("cat_stargate");
-ENT.PrintName = Lib.Language.GetMessage("ent_iris_computer");
+ENT.PrintName = Lib.Language.GetMessage("iriscomp");
 end
 
 local function gdopc_menuhook(len)

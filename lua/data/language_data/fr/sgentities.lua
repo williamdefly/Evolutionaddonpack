@@ -89,8 +89,7 @@ stargate_c_tool_21_atl = Atlantis
 stargate_c_tool_23 = Couleur de l'horizon des evenements
 
 //Teleporteur asgard
-ent_asgart_transporter = Teleporteur Asgard
-asgardtp_title = Teleporteur Asgard
+asgardtp = Teleporteur Asgard
 asgardtp_target = Cible
 asgardtp_target_desc = Choisissez la cible que vous souhaitez teleporter
 asgardtp_dest = Destination
@@ -117,7 +116,7 @@ asgardtp_jamming = Impossible de téléporter à ces Coordonées - Brouilleur en
 asgardtp_succ = Téléportation efféctuée.
 
 //Teleporteur d'atlantis
-ent_atlantis_trans = Teleporteur d'Atlantis
+atl_tp = Teleporteur d'Atlantis
 atl_tp_01 = Saisir le nom de ce téléporteur:
 atl_tp_02 = Nom du téléporteur de destination:
 atl_tp_03 = Sauvegarder
@@ -137,7 +136,7 @@ sodan_obelisk_menu = Mot de passe de l'obélisque (seulement de 1 à 6!):
 obelisk_ancient = Obelisque des Anciens
 
 //Iris Computer
-ent_iris_computer = Ordinateur à Iris
+iriscomp = Ordinateur à Iris
 iriscomp_title = Menu de l'ordinateur à Iris
 iriscomp_code = Code de l'Iris
 iriscomp_desc = Description
@@ -152,8 +151,7 @@ iriscomp_toggle = Activer/Desactiver l'Iris
 iriscomp_ok = Sauvegarder
 
 // Dakara
-entity_dakara = Arme de Dakara
-ancient_control_panel = Panneau de contrôle Ancien
+dakara = Arme de Dakara
 dakara_energy_kill = Vague énergetique
 dakara_panel = Panneau de contrôle de Dakara
 dakara_power = Puissance de l'appareil, Influe sur le rayon et la puissance.
@@ -170,9 +168,10 @@ dakara_menu_09 = Désintégrer les NPCs
 dakara_menu_10 = Désintégrera les NPCs.
 dakara_menu_11 = Fermer
 dakara_menu_12 = Lancer
+ancient_control_panel = Panneau de contrôle Ancien
 
 // Shaped Charge
-entity_directional_nuke = Bombe Directionnelle
+directional_nuke = Bombe Directionnelle
 directional_nuke_menu_t = Décompteur
 directional_nuke_menu_d = Secondes avant explosion:
 directional_nuke_menu_c = Annuler
@@ -230,3 +229,10 @@ mcd_classname = Classe: %s
 ent_shield_identifier = Shield Identifier
 shieldid_off = Desactiver
 shieldid_on = Activer
+
+// Anti Prior
+anti_prior = Systeme anti-precheur
+anti_prior_c_t = Mode d'immunité
+anti_prior_c_1 = Propriétaire et Amis
+anti_prior_c_2 = Seulement propriétaire
+anti_prior_c_3 = Personne

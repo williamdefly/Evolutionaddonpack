@@ -23,7 +23,7 @@ if CLIENT then
 
 if (Lib.Language!=nil and Lib.Language.GetMessage!=nil) then
 ENT.Category = Lib.Language.GetMessage("cat_weapons");
-ENT.PrintName = Lib.Language.GetMessage("entity_dakara");
+ENT.PrintName = Lib.Language.GetMessage("dakara");
 end
 
 end

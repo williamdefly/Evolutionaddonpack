@@ -410,7 +410,7 @@ if CLIENT then
 
 if (Lib.Language!=nil and Lib.Language.GetMessage!=nil) then
 ENT.Category = Lib.Language.GetMessage("cat_transportation");
-ENT.PrintName = Lib.Language.GetMessage("ent_asgart_transporter");
+ENT.PrintName = Lib.Language.GetMessage("asgardtp");
 end
 
 function ENT:Initialize()
@@ -527,7 +527,7 @@ net.Receive("EAP.AsgardTransporter",function(len)
 	end
 
   	local title = vgui.Create( "DLabel", DermaPanel );
- 	title:SetText(Lib.Language.GetMessage("asgardtp_title"));
+ 	title:SetText(Lib.Language.GetMessage("asgardtp"));
   	title:SetPos( 25, 0 );
  	title:SetSize( 400, 25 );
 
