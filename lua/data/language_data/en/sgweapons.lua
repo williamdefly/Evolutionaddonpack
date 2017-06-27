@@ -44,5 +44,5 @@ weapon_misc_shield = Personal Shield
 weapon_misc_virus = Ashen Virus
 wp_minidrone = Minidrone Key
 weapon_misc_kino = Kino Remote
-weapon_misc_lucian_door_opener = Lucian Door Opener
-weapon_misc_lucian_door_opener_desc = Open Destiny Doors\n\nLeft Click to place Device
+weapon_misc_lucian_doors_opener = Lucian Door Opener
+weapon_misc_lucian_doors_opener_desc = Open Destiny Doors\n\nLeft Click to place Device

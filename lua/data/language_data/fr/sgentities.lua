@@ -36,6 +36,7 @@ ent_ship_wraithcruiser = Croiseur Wraith
 ent_ship_traveler = Voyageur
 
 //Weapons
+ancient_control_chair = Fauteil de contrôle stratégique des anciens
 
 //Entities Messages
 ent_sarco_exit = Utiliser pour quitter ou attendez d'avoir la vie complète

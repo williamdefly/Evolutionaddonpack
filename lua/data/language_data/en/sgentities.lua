@@ -36,6 +36,7 @@ ent_ship_wraithcruiser = Wraith Cruiser
 ent_ship_traveler = Traveler
 
 //Weapons
+ancient_control_chair = Ancient Control Chair
 
 //Entities Messages
 ent_sarco_exit = Type USE to Exit or wait full life
