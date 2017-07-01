@@ -7,4 +7,7 @@ ENT.PrintName = "MCD"
 ENT.Author = "Llapp, Rafael De Jongh, Markjaw, AlexALX"
 ENT.WireDebugName = "Molecular Construction Device"
 
+ENT.AdminSpawnable   = true
+ENT.Spawnable        = true
+
 list.Set("EAP", ENT.PrintName, ENT);

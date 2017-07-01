@@ -8,7 +8,11 @@ ENT.Base = "base_anim"
 ENT.PrintName = "Stone"
 ENT.Author = "cooldudetb, Madman07, Rafael De Jongh"
 
+ENT.AdminSpawnable   = true
+ENT.Spawnable        = true
+
 list.Set("EAP", ENT.PrintName, ENT);
+
 ENT.WireDebugName = "Communication Stone"
 
 if CLIENT then

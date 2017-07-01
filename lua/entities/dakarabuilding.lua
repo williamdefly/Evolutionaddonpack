@@ -11,8 +11,8 @@ ENT.PrintName = "Dakara Weapon"
 ENT.Author = "Madman07, Rafael De Jongh, Iziraider"
 ENT.Category = Lib.Language.GetMessage("cat_weapons");
 ENT.WireDebugName = "Dakara Weapon"
-ENT.Spawnable = false
-ENT.AdminSpawnable = false
+ENT.AdminSpawnable   = true
+ENT.Spawnable        = true
 
 list.Set("EAP", ENT.PrintName, ENT);
 

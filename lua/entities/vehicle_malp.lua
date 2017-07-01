@@ -4,6 +4,10 @@ ENT.Base = "base_anim"
 ENT.PrintName = "MALP"
 ENT.Author = "RononDex / AlexALX"
 ENT.Instructions = "Mobile Analysis Labatory Probe"
+
+ENT.AdminSpawnable   = true
+ENT.Spawnable        = true
+
 list.Set("EAP", ENT.PrintName, ENT);
 
 if (Lib!=nil and Lib.Wire!=nil) then Lib.Wiremod(ENT); end

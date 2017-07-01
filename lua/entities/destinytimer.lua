@@ -16,6 +16,9 @@ ENT.Author = "Madman07, Rafael De Jongh, AlexALX"
 ENT.Instructions= ""
 ENT.Contact = "madman097@gmail.com"
 
+ENT.AdminSpawnable   = true
+ENT.Spawnable        = true
+
 list.Set("EAP", ENT.PrintName, ENT);
 
 ENT.RenderGroup = RENDERGROUP_BOTH

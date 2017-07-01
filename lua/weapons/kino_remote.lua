@@ -35,6 +35,7 @@ SWEP.ViewModel = "models/Iziraider/kinoremote/v_kinoremote.mdl";
 SWEP.WorldModel = "models/Iziraider/kinoremote/w_kinoremote.mdl";
 SWEP.ViewModelFOV = 90
 SWEP.HoldType = "slam"
+SWEP.Spawnable = true
 
 -- primary.
 SWEP.Primary.ClipSize = -1;

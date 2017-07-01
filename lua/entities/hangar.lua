@@ -13,6 +13,9 @@ ENT.Author = "Madman07, Rafael De Jongh"
 ENT.Category = ""
 ENT.WireDebugName = "Ships Hangar"
 
+ENT.AdminSpawnable   = true
+ENT.Spawnable        = true
+
 list.Set("EAP", ENT.PrintName, ENT);
 
 if SERVER then

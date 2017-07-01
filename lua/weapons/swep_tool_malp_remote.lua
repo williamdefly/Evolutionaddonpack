@@ -13,6 +13,7 @@ SWEP.DrawCrosshair = true
 SWEP.ViewModel = "models/Iziraider/remote/v_remote.mdl"
 SWEP.WorldModel = "models/Iziraider/remote/w_remote.mdl"
 SWEP.HoldType = "slam"
+SWEP.Spawnable = true
 
 -- Lol, without this we can't use this weapon in mp on gmod13...
 if SERVER then

@@ -11,6 +11,9 @@ ENT.Base 			= "base_anim"
 ENT.PrintName		= "Lantean Holo"
 ENT.Author			= "Madman07, MarkJaw, Iziraider, Rafael De Jongh"
 
+ENT.AdminSpawnable   = true
+ENT.Spawnable        = true
+
 list.Set("EAP", ENT.PrintName, ENT);
 
 if SERVER then

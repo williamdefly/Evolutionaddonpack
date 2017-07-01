@@ -11,6 +11,9 @@ ENT.Contact			= ""
 ENT.Purpose			= ""
 ENT.Instructions	= "Only for Ancients."
 
+ENT.AdminSpawnable   = true
+ENT.Spawnable        = true
+
 list.Set("EAP", ENT.PrintName, ENT);
 
 if SERVER then

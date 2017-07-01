@@ -14,6 +14,7 @@ SWEP.ViewModelFOV = 54
 SWEP.ViewModel = "models/gmod4phun/c_lucian_door_opener.mdl";
 SWEP.WorldModel = "models/gmod4phun/lucian_door_opener.mdl";
 SWEP.HoldType = "slam"
+SWEP.Spawnable = true
 
 -- Lol, without this we can't use this weapon in mp on gmod13...
 if SERVER then

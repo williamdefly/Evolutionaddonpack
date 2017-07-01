@@ -7,6 +7,9 @@ ENT.PrintName = "Destiny Console"
 ENT.Author = "assassin21, aVoN, Madman07, Rafael De Jongh"
 ENT.WireDebugName = "Destiny Console"
 
+ENT.AdminSpawnable   = true
+ENT.Spawnable        = true
+
 list.Set("EAP", ENT.PrintName, ENT);
 
 ENT.ButtonPos = {

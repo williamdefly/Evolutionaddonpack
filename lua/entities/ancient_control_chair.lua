@@ -5,6 +5,8 @@ ENT.Base = "base_anim"
 ENT.Type = "anim"
 ENT.PrintName = "Control Chair"
 ENT.Author = "RononDex, Markjaw"
+ENT.AdminSpawnable   = true
+ENT.Spawnable        = true
 
 list.Set("EAP", ENT.PrintName, ENT);
 ENT.AutomaticFrameAdvance=true

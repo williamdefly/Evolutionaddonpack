@@ -9,7 +9,8 @@ ENT.PrintName        = "Gate Weapon"
 ENT.WireDebugName    = "Gate Weapon"
 ENT.Author           = "PyroSpirit, Madman07, Rafael De Jongh"
 ENT.Contact		      = "forums.facepunchstudios.com"
-ENT.Category 		 = ""
+ENT.AdminSpawnable   = true
+ENT.Spawnable        = true
 
 
 list.Set("EAP", ENT.PrintName, ENT);

@@ -12,6 +12,9 @@ ENT.PrintName = "Apple Core"
 ENT.Author = "assassin21, Rafael De Jongh, Madman07"
 ENT.WireDebugName = "Apple Core"
 
+ENT.AdminSpawnable   = true
+ENT.Spawnable        = true
+
 list.Set("EAP", ENT.PrintName, ENT);
 
 if (Environments) then
