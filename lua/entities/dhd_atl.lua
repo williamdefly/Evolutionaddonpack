@@ -24,7 +24,7 @@ if SERVER then
 --################# HEADER #################
 AddCSLuaFile()
 
-ENT.PlorkSound = "stargate/dhd_atl.mp3";
+ENT.PlorkSound = "stargate/dhd_atlantis.mp3";
 ENT.LockSound = "stargate/chevron_lock_atlantis_incoming.mp3";
 ENT.SkinNumber = 2;
 
