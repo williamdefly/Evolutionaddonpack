@@ -271,7 +271,7 @@ function ENT:Think()
 	            self.Ent:SetParent(nil);
 				self.Entity:SetNWBool("IdleSound",false);
 				if (self.Ent._MCDTampered) then
-					local e = ents.Create("tampered_zpm");
+					local e = ents.Create("tamperedzpm");
 					e:SetPos(self.Ent:GetPos());
 					e:Spawn();
 					e:SetAngles(self.Ent:GetAngles());
