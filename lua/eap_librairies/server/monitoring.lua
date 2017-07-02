@@ -34,8 +34,6 @@ function Lib.Monit.Start(addon,version)
 		url = url.."&addon="..addon;
 		url = url.."&version="..version;
 
-		MsgN(url);
-
 		// Call website
 		http.Fetch(url);
 	end
