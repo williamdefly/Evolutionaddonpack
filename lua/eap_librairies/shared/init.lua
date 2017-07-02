@@ -225,6 +225,9 @@ function EAP.Init()
 	end
 
 	MsgN("Loading Librairies ...")
+	if(SERVER) then
+		Lib.Monit.Start("EAP", EAP.Revision);
+	end
 end
 
 ----------------------------------------Launch !!!!!!!!!!!-------------------------------------------------------

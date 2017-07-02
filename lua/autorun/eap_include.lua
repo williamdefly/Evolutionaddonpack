@@ -5,6 +5,11 @@ EAP.SpawnList = {};
 
 -- We're including all librairies ! @Elanis
 
+-- Monitoring (needed before init)
+if(SERVER)then
+	include('eap_librairies/server/monitoring.lua');
+end
+
 --Initializing System
 IncludeCS('eap_librairies/shared/init.lua');
 
