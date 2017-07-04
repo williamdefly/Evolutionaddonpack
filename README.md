@@ -4,7 +4,7 @@
 
 The Evolution Addon Pack (EAP) is an addon based on the Stargate Franchise! We have many entities (including spaceships), props, tools, weapons, NPCs and much more! 
 
-http://sg-eap.space
+Wiki: https://github.com/williamdefly/Evolutionaddonpack/wiki
 
 Our Story : 
 We are a french team developing this addon since 2014. 
@@ -30,7 +30,7 @@ Special Thanks To :
 L'Evolution Addon Pack ( EAP ) est un addon a propos des séries Stargate ! 
 Nous avons beaucoup d'entités et d'objets : des vaisseaux , des tools , des armes , des PNJ , et plus encore ! 
 
-Site: http://sg-eap.space
+Wiki: https://github.com/williamdefly/Evolutionaddonpack/wiki
 
 Notre Histoire : 
 Nous sommes une equipe francaise produisant cet addon depuis 2014. 
