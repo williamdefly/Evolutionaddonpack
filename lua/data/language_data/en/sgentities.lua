@@ -7,11 +7,12 @@ entity_apple_core = Apple Core
 entity_arthurs_mantle = Arthur's Mantle
 entity_dest_bar = Destiny Bar
 entity_dest_console = Destiny Console
-entity_dest_timer = Destiny Timer 
+entity_dest_timer = Destiny Timer
 entity_kino_dis = Kino Dispenser
 entity_lant_holo = Lantean Hologram
 entity_telchak = Telchak Healing Device
 entity_hangar = Hangar
+entity_cfd = CFD
 
 //SpaceShips
 ent_ship_alkesh = Alkesh

@@ -149,7 +149,7 @@ stool_gravitycontroller_lbd = Local Brake Description
 stool_gravitycontroller_lbd_desc = If you enable that, the GC will brake seperate on every axis. If you set every but one axis to 100, it will 'slide' along that axis. So if you want your ship not to brake as hard forward as it should sideways or upwards, this is for you!
 stool_gravitycontroller_sga = SGA Powernode Mode
 
-//Ashen 
+//Ashen
 entity_asgard_ashen_def = Ashen Defence
 stool_ashen_defence_spawner = Ashen Defence Spawner
 stool_ashen_defence_create = Spawn Ashen Defences
@@ -254,25 +254,26 @@ stool_staff_weapon_color = Color:
 stool_staff_weapon_explosion = Explosion
 
 // Shield
-stool_stargate_shield_spawner = Shield Spawner
-stool_stargate_shield_create = Creates a Shield
-stool_stargate_shield_desc = Left click, to spawn a Shield
-stool_stargate_shield_undone = Shield removed
-stool_stargate_shield_cleanup = Shields
-stool_stargate_shield_cleaned = Removed all Shields
-stool_stargate_shield_limit = Hit the Shield limit
-stool_stargate_shield_str = Faster - Stronger
-stool_stargate_shield_str_desc = Note: Increasing the Strength will result into slower Regeneration and more Energy Usage
-stool_stargate_shield_str_color = Color:
-stool_stargate_shield_imm = When this is enabled, the owner of the shield can always go or shoot through\nno matter if he was inside the shield when it was turned on or not
-stool_stargate_shield_db = Draw Bubble
-stool_stargate_shield_db_desc = Draw a bubble when hit?
-stool_stargate_shield_se = Show Effect when Passing Shield
-stool_stargate_shield_se_desc = Draws the shield effect, when something passes it
-stool_stargate_shield_co = Containment
-stool_stargate_shield_co_desc = Enable this to keep things inside a shield instead of keeping it away
-stool_stargate_shield_an = Anti Noclip
-stool_stargate_shield_an_desc = People can't noclip in the shield?
+stool_shield = Shield
+stool_shield_spawner = Shield Spawner
+stool_shield_create = Creates a Shield
+stool_shield_desc = Left click, to spawn a Shield
+stool_shield_undone = Shield removed
+stool_shield_cleanup = Shields
+stool_shield_cleaned = Removed all Shields
+stool_shield_limit = Hit the Shield limit
+stool_shield_str = Faster - Stronger
+stool_shield_str_desc = Note: Increasing the Strength will result into slower Regeneration and more Energy Usage
+stool_shield_str_color = Color:
+stool_shield_imm = When this is enabled, the owner of the shield can always go or shoot through\nno matter if he was inside the shield when it was turned on or not
+stool_shield_db = Draw Bubble
+stool_shield_db_desc = Draw a bubble when hit?
+stool_shield_se = Show Effect when Passing Shield
+stool_shield_se_desc = Draws the shield effect, when something passes it
+stool_shield_co = Containment
+stool_shield_co_desc = Enable this to keep things inside a shield instead of keeping it away
+stool_shield_an = Anti Noclip
+stool_shield_an_desc = People can't noclip in the shield?
 
 // Shield identifier
 shieldid_title = Shield Identifier

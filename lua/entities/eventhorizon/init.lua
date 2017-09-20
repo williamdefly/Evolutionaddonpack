@@ -38,7 +38,7 @@ ENT.IgnoreTouch = true; -- This tells the physical objects like drones or staff 
 ENT.CDSIgnore = true; -- Fixes Combat Damage System destroying this entity
 ENT.DrawEnterEffectTime = 0;
 ENT.EAP_NotSave = true;
-ENT.DoNotDuplicate = true 
+ENT.DoNotDuplicate = true
 
 ENT.DefModel = Model("models/zup/stargate/stargate_horizon.mdl");
 ENT.Sounds = {
@@ -200,13 +200,13 @@ function ENT:EHType(reset)
 		self.UnstableMaterial = ""
 		self.Model = self.DefModel
 	end
-	
+
 	local parent = self:GetParent()
 	local type = parent.EventHorizonType;
 	local Data = Lib.EventHorizonTypes[type] or {}
 
 	self.DefColor = table.Copy(Data.Color) or Color(255,255,255)
-	
+
 	if (Data.LightColor) then
 		self.Entity:SetNWVector("LightColR",Data.LightColor.r);
 		if (not Data.LightColor.sync) then
@@ -215,14 +215,14 @@ function ENT:EHType(reset)
 		end
 		self.Entity:SetNWBool("LightSync",Data.LightColor.sync);
 	end
-	
+
 	if (Data.Material) then self.Material = Data.Material end
 	self.Entity:SetMaterial(self.Material);
 	if (Data.UnstableMaterial) then self.UnstableMaterial = Data.UnstableMaterial end
-	
+
 	if (parent.EventHorizonData.Model) then self.Model = parent.EventHorizonData.Model end
 	self.Entity:SetModel(self.Model);
-	
+
 	if (parent.OnEventHorizonType) then
 		parent:OnEventHorizonType(self,reset,type,Data)
 	end
@@ -235,7 +235,7 @@ function ENT:SetEHColor(col)
 	    self.Entity:SetNWBool("LightCustom",true);
 		--self.Entity:SetNWVector("LightColor",self.Color)
 	else
-	    self.Entity:SetNWBool("LightCustom",false);	
+	    self.Entity:SetNWBool("LightCustom",false);
 	end
 end
 
@@ -248,7 +248,7 @@ function ENT:Flicker(reset)
 		end
 		--self:SetColor(Color(255,255,255,255)); -- fix invisible eh sometimes in mp
 		self:SetColor(self.Color)
-		self.Unstable = false;              
+		self.Unstable = false;
 	else
 		if (self.UnstableMaterial!="") then
 			self:SetMaterial(self.UnstableMaterial);
@@ -353,7 +353,7 @@ function ENT:Open()
 		else
 			self.Entity:EmitSound(self.Sounds.Open,90,math.random(98,102));
 		end
-	
+
 		local Gate = self.Entity:GetParent()
  		local Data = self.KawooshTypes[Gate.EventHorizonKawoosh or "sg1"];
 		self.KawooshData = Data.KawooshDmg;
@@ -444,14 +444,14 @@ function ENT:Open()
 					local normal = self.Entity:GetForward();
 					local radius = self.Entity:BoundingRadius()*Data.KawooshDmg[1];
 					if (Data.BackKawooshTime) then
-						timer.Simple(Data.BackKawooshTime,function()	
+						timer.Simple(Data.BackKawooshTime,function()
 							if (IsValid(self)) then
 								self:EHDissolve(pos-radius*normal,radius);
 								local fx = EffectData()
 								fx:SetEntity(e);
 								fx:SetRadius(Gate.EventHorizonType=="universe" and 1 or 0);
 								util.Effect("sg_kawoosh_movie",fx,true,true);
-							end	
+							end
 						end);
 					end
 					self:EHDissolve(pos+radius*normal,radius);
@@ -595,7 +595,7 @@ function ENT:Shutdown(override)
 	for k,v in pairs(self.AllBuffer) do
 		if (IsValid(v)) then
 			self:EHDissolve(v:GetPos(),5)
-			if(v:IsPlayer()) then 
+			if(v:IsPlayer()) then
 				umsg.Start("Lib.EventHorizon.WormHoleStop",k);
 				umsg.End();
 			end
@@ -1654,10 +1654,10 @@ function ENT:DoWormHole(v,block,attached,bcfd) --Let's do travel animation ! @El
 
 	if(v:IsPlayer() and not v:Alive()) then return end -- If the player die on enter in the gate don't do all stuff or he will be blocked !
 	if(string.sub(v:GetClass(), 1, 5 )=="ship_" and v:GetOwner():IsPlayer() and not v:GetOwner():Alive()) then return end -- Same if he die in the ship !
-	if(table.HasValue(self.NoTouchTeleport,v:GetClass())) then return end 
+	if(table.HasValue(self.NoTouchTeleport,v:GetClass())) then return end
 
 	-- Kill if shutting down
-	if(self.ShuttingDown) then 
+	if(self.ShuttingDown) then
 		if(v:IsPlayer()) then
 			v:Kill();
 		else
@@ -1688,7 +1688,7 @@ function ENT:DoWormHole(v,block,attached,bcfd) --Let's do travel animation ! @El
 		if(IsValid(target_gate) and target_gate.IsStargate) then
 			block = target_gate:IsBlocked();
 		end
-		if (self:BlockedCFD(target_gate,e)) then block = false; bcfd = true; end
+		if (self:BlockedCFD(target_gate,v)) then block = false; bcfd = true; end
 	end
 
 	if(self.Target==nil)then --You go in on the wrong gate so you die or will be removed
@@ -1790,7 +1790,7 @@ function ENT:DoWormHole(v,block,attached,bcfd) --Let's do travel animation ! @El
 	if(k:IsPlayer() and not k:Alive()) then -- If the player dies at the very very wrong moment !
 		haveTowait = false;
 	end
-	
+
 	/* It's time to move ! */
 	if(haveTowait)then
 		--Wait after the animation end
