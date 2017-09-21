@@ -482,3 +482,51 @@ stool_atlantis_light_desc = Left click to spawn the light
 stool_atlantis_light_undone = Atlantis Light removed
 stool_atlantis_light_cleanup = Atlantis Lights
 stool_atlantis_light_cleaned = Removed all Atlantis Lights
+
+// SGC Screens
+stool_sgcscreen = SGC Screens
+stool_sgcscreen_spawner = SGC Screen Spawner
+stool_sgcscreen_create = Creates a SGC Screen or SGC Server
+stool_sgcscreen_desc = Left click to spawn SGC Screen, Right click to spawn SGC Server
+stool_sgcscreen_undone = SGC Screen removed
+stool_sgcscreen_cleanup = SGC Screens
+stool_sgcscreen_cleaned = Removed all SGC Screens
+stool_sgcscreen_limit = Hit the SGC Screens limit
+stool_sgcscreen_limit_sv = Hit the SGC Servers limit
+stool_sgcscreen_menu = Codes manager
+stool_sgcscreen_fulldesc =[[This is the SGC Screens from tv series.
+Author: glebqip
+Improvements and stool by AlexALX]]
+stool_sgcscreen_sv = Server options:
+stool_sgcscreen_cl = Screen options:
+stool_sgcscreen_conn_sv = Auto-connect to nearest server
+stool_sgcscreen_conn_sg = Auto-connect to nearest stargate
+stool_sgcscreen_conn_ic = Auto-connect to nearest iris computer
+stool_sgcscreen_conn_nb = Auto-connect to nearest naquadah bomb
+stool_sgcscreen_key = Program selection key:
+stool_sgcscreen_keyd = Self-descruct menu key:
+stool_sgcscreen_keyboard = Spawn with keyboard
+stool_sgcscreen_keyboard_weld = Make keyboard parented to screen
+stool_sgcscreen_program = Program:
+stool_sgcscreen_program_1 = Dialing computer
+stool_sgcscreen_program_2 = Address book
+stool_sgcscreen_program_3 = Gate data monitor
+stool_sgcscreen_program_4 = Gate integrity monitor
+stool_sgcscreen_program_5 = Galaxy map
+stool_sgcscreen_program_6 = 7 Chevron
+stool_sgcscreen_program_7 = Gate active
+stool_sgcscreen_program_8 = Energy output (movie)
+stool_sgcscreen_program_9 = Energy output (series)
+stool_sgcscreen_program_10 = Energy flux
+
+// SGC Screen menu
+sgcscreen_title = StarGate Command - Codes Manager
+sgcscreen_code = Code
+sgcscreen_dcode = Self-destruct code
+sgcscreen_rcode = Reset code
+sgcscreen_desc = Description
+sgcscreen_save = Save
+sgcscreen_cancel = Cancel
+// make sure to check this field, change \n positions to fit in menu
+sgcscreen_info = Require two players to start/cancel self-desctruct.\nIn this case you need enter two different codes.
+

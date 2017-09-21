@@ -9,6 +9,7 @@ MsgN("eap_librairies/shared/general.lua")
 Lib = Lib or {}
 Lib.Hook = Lib.Hook or {}
 
+
 --###########
 -- ramps.lua
 --###########
@@ -258,11 +259,11 @@ function Lib.LOSVector(startpos, endpos, filter, radius)
 	return x and y and z;
 end
 
---Stargates 
+--Stargates
 Lib.EventHorizonTypes = Lib.EventHorizonTypes or {}
 function Lib.RegisterEventHorizon(type,data)
    Lib.EventHorizonTypes[type] = data
-end 
+end
 
 function Lib.IsIrisClosed(gate)
    return gate.irisclosed == true || (gate.Iris ~= nil && gate.Iris.IsActivated == true)
