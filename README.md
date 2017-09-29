@@ -10,7 +10,7 @@ Workshop Collection: https://steamcommunity.com/sharedfiles/filedetails/?id=5159
 
 Bugs: http://steamcommunity.com/workshop/filedetails/discussion/473313458/1319962683448783743/
 
-Ideas: http://steamcommunity.com/sharedfiles/filedetails/?id=473313458
+Ideas: http://steamcommunity.com/workshop/filedetails/discussion/473313458/1319962683448790023/
 
 Our Story : 
 We are a french team developing this addon since 2014. 
@@ -42,7 +42,7 @@ Collection Workshop: https://steamcommunity.com/sharedfiles/filedetails/?id=5159
 
 Bugs: http://steamcommunity.com/workshop/filedetails/discussion/473313458/1319962683448783743/
 
-Idees: http://steamcommunity.com/sharedfiles/filedetails/?id=473313458
+Idees: http://steamcommunity.com/workshop/filedetails/discussion/473313458/1319962683448790023/
 
 Notre Histoire : 
 Nous sommes une equipe francaise produisant cet addon depuis 2014. 
