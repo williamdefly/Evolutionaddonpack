@@ -181,3 +181,17 @@ function Lib.Wire.PostEntityPaste(self,Player,Ent,CreatedEntities)
 		end
 	end
 end
+
+
+Lib.KeysConst = Lib.KeysConst or {
+	[KEY_ENTER] = 10,
+	[KEY_BACKSPACE] = 127,
+}
+
+hook.Add( "Initialize", "Lib.Wiremod.KeysInit", function()
+	if (Wire_Keyboard_Remap and Wire_Keyboard_Remap.American and Wire_Keyboard_Remap.American.normal) then
+		Lib.KeysConst[KEY_ENTER] = Wire_Keyboard_Remap.American.normal[KEY_ENTER]
+		Lib.KeysConst[KEY_BACKSPACE] = Wire_Keyboard_Remap.American.normal[KEY_BACKSPACE]
+	end
+end)
+

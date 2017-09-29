@@ -35,19 +35,19 @@ local LuaTablesToArrayOfTables = function ( tbl )
 			elseif isentity(v) then
 				Type = "e"
 			end
-	 
-			if Type then 
+
+			if Type then
 				n2[size2] = v
 				ntypes2[size2] = Type
 				size2 = size2+1
 			end
 		end*/
-		     
+
 		// only string indexes works with foreach in e2, but then order of array lost :( so old code is not compatible, sorry, blame wiremod devs
 		n[size] = data //{n=n2,ntypes=ntypes2,s={},stypes={},size=size2}
 		ntypes[size] = "r"
 		size = size+1
-	end	
+	end
 	Array = {n=n,ntypes=ntypes,s={},stypes={},size=size}
 	return Array
 end
@@ -703,13 +703,13 @@ e2function table entity:stargateAddressList()
 end
 
 e2function void wirelink:stargateRandomAddress(number mode)
-	if not IsValid(this) or not this.IsStargate or not this:CAP_CanModify(self.player) or not StarGate or not StarGate.RandomGateName then return end
-	StarGate.RandomGateName(nil,this,nil,true,mode);
+	if not IsValid(this) or not this.IsStargate or not this:CAP_CanModify(self.player) or not Lib or not Lib.RandomGateName then return end
+	Lib.RandomGateName(nil,this,nil,true,mode);
 end
 
 e2function void entity:stargateRandomAddress(number mode)
-	if not IsValid(this) or not this.IsStargate or not this:CAP_CanModify(self.player) or not StarGate or not StarGate.RandomGateName or not(isOwner(self,this) or self.player:IsAdmin()) then return end
-	StarGate.RandomGateName(nil,this,nil,true,mode);
+	if not IsValid(this) or not this.IsStargate or not this:CAP_CanModify(self.player) or not Lib or not Lib.RandomGateName or not(isOwner(self,this) or self.player:IsAdmin()) then return end
+	Lib.RandomGateName(nil,this,nil,true,mode);
 end
 
 e2function number entity:stargateTransferEnergy(number value)
@@ -936,7 +936,7 @@ end
 
 e2function string entity:stargateAtlantisTPGetGroup()
 	if not IsValid(this) or not this.IsAtlTP or not(isOwner(self,this) or self.player:IsAdmin()) then return "" end
-	return this.TGroup or ""; 
+	return this.TGroup or "";
 end
 
 e2function void entity:stargateAtlantisTPSetGroup(string group)

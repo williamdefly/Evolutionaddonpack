@@ -744,7 +744,7 @@ local function RandomAll(max)
     return ret
 end
 
-function Lib.RandomGatesName(ply,ent,count,wire,mode)
+function Lib.RandomGateName(ply,ent,count,wire,mode)
    local conv = GetConVar("stargate_eap_random_address")
     if (conv and conv:GetBool() or wire) then
         if (IsValid(ent) and ent.IsStargate and ent:GetClass()!="sg_orlin") then
@@ -766,7 +766,7 @@ function Lib.RandomGatesName(ply,ent,count,wire,mode)
             count = count or 1;
             if valid then
                if (count>5) then return end -- fix infinity loop
-               Lib.RandomGatesName(ply,ent,count+1,wire,mode); return
+               Lib.RandomGateName(ply,ent,count+1,wire,mode); return
             end
             ent:SetGateAddress(randadr);
          end
@@ -784,4 +784,4 @@ function Lib.RandomGatesName(ply,ent,count,wire,mode)
         end
     end
 end
-hook.Add( "PlayerSpawnedSENT", "RandomGatesName", Lib.RandomGatesName );
+hook.Add( "PlayerSpawnedSENT", "RandomGateName", Lib.RandomGateName );

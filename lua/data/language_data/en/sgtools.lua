@@ -149,7 +149,7 @@ stool_gravitycontroller_lbd = Local Brake Description
 stool_gravitycontroller_lbd_desc = If you enable that, the GC will brake seperate on every axis. If you set every but one axis to 100, it will 'slide' along that axis. So if you want your ship not to brake as hard forward as it should sideways or upwards, this is for you!
 stool_gravitycontroller_sga = SGA Powernode Mode
 
-//Ashen 
+//Ashen
 entity_asgard_ashen_def = Ashen Defence
 stool_ashen_defence_spawner = Ashen Defence Spawner
 stool_ashen_defence_create = Spawn Ashen Defences
@@ -254,25 +254,26 @@ stool_staff_weapon_color = Color:
 stool_staff_weapon_explosion = Explosion
 
 // Shield
-stool_stargate_shield_spawner = Shield Spawner
-stool_stargate_shield_create = Creates a Shield
-stool_stargate_shield_desc = Left click, to spawn a Shield
-stool_stargate_shield_undone = Shield removed
-stool_stargate_shield_cleanup = Shields
-stool_stargate_shield_cleaned = Removed all Shields
-stool_stargate_shield_limit = Hit the Shield limit
-stool_stargate_shield_str = Faster - Stronger
-stool_stargate_shield_str_desc = Note: Increasing the Strength will result into slower Regeneration and more Energy Usage
-stool_stargate_shield_str_color = Color:
-stool_stargate_shield_imm = When this is enabled, the owner of the shield can always go or shoot through\nno matter if he was inside the shield when it was turned on or not
-stool_stargate_shield_db = Draw Bubble
-stool_stargate_shield_db_desc = Draw a bubble when hit?
-stool_stargate_shield_se = Show Effect when Passing Shield
-stool_stargate_shield_se_desc = Draws the shield effect, when something passes it
-stool_stargate_shield_co = Containment
-stool_stargate_shield_co_desc = Enable this to keep things inside a shield instead of keeping it away
-stool_stargate_shield_an = Anti Noclip
-stool_stargate_shield_an_desc = People can't noclip in the shield?
+stool_shield = Shield
+stool_shield_spawner = Shield Spawner
+stool_shield_create = Creates a Shield
+stool_shield_desc = Left click, to spawn a Shield
+stool_shield_undone = Shield removed
+stool_shield_cleanup = Shields
+stool_shield_cleaned = Removed all Shields
+stool_shield_limit = Hit the Shield limit
+stool_shield_str = Faster - Stronger
+stool_shield_str_desc = Note: Increasing the Strength will result into slower Regeneration and more Energy Usage
+stool_shield_str_color = Color:
+stool_shield_imm = When this is enabled, the owner of the shield can always go or shoot through\nno matter if he was inside the shield when it was turned on or not
+stool_shield_db = Draw Bubble
+stool_shield_db_desc = Draw a bubble when hit?
+stool_shield_se = Show Effect when Passing Shield
+stool_shield_se_desc = Draws the shield effect, when something passes it
+stool_shield_co = Containment
+stool_shield_co_desc = Enable this to keep things inside a shield instead of keeping it away
+stool_shield_an = Anti Noclip
+stool_shield_an_desc = People can't noclip in the shield?
 
 // Shield identifier
 shieldid_title = Shield Identifier
@@ -481,3 +482,51 @@ stool_atlantis_light_desc = Left click to spawn the light
 stool_atlantis_light_undone = Atlantis Light removed
 stool_atlantis_light_cleanup = Atlantis Lights
 stool_atlantis_light_cleaned = Removed all Atlantis Lights
+
+// SGC Screens
+stool_sgcscreen = SGC Screens
+stool_sgcscreen_spawner = SGC Screen Spawner
+stool_sgcscreen_create = Creates a SGC Screen or SGC Server
+stool_sgcscreen_desc = Left click to spawn SGC Screen, Right click to spawn SGC Server
+stool_sgcscreen_undone = SGC Screen removed
+stool_sgcscreen_cleanup = SGC Screens
+stool_sgcscreen_cleaned = Removed all SGC Screens
+stool_sgcscreen_limit = Hit the SGC Screens limit
+stool_sgcscreen_limit_sv = Hit the SGC Servers limit
+stool_sgcscreen_menu = Codes manager
+stool_sgcscreen_fulldesc =[[This is the SGC Screens from tv series.
+Author: glebqip
+Improvements and stool by AlexALX]]
+stool_sgcscreen_sv = Server options:
+stool_sgcscreen_cl = Screen options:
+stool_sgcscreen_conn_sv = Auto-connect to nearest server
+stool_sgcscreen_conn_sg = Auto-connect to nearest stargate
+stool_sgcscreen_conn_ic = Auto-connect to nearest iris computer
+stool_sgcscreen_conn_nb = Auto-connect to nearest naquadah bomb
+stool_sgcscreen_key = Program selection key:
+stool_sgcscreen_keyd = Self-descruct menu key:
+stool_sgcscreen_keyboard = Spawn with keyboard
+stool_sgcscreen_keyboard_weld = Make keyboard parented to screen
+stool_sgcscreen_program = Program:
+stool_sgcscreen_program_1 = Dialing computer
+stool_sgcscreen_program_2 = Address book
+stool_sgcscreen_program_3 = Gate data monitor
+stool_sgcscreen_program_4 = Gate integrity monitor
+stool_sgcscreen_program_5 = Galaxy map
+stool_sgcscreen_program_6 = 7 Chevron
+stool_sgcscreen_program_7 = Gate active
+stool_sgcscreen_program_8 = Energy output (movie)
+stool_sgcscreen_program_9 = Energy output (series)
+stool_sgcscreen_program_10 = Energy flux
+
+// SGC Screen menu
+sgcscreen_title = StarGate Command - Codes Manager
+sgcscreen_code = Code
+sgcscreen_dcode = Self-destruct code
+sgcscreen_rcode = Reset code
+sgcscreen_desc = Description
+sgcscreen_save = Save
+sgcscreen_cancel = Cancel
+// make sure to check this field, change \n positions to fit in menu
+sgcscreen_info = Require two players to start/cancel self-desctruct.\nIn this case you need enter two different codes.
+
