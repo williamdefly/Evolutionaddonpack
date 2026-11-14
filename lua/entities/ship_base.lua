@@ -437,6 +437,34 @@ function SGVehBaseCalcView(Player, Origin, Angles, FieldOfView)
 end
 hook.Add("CalcView", "SGVehBaseCalcView", SGVehBaseCalcView)
 
+--################# Start the third person camera far enough to see the whole ship
+-- Every ship sets its own camera distance (self.Dist, negative = behind the ship) and height (self.UDist) in its Initialize. The capital
+-- ships kept the values of the small craft they were written from, so the camera started inside or right against the hull.
+-- Once per ship, when the local player starts flying it, the distance and the height are raised to fit the size of the model. They are
+-- never lowered, so a ship whose own values are already large enough keeps them, and the zoom keys still work from there.
+local VIEW_DISTANCE_PER_RADIUS = 2.5; -- camera distance, in model bounding radii
+local VIEW_HEIGHT_PER_RADIUS = 0.35; -- camera height, in model bounding radii
+
+hook.Add("Think", "EAP.Ships.FitViewToModel", function()
+	local p = LocalPlayer();
+	if (not IsValid(p)) then return end
+	local ship = p:GetNetworkedEntity("ScriptedVehicle", NULL);
+	if (not IsValid(ship) or ship.__ViewFitted or not ship.Dist or not ship.UDist) then return end
+	if (not scripted_ents.IsBasedOn(ship:GetClass(), "ship_base")) then return end
+	ship.__ViewFitted = true;
+
+	local radius = ship:BoundingRadius();
+	if (not radius or radius <= 0) then return end
+	local distance = radius * VIEW_DISTANCE_PER_RADIUS;
+	if (distance > math.abs(ship.Dist)) then
+		ship.Dist = (ship.Dist > 0) and distance or -distance;
+	end
+	local height = radius * VIEW_HEIGHT_PER_RADIUS;
+	if (height > ship.UDist) then
+		ship.UDist = height;
+	end
+end);
+
 function ENT:Draw()
 	self:DrawModel()
 end
