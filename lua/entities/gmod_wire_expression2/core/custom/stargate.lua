@@ -101,6 +101,29 @@ e2function string wirelink:stargateTargetDialingAddress()
 	return inboundField(this, "dialing")
 end
 
+-- Entities (even partly) inside the event horizon of the gate: check it before closing the gate, anything still inside is destroyed.
+--   stargateInHorizon()       array of those entities
+--   stargateInHorizonCount()  how many
+e2function array entity:stargateInHorizon()
+	if not IsValid(this) or not this.IsStargate or not(isOwner(self,this) or self.player:IsAdmin()) then return {} end
+	return Lib.GetEntitiesInHorizon(this)
+end
+
+e2function array wirelink:stargateInHorizon()
+	if not IsValid(this) or not this.IsStargate then return {} end
+	return Lib.GetEntitiesInHorizon(this)
+end
+
+e2function number entity:stargateInHorizonCount()
+	if not IsValid(this) or not this.IsStargate or not(isOwner(self,this) or self.player:IsAdmin()) then return 0 end
+	return #Lib.GetEntitiesInHorizon(this)
+end
+
+e2function number wirelink:stargateInHorizonCount()
+	if not IsValid(this) or not this.IsStargate then return 0 end
+	return #Lib.GetEntitiesInHorizon(this)
+end
+
 __e2setcost( 5 )
 
 e2function void entity:stargateSetAddress(string address)

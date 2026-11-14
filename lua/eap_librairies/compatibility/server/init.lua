@@ -770,6 +770,7 @@ hook.Add("Expression2Reloaded", "EAPCompat_E2GlyphIsActivated", function()
 		EAP.Compat.MergeE2StargateGetRingAngle();
 		EAP.Compat.MergeE2StargateGlyphIsActivated();
 		EAP.Compat.MergeE2StargateTargetAddress();
+		EAP.Compat.MergeE2StargateInHorizon();
 	end
 end);
 
@@ -885,6 +886,128 @@ function EAP.Compat.MergeStarfallStargateTargetAddress()
 				if not SF.Permissions.check( SF.instance.player, nil, "wire.wirelink.read" ) then return false, "Insufficient permissions" end
 				if not this.IsStargate then return false, "entity is not stargate" end
 				return Lib.GetInboundSourceField(this, field);
+			end
+		end
+	end
+end
+
+-- ===========================================================================
+-- 6h. stargateInHorizon() / stargateInHorizonCount() for every scripting backend
+-- ===========================================================================
+-- Entities (even partly) inside a gate's event horizon (see Lib.GetEntitiesInHorizon in server/general.lua, which only relies on the
+-- addon-agnostic .IsStargate / .EventHorizon, so it answers for CAP gates too). Same rule as 6g: EAP's extension files define the functions;
+-- when CAP's identically-named files are the ones that run, they don't exist and are registered here with the same behaviour.
+
+local HORIZON_HELP = {
+	array = "Returns the entities that are, even partly, inside the event horizon of the gate (anything still inside when it closes is destroyed).",
+	count = "Returns how many entities are, even partly, inside the event horizon of the gate (anything still inside when it closes is destroyed).",
+};
+
+function EAP.Compat.MergeE2StargateInHorizon()
+	if (not wire_expression2_funcs or not registerFunction) then return end
+	local changed = false;
+	for _, def in ipairs({ { "e:", true }, { "xwl:", false } }) do
+		local checkOwner = def[2];
+		for _, fn in ipairs({ { "stargateInHorizon", "r", {} }, { "stargateInHorizonCount", "n", 0 } }) do
+			local signature = fn[1] .. "(" .. def[1] .. ")";
+			if (wire_expression2_funcs[signature]) then continue end -- EAP's extension is the one running (or already merged)
+			local isList = fn[2] == "r";
+			registerFunction(fn[1], def[1], fn[2], function(self, args)
+				local this = args[1];
+				if (not IsValid(this) or not this.IsStargate) then return isList and {} or 0 end
+				if (checkOwner and not (isOwner(self, this) or self.player:IsAdmin())) then return isList and {} or 0 end
+				local list = Lib.GetEntitiesInHorizon(this);
+				return isList and list or #list;
+			end, 5, { "this" }, { legacy = false });
+			changed = true;
+			MsgN("[EAP Compat] E2 function '" .. signature .. "' registered.");
+		end
+	end
+	if (changed and wire_expression2_sendfunctions) then
+		for _, ply in ipairs(player.GetAll()) do wire_expression2_sendfunctions(ply); end
+	end
+end
+
+function EAP.Compat.MergeExpAdv2StargateInHorizon()
+	if (not WireLib or not EXPADV) then return end
+	local Component = EXPADV.GetComponent("stargate");
+	if (not Component) then return end
+
+	for _, kind in ipairs({ "e:", "wl:" }) do
+		local checkOwner = (kind == "e:");
+		Component:AddVMFunction( "stargateInHorizon", kind, "ar", function( Context, Trace, Entity )
+			local result = { __type = "e" };
+			if (not IsValid(Entity) or not Entity.IsStargate or (checkOwner and not EXPADV.PPCheck(Context, Entity))) then return result end
+			for _, e in ipairs(Lib.GetEntitiesInHorizon(Entity)) do result[#result + 1] = e end
+			return result;
+		end)
+		Component:AddFunctionHelper( "stargateInHorizon", kind, HORIZON_HELP.array )
+
+		Component:AddVMFunction( "stargateInHorizonCount", kind, "n", function( Context, Trace, Entity )
+			if (not IsValid(Entity) or not Entity.IsStargate or (checkOwner and not EXPADV.PPCheck(Context, Entity))) then return 0 end
+			return #Lib.GetEntitiesInHorizon(Entity);
+		end)
+		Component:AddFunctionHelper( "stargateInHorizonCount", kind, HORIZON_HELP.count )
+	end
+end
+
+function EAP.Compat.MergeStarfallStargateInHorizon()
+	if (not SF or not SF.Entities) then return end
+
+	local function canModify(ply, ent)
+		return SF.Entities.GetOwner(ent) == ply or game.SinglePlayer() and ent.GateSpawnerSpawned;
+	end
+
+	local wrap = SF.Entities.Wrap;
+	local function build(this)
+		local out = {};
+		for i, e in ipairs(Lib.GetEntitiesInHorizon(this)) do out[i] = wrap(e) end
+		return out;
+	end
+
+	local ents_methods = SF.Entities.Methods;
+	local wl_methods = SF.Wire and SF.Wire.WlMethods;
+	if (ents_methods) then
+		local ents_metatable = SF.Entities.Metatable;
+		local unwrap = SF.Entities.Unwrap;
+		if (not ents_methods.stargateInHorizon) then
+			ents_methods.stargateInHorizon = function(self)
+				SF.CheckType( self, ents_metatable );
+				local this = unwrap( self );
+				if not canModify(SF.instance.player,this) then return false, "Insufficient permissions" end
+				if not this.IsStargate then return false, "entity is not stargate" end
+				return build(this);
+			end
+		end
+		if (not ents_methods.stargateInHorizonCount) then
+			ents_methods.stargateInHorizonCount = function(self)
+				SF.CheckType( self, ents_metatable );
+				local this = unwrap( self );
+				if not canModify(SF.instance.player,this) then return false, "Insufficient permissions" end
+				if not this.IsStargate then return false, "entity is not stargate" end
+				return #Lib.GetEntitiesInHorizon(this);
+			end
+		end
+	end
+	if (wl_methods) then
+		local wl_metatable = SF.Wire.WlMetatable;
+		local wl_unwrap = SF.Wire.WlUnwrap;
+		if (not wl_methods.stargateInHorizon) then
+			wl_methods.stargateInHorizon = function(self)
+				SF.CheckType( self, wl_metatable );
+				local this = wl_unwrap( self );
+				if not SF.Permissions.check( SF.instance.player, nil, "wire.wirelink.read" ) then return false, "Insufficient permissions" end
+				if not this.IsStargate then return false, "entity is not stargate" end
+				return build(this);
+			end
+		end
+		if (not wl_methods.stargateInHorizonCount) then
+			wl_methods.stargateInHorizonCount = function(self)
+				SF.CheckType( self, wl_metatable );
+				local this = wl_unwrap( self );
+				if not SF.Permissions.check( SF.instance.player, nil, "wire.wirelink.read" ) then return false, "Insufficient permissions" end
+				if not this.IsStargate then return false, "entity is not stargate" end
+				return #Lib.GetEntitiesInHorizon(this);
 			end
 		end
 	end
@@ -1399,6 +1522,10 @@ function EAP.Compat.InstallServerPatches()
 	timer.Simple(5, EAP.Compat.MergeE2StargateTargetAddress);
 	EAP.Compat.MergeExpAdv2StargateTargetAddress();
 	EAP.Compat.MergeStarfallStargateTargetAddress();
+	EAP.Compat.MergeE2StargateInHorizon();
+	timer.Simple(5, EAP.Compat.MergeE2StargateInHorizon);
+	EAP.Compat.MergeExpAdv2StargateInHorizon();
+	EAP.Compat.MergeStarfallStargateInHorizon();
 
 	-- Dialing UI: make each addon's gate address broadcasts also reach the
 	-- other addon's client-side dial/computer/DHD menu (see section 7's

@@ -60,6 +60,25 @@ function ents_methods:stargateTargetDialingAddress()
 	return Lib.GetInboundSourceField(this, "dialing")
 end
 
+-- Entities (even partly) inside the event horizon of the gate: anything still inside when it closes is destroyed
+function ents_methods:stargateInHorizon()
+	SF.CheckType( self, ents_metatable )
+	local this = unwrap( self )
+	if not canModify(SF.instance.player,this) then return false, "Insufficient permissions" end
+	if not this.IsStargate then return false, "entity is not stargate" end
+	local out = {}
+	for i, e in ipairs(Lib.GetEntitiesInHorizon(this)) do out[i] = wrap( e ) end
+	return out
+end
+
+function ents_methods:stargateInHorizonCount()
+	SF.CheckType( self, ents_metatable )
+	local this = unwrap( self )
+	if not canModify(SF.instance.player,this) then return false, "Insufficient permissions" end
+	if not this.IsStargate then return false, "entity is not stargate" end
+	return #Lib.GetEntitiesInHorizon(this)
+end
+
 function ents_methods:stargateSetAddress(address)
 	SF.CheckType( self, ents_metatable )
 	SF.CheckType( address, "string" )
@@ -583,6 +602,24 @@ function wirelink_methods:stargateTargetDialingAddress()
 	if not SF.Permissions.check( SF.instance.player, nil, "wire.wirelink.read" ) then return false, "Insufficient permissions" end
 	if not this.IsStargate then return false, "entity is not stargate" end
 	return Lib.GetInboundSourceField(this, "dialing")
+end
+
+function wirelink_methods:stargateInHorizon()
+	SF.CheckType( self, wirelink_metatable )
+	local this = unwrap( self )
+	if not SF.Permissions.check( SF.instance.player, nil, "wire.wirelink.read" ) then return false, "Insufficient permissions" end
+	if not this.IsStargate then return false, "entity is not stargate" end
+	local out = {}
+	for i, e in ipairs(Lib.GetEntitiesInHorizon(this)) do out[i] = wrap( e ) end
+	return out
+end
+
+function wirelink_methods:stargateInHorizonCount()
+	SF.CheckType( self, wirelink_metatable )
+	local this = unwrap( self )
+	if not SF.Permissions.check( SF.instance.player, nil, "wire.wirelink.read" ) then return false, "Insufficient permissions" end
+	if not this.IsStargate then return false, "entity is not stargate" end
+	return #Lib.GetEntitiesInHorizon(this)
 end
 
 function wirelink_methods:stargateSetAddress(address)

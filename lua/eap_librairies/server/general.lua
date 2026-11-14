@@ -1088,3 +1088,60 @@ function Lib.GetInboundSourceField(dest, field)
 	local info = Lib.GetInboundSourceInfo(dest);
 	return info and info[field] or "";
 end
+
+--################# Entities inside a gate's event horizon (scripts: stargateInHorizon / stargateInHorizonCount)
+-- An entity still (even partly) inside the event horizon when the gate closes is destroyed: a script can use this to wait before closing.
+-- It only relies on addon-agnostic fields (.IsStargate / .EventHorizon and the horizon's own buffers), so it answers for EAP and CAP gates.
+-- Returns a list of entities: those the horizon tracks (its buffers) plus those whose bounding box crosses the horizon's thickness inside the
+-- horizon's radius. Parented entities (they travel with their parent) and non-solid ones (stored, hidden) are not listed.
+local function IsGateOrHorizonPart(e, gate, horizon)
+	if (e == horizon or e == gate or e == gate.Iris) then return true end
+	local c = e:GetClass();
+	return string.sub(c, 1, 3) == "sg_" or string.sub(c, 1, 9) == "stargate_" or string.find(c, "eventhorizon", 1, true) ~= nil
+		or string.find(c, "event_horizon", 1, true) ~= nil or string.find(c, "kawoosh", 1, true) ~= nil or string.find(c, "iris", 1, true) ~= nil;
+end
+
+function Lib.GetEntitiesInHorizon(gate)
+	local out = {};
+	if (not IsValid(gate) or not gate.IsStargate) then return out end
+	local horizon = gate.EventHorizon;
+	if (not IsValid(horizon)) then return out end
+
+	local seen = {};
+	local function add(e)
+		if (IsValid(e) and not seen[e] and not e:IsWorld() and not IsValid(e:GetParent()) and not IsGateOrHorizonPart(e, gate, horizon)) then
+			seen[e] = true;
+			out[#out + 1] = e;
+		end
+	end
+
+	for _, buffer in ipairs({ horizon.AllBuffer, horizon.Buffer, horizon.ClipBuffer }) do
+		if (istable(buffer)) then
+			for _, e in pairs(buffer) do
+				if (isentity(e)) then add(e) end
+			end
+		end
+	end
+
+	local thickness = math.max(horizon:OBBMaxs().x, -horizon:OBBMins().x, 20) + 10;
+	local radius = horizon:BoundingRadius();
+	for _, e in ipairs(ents.FindInSphere(horizon:GetPos(), radius + 300)) do
+		if (not seen[e] and IsValid(e) and not e:IsWorld() and e:GetSolid() ~= SOLID_NONE and not IsValid(e:GetParent())
+			and not IsGateOrHorizonPart(e, gate, horizon)) then
+			local a, b = e:OBBMins(), e:OBBMaxs();
+			local minx, maxx, near = math.huge, -math.huge, false;
+			for _, x in ipairs({ a.x, b.x }) do
+				for _, y in ipairs({ a.y, b.y }) do
+					for _, z in ipairs({ a.z, b.z }) do
+						local l = horizon:WorldToLocal(e:LocalToWorld(Vector(x, y, z)));
+						if (l.x < minx) then minx = l.x end
+						if (l.x > maxx) then maxx = l.x end
+						if (l.y * l.y + l.z * l.z < radius * radius) then near = true end
+					end
+				end
+			end
+			if (near and minx < thickness and maxx > -thickness) then add(e) end
+		end
+	end
+	return out;
+end

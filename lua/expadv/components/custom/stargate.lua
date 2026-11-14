@@ -123,6 +123,38 @@ if IsValid(@value 1) and @value 1.IsStargate then
 end
 ]], "@result" )
 Component:AddFunctionHelper( "stargateTargetDialingAddress", "wl:", "Returns the dialling address as sent to the Dialing Address output (address + point of origin + 8th/9th chevron), all at once, once this gate has activated itself." )
+
+Component:AddPreparedFunction( "stargateInHorizon", "e:", "ar",
+[[@define result = {__type = "e"}
+if IsValid(@value 1) and @value 1.IsStargate and EXPADV.PPCheck(Context,@value 1) then
+	for _, e in ipairs(Lib.GetEntitiesInHorizon(@value 1)) do @result[#@result + 1] = e end
+end
+]], "@result" )
+Component:AddFunctionHelper( "stargateInHorizon", "e:", "Returns the entities that are, even partly, inside the event horizon of the gate (anything still inside when it closes is destroyed)." )
+
+Component:AddPreparedFunction( "stargateInHorizon", "wl:", "ar",
+[[@define result = {__type = "e"}
+if IsValid(@value 1) and @value 1.IsStargate then
+	for _, e in ipairs(Lib.GetEntitiesInHorizon(@value 1)) do @result[#@result + 1] = e end
+end
+]], "@result" )
+Component:AddFunctionHelper( "stargateInHorizon", "wl:", "Returns the entities that are, even partly, inside the event horizon of the gate (anything still inside when it closes is destroyed)." )
+
+Component:AddPreparedFunction( "stargateInHorizonCount", "e:", "n",
+[[@define result = 0
+if IsValid(@value 1) and @value 1.IsStargate and EXPADV.PPCheck(Context,@value 1) then
+	@result = #Lib.GetEntitiesInHorizon(@value 1)
+end
+]], "@result" )
+Component:AddFunctionHelper( "stargateInHorizonCount", "e:", "Returns how many entities are, even partly, inside the event horizon of the gate (anything still inside when it closes is destroyed)." )
+
+Component:AddPreparedFunction( "stargateInHorizonCount", "wl:", "n",
+[[@define result = 0
+if IsValid(@value 1) and @value 1.IsStargate then
+	@result = #Lib.GetEntitiesInHorizon(@value 1)
+end
+]], "@result" )
+Component:AddFunctionHelper( "stargateInHorizonCount", "wl:", "Returns how many entities are, even partly, inside the event horizon of the gate (anything still inside when it closes is destroyed)." )
 -------------------------------------------------------------------------
 
 Component:AddPreparedFunction( "stargateSetAddress", "e:s", "",
