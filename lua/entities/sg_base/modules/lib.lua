@@ -92,7 +92,8 @@ end
 --################# Pause any running actions (by e.g. slow dial) by AlexALX
 function ENT:PauseActions(unpause, target)
 	local s = "Lib_"..self.Entity:EntIndex().."_"; -- The uniqueID of the timers
-	if (not target) then Lib.TrackSlowDialWait(self.Entity, unpause) end -- Own sequence waiting for the ring (slow dial)
+	-- A gate pausing itself is waiting for its ring: measured during a slow dial (see Lib.StartSlowDialTarget).
+	if (not target) then Lib.TrackSlowDialWait(self.Entity, unpause) end
 	if (unpause or not target) then
 		for k=1,(self.Actions or 0) do
 			if (unpause) then
@@ -913,7 +914,7 @@ function ENT:FindGateGalaxy(no_target,addr)
 	end
 end
 
--- Remember who is calling the destination gate (see Lib.RecordInboundSource); wraps both finders, FindGate calls FindGateGalaxy.
+-- Records the calling gate on the destination, for stargateTargetAddress and the like. FindGate also covers FindGateGalaxy.
 if (Lib.RecordInboundSource) then ENT.FindGate = Lib.RecordInboundSource(ENT.FindGate) end
 
 -- Set the Dial Delay @Llapp, recode by AlexALX

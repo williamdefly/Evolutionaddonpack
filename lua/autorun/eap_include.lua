@@ -13,7 +13,7 @@ end
 --Initializing System
 IncludeCS('eap_librairies/shared/init.lua');
 
--- EAP <-> CAP Compatibility Bridge (shared part - ents.FindByClass merge)
+-- CAP compatibility, shared part. Before the other libraries and the entities: it wraps registration functions they call.
 IncludeCS('eap_librairies/compatibility/shared/init.lua');
 
 -- Compatibility with Gmod 13 - Thanks to AlexALX
@@ -44,7 +44,7 @@ include('eap_librairies/server/entity.lua');
 -- Many Functions
 include('eap_librairies/server/general.lua');
 
--- EAP <-> CAP Compatibility Bridge (server part - targeted tool/weapon/entity patches)
+-- CAP compatibility, server part (replaces cap_reversecompatibility.lua, which swapped CAP's entities for EAP's).
 include('eap_librairies/compatibility/server/init.lua');
 
 -- GateSpawner

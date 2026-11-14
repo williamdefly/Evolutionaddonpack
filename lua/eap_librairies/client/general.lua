@@ -48,8 +48,8 @@ function Lib.CFG.GetSYNC(len)
 end
 net.Receive("EAP_CFG",Lib.CFG.GetSYNC);
 
--- Get the system type (1 = Group System, 0 = Galaxy System), sent by the
--- server on spawn and whenever stargate_group_system changes.
+-- The client never received the system type (1 = Group, 0 = Galaxy), so the menus always assumed Group. Sent by the server on
+-- spawn and whenever stargate_group_system changes.
 Lib.GroupSystem = Lib.GroupSystem or 1;
 net.Receive("stargate_systemtype",function(len)
 	Lib.GroupSystem = net.ReadBit();

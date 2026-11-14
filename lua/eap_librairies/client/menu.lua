@@ -43,8 +43,7 @@ spawnmenu.AddContentType( "eap_entity", function( container, obj )
 		if ( obj.info and obj.info != "" ) then Tooltip = Format( "%s\n\n%s", Tooltip, obj.info ) end
 		icon:SetTooltip( Tooltip )
 
-		-- Spawn through EAP's own command instead of the stock "gm_spawnsent": the stock one runs
-		-- TryFixPropPosition() after SpawnFunction, which pushes gates out of the ground (+50 units).
+		-- The stock "gm_spawnsent" pushes gates out of the ground after spawning them (about 50 units too high): EAP's own command is used.
 		icon.DoClick = function()
 			RunConsoleCommand( "eap_spawnsent", obj.spawnname )
 			surface.PlaySound( "ui/buttonclickrelease.wav" )
@@ -88,7 +87,8 @@ local function AddToTab(Categorised, pnlContent, tree, node)
 				for k, ent in SortedPairsByMemberValue( v, "PrintName" ) do
 					local adm_only = false;
 					local ctype = ent.ScriptedEntityType;
-					if ( ctype == nil or ctype == "entity" ) then ctype = "eap_entity" end -- own spawn command, see "eap_entity" above
+					-- Plain entities of the EAP tab use the content type above, for the same reason.
+					if ( ctype == nil or ctype == "entity" ) then ctype = "eap_entity" end
 					spawnmenu.CreateContentIcon( ctype, self.PropPanel,
 					{
 						nicename	= ent.PrintName or ent.__ClassName,

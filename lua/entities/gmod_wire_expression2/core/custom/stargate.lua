@@ -64,16 +64,13 @@ e2function string wirelink:stargateAddress()
 	return this:GetGateAddress() or ""
 end
 
--- What the gate dialling this one looks like. Nothing ("") until this gate has activated itself (it only "sees" the caller then), and
--- nothing if "stargate_show_inbound_address" hides the caller: same data as its "Dialing Address" wire output, but given all at once.
---   stargateTargetAddress()       address of the calling gate (6 symbols)
---   stargateTargetGroup()         group of the calling gate
---   stargateTargetDialingAddress() address as sent to the "Dialing Address" output: address + point of origin (+ 8th/9th chevron)
 local function inboundField(gate, field)
 	if not IsValid(gate) or not gate.IsStargate then return "" end
 	return Lib.GetInboundSourceField(gate, field)
 end
 
+-- Gate dialling this one: address, group, and dialling address (address + point of origin + 8th/9th chevron), each given at once.
+-- Empty until this gate has activated itself, and when stargate_show_inbound_address hides the caller, like the wire outputs.
 e2function string entity:stargateTargetAddress()
 	if not IsValid(this) or not this.IsStargate or not(isOwner(self,this) or self.player:IsAdmin()) then return "" end
 	return inboundField(this, "address")
@@ -101,9 +98,8 @@ e2function string wirelink:stargateTargetDialingAddress()
 	return inboundField(this, "dialing")
 end
 
--- Entities (even partly) inside the event horizon of the gate: check it before closing the gate, anything still inside is destroyed.
---   stargateInHorizon()       array of those entities
---   stargateInHorizonCount()  how many
+-- Entities at least partly inside the event horizon, and how many. Anything still inside when the gate closes is destroyed, so a
+-- script can check this before closing.
 e2function array entity:stargateInHorizon()
 	if not IsValid(this) or not this.IsStargate or not(isOwner(self,this) or self.player:IsAdmin()) then return {} end
 	return Lib.GetEntitiesInHorizon(this)
@@ -341,8 +337,8 @@ e2function number wirelink:stargateOpen()
 	end
 end
 
--- Pegasus only: is the ring glyph n (1 to the number of glyphs, 36) lit right now? (1 = yes, 0 = no, -1 = not a Pegasus gate, or n is not a whole number from 1 to the glyph count)
--- After an instant open (DHD button by button, ring light on) every glyph is lit, during a normal dial only the spinning one.
+-- Pegasus only: is ring glyph n lit? 1 = yes, 0 = no, -1 = not a Pegasus gate or n out of range. After an instant open every glyph
+-- is lit; during a normal dial only the spinning one.
 e2function number entity:stargateGlyphIsActivated(number n)
 	if not IsValid(this) or not this.IsStargate or not(isOwner(self,this) or self.player:IsAdmin()) then return -1 end
 	if not this.GlyphIsLit or not this.GetGlyphCount or n ~= n or n ~= math.floor(n) or n < 1 or n > this:GetGlyphCount() then return -1 end

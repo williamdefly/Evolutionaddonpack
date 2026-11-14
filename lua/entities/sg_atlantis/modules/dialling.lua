@@ -49,10 +49,9 @@ function ENT.Sequence:Dial(inbound,fast,fail,busy)
 	local t = self.Entity.Target;
 	--################# INBOUND DIALLING
 	if(inbound) then
-		-- A gate using the "new slow dial" (SG1, Movie, ...) used to get the instant "InstantOpen" sequence here (all glyphs lit at once,
-		-- chevrons all at once). Pegasus now plays its own normal inbound sequence below for them too, exactly as for Pegasus -> Pegasus.
-		-- That sequence is longer than the instant one: ENT:ActivateStargate() resumes it earlier (see InboundSlowLead), it then waits for the source's last
-		-- chevron (Lib.SlowDialBarrier) and the gates open together.
+		-- A gate using the new slow dial used to get InstantOpen here: whole ring and all chevrons lit at once, so the glyphs were never
+		-- seen one by one. The normal inbound sequence is now played for it too, as for a Pegasus -> Pegasus dial. It is longer than the
+		-- instant one, so the source resumes it earlier (InboundSlowLead, see ENT:ActivateStargate) and both gates wait for each other.
 		self.Entity.InboundSlowLead = nil;
 		self.Entity.InboundSlowReleased = nil;
 		self.Entity.InboundSlowReady = nil;
@@ -153,14 +152,14 @@ function ENT.Sequence:Dial(inbound,fast,fail,busy)
 					end
 				end
 			end
+			-- Length of this animation, of which 0.5 s already passed before the source paused us: how long before its last lock the source
+			-- has to resume us. Then wait for that lock (Lib.SlowDialBarrier) and open after the delay the instant sequence used to take.
 			if (newslow) then
-				-- Our animation is over after "total" seconds, of which 0.5 passed before the source paused us: it has to resume us that long before its last lock.
 				local total = 0;
 				for _,step in ipairs(action) do total = total + (tonumber(step.d) or 0) end
 				self.Entity.InboundSlowLead = total - 0.5 + 0.2;
 				self.Entity.InboundSlowReleased = false;
 				self.Entity.InboundSlowReady = false;
-				-- Then wait for the lock, and open after what the former instant sequence still took after its resume
 				action:Add({f=Lib.SlowDialBarrier,v={self.Entity},d=self:CalcDelaySlow(t,true)+0.1});
 			end
 		end

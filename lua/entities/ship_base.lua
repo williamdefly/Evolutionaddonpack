@@ -437,14 +437,15 @@ function SGVehBaseCalcView(Player, Origin, Angles, FieldOfView)
 end
 hook.Add("CalcView", "SGVehBaseCalcView", SGVehBaseCalcView)
 
---################# Start the third person camera far enough to see the whole ship
--- Every ship sets its own camera distance (self.Dist, negative = behind the ship) and height (self.UDist) in its Initialize. The capital
--- ships kept the values of the small craft they were written from, so the camera started inside or right against the hull.
--- Once per ship, when the local player starts flying it, the distance and the height are raised to fit the size of the model. They are
--- never lowered, so a ship whose own values are already large enough keeps them, and the zoom keys still work from there.
-local VIEW_DISTANCE_PER_RADIUS = 2.5; -- camera distance, in model bounding radii
-local VIEW_HEIGHT_PER_RADIUS = 0.35; -- camera height, in model bounding radii
+-- Each ship sets its camera distance (Dist, negative = behind) and height (UDist) in its Initialize, and the capital ships kept the
+-- values of the small craft they were copied from: the camera started right against the hull.
+-- Camera distance and height, in model bounding radii.
+local VIEW_DISTANCE_PER_RADIUS = 2.5;
+local VIEW_HEIGHT_PER_RADIUS = 0.35;
 
+-- Once per ship, when the local player starts flying it, both values are raised to fit the model. They are never lowered, so a
+-- ship whose own values are large enough keeps them, and the zoom keys go on from there. A separate hook rather than the CalcView
+-- above: that one shares its name with CAP's and may not be the one running.
 hook.Add("Think", "EAP.Ships.FitViewToModel", function()
 	local p = LocalPlayer();
 	if (not IsValid(p)) then return end

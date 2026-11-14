@@ -53,7 +53,8 @@ ENT.Sounds = {
 	OnButtonLock=Sound("stargate/chevron_lock_atlantis_incoming.mp3"),
 }
 -- In which slot do the chevron a lock?
-ENT.GlyphCount = 36; -- Fallback only: GetGlyphCount() reads the real number from the ring model
+-- Used only when the number of glyphs cannot be read from the ring model (GetGlyphCount).
+ENT.GlyphCount = 36;
 ENT.ChevronLocks = {4,8,12,24,28,32,36,16,20};
 ENT.ChevronLocksb = {4,8,12,24,28,32,36,16,20};
 ENT.ChevronLocks8o = {4,8,12,24,28,32,16,36,20};
@@ -190,7 +191,6 @@ function ENT:AddRing()
 end
 
 --################# Turns on a light on the ring @aVoN
--- all: the whole ring is lit at once (not a single spinning glyph) - used by the instant open and the "Turn on ring light" input
 function ENT:RingLight(light,inbound,shutdown,atlantis,all)
 	local ring = self.Ring.Dial;
 	if(inbound) then ring = self.Ring.Incoming end;
@@ -234,8 +234,8 @@ function ENT:RingLight(light,inbound,shutdown,atlantis,all)
     else
 	    self:SetWire("Active Glyph",light);
     end
-	-- Which glyphs are lit, for GlyphIsLit() (E2: stargateGlyphIsActivated). Incoming ring: the glyphs light up one after the other and stay
-	-- lit until the ring is turned off (light 0); "all" (instant open / ring light on) lights every glyph. Dialing ring: the one spinning light.
+	-- Remembers which glyphs are lit, for GlyphIsLit(). Incoming ring: glyphs stay lit until the ring is turned off (light 0), and
+	-- "all" (instant open, "Turn on ring light" input) lights every glyph at once. Dialling ring: only the spinning glyph.
 	local glyph = (part==2) and light+18 or light;
 	if (inbound) then
 		if (glyph == 0) then
@@ -253,7 +253,7 @@ function ENT:RingLight(light,inbound,shutdown,atlantis,all)
 	ring[part]:Fire("SetBodyGroup",light);
 end
 
---################# Number of glyphs on the ring, read from the ring model: each of its 2 parts has a bodygroup with one state per glyph, plus "off"
+-- Number of glyphs on the ring: each of its two parts has a bodygroup with one state per glyph, plus "off".
 function ENT:GetGlyphCount()
 	local ring = self.Ring and self.Ring.Incoming;
 	local part = ring and ring[1];
@@ -264,10 +264,10 @@ function ENT:GetGlyphCount()
 	return self.GlyphCount;
 end
 
---################# Is the glyph n (1 .. GetGlyphCount()) lit on the ring right now? (every glyph after an instant open / with the ring light on, the glyphs already lit during an incoming dial, the spinning one when dialing out)
+-- Is glyph n (1 to GetGlyphCount()) lit right now? Used by the scripting function stargateGlyphIsActivated.
 function ENT:GlyphIsLit(n)
 	n = tonumber(n);
-	if (not n or n ~= math.floor(n) or n < 1 or n > self:GetGlyphCount()) then return false end -- Only whole numbers 1 .. GetGlyphCount()
+	if (not n or n ~= math.floor(n) or n < 1 or n > self:GetGlyphCount()) then return false end
 	return self.GlyphAll == true or (self.GlyphsOn ~= nil and self.GlyphsOn[n] == true) or self.GlyphDial == n;
 end
 

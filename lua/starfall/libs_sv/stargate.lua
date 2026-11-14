@@ -33,7 +33,7 @@ function ents_methods:stargateAddress()
 	return this:GetGateAddress()
 end
 
--- Address of the gate dialling this one ("" until this gate has activated itself, or if hidden)
+-- Gate dialling this one: address, group and dialling address ("" until this gate has activated itself, or if hidden).
 function ents_methods:stargateTargetAddress()
 	SF.CheckType( self, ents_metatable )
 	local this = unwrap( self )
@@ -42,7 +42,6 @@ function ents_methods:stargateTargetAddress()
 	return Lib.GetInboundSourceField(this, "address")
 end
 
--- Group of the gate dialling this one ("" until this gate has activated itself, or if hidden)
 function ents_methods:stargateTargetGroup()
 	SF.CheckType( self, ents_metatable )
 	local this = unwrap( self )
@@ -51,7 +50,6 @@ function ents_methods:stargateTargetGroup()
 	return Lib.GetInboundSourceField(this, "group")
 end
 
--- Dialling address as sent to the "Dialing Address" output (address + point of origin + 8th/9th chevron), all at once ("" until this gate has activated itself, or if hidden)
 function ents_methods:stargateTargetDialingAddress()
 	SF.CheckType( self, ents_metatable )
 	local this = unwrap( self )
@@ -60,7 +58,7 @@ function ents_methods:stargateTargetDialingAddress()
 	return Lib.GetInboundSourceField(this, "dialing")
 end
 
--- Entities (even partly) inside the event horizon of the gate: anything still inside when it closes is destroyed
+-- Entities at least partly inside the event horizon, and how many (anything still inside when the gate closes is destroyed).
 function ents_methods:stargateInHorizon()
 	SF.CheckType( self, ents_metatable )
 	local this = unwrap( self )

@@ -81,8 +81,9 @@ function Lib.KeyBoard.ResetKeys(p,name)
 	end
 end
 
-/* Overwrites the player's KeyDown so EAP's own ships can read key input @Elanis */
 
+-- Player:KeyDown(name, key) reads EAP's own key bindings. It no longer waits for CAP's keyboard library: EAP's ships are not
+-- replaced by CAP's any more and need their keys (compatibility/shared/init.lua makes the override read both addons' keys).
 function Lib.KeyBoard.Override()
 
 	--################### Overwrites the player's KeyDown etc function to use our system, if two arguments are given @aVoN

@@ -1204,7 +1204,8 @@ function BUFFER:StartTouch(EventHorizon,e)
 		end
 	end
 
-	if(not IsValid(e:GetPhysicsObject())) then return end; -- Nothing to constrain
+	-- An entity without a physics object made the constraint creation below fail.
+	if(not IsValid(e:GetPhysicsObject())) then return end;
 	e.EventHorizonNoCollide = ents.Create("phys_ragdollconstraint");
 	e.EventHorizonNoCollide:SetKeyValue("spawnflags",3);
 	for _,v in pairs(MaxValue) do
