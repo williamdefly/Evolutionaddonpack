@@ -33,6 +33,50 @@ function ents_methods:stargateAddress()
 	return this:GetGateAddress()
 end
 
+-- Gate dialling this one: address, group and dialling address ("" until this gate has activated itself, or if hidden).
+function ents_methods:stargateTargetAddress()
+	SF.CheckType( self, ents_metatable )
+	local this = unwrap( self )
+	if not canModify(SF.instance.player,this) then return false, "Insufficient permissions" end
+	if not this.IsStargate then return false, "entity is not stargate" end
+	return Lib.GetInboundSourceField(this, "address")
+end
+
+function ents_methods:stargateTargetGroup()
+	SF.CheckType( self, ents_metatable )
+	local this = unwrap( self )
+	if not canModify(SF.instance.player,this) then return false, "Insufficient permissions" end
+	if not this.IsStargate then return false, "entity is not stargate" end
+	return Lib.GetInboundSourceField(this, "group")
+end
+
+function ents_methods:stargateTargetDialingAddress()
+	SF.CheckType( self, ents_metatable )
+	local this = unwrap( self )
+	if not canModify(SF.instance.player,this) then return false, "Insufficient permissions" end
+	if not this.IsStargate then return false, "entity is not stargate" end
+	return Lib.GetInboundSourceField(this, "dialing")
+end
+
+-- Entities at least partly inside the event horizon, and how many (anything still inside when the gate closes is destroyed).
+function ents_methods:stargateInHorizon()
+	SF.CheckType( self, ents_metatable )
+	local this = unwrap( self )
+	if not canModify(SF.instance.player,this) then return false, "Insufficient permissions" end
+	if not this.IsStargate then return false, "entity is not stargate" end
+	local out = {}
+	for i, e in ipairs(Lib.GetEntitiesInHorizon(this)) do out[i] = wrap( e ) end
+	return out
+end
+
+function ents_methods:stargateInHorizonCount()
+	SF.CheckType( self, ents_metatable )
+	local this = unwrap( self )
+	if not canModify(SF.instance.player,this) then return false, "Insufficient permissions" end
+	if not this.IsStargate then return false, "entity is not stargate" end
+	return #Lib.GetEntitiesInHorizon(this)
+end
+
 function ents_methods:stargateSetAddress(address)
 	SF.CheckType( self, ents_metatable )
 	SF.CheckType( address, "string" )
@@ -161,10 +205,10 @@ function ents_methods:stargateGetRingAngle()
 	local this = unwrap( self )
 	if not canModify(SF.instance.player,this) then return false, "Insufficient permissions" end
 	if not this.IsStargate then return false, "entity is not stargate" end
-	local vg = {"stargate_movie","stargate_sg1","stargate_infinity","stargate_universe"};
+	local vg = {"sg_movie","sg_sg1","sg_infinity","sg_universe"};
 	local class = this:GetClass();
 	if (not table.HasValue(vg,class)) then return false, "Stargate should be sg1, movie, infinity or universe class" end
-	if (class=="stargate_universe") then
+	if (class=="sg_universe") then
 		if (IsValid(this.Gate)) then
 			local angle = tonumber(math.NormalizeAngle(this.Gate:GetLocalAngles().r));
 			if (angle<0) then angle = angle+360; end;
@@ -224,7 +268,7 @@ function ents_methods:stargateOverloadTime()
 	if (this.excessPower==nil or this.excessPowerLimit==nil or not IsValid(this.overloader)) then return false; end
 	local energyRequired = this.excessPowerLimit - this.excessPower;
 	local timeLeft = (energyRequired / this.overloader.energyPerSecond)
-	if(StarGate.IsIrisClosed(this)) then
+	if(Lib.IsIrisClosed(this)) then
 		timeLeft = timeLeft * 2;
 	end
 	if (this.isOverloading) then
@@ -324,7 +368,7 @@ function ents_methods:stargateRandomAddress(mode)
 	local this = unwrap( self )
 	if not this.IsStargate then return false, "entity is not stargate" end
 	if not canModify(SF.instance.player,this) or not this:CAP_CanModify(SF.instance.player) then return false, "Insufficient permissions" end
-	StarGate.RandomGateName(nil,this,nil,true,mode);
+	Lib.RandomGatesName(nil,this,nil,true,mode);
 end
 
 function ents_methods:stargateTransferEnergy(value)
@@ -534,6 +578,48 @@ function wirelink_methods:stargateAddress()
 	return this:GetGateAddress()
 end
 
+function wirelink_methods:stargateTargetAddress()
+	SF.CheckType( self, wirelink_metatable )
+	local this = unwrap( self )
+	if not SF.Permissions.check( SF.instance.player, nil, "wire.wirelink.read" ) then return false, "Insufficient permissions" end
+	if not this.IsStargate then return false, "entity is not stargate" end
+	return Lib.GetInboundSourceField(this, "address")
+end
+
+function wirelink_methods:stargateTargetGroup()
+	SF.CheckType( self, wirelink_metatable )
+	local this = unwrap( self )
+	if not SF.Permissions.check( SF.instance.player, nil, "wire.wirelink.read" ) then return false, "Insufficient permissions" end
+	if not this.IsStargate then return false, "entity is not stargate" end
+	return Lib.GetInboundSourceField(this, "group")
+end
+
+function wirelink_methods:stargateTargetDialingAddress()
+	SF.CheckType( self, wirelink_metatable )
+	local this = unwrap( self )
+	if not SF.Permissions.check( SF.instance.player, nil, "wire.wirelink.read" ) then return false, "Insufficient permissions" end
+	if not this.IsStargate then return false, "entity is not stargate" end
+	return Lib.GetInboundSourceField(this, "dialing")
+end
+
+function wirelink_methods:stargateInHorizon()
+	SF.CheckType( self, wirelink_metatable )
+	local this = unwrap( self )
+	if not SF.Permissions.check( SF.instance.player, nil, "wire.wirelink.read" ) then return false, "Insufficient permissions" end
+	if not this.IsStargate then return false, "entity is not stargate" end
+	local out = {}
+	for i, e in ipairs(Lib.GetEntitiesInHorizon(this)) do out[i] = wrap( e ) end
+	return out
+end
+
+function wirelink_methods:stargateInHorizonCount()
+	SF.CheckType( self, wirelink_metatable )
+	local this = unwrap( self )
+	if not SF.Permissions.check( SF.instance.player, nil, "wire.wirelink.read" ) then return false, "Insufficient permissions" end
+	if not this.IsStargate then return false, "entity is not stargate" end
+	return #Lib.GetEntitiesInHorizon(this)
+end
+
 function wirelink_methods:stargateSetAddress(address)
 	SF.CheckType( self, wirelink_metatable )
 	SF.CheckType( address, "string" )
@@ -662,10 +748,10 @@ function wirelink_methods:stargateGetRingAngle()
 	local this = unwrap( self )
 	if not SF.Permissions.check( SF.instance.player, nil, "wire.wirelink.read" ) then return false, "Insufficient permissions" end
 	if not this.IsStargate then return false, "entity is not stargate" end
-	local vg = {"stargate_movie","stargate_sg1","stargate_infinity","stargate_universe"};
+	local vg = {"sg_movie","sg_sg1","sg_infinity","sg_universe"};
 	local class = this:GetClass();
 	if (not table.HasValue(vg,class)) then return false, "Stargate should be sg1, movie, infinity or universe class" end
-	if (class=="stargate_universe") then
+	if (class=="sg_universe") then
 		if (IsValid(this.Gate)) then
 			local angle = tonumber(math.NormalizeAngle(this.Gate:GetLocalAngles().r));
 			if (angle<0) then angle = angle+360; end;
@@ -725,7 +811,7 @@ function wirelink_methods:stargateOverloadTime()
 	if (this.excessPower==nil or this.excessPowerLimit==nil or not IsValid(this.overloader)) then return false; end
 	local energyRequired = this.excessPowerLimit - this.excessPower;
 	local timeLeft = (energyRequired / this.overloader.energyPerSecond)
-	if(StarGate.IsIrisClosed(this)) then
+	if(Lib.IsIrisClosed(this)) then
 		timeLeft = timeLeft * 2;
 	end
 	if (this.isOverloading) then
@@ -825,7 +911,7 @@ function wirelink_methods:stargateRandomAddress(mode)
 	local this = unwrap( self )
 	if not this.IsStargate then return false, "entity is not stargate" end
 	if not SF.Permissions.check( SF.instance.player, nil, "wire.wirelink.write" ) or not this:CAP_CanModify(SF.instance.player) then return false, "Insufficient permissions" end
-	StarGate.RandomGateName(nil,this,nil,true,mode);
+	Lib.RandomGatesName(nil,this,nil,true,mode);
 end
 
 function wirelink_methods:stargateTransferEnergy(value)

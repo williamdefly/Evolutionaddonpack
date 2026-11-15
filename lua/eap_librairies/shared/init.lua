@@ -208,7 +208,7 @@ function EAP.Init()
 		table.insert(EAP.MissingAddons,"Wiremod");
 	end
 
-	if (string.find(util.RelativePathToFull("gameinfo.txt"),"garrysmodbeta")) then
+	if (util.RelativePathToFull and string.find(util.RelativePathToFull("gameinfo.txt"),"garrysmodbeta")) then
 		errors=errors+1;
 		EAP.GameBeta = true;
 	end

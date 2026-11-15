@@ -87,7 +87,7 @@ function ENT.Sequence:DialFail(instant_stop,play_sound)
 		action:Add({f=self.Shutdown,v={self,true,self.Entity.Active or play_sound},d=0});
 	end
 	if self.Entity:GetClass() == "sg_supergate" then
-		action:Add({f=self.DisActivateLights,v={self,false,true},d=0});
+		action:Add({f=self.DisActivateLights,v={self.Entity,false,true},d=0});
 	end
 	action:Add({f=self.SetWire,v={self,"Dialing Address",""},d=0}); -- Wire
 	action:Add({f=self.SetWire,v={self,"Dialing Symbol",""},d=0}); -- Wire
@@ -157,7 +157,7 @@ function ENT:Close(ignore)
 		action:Add({f=self.Shutdown,v={self,false,true},d=0});
 	end
 	if self.Entity:GetClass() == "sg_supergate" then
-		action:Add({f=self.DisActivateLights,v={self},d=0});
+		action:Add({f=self.DisActivateLights,v={self.Entity},d=0});
 	end
 	action:Add({f=self.SetWire,v={self,"Chevron",0},d=0}); -- Wire
 	action:Add({f=self.SetWire,v={self,"Chevron Locked",0},d=0}); -- Wire
@@ -315,6 +315,12 @@ function ENT:ActivateStargate(inbound,fast)
 					self:SetShutdown(false);
 					if(not DEBUG) then -- No debug, no instant open
 						action = self.Sequence:Dial(inbound,fast,fail,busy) + action;
+						-- Slow dial towards a gate that plays a full inbound animation: resume it early enough to be over at our last chevron lock.
+						-- If the action list has no resume step, there is nothing for the destination to wait for.
+						if (not inbound and not fast and IsValid(e) and e.InboundSlowLead) then
+							if (not Lib.ShiftTargetUnpause(self,action,e.InboundSlowLead)) then e.InboundSlowReleased = true end
+							e.InboundSlowLead = nil;
+						end
 					end
 				else
 					action = self.Sequence:DialFail(nil,true);

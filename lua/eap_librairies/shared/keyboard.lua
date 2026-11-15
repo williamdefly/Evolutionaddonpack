@@ -81,11 +81,10 @@ function Lib.KeyBoard.ResetKeys(p,name)
 	end
 end
 
-/* The next functions were made to overwrite the CAP KeyDown , then the EAP Ship will Work @Elanis , an another function will replace CAP ships by EAP ships to keep working */
 
+-- Player:KeyDown(name, key) reads EAP's own key bindings. It no longer waits for CAP's keyboard library: EAP's ships are not
+-- replaced by CAP's any more and need their keys (compatibility/shared/init.lua makes the override read both addons' keys).
 function Lib.KeyBoard.Override()
-
-	if((StarGate==nil or StarGate.KeyBoard==nil) and Lib.IsCapDetected==true) then return false; end -- If CAP is initialized or if CAP isn't installed we can overwrite the function keyDown
 
 	--################### Overwrites the player's KeyDown etc function to use our system, if two arguments are given @aVoN
 	local meta = FindMetaTable("Player");

@@ -49,12 +49,15 @@ function ENT.Sequence:Dial(inbound,fast,fail,busy)
 	local t = self.Entity.Target;
 	--################# INBOUND DIALLING
 	if(inbound) then
-		if (inbound and not fast and IsValid(t) and t.IsNewSlowDial) then
-			action:Add({f=self.SetStatus,v={self,false,true,true},d=0.6}); -- The first true tells, "we are in use", but the last tells wire NOT to indicate us as "Active". Otherwise, on a slow dial-in, a gate becomes "Wire-Active" even if it's not currently dialling
-			action:Add({f=self.SetStatus,v={self,false,true},d=0.1});
-			local dly = self:CalcDelaySlow(t,true)
-			action = self.Sequence:InstantOpen(action,dly,false,true);
-		else
+		-- A gate using the new slow dial used to get InstantOpen here: whole ring and all chevrons lit at once, so the glyphs were never
+		-- seen one by one. The normal inbound sequence is now played for it too, as for a Pegasus -> Pegasus dial. It is longer than the
+		-- instant one, so the source resumes it earlier (InboundSlowLead, see ENT:ActivateStargate) and both gates wait for each other.
+		self.Entity.InboundSlowLead = nil;
+		self.Entity.InboundSlowReleased = nil;
+		self.Entity.InboundSlowReady = nil;
+		self.Entity.InboundSlowWaitingSource = nil;
+		local newslow = (not fast and IsValid(t) and t.IsNewSlowDial);
+		do
 			local add = 0
 			if (IsValid(t)) then
 				add = self:CalcDelayFast(t,inbound);
@@ -76,7 +79,7 @@ function ENT.Sequence:Dial(inbound,fast,fail,busy)
 					add = add + (0.1-rnd[i])*4;
 				end
 			end
-			if IsValid(t) and not fast then
+			if IsValid(t) and not fast and not newslow then
 				add = add + t:DialSlowTime(chevs,self)
 			end
 			action:Add({f=self.SetStatus,v={self,false,true,true},d=add}); -- The first true tells, "we are in use", but the last tells wire NOT to indicate us as "Active". Otherwise, on a slow dial-in, a gate becomes "Wire-Active" even if it's not currently dialling
@@ -87,7 +90,7 @@ function ENT.Sequence:Dial(inbound,fast,fail,busy)
 			action:Add({f=self.SetChevrons,v={self,0,0},d=0}); -- Wire
 			action:Add({f=self.RingLight,v={self,0,true},d=0});
 			action:Add({f=self.RingLight,v={self,0,false},d=0});
-			action:Add({f=self.Fire,v={self,"SetBodyGroup",0,0.05},d=0});
+			action:Add({f=self.Fire,v={self.Entity,"SetBodyGroup",0,0.05},d=0});
 			action:Add({f=self.EmitSound,v={self.Entity,self.Sounds.Ring,90,math.random(98,103)},d=0.1}); -- Ring Sound
 			action:Add({f=self.Fire,v={self.Entity,"SetBodyGroup",1},d=0.2}); -- Activate the mainlight
 			-- We are doing exactly 36 steps, so we are adding this delay now in every step.
@@ -149,6 +152,16 @@ function ENT.Sequence:Dial(inbound,fast,fail,busy)
 					end
 				end
 			end
+			-- Length of this animation, of which 0.5 s already passed before the source paused us: how long before its last lock the source
+			-- has to resume us. Then wait for that lock (Lib.SlowDialBarrier) and open after the delay the instant sequence used to take.
+			if (newslow) then
+				local total = 0;
+				for _,step in ipairs(action) do total = total + (tonumber(step.d) or 0) end
+				self.Entity.InboundSlowLead = total - 0.5 + 0.2;
+				self.Entity.InboundSlowReleased = false;
+				self.Entity.InboundSlowReady = false;
+				action:Add({f=Lib.SlowDialBarrier,v={self.Entity},d=self:CalcDelaySlow(t,true)+0.1});
+			end
 		end
 	else
 		local dir = -1; -- Direction, into the moving chevrons goes
@@ -183,7 +196,7 @@ function ENT.Sequence:Dial(inbound,fast,fail,busy)
 		action:Add({f=self.SetChevrons,v={self,0,0},d=0}); -- Wire
 		action:Add({f=self.RingLight,v={self,0,true},d=0});
 		action:Add({f=self.RingLight,v={self,0,false},d=0});
-		action:Add({f=self.Fire,v={self,"SetBodyGroup",0,0.05},d=0});
+		action:Add({f=self.Fire,v={self.Entity,"SetBodyGroup",0,0.05},d=0});
 		if(fast)then
             --sound = self.Sounds.Ring; -- Ring Sound
 			action:Add({f=self.EmitSound,v={self.Entity,self.Sounds.Ring,90,math.random(98,103)},d=0}); -- Ring Sound
@@ -373,7 +386,7 @@ function ENT.Sequence:DialFail(instant_stop,play_sound)
 		action:Add({f=self.Shutdown,v={self,true,self.Entity.Active or play_sound},d=0});
 	end
 	if self.Entity:GetClass() == "sg_supergate" then
-		action:Add({f=self.DisActivateLights,v={self},d=0});
+		action:Add({f=self.DisActivateLights,v={self.Entity},d=0});
 	end
 	action:Add({f=self.SetWire,v={self,"Dialing Address",""},d=0}); -- Wire
 	action:Add({f=self.SetWire,v={self,"Dialing Symbol",""},d=0}); -- Wire
@@ -410,7 +423,7 @@ function ENT.Sequence:InstantOpen(action,delay,instant,inbound,slow,nox,fail)
 	action:Add({f=self.RingSound,v={self,false},d=0});
 	action:Add({f=self.RingLight,v={self,0,true,true},d=0});
 	action:Add({f=self.RingLight,v={self,0,false,true},d=0});
-	action:Add({f=self.Fire,v={self,"SetBodyGroup",0,0.05},d=0});
+	action:Add({f=self.Fire,v={self.Entity,"SetBodyGroup",0,0.05},d=0});
 	for i=1,chevs do
 		local b = i+1;
 		if (i == 8) then
@@ -422,7 +435,7 @@ function ENT.Sequence:InstantOpen(action,delay,instant,inbound,slow,nox,fail)
 		action:Add({f=self.DHDSetChevron,v={self,i},d=0});
 	end
 	if (inbound) then
-		action:Add({f=self.RingLight,v={self,36,true},d=0});
+		action:Add({f=self.RingLight,v={self,36,true,false,false,true},d=0});
 	end
 	local dialaddress = "";
 	for i=1,chevs do

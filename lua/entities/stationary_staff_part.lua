@@ -49,9 +49,7 @@ end
 
 if CLIENT then
 
-if (SGLanguage!=nil and SGLanguage.GetMessage!=nil) then
-	ENT.Category = Lib.Language.GetMessage("cat_weapons");
-	ENT.PrintName = SGLanguage.GetMessage("entity_staff_weapon");
-end
+ENT.Category = Lib.Language.GetMessage("cat_weapons");
+ENT.PrintName = Lib.Language.GetMessage("entity_staff_weapon");
 
 end

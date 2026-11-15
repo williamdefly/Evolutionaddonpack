@@ -36,6 +36,24 @@ spawnmenu.AddContentType( "eap_entity", function( container, obj )
 		icon:SetName( obj.nicename )
 		icon:SetMaterial( obj.material )
 		icon:SetAdminOnly( obj.admin )
+		icon:SetColor( Color( 205, 92, 92, 255 ) )
+
+		local Tooltip = Format( "%s", obj.nicename )
+		if ( obj.author ) then Tooltip = Format( "%s\nAuthor: %s", Tooltip, obj.author ) end
+		if ( obj.info and obj.info != "" ) then Tooltip = Format( "%s\n\n%s", Tooltip, obj.info ) end
+		icon:SetTooltip( Tooltip )
+
+		-- The stock "gm_spawnsent" pushes gates out of the ground after spawning them (about 50 units too high): EAP's own command is used.
+		icon.DoClick = function()
+			RunConsoleCommand( "eap_spawnsent", obj.spawnname )
+			surface.PlaySound( "ui/buttonclickrelease.wav" )
+		end
+		icon.OpenMenu = function( icon )
+			local menu = DermaMenu()
+				menu:AddOption( "Copy to Clipboard", function() SetClipboardText( obj.spawnname ) end )
+				menu:AddOption( "Spawn Using Toolgun", function() RunConsoleCommand( "gmod_tool", "creator" ); RunConsoleCommand( "creator_type", "0" ); RunConsoleCommand( "creator_name", obj.spawnname ) end )
+			menu:Open()
+		end
 
 	if ( IsValid( container ) ) then
 		container:Add( icon )
@@ -68,7 +86,10 @@ local function AddToTab(Categorised, pnlContent, tree, node)
 
 				for k, ent in SortedPairsByMemberValue( v, "PrintName" ) do
 					local adm_only = false;
-					spawnmenu.CreateContentIcon( ent.ScriptedEntityType or "entity", self.PropPanel,
+					local ctype = ent.ScriptedEntityType;
+					-- Plain entities of the EAP tab use the content type above, for the same reason.
+					if ( ctype == nil or ctype == "entity" ) then ctype = "eap_entity" end
+					spawnmenu.CreateContentIcon( ctype, self.PropPanel,
 					{
 						nicename	= ent.PrintName or ent.__ClassName,
 						spawnname	= ent.ClassName,

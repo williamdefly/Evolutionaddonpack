@@ -326,7 +326,7 @@ if(meta) then
 		end
 		-- Deriving Extra
 		if(self.__DerivedEntities) then
-			local key = (({...})[1] or ""):lower();
+			local key = tostring(({...})[1] or ""):lower();
 			if(keys[key]) then
 				for _,v in pairs(self.__DerivedEntities) do
 					if(IsValid(v)) then
@@ -342,13 +342,13 @@ if(meta) then
 	meta.Fire = function(self,...)
 		if(not IsValid(self)) then return end;
 		local keys = {color=true,alpha=true}
+		local key = tostring(({...})[1] or ""):lower();
 		-- Default behaviour
 		if (not self.DeriveIgnoreParent or not keys[key]) then
 			self:__Fire(...);
 		end
 		-- Deriving Extra
 		if(self.__DerivedEntities) then
-			local key = (({...})[1] or ""):lower();
 			if(keys[key]) then
 				for _,v in pairs(self.__DerivedEntities) do
 					if(IsValid(v)) then

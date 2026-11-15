@@ -64,6 +64,62 @@ e2function string wirelink:stargateAddress()
 	return this:GetGateAddress() or ""
 end
 
+local function inboundField(gate, field)
+	if not IsValid(gate) or not gate.IsStargate then return "" end
+	return Lib.GetInboundSourceField(gate, field)
+end
+
+-- Gate dialling this one: address, group, and dialling address (address + point of origin + 8th/9th chevron), each given at once.
+-- Empty until this gate has activated itself, and when stargate_show_inbound_address hides the caller, like the wire outputs.
+e2function string entity:stargateTargetAddress()
+	if not IsValid(this) or not this.IsStargate or not(isOwner(self,this) or self.player:IsAdmin()) then return "" end
+	return inboundField(this, "address")
+end
+
+e2function string wirelink:stargateTargetAddress()
+	return inboundField(this, "address")
+end
+
+e2function string entity:stargateTargetGroup()
+	if not IsValid(this) or not this.IsStargate or not(isOwner(self,this) or self.player:IsAdmin()) then return "" end
+	return inboundField(this, "group")
+end
+
+e2function string wirelink:stargateTargetGroup()
+	return inboundField(this, "group")
+end
+
+e2function string entity:stargateTargetDialingAddress()
+	if not IsValid(this) or not this.IsStargate or not(isOwner(self,this) or self.player:IsAdmin()) then return "" end
+	return inboundField(this, "dialing")
+end
+
+e2function string wirelink:stargateTargetDialingAddress()
+	return inboundField(this, "dialing")
+end
+
+-- Entities at least partly inside the event horizon, and how many. Anything still inside when the gate closes is destroyed, so a
+-- script can check this before closing.
+e2function array entity:stargateInHorizon()
+	if not IsValid(this) or not this.IsStargate or not(isOwner(self,this) or self.player:IsAdmin()) then return {} end
+	return Lib.GetEntitiesInHorizon(this)
+end
+
+e2function array wirelink:stargateInHorizon()
+	if not IsValid(this) or not this.IsStargate then return {} end
+	return Lib.GetEntitiesInHorizon(this)
+end
+
+e2function number entity:stargateInHorizonCount()
+	if not IsValid(this) or not this.IsStargate or not(isOwner(self,this) or self.player:IsAdmin()) then return 0 end
+	return #Lib.GetEntitiesInHorizon(this)
+end
+
+e2function number wirelink:stargateInHorizonCount()
+	if not IsValid(this) or not this.IsStargate then return 0 end
+	return #Lib.GetEntitiesInHorizon(this)
+end
+
 __e2setcost( 5 )
 
 e2function void entity:stargateSetAddress(string address)
@@ -281,6 +337,20 @@ e2function number wirelink:stargateOpen()
 	end
 end
 
+-- Pegasus only: is ring glyph n lit? 1 = yes, 0 = no, -1 = not a Pegasus gate or n out of range. After an instant open every glyph
+-- is lit; during a normal dial only the spinning one.
+e2function number entity:stargateGlyphIsActivated(number n)
+	if not IsValid(this) or not this.IsStargate or not(isOwner(self,this) or self.player:IsAdmin()) then return -1 end
+	if not this.GlyphIsLit or not this.GetGlyphCount or n ~= n or n ~= math.floor(n) or n < 1 or n > this:GetGlyphCount() then return -1 end
+	return this:GlyphIsLit(n) and 1 or 0
+end
+
+e2function number wirelink:stargateGlyphIsActivated(number n)
+	if not IsValid(this) or not this.IsStargate then return -1 end
+	if not this.GlyphIsLit or not this.GetGlyphCount or n ~= n or n ~= math.floor(n) or n < 1 or n > this:GetGlyphCount() then return -1 end
+	return this:GlyphIsLit(n) and 1 or 0
+end
+
 e2function number entity:stargateInbound()
  	if not IsValid(this) or not this.IsStargate or not(isOwner(self,this) or self.player:IsAdmin()) then return -1 end
 	local ret = !this.Outbound and this.Active
@@ -345,10 +415,10 @@ __e2setcost( 30 )
 
 e2function number entity:stargateGetRingAngle()
 	if not IsValid(this) or not this.IsStargate or not(isOwner(self,this) or self.player:IsAdmin()) then return -1 end
-	local vg = {"stargate_movie","stargate_sg1","stargate_infinity","stargate_universe"};
+	local vg = {"sg_movie","sg_sg1","sg_infinity","sg_universe"};
 	local class = this:GetClass();
 	if (not table.HasValue(vg,class)) then return -1 end
-	if (class=="stargate_universe") then
+	if (class=="sg_universe") then
 		if (IsValid(this.Gate)) then
 			local angle = tonumber(math.NormalizeAngle(this.Gate:GetLocalAngles().r));
 			if (angle<0) then angle = angle+360; end;
@@ -367,10 +437,10 @@ end
 
 e2function number wirelink:stargateGetRingAngle()
 	if not IsValid(this) or not this.IsStargate then return -1 end
-	local vg = {"stargate_movie","stargate_sg1","stargate_infinity","stargate_universe"};
+	local vg = {"sg_movie","sg_sg1","sg_infinity","sg_universe"};
 	local class = this:GetClass();
 	if (not table.HasValue(vg,class)) then return -1 end
-	if (class=="stargate_universe") then
+	if (class=="sg_universe") then
 		if (IsValid(this.Gate)) then
 			local angle = tonumber(math.NormalizeAngle(this.Gate:GetLocalAngles().r));
 			if (angle<0) then angle = angle+360; end;
@@ -537,7 +607,7 @@ e2function number entity:stargateOverloadTime()
 	if (this.excessPower==nil or this.excessPowerLimit==nil or not IsValid(this.overloader)) then return -1; end
 	local energyRequired = this.excessPowerLimit - this.excessPower;
 	local timeLeft = (energyRequired / this.overloader.energyPerSecond)
-	if(StarGate.IsIrisClosed(this)) then
+	if(Lib.IsIrisClosed(this)) then
 		timeLeft = timeLeft * 2;
 	end
 	if (this.isOverloading) then
@@ -556,7 +626,7 @@ e2function number wirelink:stargateOverloadTime()
 	if (this.excessPower==nil or this.excessPowerLimit==nil or not IsValid(this.overloader)) then return -1; end
 	local energyRequired = this.excessPowerLimit - this.excessPower;
 	local timeLeft = (energyRequired / this.overloader.energyPerSecond)
-	if(StarGate.IsIrisClosed(this)) then
+	if(Lib.IsIrisClosed(this)) then
 		timeLeft = timeLeft * 2;
 	end
 	if (this.isOverloading) then
@@ -703,13 +773,13 @@ e2function table entity:stargateAddressList()
 end
 
 e2function void wirelink:stargateRandomAddress(number mode)
-	if not IsValid(this) or not this.IsStargate or not this:CAP_CanModify(self.player) or not StarGate or not StarGate.RandomGateName then return end
-	StarGate.RandomGateName(nil,this,nil,true,mode);
+	if not IsValid(this) or not this.IsStargate or not this:CAP_CanModify(self.player) then return end
+	Lib.RandomGatesName(nil,this,nil,true,mode);
 end
 
 e2function void entity:stargateRandomAddress(number mode)
-	if not IsValid(this) or not this.IsStargate or not this:CAP_CanModify(self.player) or not StarGate or not StarGate.RandomGateName or not(isOwner(self,this) or self.player:IsAdmin()) then return end
-	StarGate.RandomGateName(nil,this,nil,true,mode);
+	if not IsValid(this) or not this.IsStargate or not this:CAP_CanModify(self.player) or not(isOwner(self,this) or self.player:IsAdmin()) then return end
+	Lib.RandomGatesName(nil,this,nil,true,mode);
 end
 
 e2function number entity:stargateTransferEnergy(number value)

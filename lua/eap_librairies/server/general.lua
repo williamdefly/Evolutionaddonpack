@@ -418,11 +418,183 @@ function Lib.ReloadSystem(groupsystem)
 			Lib.ReloadedSystemMessage();
 		end
 	);
+	-- The dial menus keep a client copy of every gate's info, and the switch did not refresh it: entries taken in Galaxy mode have an
+	-- empty group, so back in Group mode the menu hid those gates. Sent again once every gate has changed system (each one notices
+	-- within 5 seconds).
+	timer.Create("_Lib.ResyncGateList",6.0,1,Lib.ResyncGateList);
+end
+
+-- Sends the info of every EAP gate to the clients again.
+function Lib.ResyncGateList()
+	for _, v in pairs(ents.FindByClass("sg_*")) do
+		if (IsValid(v) and v.IsStargate) then
+			v:SendGateInfo();
+		end
+	end
+end
+
+-- Slow dial towards a gate that plays a full inbound animation (Pegasus). The source pauses the destination's queued sequence when
+-- it starts dialling and resumes it right before its last chevron locks, so the destination had no time to play its animation.
+-- The functions below resume the destination early and make each gate wait for the other, so both vortices still open together.
+--
+-- Seconds the destination is expected to wait at the end of its animation.
+local SLOW_DIAL_MARGIN = 1.0;
+
+-- Rewrites the source's dial action list. The step resuming the destination becomes Lib.ReleaseSlowDialTarget, and an earlier resume
+-- (Lib.StartSlowDialTarget) is inserted where the source starts waiting for its ring on the last symbol. "lead" is the length of
+-- the destination's animation. Returns true when the list contained the resume step.
+function Lib.ShiftTargetUnpause(ent, action, lead)
+	local pausefn = ent.PauseActions;
+	local pause, unpause;
+	for i, step in ipairs(action) do
+		if (step.f == pausefn and type(step.v) == "table" and step.v[3] == true) then
+			if (step.v[2] == true) then
+				unpause = i;
+				break;
+			elseif (not pause) then
+				pause = i;
+			end
+		end
+	end
+	if (not unpause or not pause or unpause <= pause + 1) then return false end
+
+	local target = action[unpause].v[1];
+	-- The step where the source pauses its own timers to wait for its ring on the last symbol.
+	local ringwait;
+	for i = unpause - 1, pause + 1, -1 do
+		local step = action[i];
+		if (step.f == pausefn and type(step.v) == "table" and step.v[1] ~= target and step.v[2] == false and step.v[3] == nil) then
+			ringwait = i;
+			break;
+		end
+	end
+
+	local function StartOf(index)
+		local time = 0;
+		for i = 1, index - 1 do time = time + (tonumber(action[i].d) or 0) end
+		return time;
+	end
+
+	-- A delay above 0 ends the step's timer package: the lock that follows is a separate timer, which can be paused.
+	action[unpause].f = Lib.ReleaseSlowDialTarget;
+	action[unpause].v = { target, ent };
+	action[unpause].d = math.max(tonumber(action[unpause].d) or 0, 0.01);
+
+	ent.SlowDialWaits = {};
+	ent.SlowDialWaitStart = nil;
+	if (ringwait) then
+		local remaining = StartOf(unpause) - StartOf(ringwait);
+		table.insert(action, ringwait, { f = Lib.StartSlowDialTarget, v = { ent, target, lead, remaining }, d = 0 });
+	end
+	return true;
+end
+
+-- Measures how long the source waited for its ring on each symbol of this dial (pause -> resume of its own timers).
+function Lib.TrackSlowDialWait(ent, unpause)
+	if (not ent.SlowDialWaits) then return end
+	if (unpause) then
+		if (ent.SlowDialWaitStart) then table.insert(ent.SlowDialWaits, CurTime() - ent.SlowDialWaitStart) end
+		ent.SlowDialWaitStart = nil;
+	else
+		ent.SlowDialWaitStart = CurTime();
+	end
+end
+
+-- Source, starting to wait for its ring on the last symbol: resumes the destination so that its animation ends about when the lock
+-- happens. The ring time is estimated from the waits measured on the previous symbols, not from a chevron count.
+function Lib.StartSlowDialTarget(source, target, lead, remaining)
+	local ent = source.Entity or source;
+	if (not IsValid(ent) or not IsValid(target) or target.InboundSlowReleased ~= false) then return end
+	local delay = 0;
+	local waits = ent.SlowDialWaits or {};
+	if (#waits > 0) then
+		local sum = 0;
+		for _, wait in ipairs(waits) do sum = sum + wait end
+		delay = math.max(sum / #waits + remaining - lead - SLOW_DIAL_MARGIN, 0);
+	end
+	local function Resume()
+		if (IsValid(ent) and IsValid(target) and target.InboundSlowReleased == false and target.Target == ent) then
+			target:PauseActions(true, true);
+		end
+	end
+	if (delay < 0.05) then Resume() else timer.Simple(delay, Resume) end
+end
+
+-- Seconds a gate waits for the other one before giving up.
+local SLOW_DIAL_WAIT_LIMIT = 60;
+
+-- Destination whose source stopped dialling: fails the dial instead of opening on nothing.
+function Lib.AbortSlowDialTarget(ent)
+	ent.InboundSlowLead = nil;
+	ent.InboundSlowReleased = nil;
+	ent.InboundSlowReady = nil;
+	ent.InboundSlowWaitingSource = nil;
+	ent:StopActions();
+	ent.OnButtLock = false;
+	ent:RunActions(ent.Sequence:DialFail(nil, true));
+end
+
+-- Source, at its last chevron lock: lets the destination open. If the destination has not finished its animation, the source pauses
+-- its own sequence until Lib.SlowDialBarrier resumes it. Checked every second: shut down if the destination is gone, resumed anyway
+-- after the time limit.
+function Lib.ReleaseSlowDialTarget(target, source)
+	if (not IsValid(target)) then return end
+	target.InboundSlowReleased = true;
+	target:PauseActions(true, true);
+	local ent = source and (source.Entity or source);
+	if (target.InboundSlowReady == false and IsValid(ent)) then
+		target.InboundSlowWaitingSource = ent;
+		ent:PauseActions(false);
+		local name, ticks = "_Lib.SlowDialWatchSource_" .. ent:EntIndex(), 0;
+		timer.Create(name, 1, 0, function()
+			ticks = ticks + 1;
+			if (not IsValid(ent)) then timer.Remove(name) return end
+			if (IsValid(target) and target.InboundSlowWaitingSource ~= ent) then timer.Remove(name) return end
+			if (not IsValid(target) or target.Target ~= ent) then
+				timer.Remove(name);
+				ent:EmergencyShutdown(true);
+			elseif (ticks >= SLOW_DIAL_WAIT_LIMIT) then
+				timer.Remove(name);
+				target.InboundSlowWaitingSource = nil;
+				ent:PauseActions(true);
+			end
+		end);
+	end
+end
+
+-- Destination, end of its animation: resumes a source that was waiting for it, or waits for the source's lock if it has not happened
+-- yet. Checked every second: the dial is aborted if the source stopped, and the gate opens anyway after the time limit.
+function Lib.SlowDialBarrier(gate)
+	local ent = gate and (gate.Entity or gate);
+	if (not IsValid(ent)) then return end
+	ent.InboundSlowReady = true;
+	local source = ent.InboundSlowWaitingSource;
+	if (IsValid(source)) then
+		ent.InboundSlowWaitingSource = nil;
+		source:PauseActions(true);
+	end
+	if (ent.InboundSlowReleased ~= false) then return end
+	ent:PauseActions(false);
+	local name, ticks = "_Lib.SlowDialWatch_" .. ent:EntIndex(), 0;
+	timer.Create(name, 1, 0, function()
+		ticks = ticks + 1;
+		if (not IsValid(ent) or ent.InboundSlowReleased ~= false) then timer.Remove(name) return end
+		local src = ent.Target;
+		if (not (IsValid(src) and src.Target == ent and src.Dialling)) then
+			timer.Remove(name);
+			Lib.AbortSlowDialTarget(ent);
+		elseif (ticks >= SLOW_DIAL_WAIT_LIMIT) then
+			timer.Remove(name);
+			ent.InboundSlowReleased = true;
+			ent:PauseActions(true);
+		end
+	end);
 end
 
 function Lib.ReloadedSystemMessage()
 	for k, v in pairs(player.GetHumans()) do
-		v:SendLua("LocalPlayer():ChatPrint(Lib.Language.GetMessage(\"eap_reload\",\""..system.."\"))");
+		-- The "eap_reload" language key does not exist: the chat showed an error instead of the message.
+		v:SendLua("LocalPlayer():ChatPrint(\"Evolution Addon Pack: system successfully reloaded.\")");
 	end
 end
 
@@ -785,3 +957,181 @@ function Lib.RandomGatesName(ply,ent,count,wire,mode)
     end
 end
 hook.Add( "PlayerSpawnedSENT", "RandomGatesName", Lib.RandomGatesName );
+
+-- Is this class in the EAP spawn list, with a SpawnFunction of its own?
+function Lib.IsEAPSpawnable(EntityName)
+	if (EntityName == nil) then return false end
+	local found = false;
+	for _,v in pairs(list.Get("EAP") or {}) do
+		if (v.ClassName == EntityName) then found = true; break; end
+	end
+	if (not found) then return false end
+	local sent = scripted_ents.GetStored(EntityName);
+	return (sent and sent.t and sent.t.SpawnFunction) and true or false;
+end
+
+-- The sandbox's spawn function calls TryFixPropPosition() after SpawnFunction(), which pushes out anything partly inside the world.
+-- Gates are spawned slightly sunk into the ground on purpose, so they came out about 50 units too high. Same steps as the stock
+-- function (checks, SpawnFunction, hooks, undo, cleanup) without that repositioning. Other classes go to the stock function.
+function EAP_Spawn_SENT(ply, EntityName, tr)
+	if (EntityName == nil or not IsValid(ply)) then return end
+
+	if (not Lib.IsEAPSpawnable(EntityName)) then
+		local stock = Lib.StockSpawn_SENT or Spawn_SENT;
+		if (stock) then stock(ply, EntityName, tr); end
+		return;
+	end
+
+	local sent = scripted_ents.GetStored(EntityName).t;
+
+	if (sent.AdminOnly and not ply:IsAdmin()) then return end
+
+	if (not gamemode.Call("PlayerSpawnSENT", ply, EntityName)) then return end
+
+	if (not tr) then
+		tr = util.TraceLine({
+			start = ply:EyePos(),
+			endpos = ply:EyePos()+(ply:GetAimVector()*4096),
+			filter = ply,
+		});
+	end
+
+	ClassName = EntityName;
+	local entity = sent:SpawnFunction(ply, tr, EntityName);
+	ClassName = nil;
+
+	if (not IsValid(entity)) then return end
+
+	gamemode.Call("PlayerSpawnedSENT", ply, entity);
+
+	undo.Create("SENT");
+		undo.SetPlayer(ply);
+		undo.AddEntity(entity);
+		if (sent.PrintName) then
+			undo.SetCustomUndoText("Undone "..sent.PrintName);
+		end
+	undo.Finish("Scripted Entity ("..tostring(EntityName)..")");
+
+	ply:AddCleanup("sents", entity);
+	entity:SetVar("Player", ply);
+end
+concommand.Add("eap_spawnsent", function(ply, cmd, args) EAP_Spawn_SENT(ply, args[1]); end);
+
+-- The Entities tab, favourites, console command and creator tool all call the global Spawn_SENT: EAP's classes are sent to the
+-- function above. Done on Initialize because the gamemode defines Spawn_SENT after the autorun files.
+hook.Add("Initialize", "EAP.SpawnSENTRouting", function()
+	if (Lib.StockSpawn_SENT or not isfunction(Spawn_SENT)) then return end
+	Lib.StockSpawn_SENT = Spawn_SENT;
+	Spawn_SENT = function(ply, EntityName, tr)
+		if (IsValid(ply) and Lib.IsEAPSpawnable(EntityName)) then
+			return EAP_Spawn_SENT(ply, EntityName, tr);
+		end
+		return Lib.StockSpawn_SENT(ply, EntityName, tr);
+	end
+end);
+
+-- Gate dialling this one, for stargateTargetAddress / Group / DialingAddress. FindGate writes the caller's address into the
+-- destination's DialledAddress; a copy is taken at that moment and only handed out once the destination has activated itself.
+-- A hidden inbound address gives empty strings, like the wire outputs.
+--
+-- Wrappers already made, so a FindGate is never wrapped twice.
+local InboundRecorders = setmetatable({}, { __mode = "k" });
+-- Wraps a gate's FindGate to record the source on the destination it found.
+function Lib.RecordInboundSource(FindGateReal)
+	if (InboundRecorders[FindGateReal]) then return FindGateReal end
+	local Recorder = function(self, no_target, ...)
+		local result = FindGateReal(self, no_target, ...);
+		local dest = self.Target;
+		if (not no_target and IsValid(dest) and dest ~= self.Entity and dest.IsStargate) then
+			dest.InboundSourceInfo = nil;
+			local dialled = dest.DialledAddress;
+			local source = self.Entity;
+			local address = source:GetGateAddress() or "";
+			if (type(dialled) == "table" and #dialled >= 8 and dialled[#dialled] == "DIAL" and address:len() == 6) then
+				local first = table.concat(dialled, "", 1, 6);
+				if (first == address or first == "") then
+					local count = #(self.DialledAddress or {});
+					local chevs = (count >= 8 and count <= 10) and count - 1 or 7;
+					dest.InboundSourceInfo = {
+						source = source,
+						address = first,
+						group = (first == "") and "" or (source:GetGateGroup() or ""),
+						dialing = table.concat(dialled, "", 1, math.min(chevs, #dialled - 1)),
+					};
+				end
+			end
+		end
+		return result;
+	end
+	InboundRecorders[Recorder] = true;
+	return Recorder;
+end
+
+-- The recorded info, or nil while the gate is not an active inbound gate. Kept until the gate is no longer Active, so it also covers
+-- the closing animation.
+function Lib.GetInboundSourceInfo(dest)
+	if (not IsValid(dest) or not dest.IsStargate or dest.Outbound or not dest.Active) then return nil end
+	return dest.InboundSourceInfo;
+end
+
+-- "address", "group" or "dialing" of the gate dialling dest ("" when there is none).
+function Lib.GetInboundSourceField(dest, field)
+	local info = Lib.GetInboundSourceInfo(dest);
+	return info and info[field] or "";
+end
+
+-- Parts of the gate itself, which always touch the horizon.
+local function IsGateOrHorizonPart(e, gate, horizon)
+	if (e == horizon or e == gate or e == gate.Iris) then return true end
+	local c = e:GetClass();
+	return string.sub(c, 1, 3) == "sg_" or string.sub(c, 1, 9) == "stargate_" or string.find(c, "eventhorizon", 1, true) ~= nil
+		or string.find(c, "event_horizon", 1, true) ~= nil or string.find(c, "kawoosh", 1, true) ~= nil or string.find(c, "iris", 1, true) ~= nil;
+end
+
+-- Entities at least partly inside the gate's event horizon (anything still inside when the gate closes is destroyed): those the
+-- horizon tracks in its buffers, plus those whose bounding box crosses its thickness within its radius. Parented and non-solid
+-- entities are left out. Only uses .IsStargate and .EventHorizon, so it also works on CAP gates.
+function Lib.GetEntitiesInHorizon(gate)
+	local out = {};
+	if (not IsValid(gate) or not gate.IsStargate) then return out end
+	local horizon = gate.EventHorizon;
+	if (not IsValid(horizon)) then return out end
+
+	local seen = {};
+	local function add(e)
+		if (IsValid(e) and not seen[e] and not e:IsWorld() and not IsValid(e:GetParent()) and not IsGateOrHorizonPart(e, gate, horizon)) then
+			seen[e] = true;
+			out[#out + 1] = e;
+		end
+	end
+
+	for _, buffer in ipairs({ horizon.AllBuffer, horizon.Buffer, horizon.ClipBuffer }) do
+		if (istable(buffer)) then
+			for _, e in pairs(buffer) do
+				if (isentity(e)) then add(e) end
+			end
+		end
+	end
+
+	local thickness = math.max(horizon:OBBMaxs().x, -horizon:OBBMins().x, 20) + 10;
+	local radius = horizon:BoundingRadius();
+	for _, e in ipairs(ents.FindInSphere(horizon:GetPos(), radius + 300)) do
+		if (not seen[e] and IsValid(e) and not e:IsWorld() and e:GetSolid() ~= SOLID_NONE and not IsValid(e:GetParent())
+			and not IsGateOrHorizonPart(e, gate, horizon)) then
+			local a, b = e:OBBMins(), e:OBBMaxs();
+			local minx, maxx, near = math.huge, -math.huge, false;
+			for _, x in ipairs({ a.x, b.x }) do
+				for _, y in ipairs({ a.y, b.y }) do
+					for _, z in ipairs({ a.z, b.z }) do
+						local l = horizon:WorldToLocal(e:LocalToWorld(Vector(x, y, z)));
+						if (l.x < minx) then minx = l.x end
+						if (l.x > maxx) then maxx = l.x end
+						if (l.y * l.y + l.z * l.z < radius * radius) then near = true end
+					end
+				end
+			end
+			if (near and minx < thickness and maxx > -thickness) then add(e) end
+		end
+	end
+	return out;
+end

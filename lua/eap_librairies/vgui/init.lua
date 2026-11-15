@@ -53,7 +53,7 @@ function PANEL:Init()
 	-- Help Label
 	self.VGUI.HelpLabel:SetPos(25,3);
 	self.VGUI.HelpLabel:SetWide(500);
-	self.VGUI.HelpLabel:SetText(SGLanguage.GetMessage("stool_help"));
+	self.VGUI.HelpLabel:SetText(Lib.Language.GetMessage("stool_help"));
 	self.VGUI.HelpLabel:SetTextColor(Color(0,0,0,255))
 end
 

@@ -13,6 +13,9 @@ end
 --Initializing System
 IncludeCS('eap_librairies/shared/init.lua');
 
+-- CAP compatibility, shared part. Before the other libraries and the entities: it wraps registration functions they call.
+IncludeCS('eap_librairies/compatibility/shared/init.lua');
+
 -- Compatibility with Gmod 13 - Thanks to AlexALX
 IncludeCS("eap_librairies/shared/a_gmod13.lua");
 
@@ -23,9 +26,6 @@ IncludeCS('eap_librairies/shared/general.lua');
 IncludeCS('weapons/gmod_tool/eap_base_tool.lua');
 
 if(SERVER)then
---CAP Reverse compatibility
-include('eap_librairies/server/cap_reversecompatibility.lua')
-
 -- Wiremod
 include('eap_librairies/server/wire.lua');
 
@@ -43,6 +43,9 @@ include('eap_librairies/server/entity.lua');
 
 -- Many Functions
 include('eap_librairies/server/general.lua');
+
+-- CAP compatibility, server part (replaces cap_reversecompatibility.lua, which swapped CAP's entities for EAP's).
+include('eap_librairies/compatibility/server/init.lua');
 
 -- GateSpawner
 include('eap_librairies/server/spawner.lua');

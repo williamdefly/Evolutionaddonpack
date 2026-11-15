@@ -98,7 +98,6 @@ function ENT:Think()
 		end
 
 		if(self.depleted) then
-			--if (self.HasRD) then StarGate.WireRD.OnRemove(self,true) end;
 			self:AddResource("energy",0);
 			self:SetWire("Active",0);
 			self:SetWire("Naquadah",0);

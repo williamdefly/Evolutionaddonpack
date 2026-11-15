@@ -49,7 +49,7 @@ function ENT:Initialize()
 	-- Config
 	self.Radius = 20+30*self.Size;
 	self.Damage = 20+35*self.Size;
-	self.MaxPasses = 5; --StarGate.CFG:Get("staff","maxpasses",5);
+	self.MaxPasses = 5;
 	self.Passes = 1;
 	self.Passed = {}; -- Necessary, so you can shoot out of Catdaemons shield
 	local color = self.Entity:GetColor();

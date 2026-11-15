@@ -75,6 +75,86 @@ if IsValid(@value 1) and @value 1.IsStargate then
 end
 ]], "@result" )
 Component:AddFunctionHelper( "stargateAddress", "wl:", "Returns stargate address." )
+
+Component:AddPreparedFunction( "stargateTargetAddress", "e:", "s",
+[[@define result = ""
+if IsValid(@value 1) and @value 1.IsStargate and EXPADV.PPCheck(Context,@value 1) then
+	@result = Lib.GetInboundSourceField(@value 1, "address")
+end
+]], "@result" )
+Component:AddFunctionHelper( "stargateTargetAddress", "e:", "Returns the address of the gate dialling this one (empty until this gate has activated itself, or if hidden)." )
+
+Component:AddPreparedFunction( "stargateTargetAddress", "wl:", "s",
+[[@define result = ""
+if IsValid(@value 1) and @value 1.IsStargate then
+	@result = Lib.GetInboundSourceField(@value 1, "address")
+end
+]], "@result" )
+Component:AddFunctionHelper( "stargateTargetAddress", "wl:", "Returns the address of the gate dialling this one (empty until this gate has activated itself, or if hidden)." )
+
+Component:AddPreparedFunction( "stargateTargetGroup", "e:", "s",
+[[@define result = ""
+if IsValid(@value 1) and @value 1.IsStargate and EXPADV.PPCheck(Context,@value 1) then
+	@result = Lib.GetInboundSourceField(@value 1, "group")
+end
+]], "@result" )
+Component:AddFunctionHelper( "stargateTargetGroup", "e:", "Returns the group of the gate dialling this one (empty until this gate has activated itself, or if hidden)." )
+
+Component:AddPreparedFunction( "stargateTargetGroup", "wl:", "s",
+[[@define result = ""
+if IsValid(@value 1) and @value 1.IsStargate then
+	@result = Lib.GetInboundSourceField(@value 1, "group")
+end
+]], "@result" )
+Component:AddFunctionHelper( "stargateTargetGroup", "wl:", "Returns the group of the gate dialling this one (empty until this gate has activated itself, or if hidden)." )
+
+Component:AddPreparedFunction( "stargateTargetDialingAddress", "e:", "s",
+[[@define result = ""
+if IsValid(@value 1) and @value 1.IsStargate and EXPADV.PPCheck(Context,@value 1) then
+	@result = Lib.GetInboundSourceField(@value 1, "dialing")
+end
+]], "@result" )
+Component:AddFunctionHelper( "stargateTargetDialingAddress", "e:", "Returns the dialling address as sent to the Dialing Address output (address + point of origin + 8th/9th chevron), all at once, once this gate has activated itself." )
+
+Component:AddPreparedFunction( "stargateTargetDialingAddress", "wl:", "s",
+[[@define result = ""
+if IsValid(@value 1) and @value 1.IsStargate then
+	@result = Lib.GetInboundSourceField(@value 1, "dialing")
+end
+]], "@result" )
+Component:AddFunctionHelper( "stargateTargetDialingAddress", "wl:", "Returns the dialling address as sent to the Dialing Address output (address + point of origin + 8th/9th chevron), all at once, once this gate has activated itself." )
+
+Component:AddPreparedFunction( "stargateInHorizon", "e:", "ar",
+[[@define result = {__type = "e"}
+if IsValid(@value 1) and @value 1.IsStargate and EXPADV.PPCheck(Context,@value 1) then
+	for _, e in ipairs(Lib.GetEntitiesInHorizon(@value 1)) do @result[#@result + 1] = e end
+end
+]], "@result" )
+Component:AddFunctionHelper( "stargateInHorizon", "e:", "Returns the entities that are, even partly, inside the event horizon of the gate (anything still inside when it closes is destroyed)." )
+
+Component:AddPreparedFunction( "stargateInHorizon", "wl:", "ar",
+[[@define result = {__type = "e"}
+if IsValid(@value 1) and @value 1.IsStargate then
+	for _, e in ipairs(Lib.GetEntitiesInHorizon(@value 1)) do @result[#@result + 1] = e end
+end
+]], "@result" )
+Component:AddFunctionHelper( "stargateInHorizon", "wl:", "Returns the entities that are, even partly, inside the event horizon of the gate (anything still inside when it closes is destroyed)." )
+
+Component:AddPreparedFunction( "stargateInHorizonCount", "e:", "n",
+[[@define result = 0
+if IsValid(@value 1) and @value 1.IsStargate and EXPADV.PPCheck(Context,@value 1) then
+	@result = #Lib.GetEntitiesInHorizon(@value 1)
+end
+]], "@result" )
+Component:AddFunctionHelper( "stargateInHorizonCount", "e:", "Returns how many entities are, even partly, inside the event horizon of the gate (anything still inside when it closes is destroyed)." )
+
+Component:AddPreparedFunction( "stargateInHorizonCount", "wl:", "n",
+[[@define result = 0
+if IsValid(@value 1) and @value 1.IsStargate then
+	@result = #Lib.GetEntitiesInHorizon(@value 1)
+end
+]], "@result" )
+Component:AddFunctionHelper( "stargateInHorizonCount", "wl:", "Returns how many entities are, even partly, inside the event horizon of the gate (anything still inside when it closes is destroyed)." )
 -------------------------------------------------------------------------
 
 Component:AddPreparedFunction( "stargateSetAddress", "e:s", "",
@@ -391,10 +471,10 @@ Component:AddFunctionHelper( "stargateUnstable", "wl:", "Returns EH unstable sta
 
 Component:AddVMFunction( "stargateGetRingAngle", "e:", "n",function( Context, Trace, Entity )
 	if not IsValid(Entity) or not Entity.IsStargate or not EXPADV.PPCheck(Context,Entity) then return -1 end
-	local vg = {"stargate_movie","stargate_sg1","stargate_infinity","stargate_universe"};
+	local vg = {"sg_movie","sg_sg1","sg_infinity","sg_universe"};
 	local class = Entity:GetClass();
 	if (not table.HasValue(vg,class)) then return -1 end
-	if (class=="stargate_universe") then
+	if (class=="sg_universe") then
 		if (IsValid(Entity.Gate)) then
 			local angle = tonumber(math.NormalizeAngle(Entity.Gate:GetLocalAngles().r));
 			if (angle<0) then angle = angle+360; end;
@@ -414,10 +494,10 @@ Component:AddFunctionHelper( "stargateGetRingAngle", "e:", "Returns stargate rin
 
 Component:AddVMFunction( "stargateGetRingAngle", "wl:", "n", function( Context, Trace, Entity )
 	if not IsValid(Entity) or not Entity.IsStargate then return -1 end
-	local vg = {"stargate_movie","stargate_sg1","stargate_infinity","stargate_universe"};
+	local vg = {"sg_movie","sg_sg1","sg_infinity","sg_universe"};
 	local class = Entity:GetClass();
 	if (not table.HasValue(vg,class)) then return -1 end
-	if (class=="stargate_universe") then
+	if (class=="sg_universe") then
 		if (IsValid(Entity.Gate)) then
 			local angle = tonumber(math.NormalizeAngle(Entity.Gate:GetLocalAngles().r));
 			if (angle<0) then angle = angle+360; end;
@@ -482,7 +562,7 @@ Component:AddVMFunction( "stargateOverloadTime", "e:", "n",function( Context, Tr
 	if (Entity.excessPower==nil or Entity.excessPowerLimit==nil or not IsValid(Entity.overloader)) then return -1; end
 	local energyRequired = Entity.excessPowerLimit - Entity.excessPower;
 	local timeLeft = (energyRequired / Entity.overloader.energyPerSecond)
-	if(StarGate.IsIrisClosed(Entity)) then
+	if(Lib.IsIrisClosed(Entity)) then
 		timeLeft = timeLeft * 2;
 	end
 	if (Entity.isOverloading) then
@@ -502,7 +582,7 @@ Component:AddVMFunction( "stargateOverloadTime", "wl:", "n", function( Context, 
 	if (Entity.excessPower==nil or Entity.excessPowerLimit==nil or not IsValid(Entity.overloader)) then return -1; end
 	local energyRequired = Entity.excessPowerLimit - Entity.excessPower;
 	local timeLeft = (energyRequired / Entity.overloader.energyPerSecond)
-	if(StarGate.IsIrisClosed(Entity)) then
+	if(Lib.IsIrisClosed(Entity)) then
 		timeLeft = timeLeft * 2;
 	end
 	if (Entity.isOverloading) then
@@ -694,16 +774,16 @@ Component:AddFunctionHelper( "stargateAddressList", "wl:", "Returns stargate add
 
 Component:AddPreparedFunction( "stargateRandomAddress", "e:n", "",
 [[
-if IsValid(@value 1) and @value 1.IsStargate and @value 1:CAP_CanModify(Context.player) and StarGate and StarGate.RandomGateName and EXPADV.PPCheck(Context,@value 1) then 
-	$StarGate.RandomGateName(nil,@value 1,nil,true,@value 2)
+if IsValid(@value 1) and @value 1.IsStargate and @value 1:CAP_CanModify(Context.player) and EXPADV.PPCheck(Context,@value 1) then
+	$Lib.RandomGatesName(nil,@value 1,nil,true,@value 2)
 end
 ]])
 Component:AddFunctionHelper( "stargateRandomAddress", "e:n", "Sets random stargate address." )
 
 Component:AddPreparedFunction( "stargateRandomAddress", "wl:n", "",
 [[
-if IsValid(@value 1) and @value 1.IsStargate and @value 1:CAP_CanModify(Context.player) and StarGate and StarGate.RandomGateName then
-	$StarGate.RandomGateName(nil,@value 1,nil,true,@value 2)
+if IsValid(@value 1) and @value 1.IsStargate and @value 1:CAP_CanModify(Context.player) then
+	$Lib.RandomGatesName(nil,@value 1,nil,true,@value 2)
 end
 ]])
 Component:AddFunctionHelper( "stargateRandomAddress", "wl:n", "Sets random stargate address." )
@@ -741,21 +821,6 @@ if IsValid(@value 1) and @value 1.IsStargate then
 end
 ]], "@result" )
 Component:AddFunctionHelper( "stargateTransferResource", "wl:s,n", "Transfer resource between two connected stargates. Use negative value to retrieve resource. Can transfer only to dialled gate (not from). Returns transferred amount of resource if successful." )
---[[
-Component:AddVMFunction( "stargateRandomAddress", "e:n", "", function( Context, Trace, Entity, Bool )
-	if IsValid(Entity) and @value 1.IsStargate and Entity:CAP_CanModify(Context.player) and StarGate and StarGate.RandomGateName and EXPADV.PPCheck(Context,Entity) then 
-		StagGate.RandomGateName(nil,@value 1,nil,true,Bool)
-	end
-end)
-Component:AddFunctionHelper( "stargateRandomAddress", "e:n", "Sets random stargate address." )
-
-Component:AddVMFunction( "stargateRandomAddress", "wl:n", "", function( Context, Trace, Entity, Bool )
-	if IsValid(Entity) and @value 1.IsStargate and Entity:CAP_CanModify(Context.player) and StarGate and StarGate.RandomGateName and EXPADV.PPCheck(Context,Entity) then 
-		StagGate.RandomGateName(nil,@value 1,nil,true,Bool)
-	end
-end)
-Component:AddFunctionHelper( "stargateRandomAddress", "wl:n", "Sets random stargate address." )
-]]--
 -------------------------------------------------------------------------
 Component:AddInlineFunction( "stargateSystemType", "", "n","$GetConVar(\"stargate_group_system\"):GetBool() and 1 or 0")
 Component:AddFunctionHelper( "stargateSystemType", "", "Returns type of used stargate system." )

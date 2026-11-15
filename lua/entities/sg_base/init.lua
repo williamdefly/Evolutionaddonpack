@@ -630,7 +630,7 @@ function ENT:TriggerInputDefault(k,v,mobile,mdhd)
 			self.Target:SetWire("Received", v);
 		end
 	elseif(k == "Event Horizon Type") then
-		if (table.HasValue(StarGate.EventHorizonTypes,v) and not self.IsSuperGate and not self.IsStargateOrlin) then
+		if (table.HasValue(Lib.EventHorizonTypes,v) and not self.IsSuperGate and not self.IsStargateOrlin) then
 			self.EventHorizonType = v;
 			self:SetNWString("EventHorizonType",self.EventHorizonType);
 			if (IsValid(self.EventHorizon)) then
@@ -640,7 +640,7 @@ function ENT:TriggerInputDefault(k,v,mobile,mdhd)
  	elseif(k == "Event Horizon Color") then
 		if (v.x==0 and v.y==0 and v.z==0) then
 			local type = self.EventHorizonType;
-			local Data = StarGate.EventHorizonTypes[type] or {}
+			local Data = Lib.EventHorizonTypes[type] or {}
 			if (Data.Color) then v = Vector(Data.Color.r,Data.Color.g,Data.Color.b) end
 		end
 		self.EHColor = Color(v.x,v.y,v.z);

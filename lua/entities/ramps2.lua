@@ -60,7 +60,7 @@ end
 
 function ENT:GateFinder()
 	for _,v in pairs(Lib.GetConstrainedEnts(self.Entity,2) or {}) do
-		if(IsValid(v) and v:GetClass():find("sg_*") and v:GetClass()!="stargate_dhd") then
+		if(IsValid(v) and v:GetClass():find("sg_*")) then
 		    self.Gate = v;
 		--else
 		--    self.Gate = nil;

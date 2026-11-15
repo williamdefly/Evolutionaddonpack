@@ -53,6 +53,8 @@ ENT.Sounds = {
 	OnButtonLock=Sound("stargate/chevron_lock_atlantis_incoming.mp3"),
 }
 -- In which slot do the chevron a lock?
+-- Used only when the number of glyphs cannot be read from the ring model (GetGlyphCount).
+ENT.GlyphCount = 36;
 ENT.ChevronLocks = {4,8,12,24,28,32,36,16,20};
 ENT.ChevronLocksb = {4,8,12,24,28,32,36,16,20};
 ENT.ChevronLocks8o = {4,8,12,24,28,32,16,36,20};
@@ -189,7 +191,7 @@ function ENT:AddRing()
 end
 
 --################# Turns on a light on the ring @aVoN
-function ENT:RingLight(light,inbound,shutdown,atlantis)
+function ENT:RingLight(light,inbound,shutdown,atlantis,all)
 	local ring = self.Ring.Dial;
 	if(inbound) then ring = self.Ring.Incoming end;
 	local col = self.Entity:GetColor()
@@ -232,7 +234,41 @@ function ENT:RingLight(light,inbound,shutdown,atlantis)
     else
 	    self:SetWire("Active Glyph",light);
     end
+	-- Remembers which glyphs are lit, for GlyphIsLit(). Incoming ring: glyphs stay lit until the ring is turned off (light 0), and
+	-- "all" (instant open, "Turn on ring light" input) lights every glyph at once. Dialling ring: only the spinning glyph.
+	local glyph = (part==2) and light+18 or light;
+	if (inbound) then
+		if (glyph == 0) then
+			self.GlyphsOn = {};
+			self.GlyphAll = false;
+		elseif (all == true or (atlantis and glyph == 36)) then
+			self.GlyphAll = true;
+		else
+			self.GlyphsOn = self.GlyphsOn or {};
+			self.GlyphsOn[glyph] = true;
+		end
+	else
+		self.GlyphDial = glyph;
+	end
 	ring[part]:Fire("SetBodyGroup",light);
+end
+
+-- Number of glyphs on the ring: each of its two parts has a bodygroup with one state per glyph, plus "off".
+function ENT:GetGlyphCount()
+	local ring = self.Ring and self.Ring.Incoming;
+	local part = ring and ring[1];
+	if (IsValid(part)) then
+		local count = part:GetBodygroupCount(0);
+		if (count and count > 1) then return 2*(count-1) end
+	end
+	return self.GlyphCount;
+end
+
+-- Is glyph n (1 to GetGlyphCount()) lit right now? Used by the scripting function stargateGlyphIsActivated.
+function ENT:GlyphIsLit(n)
+	n = tonumber(n);
+	if (not n or n ~= math.floor(n) or n < 1 or n > self:GetGlyphCount()) then return false end
+	return self.GlyphAll == true or (self.GlyphsOn ~= nil and self.GlyphsOn[n] == true) or self.GlyphDial == n;
 end
 
 --################# Adds all chevrons @aVoN
@@ -292,7 +328,7 @@ function ENT:TriggerInput(k,v,mobile,mdhd)
 		end
 	elseif(k == "Turn on ring light" and not self.NewActive) then
 		if (v >= 2 and self:CheckEnergy(true,true)) then
-			self:RingLight(36,true);
+			self:RingLight(36,true,false,false,true);
 			self.Entity:SetNWBool("ActRingL",true);
 		elseif (v == 1 and self:CheckEnergy(true,true)) then
 			self:RingLight(36,true,false,true);

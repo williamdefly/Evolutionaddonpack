@@ -233,7 +233,7 @@ GateActions["OverloadTime"] = {
 			if (Ent.excessPower==nil or Ent.excessPowerLimit==nil or not IsValid(Ent.overloader)) then return -1; end
 			local energyRequired = Ent.excessPowerLimit - Ent.excessPower;
 			local timeLeft = (energyRequired / Ent.overloader.energyPerSecond)
-			if(StarGate.IsIrisClosed(Ent)) then
+			if(Lib.IsIrisClosed(Ent)) then
 				timeLeft = timeLeft * 2;
 			end
 			if (Ent.isOverloading) then
@@ -577,10 +577,10 @@ GateActions["GetRingAngle"] = {
 	timed = true,
 	output = function(gate, Ent)
 		if not IsValid(Ent) or not Ent.IsStargate then return -1 end
-		local vg = {"stargate_movie","stargate_sg1","stargate_infinity","stargate_universe"};
+		local vg = {"sg_movie","sg_sg1","sg_infinity","sg_universe"};
 		local class = Ent:GetClass();
 		if (not table.HasValue(vg,class)) then return -1 end
-		if (class=="stargate_universe") then
+		if (class=="sg_universe") then
 			if (IsValid(Ent.Gate)) then
 				local angle = tonumber(math.NormalizeAngle(Ent.Gate:GetLocalAngles().r));
 				if (angle<0) then angle = angle+360; end;

@@ -131,7 +131,7 @@ concommand.Add("eap_reset_menu",function(ply)
 	RVGUI:SetCookie("SG.Size.H",nil);
 	RVGUI:SetCookie("SG.Pos.X",nil);
 	RVGUI:SetCookie("SG.Pos.Y",nil);
-	RVGUI:SetCookieName("StarGate.SAddressSelect"); 
+	RVGUI:SetCookieName("EAP.SAddressSelect");
 	RVGUI:SetCookie("ColumnSort",nil);
 	RVGUI:SetCookie("ColumnSortDesc",nil);	
 	RVGUI:SetCookie("DHDDial",nil);	
@@ -829,7 +829,7 @@ function PANEL:LoadSettings()
 	if (self.Orlin) then
 		self:SetTextOrlin(self.Entity:GetGateGroup());
 	end
-	self.VGUI.AddressSelect:SetSettings(self.Entity,self.GroupSystem,self.CanDialGroups,self.Nox or self.Entity:GetClass()=="stargate_orlin");
+	self.VGUI.AddressSelect:SetSettings(self.Entity,self.GroupSystem,self.CanDialGroups,self.Nox or self.Entity:GetClass()=="sg_orlin");
 	self.VGUI.AddressSelect:LoadSettings();
 end
 

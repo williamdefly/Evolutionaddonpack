@@ -426,9 +426,7 @@ ENT.Glow = Lib.MaterialFromVMT(
 );
 ENT.Shaft = Material("effects/ar2ground2");
 ENT.LightSettings = "cl_staff_dynlights_flight";
-if (SGLanguage!=nil and SGLanguage.GetMessage!=nil) then
-language.Add("energy_pulse",SGLanguage.GetMessage("energy_pulse_kill"));
-end
+language.Add("energy_pulse",Lib.Language.GetMessage("energy_pulse_kill"));
 ENT.RenderGroup = RENDERGROUP_BOTH;
 
 --################### Init @aVoN
